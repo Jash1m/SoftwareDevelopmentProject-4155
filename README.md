@@ -9,9 +9,27 @@ Create a python Virtual Environment using the following command.
 ```bash
 python -m venv venv
 ```
+Activate the Virtual Environment.
+
+Windows:
+```
+\venv\Scripts\activate
+```
+Mac:
+```bash
+source env/bin/activate
+```
+
+Then install all requirements.
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage Details
-N/A No Implementation Yet
+Run app.py and navigate to the link listed in the terminal output to view the site.
+```bash
+python app.py
+```
 
 ## Team Progress
 Sprint 1
