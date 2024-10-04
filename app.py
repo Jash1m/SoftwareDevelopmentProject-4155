@@ -1,5 +1,5 @@
 # Import necessary libraries from Flask and SQLAlchemy
-from flask import Flask, abort, render_template, request, redirect, url_for
+from flask import Flask, abort, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -75,10 +75,12 @@ def userResponses(id):
         db.session.add(user)
         db.session.commit()
 
+        return render_template('response.html', surveyResponse=user)
         '''
         return "POST Responses for user id: " + str(id)
     else:
-        surveyResponse = db.session.get(Response, id)
+        #surveyResponse = db.session.get(surveyResponse, id)
+        #return render_template('response.html', surveyResponse=surveyResponse)
         return "GET Responses for user id: " + str(id)
 
 if __name__ == "__main__":
