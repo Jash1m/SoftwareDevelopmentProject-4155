@@ -72,6 +72,13 @@ def userResponses():
     # Redirect to a confirmation or thank you page after submission
     return redirect(url_for('index'))
 
+@app.route('/responses')
+def display_responses():
+    # Query all responses from the database, sorted by ID
+    all_responses = Response.query.order_by(Response.id).all()
+    
+    # Pass the responses to the template
+    return render_template('responses.html', all_responses=all_responses)
 
 with app.app_context():
     db.drop_all()  # Drops all tables
