@@ -1,5 +1,5 @@
 # Import necessary libraries from Flask and SQLAlchemy
-from flask import Flask, abort, render_template, request
+from flask import Flask, abort, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -57,24 +57,25 @@ def addUserResponses():
     globalID = globalID + 1
 
     id = globalID
-    q1 = request.form.get('name_property_1')
-    q2 = request.form.get('name_property_2')
-    q3 = request.form.get('name_property_3')
-    q4 = request.form.get('name_property_4')
-    q5 = request.form.get('name_property_5')
-    q6 = request.form.get('name_property_6')
-    q7 = request.form.get('name_property_7')
-    q8 = request.form.get('name_property_8')
-    q9 = request.form.get('name_property_9')
-    q10 = request.form.get('name_property_10')
-    q11 = request.form.get('name_property_11')
+    q1 = request.form.get('year', False)
+    q2 = request.form.get('major', False)
+    q3 = request.form.get('same-major', False)
+    q4 = request.form.get('share', False)
+    q5 = request.form.get('quiet-hours', False)
+    q6 = request.form.get('sleep-time', False)
+    q7 = request.form.get('study-habits', False)
+    q8 = request.form.get('hobbies', False)
+    q9 = request.form.get('room-climate', False)
+    q10 = request.form.get('tidy', False)
+    q11 = request.form.get('conflict', False)
     
     user = User(id=id, q1=q1,q2=q2,q3=q3,q4=q4,q5=q5,q6=q6,q7=q7,q8=q8,q9=q9,q10=q10,q11=q11)
 
     db.session.add(user)
     db.session.commit()
 
-    return render_template('response.html', surveyResponse=user)
+    return user
+    # return render_template('response.html', surveyResponse=user)
     '''
     return "POST Redirect"
 
