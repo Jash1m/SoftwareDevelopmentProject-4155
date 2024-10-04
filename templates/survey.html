@@ -9,251 +9,209 @@
     <div>
         <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
     </div>
-
 </header>
 <body>
-        <!-- Survey content -->
-        <div class="survey-container">
-            <div class="survey-box">
-                <div class="survey-section">
-                    <div class="survey-header">
-                        <h2>Roommate Compatibility Survey</h2>
-                    </div>
-                    
-                <form>
-            <!-- ====== This is where the form input ends for the entire survey! ====== --!>
-                    <!-- question 1 -->
+    <div class="survey-container">
+        <div class="survey-box">
+            <div class="survey-section">
+                <div class="survey-header">
+                    <h2>Roommate Compatibility Survey</h2>
+                </div>
+                
+                <!-- Update the form to submit to the userResponses route -->
+                <form action="/user" method="POST"> 
+                    <!-- Question 1 -->
                     <h3 class="question-header">What year are you?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
                             <span>Freshman</span>
-                            <input type="radio" name="year" value="freshman">
+                            <input type="radio" name="year" value="freshman" required>
                         </label>
                         <label class="custom-radio">
                             <span>Sophomore</span>
-                            <input type="radio" name="year" value="sophomore">
+                            <input type="radio" name="year" value="sophomore" required>
                         </label>
                         <label class="custom-radio">
                             <span>Junior</span>
-                            <input type="radio" name="year" value="junior">
+                            <input type="radio" name="year" value="junior" required>
                         </label>
                         <label class="custom-radio">
                             <span>Senior</span>
-                            <input type="radio" name="year" value="senior">
+                            <input type="radio" name="year" value="senior" required>
                         </label>
                         <label class="custom-radio">
                             <span>Graduate Student</span>
-                            <input type="radio" name="year" value="graduate-student">
+                            <input type="radio" name="year" value="graduate-student" required>
                         </label>
                     </div>
 
-                    <!-- question 2 -->
+                    <!-- Question 2 -->
                     <h3 class="question-header">What is your major?</h3>
                     <div class="selection-box">
                         <label class="custom-major">
-                            <input type="text" name="major" class="major-input" placeholder="Enter your major">
+                            <input type="text" name="major" class="major-input" placeholder="Enter your major" required>
                         </label>
                     </div>
 
-                    <!-- question 3 -->    
+                    <!-- Question 3 -->
                     <h3 class="question-header">Would you prefer a roommate with the same major?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
                             <span>Yes</span>
-                            <input type="radio" name="same-major" value="yes">
+                            <input type="radio" name="same-major" value="yes" required>
                         </label>
                         <label class="custom-radio">
                             <span>No</span>
-                            <input type="radio" name="same-major" value="no">
+                            <input type="radio" name="same-major" value="no" required>
                         </label>
                         <label class="custom-radio">
                             <span>Doesn't Matter</span>
-                            <input type="radio" name="same-major" value="doesn't matter">
+                            <input type="radio" name="same-major" value="doesn't matter" required>
                         </label>
                     </div>
-                    <!-- question 4 -->
+
+                    <!-- Question 4 -->
                     <div class="question-container">
                         <h3 class="question-header">
                             How do you feel about sharing personal items?<br>
                             <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
                         </h3> 
                         <div class="share-selection-box">
-                            <!--This line here needs to be changed to input!-->
-                            <form class="radio-horizontal">
-                                <label class="custom-circle-radio">
-                                    <input type="radio" name="share" value="1">
-                                    <span>1</span>
-                                </label>
-                                <label class="custom-circle-radio">
-                                    <input type="radio" name="share" value="2">
-                                    <span>2</span>
-                                </label>
-                                <label class="custom-circle-radio">
-                                    <input type="radio" name="share" value="3">
-                                    <span>3</span>
-                                </label>
-                                <label class="custom-circle-radio">
-                                    <input type="radio" name="share" value="4">
-                                    <span>4</span>
-                                </label>
-                                <label class="custom-circle-radio">
-                                    <input type="radio" name="share" value="5">
-                                    <span>5</span>
-                                </label>
-                            </form>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="1" required>
+                                <span>1</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="2" required>
+                                <span>2</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="3" required>
+                                <span>3</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="4" required>
+                                <span>4</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="5" required>
+                                <span>5</span>
+                            </label>
                         </div>
                     </div>
-                    <!-- question 5 -->
+
+                    <!-- Question 5 -->
                     <h3 class="question-header">What time would you like to have quiet hours?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
                             <span>8pm</span>
-                            <input type="radio" name="quiet-hours" value="8pm">
+                            <input type="radio" name="quiet-hours" value="8pm" required>
                         </label>
                         <label class="custom-radio">
                             <span>10pm</span>
-                            <input type="radio" name="quiet-hours" value="10pm">
+                            <input type="radio" name="quiet-hours" value="10pm" required>
                         </label>
                         <label class="custom-radio">
                             <span>Midnight</span>
-                            <input type="radio" name="quiet-hours" value="midnight">
+                            <input type="radio" name="quiet-hours" value="midnight" required>
                         </label>
                     </div>
-    
-                    <!-- question 6 -->
+
+                    <!-- Question 6 -->
                     <h3 class="question-header">What time do you usually go to sleep?</h3>
                     <div class="selection-box">
-                            <label class="custom-radio">
+                        <label class="custom-radio">
                             <span>8pm - 10pm</span>
-                            <input type="radio" name="sleep-time" value="8pm-10pm">
+                            <input type="radio" name="sleep-time" value="8pm-10pm" required>
                         </label>
                         <label class="custom-radio">
                             <span>10pm - Midnight</span>
-                            <input type="radio" name="sleep-time" value="10pm-midnight">
+                            <input type="radio" name="sleep-time" value="10pm-midnight" required>
                         </label>
                         <label class="custom-radio">
-                            <span>Past Midnight</span>
-                            <input type="radio" name="sleep-time" value="past-midnight">
+                            <span>After Midnight</span>
+                            <input type="radio" name="sleep-time" value="after-midnight" required>
                         </label>
                     </div>
-    
-                    <!-- question 7 -->
-                    <h3 class="question-header">What are your study habits? (Choose all that apply)</h3>
+
+                    <!-- Question 7 -->
+                    <h3 class="question-header">What are your study habits? (Select all that apply)</h3>
                     <div class="selection-box">
                         <label class="custom-checkbox">
-                            <span>I prefer to study in complete silence.</span>
-                            <input type="checkbox" name="study-habits" value="complete-silence">
+                            <input type="checkbox" name="study-habits" value="Group Study">
+                            <span>Group Study</span>
                         </label>
                         <label class="custom-checkbox">
-                            <span>I study best with background noise.</span>
-                            <input type="checkbox" name="study-habits" value="background-noise">
+                            <input type="checkbox" name="study-habits" value="Study Alone">
+                            <span>Study Alone</span>
                         </label>
                         <label class="custom-checkbox">
-                            <span>I like to study in my room.</span>
-                            <input type="checkbox" name="study-habits" value="study-room">
+                            <input type="checkbox" name="study-habits" value="Late Night Study">
+                            <span>Late Night Study</span>
                         </label>
-                        <label class="custom-checkbox">
-                            <span>I prefer to study in common areas.</span>
-                                <input type="checkbox" name="study-habits" value="study-common-areas">
-                        </label>
-                        <label class="custom-checkbox">
-                            <span>I prefer to study alone.</span>
-                            <input type="checkbox" name="study-habits" value="study-alone">
-                        </label>
-                        <label class="custom-checkbox">
-                            <span>I enjoy studying with others.</span>                                <input type="checkbox" name="study-habits" value="study-groups">
-                        </label>
-                    </form>
                     </div>
-    
-                    <!-- question 8 -->
-                    <h3 class="question-header">What are your hobbies? (Choose all that apply)</h3>
+
+                    <!-- Question 8 -->
+                    <h3 class="question-header">What are your hobbies? (Select all that apply)</h3>
                     <div class="selection-box">
                         <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Sports">
                             <span>Sports</span>
-                            <input type="checkbox" name="hobbies" value="sports">
                         </label>
                         <label class="custom-checkbox">
-                            <span>Art</span>
-                            <input type="checkbox" name="hobbies" value="art">
+                            <input type="checkbox" name="hobbies" value="Reading">
+                            <span>Reading</span>
                         </label>
                         <label class="custom-checkbox">
-                            <span>Video Games</span>
-                            <input type="checkbox" name="hobbies" value="video-games">
-                        </label>
-                        <label class="custom-checkbox">
-                            <span>Cooking</span>
-                            <input type="checkbox" name="hobbies" value="cooking">
-                        </label>
-                        <label class="custom-checkbox">
-                            <span>Other</span>
-                            <input type="checkbox" name="hobbies" value="other">
+                            <input type="checkbox" name="hobbies" value="Gaming">
+                            <span>Gaming</span>
                         </label>
                     </div>
-    
-                    <!-- question 9 -->
-                    <h3 class="question-header">How do you prefer your room climate?</h3>
+
+                    <!-- Question 9 -->
+                    <h3 class="question-header">What kind of room climate do you prefer?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
                             <span>Cool</span>
-                            <input type="radio" name="room-climate" value="cool">
-                        </label>
-                        <label class="custom-radio">
-                            <span>Moderate</span>
-                            <input type="radio" name="room-climate" value="moderate">
+                            <input type="radio" name="room-climate" value="cool" required>
                         </label>
                         <label class="custom-radio">
                             <span>Warm</span>
-                            <input type="radio" name="room-climate" value="warm">
+                            <input type="radio" name="room-climate" value="warm" required>
                         </label>
                     </div>
-    
-                    <!-- question 10 -->
-                    <h3 class="question-header">How tidy do you typically keep your living space?</h3>
+
+                    <!-- Question 10 -->
+                    <h3 class="question-header">How tidy do you like to keep your space?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
-                            <span>Very tidy</span>
-                            <input type="radio" name="tidy" value="very-tidy">
+                            <span>Tidy</span>
+                            <input type="radio" name="tidy" value="tidy" required>
                         </label>
                         <label class="custom-radio">
-                            <span>Somewhat tidy</span>
-                            <input type="radio" name="tidy" value="somewhat-tidy">
-                        </label>
-                        <label class="custom-radio">
-                            <span>Doesn't matter</span>
-                            <input type="radio" name="tidy" value="doesnt-matter">
+                            <span>Messy</span>
+                            <input type="radio" name="tidy" value="messy" required>
                         </label>
                     </div>
-    
-                    <!-- question 11 -->
-                    <h3 class="question-header">How do you handle conflict when it arises with a roommate?</h3>
+
+                    <!-- Question 11 -->
+                    <h3 class="question-header">How do you handle conflict?</h3>
                     <div class="selection-box">
                         <label class="custom-radio">
-                            <span>Address it immediately</span>
-                            <input type="radio" name="conflict" value="immediate">
+                            <span>Confront it</span>
+                            <input type="radio" name="conflict" value="confront" required>
                         </label>
                         <label class="custom-radio">
-                            <span>Wait and see if it resolves</span>
-                            <input type="radio" name="conflict" value="wait-and-see">
-                        </label>
-                        <label class="custom-radio">
-                            <span>Prefer to avoid it</span>
-                            <input type="radio" name="conflict" value="avoid">
+                            <span>Avoid it</span>
+                            <input type="radio" name="conflict" value="avoid" required>
                         </label>
                     </div>
-                    
-                    <!-- submit button-->
-                    <div class="submit-button-container">
-                        <button type="submit" class="submit-button">Submit</button>
-                    </div>
-        <!-- ====== This is where the form input ends for the entire survey! ====== --!>
-                </form>   
+
+                    <!-- Submit button -->
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
             </div>
         </div>
     </div>
 </body>
-
-<footer>
-    <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
-    <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
-</footer>
+</html>
