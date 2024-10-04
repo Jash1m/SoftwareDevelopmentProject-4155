@@ -1,8 +1,9 @@
 # Import necessary libraries from Flask and SQLAlchemy
-from flask import Flask
+from flask import Flask, abort, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+
+app = Flask(__name__,template_folder='templates', static_folder='StaticFile')
 
 #SQLite database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -38,11 +39,11 @@ class Response(db.Model):
 
 @app.route('/', methods=['GET'])
 def index():
-    return "homepage \n <a href='survey'>survey</a>"
+    return render_template('index.html')
 
 @app.route('/survey', methods=['GET'])
 def survey():
-    return "survey \n <a href='user/1'>survey</a>"
+    return render_template('survey.html')
 
 @app.route('/user/<int:id>', methods=['GET', 'POST'])
 def userResponses(id):

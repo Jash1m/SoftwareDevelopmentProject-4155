@@ -1,0 +1,90 @@
+
+:root {
+    /* UNCC Primary Colors*/
+    --Charlotte_Green: #005035;
+    --ninerGold: #A49665;
+    --quartzWhite: #FFFFFF;
+
+    /* UNCC Secondary Colors */
+    --jasper: #F1E6B2;
+    --Pine_Green: #899064;
+    --Clay_Red: #802F2D;
+    --Sky_Blue: #007377;
+    --Ore_Black: #101820;
+
+    /* Our own colors we use*/
+    --dark-green: #00351C;  
+    --custom_green: #205C40; 
+    
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+/*========================Header CSS========================*/
+
+header {
+    background-color: #1F4F37;
+    width: 100%;
+    height: 16%;
+    top: 0px;
+    object-fit: contain;
+}
+
+.landingHeaderIMG {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.surveyHeaderIMG {
+    width: 100%;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    padding-top: 1%;
+}
+
+/*========================Body CSS========================*/
+body {
+
+}
+
+
+/*========================Footer CSS========================*/
+footer {
+    background-color: #1C1C1C;
+    height: 3%;
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+    border-width: 3px;
+    border-style: solid none none none;
+    border-color: var(--ninerGold);
+}
+
+.footerIMG1 {
+    top: 2px;
+}
+
+.footerIMG2{
+    display: inline-block;
+    margin-left: 55%;
+    object-fit: contain;
+}
+
+.bubbleCircle {
+    width: 30px;
+    height: 30px;
+    background-color: var(--custom_green);
+    border-radius: 50%;
+}
+
+a {
+    text-decoration: none;
+}
