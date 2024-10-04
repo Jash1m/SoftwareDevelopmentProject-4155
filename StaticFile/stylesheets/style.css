@@ -1,6 +1,22 @@
- /* :root {
-  
-} */
+
+:root {
+    /* UNCC Primary Colors*/
+    --Charlotte_Green: #005035;
+    --ninerGold: #A49665;
+    --quartzWhite: #FFFFFF;
+
+    /* UNCC Secondary Colors */
+    --jasper: #F1E6B2;
+    --Pine_Green: #899064;
+    --Clay_Red: #802F2D;
+    --Sky_Blue: #007377;
+    --Ore_Black: #101820;
+
+    /* Our own colors we use*/
+    --dark-green: #00351C;  
+    --custom_green: #205C40; 
+    
+}
 
 * {
     margin: 0px;
@@ -49,7 +65,7 @@ footer {
     position: absolute;
     border-width: 3px;
     border-style: solid none none none;
-    border-color: #AFA378;
+    border-color: var(--ninerGold);
 }
 
 .footerIMG1 {
@@ -65,11 +81,10 @@ footer {
 .bubbleCircle {
     width: 30px;
     height: 30px;
-    background-color: #205C40;
+    background-color: var(--custom_green);
     border-radius: 50%;
 }
 
 a {
     text-decoration: none;
-
 }
