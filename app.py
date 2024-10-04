@@ -50,38 +50,39 @@ def index():
 def survey():
     return render_template('survey.html')
 
-@app.route('/user/<int:id>', methods=['GET', 'POST'])
+@app.route('/user', methods=['POST'])
+def addUserResponses():
+    # TODO get form data: waiting on html/css to be finalized
+    '''
+    globalID = globalID + 1
+
+    id = globalID
+    q1 = request.form.get('name_property_1')
+    q2 = request.form.get('name_property_2')
+    q3 = request.form.get('name_property_3')
+    q4 = request.form.get('name_property_4')
+    q5 = request.form.get('name_property_5')
+    q6 = request.form.get('name_property_6')
+    q7 = request.form.get('name_property_7')
+    q8 = request.form.get('name_property_8')
+    q9 = request.form.get('name_property_9')
+    q10 = request.form.get('name_property_10')
+    q11 = request.form.get('name_property_11')
+    
+    user = User(id=id, q1=q1,q2=q2,q3=q3,q4=q4,q5=q5,q6=q6,q7=q7,q8=q8,q9=q9,q10=q10,q11=q11)
+
+    db.session.add(user)
+    db.session.commit()
+
+    return render_template('response.html', surveyResponse=user)
+    '''
+    return "POST Redirect"
+
+@app.route('/user/<int:id>', methods=['GET'])
 def userResponses(id):
-
-    if request.method == 'POST':
-        # TODO get form data: waiting on html/css to be finalized
-        '''
-        globalID = globalID + 1
-
-        id = globalID
-        q1 = request.form.get('name_property_1')
-        q2 = request.form.get('name_property_2')
-        q3 = request.form.get('name_property_3')
-        q4 = request.form.get('name_property_4')
-        q5 = request.form.get('name_property_5')
-        q6 = request.form.get('name_property_6')
-        q7 = request.form.get('name_property_7')
-        q8 = request.form.get('name_property_8')
-        q9 = request.form.get('name_property_9')
-        q10 = request.form.get('name_property_10')
-        
-        user = User(id=id, q1=q1,q2=q2,q3=q3,q4=q4,q5=q5,q6=q6,q7=q7,q8=q8,q9=q9,q10=q10)
-
-        db.session.add(user)
-        db.session.commit()
-
-        return render_template('response.html', surveyResponse=user)
-        '''
-        return "POST Responses for user id: " + str(id)
-    else:
-        #surveyResponse = db.session.get(surveyResponse, id)
-        #return render_template('response.html', surveyResponse=surveyResponse)
-        return "GET Responses for user id: " + str(id)
+    #surveyResponse = db.session.get(surveyResponse, id)
+    #return render_template('response.html', surveyResponse=surveyResponse)
+    return "GET Responses for user id: " + str(id)
 
 if __name__ == "__main__":
     # Create database tables if they do not exist yet
