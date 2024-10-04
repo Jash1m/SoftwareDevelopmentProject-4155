@@ -17,7 +17,7 @@
         <!-- Survey and Responses buttons -->
         <div class="button-container">
             <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
-            <a href="notimplemented" class="custom-button">View Responses</a> <!-- Change href once other PR is merged for responses page-->
+            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a> <!-- Change href once other PR is merged for responses page-->
         </div>
     </div>
 </body>
