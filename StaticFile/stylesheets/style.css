@@ -324,6 +324,59 @@ form {
     border-color: var(--ninerGold); /*turn gold when focused*/
 }
 
+/*======================== Index Page CSS ========================*/
+
+/* Container for index page */
+.index-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+    background-color: white;
+}
+
+/* Header for index page */
+.index-header {
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: var(--custom_dark_green);
+}
+
+/* Button container for centering */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 400px; /* Adjust width to allow more space between buttons */
+    gap: 20px; /* Adds space between buttons */
+}
+
+/* Custom button styling */
+.custom-button {
+    background-color: var(--custom_green);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for buttons */
+.custom-button:hover {
+    background-color: var(--ninerGold);
+    transform: scale(1.05);
+}
+
+/* Button click effect */
+.custom-button:active {
+    background-color: var(--custom_dark_green);
+    transform: scale(0.95);
+}
+
 /*========================Footer CSS========================*/
 footer {
     background-color: #1C1C1C;
