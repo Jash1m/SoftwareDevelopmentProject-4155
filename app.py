@@ -1,14 +1,14 @@
-from flask import Flask
+from flask import Flask, abort, render_template
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates', static_folder='StaticFile')
 
 @app.route('/', methods=['GET'])
 def index():
-    return "homepage \n <a href='survey'>survey</a>"
+    return render_template('index.html')
 
 @app.route('/survey', methods=['GET'])
 def survey():
-    return "survey \n <a href='user/1'>survey</a>"
+    return render_template('survey.html')
 
 @app.route('/user/<int:id>', methods=['GET', 'POST'])
 def userResponses(id):
