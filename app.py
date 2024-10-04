@@ -1,5 +1,5 @@
 # Import necessary libraries from Flask and SQLAlchemy
-from flask import Flask, abort, render_template
+from flask import Flask, abort, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -37,6 +37,11 @@ class Response(db.Model):
     def __repr__(self):
         return f"User ID: {self.id}, Survey Responses: {[self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8, self.q9, self.q10]}"
 
+# Defined a temporary global ID variable to handle incrementing IDs
+# we should consider using autoincrement in the DB in the future
+global globalID 
+globalID = 0
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -47,10 +52,38 @@ def survey():
 
 @app.route('/user/<int:id>', methods=['GET', 'POST'])
 def userResponses(id):
-    return "Responses for user id: " + str(id)
+
+    if request.method == 'POST':
+        # TODO get form data: waiting on html/css to be finalized
+        '''
+        globalID = globalID + 1
+
+        id = globalID
+        q1 = request.form.get('name_property_1')
+        q2 = request.form.get('name_property_2')
+        q3 = request.form.get('name_property_3')
+        q4 = request.form.get('name_property_4')
+        q5 = request.form.get('name_property_5')
+        q6 = request.form.get('name_property_6')
+        q7 = request.form.get('name_property_7')
+        q8 = request.form.get('name_property_8')
+        q9 = request.form.get('name_property_9')
+        q10 = request.form.get('name_property_10')
+        
+        user = User(id=id, q1=q1,q2=q2,q3=q3,q4=q4,q5=q5,q6=q6,q7=q7,q8=q8,q9=q9,q10=q10)
+
+        db.session.add(user)
+        db.session.commit()
+
+        '''
+        return "POST Responses for user id: " + str(id)
+    else:
+        surveyResponse = db.session.get(Response, id)
+        return "GET Responses for user id: " + str(id)
 
 if __name__ == "__main__":
     # Create database tables if they do not exist yet
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     
     app.run(debug=True)
