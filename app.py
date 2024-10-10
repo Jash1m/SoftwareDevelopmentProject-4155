@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # SQLite database URI
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12345@127.0.0.1:3306/roommate'
 
 # Disable tracking modifications to save resources
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -22,17 +22,17 @@ class Response(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
     # Survey response placeholders for 11 questions, stored as strings
-    q1 = db.Column(db.String, nullable=False)
-    q2 = db.Column(db.String, nullable=False)
-    q3 = db.Column(db.String, nullable=False)
-    q4 = db.Column(db.String, nullable=False)
-    q5 = db.Column(db.String, nullable=False)
-    q6 = db.Column(db.String, nullable=False)
-    q7 = db.Column(db.String, nullable=False)
-    q8 = db.Column(db.String, nullable=False)
-    q9 = db.Column(db.String, nullable=False)
-    q10 = db.Column(db.String, nullable=False)
-    q11 = db.Column(db.String, nullable=False)
+    q1 = db.Column(db.String(100), nullable=False)
+    q2 = db.Column(db.String(100), nullable=False)
+    q3 = db.Column(db.String(100), nullable=False)
+    q4 = db.Column(db.String(100), nullable=False)
+    q5 = db.Column(db.String(100), nullable=False)
+    q6 = db.Column(db.String(100), nullable=False)
+    q7 = db.Column(db.String(100), nullable=False)
+    q8 = db.Column(db.String(100), nullable=False)
+    q9 = db.Column(db.String(100), nullable=False)
+    q10 = db.Column(db.String(100), nullable=False)
+    q11 = db.Column(db.String(100), nullable=False)
 
     # For debugging and printing user instances
     def __repr__(self):
