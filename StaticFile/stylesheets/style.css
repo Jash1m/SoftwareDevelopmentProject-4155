@@ -401,6 +401,44 @@ footer {
 a {
     text-decoration: none;
 }
+/*======================Responses Page CSS================/
+/* Response box styling */
+.response-box {
+    background-color: white;
+    border: 2px solid var(--custom_green);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.response-box:hover {
+    transform: scale(1.01);
+}
+
+/* Header of each response */
+.response-header {
+    cursor: pointer;
+    background-color: var(--custom_green);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Details section (hidden by default) */
+.response-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--jasper);
+    border-radius: 5px;
+}
+
+/* Style for each individual detail line */
+.response-details p {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
 
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
