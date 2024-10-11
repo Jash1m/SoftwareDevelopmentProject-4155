@@ -306,6 +306,7 @@ form {
     border-radius: 5px;
     width: 100%; 
     padding: 10px;
+    box-sizing: border-box; /*padding and borders are included in width*/
 }
 
 /*input field */
@@ -404,3 +405,42 @@ footer {
 a {
     text-decoration: none;
 }
+
+/*======================== Sidebar CSS ========================*/
+.sidebar-left, .sidebar-right {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 11em;
+    width: 200px;
+    padding: 10px;
+    height: 175px;
+    width: 175px;
+}
+
+.sidebar-left {
+    left: 0;
+    padding: 0;
+}
+
+.sidebar-right {
+    right: 0;
+    padding: 0;
+}
+
+.sidebar-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+ 
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-item:hover .sidebar-img {
+    transform: scale(1.05); 
+}
+
