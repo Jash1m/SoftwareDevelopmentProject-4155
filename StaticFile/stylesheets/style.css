@@ -1,24 +1,68 @@
-/* Global reset */
+:root {
+    /* UNCC Primary Colors*/
+    --Charlotte_Green: #005035;
+    --ninerGold: #A49665;
+    --quartzWhite: #FFFFFF;
+
+    /* UNCC Secondary Colors */
+    --jasper: #F1E6B2;
+    --Pine_Green: #899064;
+    --Clay_Red: #802F2D;
+    --Sky_Blue: #007377;
+    --Ore_Black: #101820;
+
+    /* Our own colors we use*/
+    --custom_dark_green: #00351C;  
+    --custom_green: #205C40; 
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
     font-family: 'Oswald', sans-serif;
 }
 
-/* color variables */
-:root {
-    --dark-green: #00351C;  
-    --green: #205C40; 
-    --gold: #A49665; 
+/*========================Header CSS========================*/
+
+header {
+    background-color: #1F4F37;
+    width: 100%;
+    height: 16%;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
 }
 
+.landingHeaderIMG {
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+}
+
+.surveyHeaderIMG {
+    
+    width: 80%;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    padding-top: 0.25%;
+}
+
+/*========================Body CSS========================*/
 body {
     background-color: white; 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
+
+/*========================Survey Question (Stacey Designed) CSS========================*/
 
 /*container */
 .survey-container {
@@ -28,6 +72,8 @@ body {
     width: 100%;
     min-height: 100vh; /*full viewport height*/
     background-color: white;
+
+    overflow: auto;
 }
 
 /*main structure for survey form */
@@ -37,8 +83,9 @@ body {
     border-radius: 10px;
     width: 600px; 
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
-    margin-top: 100px;
+    margin-top: 150px;
     margin-bottom: 50px;
+    min-height: 100vh;
 }
 
 .survey-section {
@@ -51,7 +98,7 @@ body {
 
 /*Roommate Compatibilty Survey header*/
 .survey-header h2 {
-    background-color: var(--dark-green);
+    background-color: var(--custom_dark_green);
     color: white;
     text-align: center;
     padding: 8px;
@@ -79,6 +126,7 @@ body {
     width: 400px; 
     text-align: center; 
     margin: 0 auto 30px;
+
 }
 
 /*form styles */
@@ -117,28 +165,28 @@ form {
     width: 20px;
     height: 20px;
     appearance: none;
-    border: 2px solid var(--green); 
+    border: 2px solid var(--custom_green); 
     border-radius: 50%;
-    background-color: var(--green); 
+    background-color: var(--custom_green); 
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 /*selected rb style */
 .custom-radio input:checked {
-    background-color: var(--gold); /*when selected */
-    border-color: var(--gold);
+    background-color: var(--ninerGold); /*when selected */
+    border-color: var(--ninerGold);
 }
 
 /*hover rb*/
 .custom-radio:hover {
-    border-color: var(--green);
+    border-color: var(--custom_green);
 }
 
 /*style for selected rb label */
 .custom-radio input:checked + span {
     font-weight: bold;
-    color: var(--dark-green);
+    color: var(--custom_dark_green);
 }
 
 /*question 4 styling*/
@@ -187,7 +235,7 @@ form {
     width: 40px; 
     height: 40px;
     border-radius: 50%;
-    background-color: var(--green); 
+    background-color: var(--custom_green); 
     color: white;
     font-size: 18px;
     transition: background-color 0.3s, transform 0.3s; 
@@ -195,12 +243,12 @@ form {
 
 /*circle style when selected*/
 .custom-circle-radio input:checked + span {
-    background-color: var(--gold); 
+    background-color: var(--ninerGold); 
     transform: scale(1.1); 
 }
 
 .custom-circle-radio span:hover {
-    background-color: var(--dark-green); 
+    background-color: var(--custom_dark_green); 
 }
 
 /* square checkboxes*/
@@ -231,21 +279,21 @@ form {
     width: 20px;
     height: 20px;
     appearance: none;
-    border: 2px solid var(--green); 
+    border: 2px solid var(--custom_green); 
     border-radius: 5px;
-    background-color: var(--green);
+    background-color: var(--custom_green);
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 /*checkbox style when selected */
 .custom-checkbox input:checked {
-    background-color: var(--gold);
-    border-color: var(--gold);
+    background-color: var(--ninerGold);
+    border-color: var(--ninerGold);
 }
 
 .custom-checkbox:hover {
-    border-color: var(--green); 
+    border-color: var(--custom_green); 
 }
 
 /*input container for question 2 */
@@ -263,7 +311,7 @@ form {
 .major-input {
     width: 100%; 
     padding: 8px;
-    border: 2px solid var(--green); 
+    border: 2px solid var(--custom_green); 
     border-radius: 5px;
     background-color: white;
     transition: border-color 0.3s;
@@ -273,5 +321,85 @@ form {
 
 /*focus effect input field */
 .major-input:focus {
-    border-color: var(--gold); /*turn gold when focused*/
+    border-color: var(--ninerGold); /*turn gold when focused*/
+}
+
+/*======================== Index Page CSS ========================*/
+
+/* Container for index page */
+.index-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+    background-color: white;
+}
+
+/* Header for index page */
+.index-header {
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: var(--custom_dark_green);
+}
+
+/* Button container for centering */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 400px; /* Adjust width to allow more space between buttons */
+    gap: 20px; /* Adds space between buttons */
+}
+
+/* Custom button styling */
+.custom-button {
+    background-color: var(--custom_green);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for buttons */
+.custom-button:hover {
+    background-color: var(--ninerGold);
+    transform: scale(1.05);
+}
+
+/* Button click effect */
+.custom-button:active {
+    background-color: var(--custom_dark_green);
+    transform: scale(0.95);
+}
+
+/*========================Footer CSS========================*/
+footer {
+    background-color: #1C1C1C;
+    height: 3%;
+    width: 100%;
+    bottom: 0px;
+    position: fixed;
+    border-width: 3px;
+    border-style: solid none none none;
+    border-color: var(--ninerGold);
+    z-index: 99;
+}
+
+.footerIMG1 {
+    top: 2px;
+}
+
+.footerIMG2{
+    display: inline-block;
+    margin-left: 55%;
+    object-fit: contain;
+}
+
+a {
+    text-decoration: none;
 }

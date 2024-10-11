@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    
+    <!-- Title and Favicon Below-->
+    <title>Landing Page</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
+</head>
+<header>
+    <img src="../StaticFile/Images/header/UNCC-Header.png" class="landingHeaderIMG">
+</header>
+<body>
+    <!-- Main content section with buttons -->
+    <div class="index-container">
+        <!-- Title -->
+        <h1 class="index-header">Welcome to the Roommate Compatibility Survey</h1>
+        
+        <!-- Survey and Responses buttons -->
+        <div class="button-container">
+            <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
+            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a> <!-- Change href once other PR is merged for responses page-->
+        </div>
+    </div>
+</body>
+<footer>
+    <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
+    <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
+</footer>
