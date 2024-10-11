@@ -200,6 +200,7 @@ form {
     border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 400px;
+    gap: 30px;
 }
 
 .share-selection-box form {
@@ -305,6 +306,7 @@ form {
     border-radius: 5px;
     width: 100%; 
     padding: 10px;
+    box-sizing: border-box; /*padding and borders are included in width*/
 }
 
 /*input field */
@@ -377,72 +379,6 @@ form {
     transform: scale(0.95);
 }
 
-
-/* Simulate button container */
-.simulate-container {
-    margin-top: 20px; /* Space between buttons and simulation section */
-    padding: 10px; /* Inner padding */
-    background-color: #f9f9f9; /* Light background color */
-    border: 1px solid #ccc; /* Border for definition */
-    border-radius: 5px; /* Rounded corners */
-}
-
-/* Simulate button container label*/
-.simulate-container label {
-    display: block; /* Each label on a new line */
-    margin: 10px 0 5px; /* Space above and below the label */
-}
-
-/* Simulate button input */
-.simulate-container input[type="number"] {
-    width: 100%; /* Full width of container */
-    padding: 8px; /* Inner padding */
-    border: 1px solid #ccc; /* Border styling */
-    border-radius: 4px; /* Rounded corners */
-    box-sizing: border-box; /* Include padding in width */
-}
-
-
-/*======================Responses Page CSS================/
-
-/* Response box styling */
-.response-box {
-    background-color: white;
-    border: 2px solid var(--custom_green);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.response-box:hover {
-    transform: scale(1.01);
-}
-
-/* Header of each response */
-.response-header {
-    cursor: pointer;
-    background-color: var(--custom_green);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-/* Details section (hidden by default) */
-.response-details {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: var(--jasper);
-    border-radius: 5px;
-}
-
-/* Style for each individual detail line */
-.response-details p {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
 /*========================Footer CSS========================*/
 footer {
     background-color: #1C1C1C;
@@ -469,3 +405,42 @@ footer {
 a {
     text-decoration: none;
 }
+
+/*======================== Sidebar CSS ========================*/
+.sidebar-left, .sidebar-right {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 11em;
+    width: 200px;
+    padding: 10px;
+    height: 175px;
+    width: 175px;
+}
+
+.sidebar-left {
+    left: 0;
+    padding: 0;
+}
+
+.sidebar-right {
+    right: 0;
+    padding: 0;
+}
+
+.sidebar-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+ 
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-item:hover .sidebar-img {
+    transform: scale(1.05); 
+}
+
