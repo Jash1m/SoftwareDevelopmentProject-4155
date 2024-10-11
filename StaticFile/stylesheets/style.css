@@ -30,7 +30,6 @@ header {
     height: 16%;
     top: 0px;
     display: flex;
-    align-items: center;
     justify-content: center;
     position: fixed;
     z-index: 100;
@@ -43,13 +42,10 @@ header {
     
 }
 
-.surveyHeaderIMG {
-    
-    width: 80%;
-    height: 80%;
+.surveyHeaderIMG {  
+    width: 16vw;
+    height: 16vh;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     object-fit: contain;
     padding-top: 0.25%;
 }
@@ -411,11 +407,12 @@ a {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 11em;
-    width: 200px;
+
+    top: 20vh;
+    width: 8.5vw;
+    height: 8.5vh;
+
     padding: 10px;
-    height: 175px;
-    width: 175px;
 }
 
 .sidebar-left {
@@ -434,8 +431,7 @@ a {
 
 .sidebar-img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
  
     transition: transform 0.3s ease-in-out;
 }
