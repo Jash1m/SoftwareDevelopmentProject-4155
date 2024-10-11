@@ -194,6 +194,7 @@ form {
     border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 400px;
+    gap: 30px;
 }
 
 .share-selection-box form {

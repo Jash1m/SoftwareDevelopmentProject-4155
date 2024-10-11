@@ -22,17 +22,16 @@
             <div class="survey-header">
                 <h2>Roommate Compatibility Survey Responses</h2>
             </div>
-            
-            <!-- Dropdown for Each User's Responses -->
+
+            <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
-            <div class="survey-section">
-                <h3 class="question-header">Response ID: {{ response.id }}</h3>
+            <div class="response-box">
+                <div class="response-header" onclick="toggleDropdown('dropdown-{{ response.id }}')">
+                    <h3>Response ID: {{ response.id }}</h3>
+                </div>
                 
-                <!-- Dropdown Button -->
-                <button onclick="toggleDropdown('dropdown-{{ response.id }}')">Show/Hide Responses</button>
-                
-                <!-- Dropdown Content -->
-                <div id="dropdown-{{ response.id }}" style="display:none;" class="selection-box">
+                <!-- Dropdown Content (Hidden by Default) -->
+                <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
                     <p><strong>Year:</strong> {{ response.q1 }}</p>
                     <p><strong>Major:</strong> {{ response.q2 }}</p>
                     <p><strong>Same Major Preference:</strong> {{ response.q3 }}</p>
