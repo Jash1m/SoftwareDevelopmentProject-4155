@@ -411,7 +411,7 @@ a {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 10em;
+    top: 11em;
     width: 200px;
     padding: 10px;
     height: 175px;
@@ -420,10 +420,12 @@ a {
 
 .sidebar-left {
     left: 0;
+    padding: 0;
 }
 
 .sidebar-right {
     right: 0;
+    padding: 0;
 }
 
 .sidebar-item {
