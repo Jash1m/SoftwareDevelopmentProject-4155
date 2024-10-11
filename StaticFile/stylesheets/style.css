@@ -377,6 +377,31 @@ form {
     transform: scale(0.95);
 }
 
+/* Simulate button container */
+.simulate-container {
+    margin-top: 20px; /* Space between buttons and simulation section */
+    padding: 10px; /* Inner padding */
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #ccc; /* Border for definition */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Simulate button container label*/
+.simulate-container label {
+    display: block; /* Each label on a new line */
+    margin: 10px 0 5px; /* Space above and below the label */
+}
+
+/* Simulate button input */
+.simulate-container input[type="number"] {
+    width: 100%; /* Full width of container */
+    padding: 8px; /* Inner padding */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+
 /*========================Footer CSS========================*/
 footer {
     background-color: #1C1C1C;
