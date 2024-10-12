@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Example</title>
-    <link href="/StaticFile/stylesheet/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+
+    <!-- Title and Favicon Below-->
+    <title>Landing Page</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
 </head>
+<header>
+    <img src="../StaticFile/Images/header/UNCC-Header.png" class="landingHeaderIMG">
+</header>
 <body>
-   <!-- Upper Header with Search Bar -->
-<div class="up-nav-bar">
-    <a href="#">Alumni & Friends</a>
-    <a href="#">Community</a>
-    <a href="#">Current Students</a>
-    <a href="#">Faculty & Staff</a>
-    <a href="#">Parents & Family</a>
-    <a href="#">Prospective Students</a>
-
-    <!-- Search Bar added within the up-nav-bar -->
-    <div class="search-box">
-        <p class="cr">Campus Resources</p>
-        <input type="text" placeholder="Enter search term here">
-        <button>Search</button>
-    </div>
-</div>
-    
-
-    <!-- Main Header -->
-        <div class="main-header">
-            <div class="logo-title">
-                <div class="logo">
-                    <img src="/StaticFile/images/logo.png" alt="Logo">
-                    <p class="charlotte">Charlotte</p>
-                </div>
-                <div>
-                    <h1>Housing and Residence Life</h1>
-                    <p class="sub-text">Division of Student Affairs</p>
-                </div>
-            </div>
-    </div>
-
-        <!-- Border-->
-        <div class="bottom-border"></div>
-
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <a href="#">Home</a>
-            <a href="#">Housing Options</a>
-            <a href="#">On Campus Living</a>
-            <a href="#">Apply</a>
-            <a href="#">Conference & Intern Housing</a>
-            <a href="#">About Us</a>
-            <a href="#">Employment</a>
+    <!-- Main content section with buttons -->
+    <div class="index-container">
+        <!-- Title -->
+        <h1 class="index-header">Welcome to the Roommate Compatibility Survey</h1>
+        
+        <!-- Survey and Responses buttons -->
+        <div class="button-container">
+            <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
+            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
         </div>
 
-        <!-- Social Icons -->
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-twitter"></a>
-            <a href="#" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-youtube"></a>
+        <!-- Simulate Responses section -->
+        <div class="simulate-container">
+            <h2>Simulate Survey Responses</h2>
+            <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
+                <!-- Submit button -->
+                <button type="submit" class="custom-button">Simulate Responses</button>
+                <label for="num_responses">Number of Responses to Simulate:</label>
+                <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
+            </form>
         </div>
     </div>
-
 </body>
-    <footer>
-    </footer>
+<footer>
+    <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
+    <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
+</footer>
 </html>

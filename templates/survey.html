@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title and Favicon Below-->
+    <title>Roommate Compatibility Survey</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
+</head>
+<header>
+    <div>
+        <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
+    </div>
+</header>
+<body>
+    <div class="survey-container">
+        <div class="survey-box">
+            <div class="survey-section">
+                <div class="survey-header">
+                    <h2>Roommate Compatibility Survey</h2>
+                </div>
+                
+                <!-- Update the form to submit to the userResponses route -->
+                <form action="/user" method="POST"> 
+                    <!-- Question 1 -->
+                    <h3 class="question-header">What year are you?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Freshman</span>
+                            <input type="radio" name="year" value="freshman" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Sophomore</span>
+                            <input type="radio" name="year" value="sophomore" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Junior</span>
+                            <input type="radio" name="year" value="junior" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Senior</span>
+                            <input type="radio" name="year" value="senior" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Graduate Student</span>
+                            <input type="radio" name="year" value="graduate-student" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <h3 class="question-header">What is your major?</h3>
+                    <div class="selection-box">
+                        <label class="custom-major">
+                            <input type="text" name="major" class="major-input" placeholder="Enter your major" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <h3 class="question-header">Would you prefer a roommate with the same major?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Yes</span>
+                            <input type="radio" name="same-major" value="yes" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>No</span>
+                            <input type="radio" name="same-major" value="no" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Doesn't Matter</span>
+                            <input type="radio" name="same-major" value="doesn't matter" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-container">
+                        <h3 class="question-header">
+                            How do you feel about sharing personal items?<br>
+                            <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
+                        </h3> 
+                        <div class="share-selection-box">
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="1" required>
+                                <span>1</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="2" required>
+                                <span>2</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="3" required>
+                                <span>3</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="4" required>
+                                <span>4</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="5" required>
+                                <span>5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <h3 class="question-header">What time would you like to have quiet hours?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>8pm</span>
+                            <input type="radio" name="quiet-hours" value="8pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>10pm</span>
+                            <input type="radio" name="quiet-hours" value="10pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Midnight</span>
+                            <input type="radio" name="quiet-hours" value="midnight" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <h3 class="question-header">What time do you usually go to sleep?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>8pm - 10pm</span>
+                            <input type="radio" name="sleep-time" value="8pm-10pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>10pm - Midnight</span>
+                            <input type="radio" name="sleep-time" value="10pm-midnight" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>After Midnight</span>
+                            <input type="radio" name="sleep-time" value="after-midnight" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 7 -->
+                    <h3 class="question-header">What are your study habits? (Select all that apply)</h3>
+                    <div class="selection-box">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Quiet Study">
+                            <span>I prefer to study in silence.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Study Alone">
+                            <span>I prefer to study alone.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Late Night Study">
+                            <span>I prefer to study late at night.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Common Areas Study">
+                            <span>I prefer to study in common areas.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="In Room Study">
+                            <span>I prefer to study in my room.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Background Noise Study">
+                            <span>I prefer having background noise.</span>
+                        </label>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <h3 class="question-header">What are your hobbies? (Select all that apply)</h3>
+                    <div class="selection-box">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Sports">
+                            <span>Sports</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Reading">
+                            <span>Reading</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Gaming">
+                            <span>Gaming</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Art">
+                            <span>Art</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Cooking">
+                            <span>Cooking</span>
+                        </label>
+                    </div>
+
+                    <!-- Question 9 -->
+                    <h3 class="question-header">What kind of room climate do you prefer?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Cool</span>
+                            <input type="radio" name="room-climate" value="cool" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Warm</span>
+                            <input type="radio" name="room-climate" value="warm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Moderate</span>
+                            <input type="radio" name="room-climate" value="moderate" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 10 -->
+                    <h3 class="question-header">How tidy do you like to keep your space?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Tidy</span>
+                            <input type="radio" name="tidy" value="tidy" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Messy</span>
+                            <input type="radio" name="tidy" value="messy" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 11 -->
+                    <h3 class="question-header">How do you handle conflict?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Confront it</span>
+                            <input type="radio" name="conflict" value="confront" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Avoid it</span>
+                            <input type="radio" name="conflict" value="avoid" required>
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="custom-button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+    <!-- Right Sidebar -->
+    <div class="sidebar-right">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+</body>
+</html>

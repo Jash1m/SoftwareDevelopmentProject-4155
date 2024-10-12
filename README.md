@@ -17,7 +17,7 @@ Windows:
 ```
 Mac:
 ```bash
-source env/bin/activate
+source venv/bin/activate
 ```
 
 Then install all requirements.
