@@ -1,2 +1,0 @@
-Version 2 of the text file I made for Git immersion assignment.
-This is an amazing piece of art.
