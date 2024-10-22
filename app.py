@@ -1,13 +1,17 @@
 import random
 # Import necessary libraries from Flask and SQLAlchemy
 from flask import Flask, abort, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy.sql import text
 
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
-# SQLite database URI
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# MySQL database URI
+dbUser = "..." #!!! Must be updated locally
+dbPass = "..." #!!! Must be updated locally
+dbConnect = "..." #!! Must be updated locally
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbConnect
 
 # Disable tracking modifications to save resources
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -16,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Defined a 'Response' database table model
-class Response(db.Model):
+'''class Response(db.Model):
     __tablename__ = 'responses'
     
     # Primary key for identifying each user
@@ -38,6 +42,77 @@ class Response(db.Model):
     # For debugging and printing user instances
     def __repr__(self):
         return f"User ID: {self.id}, Survey Responses: {[self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8, self.q9, self.q10, self.q11]}"
+'''
+PeriodQuestion = db.Table(
+    'periodquestions',
+    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
+    db.Column('question_id', db.Integer, db.ForeignKey('questions.id')),
+    
+    db.PrimaryKeyConstraint('period_id', 'question_id')
+)
+
+'''
+Response = db.Table(
+    'responses',
+    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
+    db.Column('question_id', db.Integer, db.ForeignKey('questions.id')),
+    db.Column('student_id', db.Integer, db.ForeignKey('students.id')),
+    
+    db.PrimaryKeyConstraint('period_id', 'question_id', 'student_id')
+)'''
+
+class Period(db.Model):
+    __tablename__ = 'periods'
+    
+    # Primary key for identifying each period ex. Spring 2024
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    periodName = db.Column(db.String(30), nullable=False)
+    numDoubles = db.Column(db.Integer, nullable=False)
+    numQuads = db.Column(db.Integer, nullable=False)
+
+    periodquestions = db.relationship('questions', secondary=PeriodQuestion, backref='questionperiods')
+    periodresponses = db.relationship('questions', secondary=PeriodQuestion, backref='questionperiods')
+
+
+class Question(db.Model):
+    __tablename__ = 'questions'
+    
+    # Primary key for identifying each question
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    text = db.Column(db.String(255), nullable=False)
+    options = db.Column(db.String(255), nullable=False)
+    questiontype = db.Column(db.Integer, nullable=False)
+
+    questionperiods = db.relationship('periods', secondary=PeriodQuestion, backref='periodquestions')
+
+'''
+
+class PeriodQuestion(db.Model):
+    __tablename__ = 'responses'
+    
+    # Primary key for identifying each user
+    id = db.Column(db.Integer, primary_key=True)
+class Student(db.Model):
+     __tablename__ = 'students'
+    
+    # Primary key for identifying each question
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(255), nullable=False)
+    lastname = db.Column(db.String(255), nullable=False)
+    placed = db.Column(db.Boolean, default=False)
+
+    studentresponse = db.relationship('periods', secondary=PeriodQuestion, backref='periodquestions')
+
+class Response(db.Model):
+    __tablename__ = 'responses'
+
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(255), nullable=False)
+    lastname = db.Column(db.String(255), nullable=False)
+    placed = db.Column(db.Boolean, default=False)
+
+class RoommatePairs(db.Model):
+class RoommateQuads(db.Model):'''
 
 @app.route('/', methods=['GET'])
 def index():
@@ -51,7 +126,7 @@ def survey():
 def userResponses():
     # Retrieve form data
     responses = Response(
-        q1=request.form.get('year', ''),
+        '''q1=request.form.get('year', ''),
         q2=request.form.get('major', ''),
         q3=request.form.get('same-major', ''),
         q4=request.form.get('share', ''),
@@ -61,7 +136,7 @@ def userResponses():
         q8=', '.join(request.form.getlist('hobbies')),       # Convert list to string
         q9=request.form.get('room-climate', ''),
         q10=request.form.get('tidy', ''),
-        q11=request.form.get('conflict', '')
+        q11=request.form.get('conflict', '')'''
     )
     
     # Store the user response in the database
