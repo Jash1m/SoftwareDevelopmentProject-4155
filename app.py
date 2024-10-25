@@ -8,9 +8,9 @@ from sqlalchemy.sql import text
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally
-dbPass = "..." #!!! Must be updated locally
-dbConnect = "..." #!! Must be updated locally
+dbUser = "root" #!!! Must be updated locally
+dbPass = "12345" #!!! Must be updated locally
+dbConnect = "roommate" #!! Must be updated locally
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbConnect
 
 # Disable tracking modifications to save resources
@@ -51,16 +51,38 @@ PeriodQuestion = db.Table(
     db.PrimaryKeyConstraint('period_id', 'question_id')
 )
 
-'''
+
 Response = db.Table(
     'responses',
     db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
     db.Column('question_id', db.Integer, db.ForeignKey('questions.id')),
     db.Column('student_id', db.Integer, db.ForeignKey('students.id')),
+    db.Column('answer', db.String(255)),
     
     db.PrimaryKeyConstraint('period_id', 'question_id', 'student_id')
-)'''
+)
 
+'''
+Pair = db.Table(
+    'pairs',
+    db.Column('student_id_1', db.Integer, db.ForeignKey('students.id')),
+    db.Column('student_id_2', db.Integer, db.ForeignKey('students.id')),
+    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
+
+    db.PrimaryKeyConstraint('student_id_1', 'student_id_2', 'period_id')
+)
+
+Quad = db.Table(
+    'quads',
+    db.Column('student_id_1', db.Integer, db.ForeignKey('students.id')),
+    db.Column('student_id_2', db.Integer, db.ForeignKey('students.id')),
+    db.Column('student_id_3', db.Integer, db.ForeignKey('students.id')),
+    db.Column('student_id_4', db.Integer, db.ForeignKey('students.id')),
+    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
+
+    db.PrimaryKeyConstraint('student_id_1', 'student_id_2', 'student_id_3', 'student_id_4', 'period_id')
+)
+'''
 class Period(db.Model):
     __tablename__ = 'periods'
     
@@ -70,9 +92,12 @@ class Period(db.Model):
     numDoubles = db.Column(db.Integer, nullable=False)
     numQuads = db.Column(db.Integer, nullable=False)
 
-    periodquestions = db.relationship('questions', secondary=PeriodQuestion, backref='questionperiods')
-    periodresponses = db.relationship('questions', secondary=PeriodQuestion, backref='questionperiods')
+    periodquestions = db.relationship('Question', secondary=PeriodQuestion, lazy='joined', backref='periods')
+    periodresponses = db.relationship('Student', secondary=Response, backref='periods')
+    #periodpairs = db.relationship('Student', secondary=Pair, backref='pairperiod', foreign_keys=[id], primaryjoin=(Pair.c.period_id == id), secondaryjoin=(Pair.c.period_id == id))
+    #periodquads = db.relationship('Student', secondary=Quad, backref='quadperiod', foreign_keys=[id], primaryjoin=(Quad.c.period_id == id), secondaryjoin=(Quad.c.period_id == id))
 
+    
 
 class Question(db.Model):
     __tablename__ = 'questions'
@@ -83,36 +108,24 @@ class Question(db.Model):
     options = db.Column(db.String(255), nullable=False)
     questiontype = db.Column(db.Integer, nullable=False)
 
-    questionperiods = db.relationship('periods', secondary=PeriodQuestion, backref='periodquestions')
+    questionperiods = db.relationship('Period', secondary=PeriodQuestion, backref='questions')
+    questionresponses = db.relationship('Student', secondary=Response, backref='question')
 
-'''
 
-class PeriodQuestion(db.Model):
-    __tablename__ = 'responses'
-    
-    # Primary key for identifying each user
-    id = db.Column(db.Integer, primary_key=True)
 class Student(db.Model):
-     __tablename__ = 'students'
+    __tablename__ = 'students'
     
-    # Primary key for identifying each question
+    # Primary key for identifying each student
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(255), nullable=False)
     lastname = db.Column(db.String(255), nullable=False)
     placed = db.Column(db.Boolean, default=False)
 
-    studentresponse = db.relationship('periods', secondary=PeriodQuestion, backref='periodquestions')
+    studentresponse = db.relationship('Question', secondary=Response, backref='student')
+    #studentpair = db.relationship('Student', secondary=Pair, backref='roommate', foreign_keys=[id])
+    #studentquad = db.relationship('Student', secondary=Quad, backref='roommate', foreign_keys=[id])
+    
 
-class Response(db.Model):
-    __tablename__ = 'responses'
-
-    id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(255), nullable=False)
-    lastname = db.Column(db.String(255), nullable=False)
-    placed = db.Column(db.Boolean, default=False)
-
-class RoommatePairs(db.Model):
-class RoommateQuads(db.Model):'''
 
 @app.route('/', methods=['GET'])
 def index():
@@ -124,8 +137,11 @@ def survey():
 
 @app.route('/user', methods=['POST'])
 def userResponses():
+    
+    
+
     # Retrieve form data
-    responses = Response(
+    r1 = Response(
         '''q1=request.form.get('year', ''),
         q2=request.form.get('major', ''),
         q3=request.form.get('same-major', ''),
@@ -138,6 +154,7 @@ def userResponses():
         q10=request.form.get('tidy', ''),
         q11=request.form.get('conflict', '')'''
     )
+    
     
     # Store the user response in the database
     db.session.add(responses)
@@ -216,6 +233,52 @@ def simulate_responses():
 with app.app_context():
     db.drop_all()  # Drops all tables
     db.create_all()  # Recreates all tables according to your models
+
+    # For now I'm just storing the period value and student value here,
+    # Every time a student response is submitted I'm incrementing the student id by one
+    # This is just for testing purposes. 
+
+    # Adding the Period
+    mPeriod = Period(id=1, periodName="Fall 2024", numDoubles=200, numQuads=100)
+
+    # Adding in all 11 Questions
+    mQ1 = Question(id=1, text="text", options="text", questiontype=1)
+    mQ2 = Question(id=2, text="text", options="text", questiontype=1)
+    mQ3 = Question(id=3, text="text", options="text", questiontype=1)
+    mQ4 = Question(id=4, text="text", options="text", questiontype=1)
+    mQ5 = Question(id=5, text="text", options="text", questiontype=1)
+    mQ6 = Question(id=6, text="text", options="text", questiontype=1)
+    mQ7 = Question(id=7, text="text", options="text", questiontype=1)
+    mQ8 = Question(id=8, text="text", options="text", questiontype=1)
+    mQ9 = Question(id=9, text="text", options="text", questiontype=1)
+    mQ10 = Question(id=10, text="text", options="text", questiontype=1)
+    mQ11 = Question(id=11, text="text", options="text", questiontype=1)
+
+    # Associating Questions
+    mPeriod.periodquestions.append(mQ1)
+    mPeriod.periodquestions.append(mQ2)
+    mPeriod.periodquestions.append(mQ3)
+    mPeriod.periodquestions.append(mQ4)
+    mPeriod.periodquestions.append(mQ5)
+    mPeriod.periodquestions.append(mQ6)
+    mPeriod.periodquestions.append(mQ7)
+    mPeriod.periodquestions.append(mQ8)
+    mPeriod.periodquestions.append(mQ9)
+    mPeriod.periodquestions.append(mQ10)
+    mPeriod.periodquestions.append(mQ11)
+
+    st1 = Student()
+
+    db.session.add_all([mPeriod, mQ1, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
+    db.session.commit()
+
+    #qs = db.select(Period, Question).join(Period.id).order_by(Period.id,Question.id)
+    #for row in db.session.execute(qs):
+    #    print(f"{row.Period.id} {row.Question.text}")
+
+    #test = db.session.query(Period, Question).select_from(Question).join(Question, Period.id == Question.questionperiods).all()
+    #for i in test:
+    #    print(test.id)
 
 if __name__ == "__main__": 
     app.run(debug=True)
