@@ -325,54 +325,133 @@ form {
 /*======================== Index Page CSS ========================*/
 
 /* Container for index page */
+/* Background image overlay for index page */
 .index-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
+    width: 100%;
     text-align: center;
-    background-color: white;
+    background-image: url('../StaticFile/Images/background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.index-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #F1E6B2;
+    z-index: 1;
+}
+
+.index-container > * {
+    position: relative;
+    z-index: 2;
 }
 
 /* Header for index page */
 .index-header {
-    font-size: 32px;
-    margin-bottom: 50px;
-    color: var(--custom_dark_green);
+    font-size: 52px;
+    color: var(--quartzWhite);
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); 
 }
 
-/* Button container for centering */
+/* Button container */
 .button-container {
     display: flex;
-    justify-content: space-around;
-    width: 400px; /* Adjust width to allow more space between buttons */
-    gap: 20px; /* Adds space between buttons */
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
 }
 
 /* Custom button styling */
 .custom-button {
     background-color: var(--custom_green);
-    color: white;
-    padding: 15px 30px;
+    color: var(--quartzWhite);
+    padding: 18px 35px;
     border-radius: 30px;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover effect for buttons */
 .custom-button:hover {
     background-color: var(--ninerGold);
-    transform: scale(1.05);
+    transform: scale(1.07);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.35);
 }
 
-/* Button click effect */
 .custom-button:active {
     background-color: var(--custom_dark_green);
-    transform: scale(0.95);
+    transform: scale(0.98);
+}
+
+/* Simulate Survey section styling */
+.simulate-container {
+    margin-top: 50px;
+    padding: 20px 40px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.simulate-container h2 {
+    font-size: 28px;
+    color: var(--custom_dark_green);
+    margin-bottom: 20px;
+}
+
+.simulate-container label {
+    font-size: 18px;
+    color: var(--custom_green);
+    display: block;
+    margin-top: 10px;
+}
+
+.simulate-container input[type="number"] {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--custom_green);
+    outline: none;
+    width: 100%;
+    max-width: 200px;
+}
+
+.simulate-container input[type="number"]:focus {
+    border-color: var(--ninerGold);
+}
+
+/*======================== Button Hover Animation ========================*/
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.custom-button:hover {
+    animation: pulse 1s infinite;
 }
 
 /*========================Footer CSS========================*/
