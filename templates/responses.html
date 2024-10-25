@@ -32,8 +32,27 @@
                 
                 <!-- Dropdown Content (Hidden by Default) -->
                 <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
-                    <!-- <p><strong>Student ID: {{ student.ID}}</strong></p> -->
-                    <p><strong>Year:</strong> {{ response.q1 }}</p>
+
+                    <!-- Question 1 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Year: <p> {{ response.q1 }}</p></p>
+                        <div class="response-item-symbols">
+                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-x-square"></i>
+                        </div>  
+                    </div>
+                    <!-- Question 2 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Major: <p> {{ response.q2 }}</p></p>
+                        <div class="response-item-symbols">
+                            
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+
+
+                    
                     <p><strong>Major:</strong> {{ response.q2 }}</p>
                     <p><strong>Same Major Preference:</strong> {{ response.q3 }}</p>
                     <p><strong>Room Sharing:</strong> {{ response.q4 }}</p>
