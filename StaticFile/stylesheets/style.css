@@ -27,17 +27,20 @@
 }
 
 
-button {
+/* button {
+    font-size: 18px;
     background: none;
     background-color: none;
     border: none;
     text-decoration: none;
-
+    margin: 0px;
+    padding: 0px;
 }
 
-button :hover {
-    background-color: red;
-}
+button:hover {
+    cursor: pointer;
+} */
+
 /*========================Header CSS========================*/
 
 header {
@@ -453,27 +456,44 @@ a {
 /* Style for each individual detail line */
 .response-details p {
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
 }
 
 .response-item-container {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    margin: 0 auto;
+    padding: 0px;
     gap: 0.5rem;
+    padding-bottom: 0.20rem;
 }
 
 .response-item-title {
     font-weight: bold;
-
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .response-item-symbols {
     display: flex;
     flex-direction: row;
-    justify-content: right;
     gap: 0.5rem;
-    padding-left: 1rem;
+}
+
+.response-item-symbols button {
+    font-size: 18px;
+    background: none;
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    
+}
+
+.response-item-symbols button:hover {
+    cursor: pointer;
+    border: 1px var(--Ore_Black) solid;
+    border-radius: 5;
 }
 
 /*======================== Sidebar CSS ========================*/
