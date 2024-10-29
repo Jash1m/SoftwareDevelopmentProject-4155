@@ -324,146 +324,105 @@ form {
 
 /*======================== Index Page CSS ========================*/
 
-/* Container for index page */
+/* Main container styling */
 .index-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 80px 20px; /* To account for fixed header */
     width: 100%;
-    padding: 0 20px;
+    max-width: 1200px;
     text-align: center;
-    background-image: url('../StaticFile/Images/background.jpg'); /* Replace with your background image */
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
+    margin-top: 15%;
 }
 
-.index-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--quartzWhite);
-    z-index: 1;
-}
-
-.index-container > * {
-    position: relative;
-    z-index: 2;
-}
-
-/* Header for index page */
+/* Title styling */
 .index-header {
-    font-size: 6vh;
-    color: var(--custom_green);
-    font-weight:bolder;
-    margin-bottom: 50px;
-    line-height: 1.2;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 32px;
+    color: var(--custom_dark_green);
+    margin-bottom: 40px;
 }
 
-/* Button container for layout */
-.action-container {
-    margin-top: 40px;
-    padding: 20px 40px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 700px;
-}
-
+/* Grid container for buttons */
 .button-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 30px;
 }
 
+/* Button styling */
 .custom-button {
     background-color: var(--custom_green);
-    color: var(--quartzWhite);
-    padding: 18px 35px;
-    border-radius: 30px;
-    font-size: 20px;
-    font-weight: bold;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 18px;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .custom-button:hover {
     background-color: var(--ninerGold);
-    transform: scale(1.07);
-    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.35);
+    transform: scale(1.05);
 }
 
 .custom-button:active {
     background-color: var(--custom_dark_green);
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 
-/* Simulate Survey section styling */
+/* Logout container styling */
+.logout-container {
+    margin-top: 20px;
+}
+
+.logout-container .custom-button {
+    width: 150px;
+}
+
+/* Simulate responses container styling */
 .simulate-container {
-    margin-top: 60px;
-    padding: 25px 50px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
-    width: 90%;
-    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 60%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
 .simulate-container h2 {
-    font-size: 32px;
-    color: var(--custom_dark_green);
-    margin-bottom: 20px;
+    color: var(--ninerGold);
+    margin-bottom: 15px;
+    font-size: 24px;
 }
 
 .simulate-container label {
-    font-size: 18px;
-    color: var(--custom_green);
-    display: block;
-    margin: 20px 0 10px;
+    font-size: 16px;
+    color: var(--custom_dark_green);
+    margin-top: 10px;
 }
 
 .simulate-container input[type="number"] {
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid var(--custom_green);
-    outline: none;
     width: 100%;
-    max-width: 200px;
-}
-
-.simulate-container input[type="number"]:focus {
-    border-color: var(--ninerGold);
-}
-
-/*======================== Button Hover Animation ========================*/
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
-    }
-}
-
-.custom-button:hover {
-    animation: pulse 1s infinite;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--custom_green);
+    margin-top: 10px;
+    outline: none;
 }
 
 
