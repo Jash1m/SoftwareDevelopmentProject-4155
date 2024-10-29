@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    
+    <title>Roommate Compatibility Survey</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
+    <script>
+        function filterMajors() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let select = document.getElementById('majorSelect');
+            let options = select.getElementsByTagName('option');
+
+            for (let i = 0; i < options.length; i++) {
+                let text = options[i].text.toLowerCase();
+                options[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+
+        function selectMajor() {
+            let select = document.getElementById('majorSelect');
+            let input = document.getElementById('search');
+            input.value = select.options[select.selectedIndex].text;
+        }
+    </script>
+</head>
+<header>
+    <div>
+        <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
+    </div>
+</header>
+<body>
+    <div class="survey-container">
+        <div class="survey-box">
+            <div class="survey-section">
+                <div class="survey-header">
+                    <h2>Roommate Compatibility Survey</h2>
+                </div>
+                
+                <!-- Update the form to submit to the userResponses route -->
+                <form action="/user" method="POST"> 
+                    <!-- Question 1 -->
+                    <h3 class="question-header">What year are you?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Freshman</span>
+                            <input type="radio" name="year" value="freshman" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Sophomore</span>
+                            <input type="radio" name="year" value="sophomore" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Junior</span>
+                            <input type="radio" name="year" value="junior" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Senior</span>
+                            <input type="radio" name="year" value="senior" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Graduate Student</span>
+                            <input type="radio" name="year" value="graduate-student" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="container">
+                        <h3 class="question-header">What is your major?</h3>
+                        <div class="selection-box">
+                            <input type="text" id="search" class="major-input" placeholder="Enter your major or search for one..." onkeyup="filterMajors()" required>
+                            <select id="majorSelect" size="145" onchange="selectMajor()">
+                        <option>Accounting, B.S.</option>
+                        <option>Africana Studies, B.A.</option>
+                        <option>Africana Studies, Health and Environment Concentration, B.A.</option>
+                        <option>Africana Studies, Popular Culture and Digital Media Concentration, B.A.</option>
+                        <option>Africana Studies, Social Justice and the Law Concentration, B.A.</option>
+                        <option>Anthropology, B.A.</option>
+                        <option>Anthropology, Applied Anthropology Concentration, B.A.</option>
+                        <option>Architecture, B.A.</option>
+                        <option>Art History, B.A.</option>
+                        <option>Art, B.A.</option>
+                        <option>Art, 3D Interdisciplinary Studies: Art in Space Concentration, B.F.A.</option>
+                        <option>Art, Art Education Concentration, B.F.A.</option>
+                        <option>Art, Cross-Disciplinary Concentration, B.F.A.</option>
+                        <option>Art, Digital Media Concentration, B.F.A.</option>
+                        <option>Art, Illustration Concentration, B.F.A.</option>
+                        <option>Art, Painting Concentration, B.F.A.</option>
+                        <option>Art, Photography Concentration, B.F.A.</option>
+                        <option>Art, Print Media Concentration, B.F.A.</option>
+                        <option>Biology, B.A.</option>
+                        <option>Biology, B.S.</option>
+                        <option>Business Administration, B.S.B.A.</option>
+                        <option>Business Analytics, B.S.B.A.</option>
+                        <option>Chemistry, B.A.</option>
+                        <option>Chemistry, Biochemistry Concentration, B.S.</option>
+                        <option>Chemistry, Teacher Licensure, B.A.</option>
+                        <option>Child and Family Development, B.A.</option>
+                        <option>Civil Engineering Technology, B.S.E.T.</option>
+                        <option>Civil Engineering Technology, Applied Energy and Sustainable Systems Concentration, B.S.E.T.</option>
+                        <option>Civil Engineering, B.S.C.E.</option>
+                        <option>Civil Engineering, Energy Infrastructure Concentration, B.S.C.E.</option>
+                        <option>Civil Engineering, Land Development Engineering Concentration, B.S.C.E.</option>
+                        <option>Communication Studies, B.A.</option>
+                        <option>Communication Studies, Health Communication Concentration, B.A.</option>
+                        <option>Communication Studies, Media & Technology Studies Concentration, B.A.</option>
+                        <option>Communication Studies, Organizational Communication Concentration, B.A.</option>
+                        <option>Communication Studies, Public Relations Concentration, B.A.</option>
+                        <option>Computer Engineering, B.S.CP.E.</option>
+                        <option>Computer Engineering, Machine Learning Concentration, B.S.CP.E.</option>
+                        <option>Computer Science, AI, Robotics, and Gaming Concentration, B.S.</option>
+                        <option>Computer Science, Bioinformatics Concentration, B.A.</option>
+                        <option>Computer Science, Bioinformatics Concentration, B.S.</option>
+                        <option>Computer Science, Cybersecurity Concentration, B.S.</option>
+                        <option>Computer Science, Data Science Concentration, B.S.</option>
+                        <option>Computer Science, Human-Computer Interaction, B.A.</option>
+                        <option>Computer Science, Information Technology Concentration, B.A.</option>
+                        <option>Computer Science, Systems and Networks Concentration, B.S.</option>
+                        <option>Computer Science, Web/Mobile Development and Software Engineering Concentration, B.S.</option>
+                        <option>Construction Management, Applied Energy and Sustainable Systems Concentration, B.S.C.M.</option>
+                        <option>Construction Management, B.S.C.M.</option>
+                        <option>Criminal Justice, B.A.</option>
+                        <option>Criminal Justice, Crime Analytics Concentration, B.A.</option>
+                        <option>Dance, Applied Dance Concentration, B.A.</option>
+                        <option>Dance, Dance Education Concentration, B.A.</option>
+                        <option>Dance, Performance, Choreography, and Theory Concentration, B.A.</option>
+                        <option>Data Science, B.S.</option>
+                        <option>Earth and Environmental Sciences, B.S.</option>
+                        <option>Economics, Business Concentration, B.S.</option>
+                        <option>Economics, Liberal Arts Concentration, B.S.</option>
+                        <option>Electrical Engineering, B.S.E.E.</option>
+                        <option>Electrical Engineering, Machine Learning Concentration, B.S.E.E.</option>
+                        <option>Electrical Engineering, Power and Energy Systems Concentration, B.S.E.E.</option>
+                        <option>Electromechanical Engineering Technology, Applied Energy Concentration, B.S.E.T.</option>
+                        <option>Electromechanical Engineering Technology, B.S.E.T.</option>
+                        <option>Elementary Education, B.A.</option>
+                        <option>English, B.A.</option>
+                        <option>English, Creative Writing Concentration, B.A.</option>
+                        <option>English, Language and Digital Technology Concentration, B.A.</option>
+                        <option>English, Literature and Culture Concentration, B.A.</option>
+                        <option>English, Pedagogy Concentration, B.A.</option>
+                        <option>Environmental Engineering, B.S.</option>
+                        <option>Environmental Studies, B.A.</option>
+                        <option>Environmental Studies, Secondary Teaching Option, B.A.</option>
+                        <option>Exercise Science, Health and Fitness Concentration, B.S.</option>
+                        <option>Exercise Science, Pre-Professional Concentration, B.S.</option>
+                        <option>Exercise Science, Strength and Conditioning Concentration, B.S.</option>
+                        <option>Finance, Finance Concentration, B.S.B.A.</option>
+                        <option>Finance, Finance/Accounting Joint Concentration, B.S.B.A.</option>
+                        <option>Finance, Real Estate Concentration, B.S.B.A.</option>
+                        <option>Finance, Risk Management and Insurance Concentration, B.S.B.A.</option>
+                        <option>Fire and Safety Engineering Technology, Fire Safety Concentration, B.S.E.T.</option>
+                        <option>Fire and Safety Engineering Technology, Occupational Safety Concentration, B.S.E.T.</option>
+                        <option>French, B.A.</option>
+                        <option>Geography, B.A.</option>
+                        <option>Geography, B.S.</option>
+                        <option>Geography, Comprehensive Social Studies Teacher Licensure, B.A.</option>
+                        <option>Geology, B.S.</option>
+                        <option>German, B.A.</option>
+                        <option>Global Studies, Asian Studies Concentration, B.A.</option>
+                        <option>Global Studies, Development and Sustainability Concentration, B.A.</option>
+                        <option>Global Studies, European Studies Concentration, B.A.</option>
+                        <option>Global Studies, Holocaust, Genocide, and Human Rights Concentration, B.A.</option>
+                        <option>Global Studies, Peace, Conflict, and Identity Concentration, B.A.</option>
+                        <option>Graphic Design, B.F.A.</option>
+                        <option>Health Systems Management, B.S.</option>
+                        <option>History, B.A.</option>
+                        <option>History, Comprehensive Secondary Social Studies Teacher Licensure, B.A.</option>
+                        <option>Interdisciplinary Studies, Capitalism Studies Concentration, B.A.</option>
+                        <option>Interdisciplinary Studies, Film & Media Production Concentration, B.A.</option>
+                        <option>Interdisciplinary Studies, Gerontology Concentration, B.A.</option>
+                        <option>Interdisciplinary Studies, Health & Medical Humanities Concentration, B.A.</option>
+                        <option>Interdisciplinary Studies, Women's and Gender Studies Concentration, B.A.</option>
+                        <option>International Business, B.S.B.A.</option>
+                        <option>Japanese Studies, B.A.</option>
+                        <option>Latin American Studies, B.A.</option>
+                        <option>Management Information Systems, B.S.B.A.</option>
+                        <option>Management, Human Resource Management Concentration, B.S.B.A.</option>
+                        <option>Management, Organizational Management Concentration, B.S.B.A.</option>
+                        <option>Marketing, Marketing Analytics Concentration, B.S.B.A.</option>
+                        <option>Marketing, Marketing Concentration, B.S.B.A.</option>
+                        <option>Mathematics for Business, B.A.</option>
+                        <option>Mathematics for Business, B.S.</option>
+                        <option>Mathematics, Actuarial Science Concentration, B.A.</option>
+                        <option>Mathematics, Actuarial Science Concentration, B.S.</option>
+                        <option>Mathematics, B.A.</option>
+                        <option>Mathematics, B.S.</option>
+                        <option>Mathematics, Statistics Concentration, B.A.</option>
+                        <option>Mathematics, Statistics Concentration, B.S.</option>
+                        <option>Mathematics, Teacher Licensure, B.A.</option>
+                        <option>Mathematics, Teacher Licensure, B.S.</option>
+                        <option>Mechanical Engineering Technology, Applied Energy Concentration, B.S.E.T.</option>
+                        <option>Mechanical Engineering Technology, B.S.E.T.</option>
+                        <option>Mechanical Engineering Technology, Electromechanical Systems Concentration, B.S.E.T.</option>
+                        <option>Mechanical Engineering, B.S.M.E.</option>
+                        <option>Mechanical Engineering, Biomedical Engineering Concentration, B.S.M.E.</option>
+                        <option>Mechanical Engineering, Energy Engineering Concentration, B.S.M.E.</option>
+                        <option>Mechanical Engineering, Motorsports Engineering Concentration, B.S.M.E.</option>
+                        <option>Mechanical Engineering, Precision Engineering and Metrology Concentration, B.S.M.E.</option>
+                        <option>Meteorology, B.S.</option>
+                        <option>Middle Grades Education, B.A.</option>
+                        <option>Music, B.A.</option>
+                        <option>Music, Choral/General Music Education Concentration, B.M.</option>
+                        <option>Music, Composition Concentration, B.M.</option>
+                        <option>Music, Elective Study in an Outside Field Concentration, B.M.</option>
+                        <option>Music, Instrumental Performance Concentration, B.M.</option>
+                        <option>Music, Instrumental/General Music Education Concentration, B.M.</option>
+                        <option>Music, Jazz Studies Concentration, B.M.</option>
+                        <option>Music, Vocal Performance Concentration, B.M.</option>
+                        <option>Nursing, B.S.N.</option>
+                        <option>Nursing, RN-to-BSN, B.S.N.</option>
+                        <option>Operations and Supply Chain Management, B.S.B.A.</option>
+                        <option>Philosophy, B.A.</option>
+                        <option>Physics and Computer Engineering, B.S. Dual Degree</option>
+                        <option>Physics and Electrical Engineering, B.S. Dual Degree</option>
+                        <option>Physics and Mechanical Engineering, B.S. Dual Degree</option>
+                        <option>Physics, B.A.</option>
+                        <option>Physics, B.S.</option>
+                        <option>Political Science, B.A.</option>
+                        <option>Political Science, Comprehensive Social Studies Teacher Licensure, B.A.</option>
+                        <option>Political Science, Security and Intelligence Studies Concentration, B.A.</option>
+                        <option>Professional Studies, B.S.</option>
+                        <option>Psychology, B.S.</option>
+                        <option>Public Health, B.S.P.H.</option>
+                        <option>Religious Studies, B.A.</option>
+                        <option>Respiratory Therapy, B.S.R.T.</option>
+                        <option>Social Work, B.S.W.</option>
+                        <option>Sociology, B.A.</option>
+                        <option>Sociology, Medical Sociology Concentration, B.A.</option>
+                        <option>Sociology, Organizations, Occupations, and Work Concentration, B.A.</option>
+                        <option>Sociology, Social Problems and Policy Concentration, B.A.</option>
+                        <option>Sociology, Sociological Social Psychology Concentration, B.A.</option>
+                        <option>Spanish, Applied Language Concentration, B.A.</option>
+                        <option>Spanish, B.A.</option>
+                        <option>Spanish, Literature and Culture Concentration, B.A.</option>
+                        <option>Special Education General Curriculum and Elementary Education K-6, B.A. Dual Program</option>
+                        <option>Special Education, B.A.</option>
+                        <option>Systems Engineering, B.S.S.E.</option>
+                        <option>Systems Engineering, Energy Systems Concentration, B.S.S.E.</option>
+                        <option>Theatre, Applied Theatre Concentration, B.A.</option>
+                        <option>Theatre, Design/Tech Concentration, B.A.</option>
+                        <option>Theatre, Directing, Dramaturgy, and Dramatic Writing Concentration, B.A.</option>
+                        <option>Theatre, Performance Concentration, B.A.</option>
+                        <option>Theatre, Theatre Education (K-12) Concentration, B.A.</option>
+                        <option>Writing, Rhetoric, and Digital Studies, B.A.</option>
+                    </select>
+
+                    <!-- Question 3 -->
+                    <h3 class="question-header">Would you prefer a roommate with the same major?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Yes</span>
+                            <input type="radio" name="same-major" value="yes" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>No</span>
+                            <input type="radio" name="same-major" value="no" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Doesn't Matter</span>
+                            <input type="radio" name="same-major" value="doesn't matter" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-container">
+                        <h3 class="question-header">
+                            How do you feel about sharing personal items?<br>
+                            <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
+                        </h3> 
+                        <div class="share-selection-box">
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="1" required>
+                                <span>1</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="2" required>
+                                <span>2</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="3" required>
+                                <span>3</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="4" required>
+                                <span>4</span>
+                            </label>
+                            <label class="custom-circle-radio">
+                                <input type="radio" name="share" value="5" required>
+                                <span>5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <h3 class="question-header">What time would you like to have quiet hours?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>8pm</span>
+                            <input type="radio" name="quiet-hours" value="8pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>10pm</span>
+                            <input type="radio" name="quiet-hours" value="10pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Midnight</span>
+                            <input type="radio" name="quiet-hours" value="midnight" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <h3 class="question-header">What time do you usually go to sleep?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>8pm - 10pm</span>
+                            <input type="radio" name="sleep-time" value="8pm-10pm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>10pm - Midnight</span>
+                            <input type="radio" name="sleep-time" value="10pm-midnight" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>After Midnight</span>
+                            <input type="radio" name="sleep-time" value="after-midnight" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 7 -->
+                    <h3 class="question-header">What are your study habits? (Select all that apply)</h3>
+                    <div class="selection-box">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Quiet Study">
+                            <span>I prefer to study in silence.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Study Alone">
+                            <span>I prefer to study alone.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Late Night Study">
+                            <span>I prefer to study late at night.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Common Areas Study">
+                            <span>I prefer to study in common areas.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="In Room Study">
+                            <span>I prefer to study in my room.</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="study-habits" value="Background Noise Study">
+                            <span>I prefer to have some background noise.</span>
+                        </label>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <h3 class="question-header">What are your hobbies? (Select all that apply)</h3>
+                    <div class="selection-box">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Sports">
+                            <span>Sports</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Reading">
+                            <span>Reading</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Gaming">
+                            <span>Gaming</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Art">
+                            <span>Art</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="hobbies" value="Cooking">
+                            <span>Cooking</span>
+                        </label>
+                    </div>
+
+                    <!-- Question 9 -->
+                    <h3 class="question-header">What kind of room climate do you prefer?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Cool</span>
+                            <input type="radio" name="room-climate" value="cool" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Warm</span>
+                            <input type="radio" name="room-climate" value="warm" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Moderate</span>
+                            <input type="radio" name="room-climate" value="moderate" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 10 -->
+                    <h3 class="question-header">How tidy do you like to keep your space?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Tidy</span>
+                            <input type="radio" name="tidy" value="tidy" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Messy</span>
+                            <input type="radio" name="tidy" value="messy" required>
+                        </label>
+                    </div>
+
+                    <!-- Question 11 -->
+                    <h3 class="question-header">How do you handle conflict?</h3>
+                    <div class="selection-box">
+                        <label class="custom-radio">
+                            <span>Confront it</span>
+                            <input type="radio" name="conflict" value="confront" required>
+                        </label>
+                        <label class="custom-radio">
+                            <span>Avoid it</span>
+                            <input type="radio" name="conflict" value="avoid" required>
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="custom-button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
