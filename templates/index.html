@@ -17,11 +17,10 @@
     <div class="index-container">
         <!-- Title -->
         <h1 class="index-header">Welcome to the Roommate Compatibility Survey</h1>
-        
-        <!-- Survey and Responses buttons -->
-        <div class="button-container">
-            <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
-            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
+
+        <!-- Admin Button -->
+        <div class="admin-container">
+            <a href="#"" class="admin">Admin</a>
         </div>
 
         <!-- Button Container -->
@@ -33,15 +32,15 @@
             <a href="#" class="custom-button">Request Loan or Replacement Key</a>
             <a href="#" class="custom-button">Room Condition Report</a>
         </div>
+         <!-- Survey and Responses buttons -->
+         <div class="button-container">
+            <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
+            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
+        </div>
 
         <!-- Logout Button -->
         <div class="logout-container">
             <a href="#" class="custom-button">Logout</a>
-        </div>
-
-        <!-- Admin Button -->
-        <div class="admin-container">
-            <a href="#"" class="admin">Admin</a>
         </div>
 
         <!-- Simulate Responses section -->
