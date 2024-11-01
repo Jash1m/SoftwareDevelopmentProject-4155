@@ -1,43 +1,21 @@
 import random
-# Import necessary libraries from Flask and SQLAlchemy
+# Import necessary libraries from Flask
 from flask import Flask, abort, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-
+from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
-# SQLite database URI
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# MySQL database URI
+dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
+dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbName = "..." #!! Must be updated locally | The name of your schema in the database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbName
 
 # Disable tracking modifications to save resources
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database object
-db = SQLAlchemy(app)
-
-# Defined a 'Response' database table model
-class Response(db.Model):
-    __tablename__ = 'responses'
-    
-    # Primary key for identifying each user
-    id = db.Column(db.Integer, primary_key=True)
-    
-    # Survey response placeholders for 11 questions, stored as strings
-    q1 = db.Column(db.String, nullable=False)
-    q2 = db.Column(db.String, nullable=False)
-    q3 = db.Column(db.String, nullable=False)
-    q4 = db.Column(db.String, nullable=False)
-    q5 = db.Column(db.String, nullable=False)
-    q6 = db.Column(db.String, nullable=False)
-    q7 = db.Column(db.String, nullable=False)
-    q8 = db.Column(db.String, nullable=False)
-    q9 = db.Column(db.String, nullable=False)
-    q10 = db.Column(db.String, nullable=False)
-    q11 = db.Column(db.String, nullable=False)
-
-    # For debugging and printing user instances
-    def __repr__(self):
-        return f"User ID: {self.id}, Survey Responses: {[self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8, self.q9, self.q10, self.q11]}"
+db.init_app(app)  
 
 @app.route('/', methods=['GET'])
 def index():
@@ -47,10 +25,15 @@ def index():
 def survey():
     return render_template('survey.html')
 
+
 @app.route('/user', methods=['POST'])
 def userResponses():
+    # Since we have no login atm, I'm just making a new student when we get responses
+    #i = i+1
+    mStudent = Student(firstname="test", lastname="test")
+    
     # Retrieve form data
-    responses = Response(
+    mResponse = Response(
         q1=request.form.get('year', ''),
         q2=request.form.get('major', ''),
         q3=request.form.get('same-major', ''),
@@ -63,12 +46,16 @@ def userResponses():
         q10=request.form.get('tidy', ''),
         q11=request.form.get('conflict', '')
     )
+    mStudent.response = mResponse
+
+    db.session.add_all([mStudent, mResponse])
     
     # Store the user response in the database
-    db.session.add(responses)
+    #db.session.add(responses)
+
     db.session.commit()  # Commit the session to save changes
     print("Incoming Data!!!! It's WORKING!!!")
-    print(responses)  # Print the response for debugging
+    print(mStudent.response)  # Print the response for debugging
 
     # Redirect to a confirmation or thank you page after submission
     return redirect(url_for('index'))
@@ -128,7 +115,12 @@ def simulate_responses():
             q10=new_response['q10'],
             q11=new_response['q11']
         )
-        db.session.add(response)
+
+        # Simulate a student to tie the response to
+        mStudent = Student(firstname="John "+str(i), lastname="Smith "+str(i))
+        mStudent.response = response
+
+        db.session.add_all([mStudent, response])
         
         # Add to the list for progress tracking
         responses.append(new_response)
@@ -138,9 +130,45 @@ def simulate_responses():
 
     return redirect(url_for('display_responses'))
 
-with app.app_context():
-    db.drop_all()  # Drops all tables
-    db.create_all()  # Recreates all tables according to your models
+
 
 if __name__ == "__main__": 
     app.run(debug=True)
+
+    with app.app_context():
+        db.drop_all()  # Drops all tables
+        db.create_all()  # Recreates all tables according to your models
+
+        # Adding the Period
+        mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
+
+        # Adding in all 11 Questions, Question type is non functional
+        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", questiontype=1)
+        mQ2 = Question(text="What is your major?", options="...", questiontype=1)
+        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", questiontype=1)
+        mQ4 = Question(text="How do you feel about sharing personal items?", options=", 1, 2, 3, 4, 5", questiontype=1)
+        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", questiontype=1)
+        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", questiontype=1)
+        mQ7 = Question(text="What are your study habits? (Select all that apply)", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=1)
+        mQ8 = Question(text="What are your hobbies? (Select all that apply)", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=1)
+        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", questiontype=1)
+        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", questiontype=1)
+        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid", questiontype=1)
+
+        # Associating Questions
+        mPeriod.periodquestions.append(mQ1)
+        mPeriod.periodquestions.append(mQ2)
+        mPeriod.periodquestions.append(mQ3)
+        mPeriod.periodquestions.append(mQ4)
+        mPeriod.periodquestions.append(mQ5)
+        mPeriod.periodquestions.append(mQ6)
+        mPeriod.periodquestions.append(mQ7)
+        mPeriod.periodquestions.append(mQ8)
+        mPeriod.periodquestions.append(mQ9)
+        mPeriod.periodquestions.append(mQ10)
+        mPeriod.periodquestions.append(mQ11)
+
+        db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
+        db.session.commit()
+
+        
