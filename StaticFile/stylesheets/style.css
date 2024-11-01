@@ -459,6 +459,35 @@ form {
     outline: none;
 }
 
+/* Back Button Styling */
+.back-button-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background-color: var(--custom_green);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: var(--ninerGold);
+    transform: scale(1.05);
+}
+
+.back-button:active {
+    background-color: var(--custom_dark_green);
+    transform: scale(0.95);
+}
+
 
 /*========================Footer CSS========================*/
 footer {
