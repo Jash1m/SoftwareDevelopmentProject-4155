@@ -252,5 +252,4 @@ if __name__ == "__main__":
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
 
-        for i in mPeriod.periodquestions:
-            print(i)
+        
