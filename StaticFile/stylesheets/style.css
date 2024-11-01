@@ -230,7 +230,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 600px; /* Add space for the header */
+    padding-top: 550px; /* Add space for the header */
     padding-bottom: 50px; /* Add space for the footer */
     width: 100%;
     box-sizing: border-box;
