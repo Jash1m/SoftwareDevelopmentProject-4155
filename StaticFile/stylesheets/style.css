@@ -1782,3 +1782,136 @@ form {
 .sidebar-item:hover .sidebar-img {
     transform: scale(1.05); 
 }
+
+/*======================Responses Page CSS================/*/
+
+/*Responses Header*/
+
+.responseHeader {
+    background-color: var(--Charlotte_Green);
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding: 8px;
+    width: 375px; 
+    height: 75px;  
+    border-radius: 20px;
+    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
+    font-size: 28px; 
+    font-weight: bold; 
+}
+
+/* Search Bar Styling */
+.searchBar-Container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 1rem;
+  }
+  
+  .searchBar-Bar {
+    width: 20rem;
+    height: 30px;
+    background-color: var(--quartzWhite);
+    border: 2px solid var(--Ore_Black);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden; /* Ensures the rounded corners apply to both input and button */
+  }
+  
+  .searchBar-Bar input[type="text"] {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    outline: none;
+  }
+  
+  .searchBar-Bar button {
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 10px;
+    color: var(--Ore_Black); /* Adjust color as needed */
+  }
+
+
+/* Response box styling */
+.response-box {
+    background-color: white;
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.response-box:hover {
+    transform: scale(1.01);
+}
+
+/* Header of each response */
+.response-header {
+    cursor: pointer;
+    background-color: var(--Charlotte_Green);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Details section (hidden by default) */
+.response-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--jasper);
+    border-radius: 5px;
+}
+
+/* Style for each individual detail line */
+.response-details p {
+    font-size: 18px;
+    margin-bottom: 0px;
+}
+
+.response-item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0 auto;
+    padding: 0px;
+    gap: 0.5rem;
+    padding-bottom: 0.20rem;
+}
+
+.response-item-title {
+    font-weight: bold;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.response-item-symbols {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.response-item-symbols button {
+    font-size: 18px;
+    background: none;
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    
+}
+
+.response-item-symbols button:hover {
+    cursor: pointer;
+    border: 1px var(--Ore_Black) solid;
+    border-radius: 5;
+}

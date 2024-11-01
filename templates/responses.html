@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="../StaticFile/script.js" defer></script>
+
     <!-- Title and Favicon Below-->
     <title>Survey Responses</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
@@ -15,34 +16,42 @@
     </div>
 </header>
 <body>
-    <!-- Back Button -->
-    <a href="{{ url_for('index') }}" class="back-button">Back</a>
     <!-- Main Container for User Responses -->
     <div class="survey-container">
         <div class="survey-box">
             <!-- Header for the Responses Page -->
-            <div class="survey-header">
-                <h2>Roommate Compatibility Survey Responses</h2>
-            </div>
+            <h1 class="responseHeader">Roommate Compatibility Survey Responses</h1>
 
+            <div class="searchBar-Container">
+                <form class="searchBar-Bar">
+                  <input type="text" class="text" placeholder="Search Responses">
+                  <button type="submit">
+                    <i class="bi-search"></i>
+                  </button>
+                </form>
+              </div>
             <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
             <div class="response-box">
                 <div class="response-header" onclick="toggleDropdown('dropdown-{{ response.id }}')">
                     <h3>Response ID: {{ response.id }}</h3>
                 </div>
-                
                 <!-- Dropdown Content (Hidden by Default) -->
                 <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
 
                     <!-- Question 1 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Year: <p> {{ response.q1 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Year: </p>
+                        <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('year-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('year-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>                    
                     <!-- Question 2 -->
                     <div class = "response-item-container">
                         <p class="response-item-title">Major: <p> {{ response.q2 }}</p></p>
@@ -129,16 +138,5 @@
         </div>
     </div>
     
-    <!-- JavaScript to toggle dropdown -->
-    <script>
-        function toggleDropdown(id) {
-            var dropdown = document.getElementById(id);
-            if (dropdown.style.display === "none") {
-                dropdown.style.display = "block";
-            } else {
-                dropdown.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
