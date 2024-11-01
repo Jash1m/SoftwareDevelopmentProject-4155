@@ -223,18 +223,18 @@ if __name__ == "__main__":
         # Adding the Period
         mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
 
-        # Adding in all 11 Questions
-        mQ1 = Question(text="text", options="text", questiontype=1)
-        mQ2 = Question(text="text", options="text", questiontype=1)
-        mQ3 = Question(text="text", options="text", questiontype=1)
-        mQ4 = Question(text="text", options="text", questiontype=1)
-        mQ5 = Question(text="text", options="text", questiontype=1)
-        mQ6 = Question(text="text", options="text", questiontype=1)
-        mQ7 = Question(text="text", options="text", questiontype=1)
-        mQ8 = Question(text="text", options="text", questiontype=1)
-        mQ9 = Question(text="text", options="text", questiontype=1)
-        mQ10 = Question(text="text", options="text", questiontype=1)
-        mQ11 = Question(text="text", options="text", questiontype=1)
+        # Adding in all 11 Questions, Question type is non functional
+        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", questiontype=1)
+        mQ2 = Question(text="What is your major?", options="...", questiontype=1)
+        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", questiontype=1)
+        mQ4 = Question(text="How do you feel about sharing personal items?", options=", 1, 2, 3, 4, 5", questiontype=1)
+        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", questiontype=1)
+        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", questiontype=1)
+        mQ7 = Question(text="What are your study habits? (Select all that apply)", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=1)
+        mQ8 = Question(text="What are your hobbies? (Select all that apply)", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=1)
+        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", questiontype=1)
+        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", questiontype=1)
+        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid", questiontype=1)
 
         # Associating Questions
         mPeriod.periodquestions.append(mQ1)
