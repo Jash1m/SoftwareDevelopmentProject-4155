@@ -16,10 +16,10 @@ def client():
 def test_index(client):
     response = client.get('/')  # Send a GET request to the index route
     assert response.status_code == 200  # Check if the status code is 200
-    assert b'Welcome' in response.data  # Ensure the expected content is in the response (you can change 'Welcome' to any expected content in your index.html)
+    assert b'Welcome' in response.data  # Ensure the expected content is in the response 
 
 # Test the survey route
 def test_survey(client):
     response = client.get('/survey')  # Send a GET request to the survey route
     assert response.status_code == 200  # Check if the status code is 200
-    assert b'Survey' in response.data  # Ensure the expected content is in the response (you can change 'Survey' to any expected content in your survey.html)
+    assert b'Survey' in response.data  # Ensure the expected content is in the response 
