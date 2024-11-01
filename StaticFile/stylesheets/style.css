@@ -1,3 +1,7 @@
+/* Bootstrap Icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+
 :root {
     /* UNCC Primary Colors*/
     --Charlotte_Green: #005035;
@@ -22,7 +26,52 @@
     font-family: 'Oswald', sans-serif;
 }
 
+
 /*======================== Header CSS - Refined ========================*/
+
+/* button {
+    font-size: 18px;
+    background: none;
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+button:hover {
+    cursor: pointer;
+} */
+
+/* Back Button Style */
+.back-button {
+    position: fixed;                  /* Fixed position at the top-left */
+    top: 40px;                        /* Adjusted to be closer to the top */
+    left: 30px;                       /* Adjusted distance from the left */
+    background-color: var(--Charlotte_Green); /* Match color with other buttons */
+    color: var(--quartzWhite);        /* Matching text color */
+    padding: 15px 30px;               /* Adjusted padding for consistency */
+    border-radius: 30px;              /* Rounded corners similar to other buttons */
+    font-size: 18px;                  /* Consistent font size */
+    text-align: center;
+    text-decoration: none;            /* Remove underline */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover and click effects */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Matching shadow */
+    z-index: 101;                     /* Ensure it stays on top */
+}
+
+.back-button:hover {
+    background-color: var(--ninerGold); /* Darken on hover */
+    transform: scale(1.05);             /* Scale up slightly on hover */
+}
+
+.back-button:active {
+    background-color: var(--Charlotte_Green); /* Darker shade on click */
+    transform: scale(0.95);                   /* Scale down on click */
+}
+
+
+/*========================Header CSS========================*/
 
 header {
     background-color: var(--Charlotte_Green);
@@ -272,7 +321,7 @@ html, body {
 
 /*Roommate Compatibilty Survey header*/
 .survey-header h2 {
-    background-color: var(--custom_dark_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     text-align: center;
     padding: 8px;
@@ -300,6 +349,7 @@ html, body {
     width: 400px; 
     text-align: center; 
     margin: 0 auto 30px;
+    position: relative;
 
 }
 
@@ -339,9 +389,9 @@ form {
     width: 20px;
     height: 20px;
     appearance: none;
-    border: 2px solid var(--custom_green); 
+    border: 2px solid var(--Charlotte_Green); 
     border-radius: 50%;
-    background-color: var(--custom_green); 
+    background-color: var(--Charlotte_Green); 
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
@@ -354,13 +404,13 @@ form {
 
 /*hover rb*/
 .custom-radio:hover {
-    border-color: var(--custom_green);
+    border-color: var(--Charlotte_Green);
 }
 
 /*style for selected rb label */
 .custom-radio input:checked + span {
     font-weight: bold;
-    color: var(--custom_dark_green);
+    color: var(--Charlotte_Green);
 }
 
 /*question 4 styling*/
@@ -410,7 +460,7 @@ form {
     width: 40px; 
     height: 40px;
     border-radius: 50%;
-    background-color: var(--custom_green); 
+    background-color: var(--Charlotte_Green); 
     color: white;
     font-size: 18px;
     transition: background-color 0.3s, transform 0.3s; 
@@ -423,7 +473,7 @@ form {
 }
 
 .custom-circle-radio span:hover {
-    background-color: var(--custom_dark_green); 
+    background-color: var(--Charlotte_Green); 
 }
 
 /* square checkboxes*/
@@ -454,9 +504,9 @@ form {
     width: 20px;
     height: 20px;
     appearance: none;
-    border: 2px solid var(--custom_green); 
+    border: 2px solid var(--Charlotte_Green); 
     border-radius: 5px;
-    background-color: var(--custom_green);
+    background-color: var(--Charlotte_Green);
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
@@ -468,10 +518,11 @@ form {
 }
 
 .custom-checkbox:hover {
-    border-color: var(--custom_green); 
+    border-color: var(--Charlotte_Green); 
 }
 
-/*input container for question 2 */
+/*question 2 */
+
 .custom-major {
     display: flex;
     justify-content: center;
@@ -487,18 +538,80 @@ form {
 .major-input {
     width: 100%; 
     padding: 8px;
-    border: 2px solid var(--custom_green); 
+    border: 2px solid var(--Charlotte_Green); 
     border-radius: 5px;
     background-color: white;
     transition: border-color 0.3s;
     font-size: 18px;
     outline: none; /*removing the default outline*/
+    box-sizing: border-box;
 }
 
 /*focus effect input field */
 .major-input:focus {
-    border-color: var(--ninerGold); /*turn gold when focused*/
+    border-color: var(--ninerGold); 
 }
+
+#majorSelect {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    border: 2px solid var(--custom_green);
+    border-radius: 5px;
+    font-size: 18px;
+    color: var(--Ore_Black);
+    background-color: var(--jasper);
+    font-family: 'Oswald', sans-serif;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 5px;
+    z-index: 1000; 
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+/* options */
+#majorSelect option {
+    padding: 10px;
+    background-color: var(--jasper);
+    color: var(--Ore_Black);
+    cursor: pointer;
+    white-space: nowrap; /* prevents text from wrapping */
+    display: block;
+    width: max-content;
+    min-width: 100%; /* options take at least the full dropdown width */
+    box-sizing: border-box;
+}
+
+/* hover effect for options */
+#majorSelect option:hover {
+    background-color: var(--Charlotte_Green); 
+    color: white;
+}
+
+.selected-border {
+    border-color: var(--ninerGold); 
+}
+
+/* scrollbars style for WebKit browsers */
+#majorSelect::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+}
+
+#majorSelect::-webkit-scrollbar-thumb {
+    background-color: var(--Charlotte_Green); /*scrollbar color */
+    border-radius: 5px;
+    border: 2px solid var(--jasper); /*padding around thumb */
+}
+
+#majorSelect::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ninerGold);
+}
+
 
 /*======================== Index Page CSS ========================*/
 
@@ -572,7 +685,7 @@ form {
 
 /* Button styling */
 .custom-button {
-    background-color: var(--custom_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     padding: 12px;
     border-radius: 10px;
@@ -592,7 +705,7 @@ form {
 }
 
 .custom-button:active {
-    background-color: var(--custom_dark_green);
+    background-color: var(--Charlotte_Green);
     transform: scale(0.95);
 }
 
@@ -1569,7 +1682,7 @@ form {
 /* Response box styling */
 .response-box {
     background-color: white;
-    border: 2px solid var(--custom_green);
+    border: 2px solid var(--Charlotte_Green);
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
@@ -1584,7 +1697,7 @@ form {
 /* Header of each response */
 .response-header {
     cursor: pointer;
-    background-color: var(--custom_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     padding: 10px;
     border-radius: 10px;
@@ -1601,7 +1714,44 @@ form {
 /* Style for each individual detail line */
 .response-details p {
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
+}
+
+.response-item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0 auto;
+    padding: 0px;
+    gap: 0.5rem;
+    padding-bottom: 0.20rem;
+}
+
+.response-item-title {
+    font-weight: bold;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.response-item-symbols {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.response-item-symbols button {
+    font-size: 18px;
+    background: none;
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    
+}
+
+.response-item-symbols button:hover {
+    cursor: pointer;
+    border: 1px var(--Ore_Black) solid;
+    border-radius: 5;
 }
 
 /*======================== Sidebar CSS ========================*/
