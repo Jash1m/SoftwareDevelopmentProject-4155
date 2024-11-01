@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
-    
+
     <!-- Title and Favicon Below-->
     <title>Landing Page</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
@@ -20,7 +21,18 @@
         <!-- Survey and Responses buttons -->
         <div class="button-container">
             <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
-            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a> <!-- Change href once other PR is merged for responses page-->
+            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
+        </div>
+
+        <!-- Simulate Responses section -->
+        <div class="simulate-container">
+            <h2>Simulate Survey Responses</h2>
+            <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
+                <!-- Submit button -->
+                <button type="submit" class="custom-button">Simulate Responses</button>
+                <label for="num_responses">Number of Responses to Simulate:</label>
+                <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
+            </form>
         </div>
     </div>
 </body>
@@ -28,3 +40,4 @@
     <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
     <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
 </footer>
+</html>
