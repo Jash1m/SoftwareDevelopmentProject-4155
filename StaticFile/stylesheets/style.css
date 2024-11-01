@@ -560,6 +560,11 @@ a {
     border-radius: 5;
 }
 
+.response-answer {
+    font-weight: normal; 
+}
+
+
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
     display: flex;

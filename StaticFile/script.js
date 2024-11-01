@@ -1,3 +1,5 @@
+//SURVEY PAGE
+
 //Question 2 Dropdown
 function filterMajors() {
     const input = document.getElementById("search").value.toLowerCase();
@@ -37,6 +39,8 @@ function selectMajor() {
     input.classList.add("selected-border");
 }
 
+//RESPONSES PAGE
+
 //Response Page Dropdown
 function toggleDropdown(id) {
     var dropdown = document.getElementById(id);
@@ -46,3 +50,37 @@ function toggleDropdown(id) {
         dropdown.style.display = "none";
     }
 }
+
+ // Question 1
+ const yearOptions = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
+
+ // create dropdown for editing the "Year" response
+ function editResponse(elementId) {
+     let dropdown = `<select onchange="updateResponse('${elementId}')">`;
+     yearOptions.forEach(option => {
+         dropdown += `<option value="${option}">${option}</option>`;
+     });
+     dropdown += `</select>`;
+
+     // find the element with the data-category attribute
+     const element = document.querySelector(`[data-category="${elementId}"]`);
+     if (element) {
+         // replaced current text with the dropdown menu
+         element.innerHTML = dropdown;
+     } else {
+         console.error(`Element with data-category="${elementId}" not found`);
+     }
+ }
+
+ // update response with the selected option from the dropdown
+ function updateResponse(elementId) {
+     const selectedValue = document.querySelector(`[data-category="${elementId}"] select`).value;
+     
+     //update the element text with the selected value
+     document.querySelector(`[data-category="${elementId}"]`).innerText = selectedValue;
+ }
+
+ // delete response and replace with the defualt response
+ function deleteResponse(elementId) {
+     document.querySelector(`[data-category="${elementId}"]`).innerText = 'empty';
+ }
