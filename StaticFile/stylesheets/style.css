@@ -29,7 +29,7 @@ header {
     color: var(--quartzWhite);
     width: 100%;
     padding: 10px 0;
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 100;
     display: flex;
@@ -230,7 +230,10 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding-top: 600px; /* Add space for the header */
+    padding-bottom: 50px; /* Add space for the footer */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /*========================Survey Question (Stacey Designed) CSS========================*/
@@ -663,7 +666,7 @@ form {
 
 
 /*========================Footer CSS========================*/
-/* Footer Styling */
+/* General Footer Styling */
 .uncc-footer {
     background-color: var(--Ore_Black);
     color: var(--quartzWhite);
@@ -681,61 +684,87 @@ form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     max-width: 1200px;
+    width: 100%;
     padding: 0 20px;
 }
 
-.footer-copyright {
-    flex: 1;
-    font-size: 14px;
+/* Dropdown Icon Button */
+.footer-dropdown {
+    margin-right: 10px;
+}
+
+.dropdown-button {
+    background: none;
+    border: none;
+    color: var(--quartzWhite);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown-button i {
     color: var(--quartzWhite);
 }
 
-.footer-links {
+/* Main Footer Links */
+.footer-main {
     display: flex;
     gap: 20px;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
 }
 
-.footer-links a {
+.footer-main span {
+    margin-right: 20px;
+}
+
+.footer-main a {
     color: var(--quartzWhite);
     text-decoration: none;
     font-size: 14px;
+    padding: 0 10px;
+    border-left: 1px solid var(--ninerGold);
 }
 
-.footer-links a:hover {
+.footer-main a:first-child {
+    border-left: none;
+}
+
+.footer-main a:hover {
     color: var(--ninerGold);
 }
 
+/* Readability Button */
 .footer-readability {
     margin-right: 20px;
 }
 
 .readability-button {
     background-color: var(--Charlotte_Green);
-    color: var(--quartzWhite);:root {
-        /* UNCC Primary Colors*/
-        --Charlotte_Green: #005035;
-        --ninerGold: #A49665;
-        --quartzWhite: #FFFFFF;
-    
-        /* UNCC Secondary Colors */
-        --jasper: #F1E6B2;
-        --Pine_Green: #899064;
-        --Clay_Red: #802F2D;
-        --Sky_Blue: #007377;
-        --Ore_Black: #101820;
-    
-        /* Our own colors we use*/
-        --custom_dark_green: #00351C;  
-        --custom_green: #205C40; 
-    }
-    
-    * {
-        margin: 0px;
-        padding: 0px;
-        font-family: 'Oswald', sans-serif;
-    }
+    color: var(--quartzWhite);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.readability-button i {
+    font-size: 12px;
+}
+
+.readability-button:hover {
+    background-color: var(--ninerGold);
+}
+
+/* Charlotte Logo */
+.footer-logo img {
+    height: 24px;
+}
     
     /*======================== Header CSS - Refined ========================*/
     

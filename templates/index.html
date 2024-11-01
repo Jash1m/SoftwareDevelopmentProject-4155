@@ -43,7 +43,7 @@
             </div>
         </div>
     
-         <!-- Full-width Gold Divider Line -->
+        <!-- Full-width Gold Divider Line -->
         <div class="full-width-divider"></div>
 
         <!-- Main Navigation Bar -->
@@ -60,51 +60,53 @@
         </nav>
     </header>
 
-    <!-- Main content section with buttons -->
-    <div class="index-container">
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <!-- Main content section with buttons -->
+        <div class="index-container">
+            <!-- Back Button -->
+            <div class="back-button-container">
+                <button onclick="history.back()" class="back-button">← Back</button>
+            </div>
+            
+            <!-- Title -->
+            <h1 class="index-header">Welcome to the Roommate Compatibility Survey</h1>
 
-        <!-- Back Button -->
-        <div class="back-button-container">
-            <button onclick="history.back()" class="back-button">← Back</button>
-        </div>
-        
-        <!-- Title -->
-        <h1 class="index-header">Welcome to the Roommate Compatibility Survey</h1>
+            <!-- Admin Button -->
+            <div class="admin-container">
+                <a href="#" class="admin">Admin</a>
+            </div>
 
-        <!-- Admin Button -->
-        <div class="admin-container">
-            <a href="#" class="admin">Admin</a>
-        </div>
+            <!-- Button Container -->
+            <div class="button-container">
+                <a href="#" class="custom-button">Apply For Housing or Update / View an Existing Application</a>
+                <a href="#" class="custom-button">View or Change Room Assignments and Roommate Groups</a>
+                <a href="#" class="custom-button">Pay Housing Fee</a>
+                <a href="#" class="custom-button">Submit Housing Cancellation Request</a>
+                <a href="#" class="custom-button">Request Loan or Replacement Key</a>
+                <a href="#" class="custom-button">Room Condition Report</a>
+            </div>
 
-        <!-- Button Container -->
-        <div class="button-container">
-            <a href="#" class="custom-button">Apply For Housing or Update / View an Existing Application</a>
-            <a href="#" class="custom-button">View or Change Room Assignments and Roommate Groups</a>
-            <a href="#" class="custom-button">Pay Housing Fee</a>
-            <a href="#" class="custom-button">Submit Housing Cancellation Request</a>
-            <a href="#" class="custom-button">Request Loan or Replacement Key</a>
-            <a href="#" class="custom-button">Room Condition Report</a>
-        </div>
+            <!-- Survey and Responses buttons -->
+            <div class="button-container">
+                <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
+                <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
+            </div>
 
-         <!-- Survey and Responses buttons -->
-         <div class="button-container">
-            <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
-            <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
-        </div>
+            <!-- Logout Button -->
+            <div class="logout-container">
+                <a href="#" class="custom-button">Logout</a>
+            </div>
 
-        <!-- Logout Button -->
-        <div class="logout-container">
-            <a href="#" class="custom-button">Logout</a>
-        </div>
-
-        <!-- Simulate Responses section -->
-        <div class="simulate-container">
-            <h2>Simulate Survey Responses</h2>
-            <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
-                <button type="submit" class="custom-button">Simulate Responses</button>
-                <label for="num_responses">Number of Responses to Simulate:</label>
-                <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
-            </form>
+            <!-- Simulate Responses section -->
+            <div class="simulate-container">
+                <h2>Simulate Survey Responses</h2>
+                <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
+                    <button type="submit" class="custom-button">Simulate Responses</button>
+                    <label for="num_responses">Number of Responses to Simulate:</label>
+                    <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -157,33 +159,27 @@
     </div>
 
     <!-- Footer -->
-<footer class="uncc-footer">
-    <div class="footer-container">
-        <!-- Copyright Section -->
-        <div class="footer-copyright">
-            <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+    <footer class="uncc-footer">
+        <div class="footer-container">
+            <div class="footer-dropdown">
+                <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+            </div>
+            <div class="footer-main">
+                <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                <a href="#">Contact Us</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">University Policies</a>
+            </div>
+            <div class="footer-readability">
+                <button class="readability-button">
+                    <i class="fas fa-align-left"></i> Readability
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            <div class="footer-logo">
+                <img src="../StaticFile/Images/header/All-in-C.png" alt="Charlotte Logo">
+            </div>
         </div>
-
-        <!-- Footer Links -->
-        <div class="footer-links">
-            <a href="#">Contact Us</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">University Policies</a>
-        </div>
-
-        <!-- Readability Button -->
-        <div class="footer-readability">
-            <button class="readability-button">
-                <i class="fas fa-align-left"></i> Readability
-                <i class="fas fa-chevron-up"></i>
-            </button>
-        </div>
-
-        <!-- Charlotte Logo -->
-        <div class="footer-logo">
-            <img src="../StaticFile/Images/header/All-in-C.png" alt="Charlotte Logo">
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>
