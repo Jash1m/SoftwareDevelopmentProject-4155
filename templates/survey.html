@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../StaticFile/script.js" defer></script>
     
     <!-- Title and Favicon Below-->
     <title>Roommate Compatibility Survey</title>
@@ -50,11 +51,81 @@
                     </div>
 
                     <!-- Question 2 -->
-                    <h3 class="question-header">What is your major?</h3>
-                    <div class="selection-box">
-                        <label class="custom-major">
-                            <input type="text" name="major" class="major-input" placeholder="Enter your major" required>
-                        </label>
+                    <div class="container">
+                        <h3 class="question-header">What is your major?</h3>
+                        <div class="selection-box">
+                            <input type="text" id="search" class="major-input" placeholder="Enter your Major" onkeyup="filterMajors()" required>
+                            <select id="majorSelect" size="10" onclick="selectMajor()">
+                                <option>Computer Science</option>
+                                <option>Psychology</option>
+                                <option>Finance</option>
+                                <option>Health/Health Care Administration/Management</option>
+                                <option>Speech Communication and Rhetoric</option>
+                                <option>Biology/Biological Sciences</option>
+                                <option>Criminal Justice/Safety Studies</option>
+                                <option>Marketing/Marketing Management</option>
+                                <option>Exercise Physiology</option>
+                                <option>Political Science and Government</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Accounting</option>
+                                <option>Business Administration and Management</option>
+                                <option>Registered Nursing/Registered Nurse</option>
+                                <option>English Language and Literature</option>
+                                <option>Civil Engineering</option>
+                                <option>Elementary Education and Teaching</option>
+                                <option>Sociology</option>
+                                <option>Electrical and Electronics Engineering</option>
+                                <option>History</option>
+                                <option>Operations Management and Supervision</option>
+                                <option>Information Technology</option>
+                                <option>Social Work</option>
+                                <option>Computer Engineering</option>
+                                <option>Geology/Earth Science</option>
+                                <option>Fine/Studio Arts</option>
+                                <option>Mathematics</option>
+                                <option>Engineering Technologies and Engineering-Related Fields</option>
+                                <option>Spanish Language and Literature</option>
+                                <option>Respiratory Care Therapy/Therapist</option>
+                                <option>Public Health</option>
+                                <option>Mechanical Engineering/Mechanical Technology/Technician</option>
+                                <option>International/Global Studies</option>
+                                <option>Management Science</option>
+                                <option>Geography</option>
+                                <option>Business/Managerial Economics</option>
+                                <option>Anthropology</option>
+                                <option>International Business/Trade/Commerce</option>
+                                <option>Architecture</option>
+                                <option>Japanese Language and Literature</option>
+                                <option>Chemistry</option>
+                                <option>Special Education and Teaching</option>
+                                <option>Systems Engineering</option>
+                                <option>Electrical, Electronic and Communications Engineering Technology/Technician</option>
+                                <option>Drama and Dramatics/Theatre Arts</option>
+                                <option>French Language and Literature</option>
+                                <option>Mathematics and Statistics</option>
+                                <option>Philosophy</option>
+                                <option>Civil Engineering Technology/Technician</option>
+                                <option>Economics</option>
+                                <option>Kindergarten/Preschool Education and Teaching</option>
+                                <option>German Language and Literature</option>
+                                <option>Special Education and Teaching</option>
+                                <option>Junior High/Intermediate/Middle School Education and Teaching</option>
+                                <option>Physics</option>
+                                <option>Religion/Religious Studies</option>
+                                <option>Art/Art Studies</option>
+                                <option>Health and Physical Education/Fitness</option>
+                                <option>Graphic Design</option>
+                                <option>Allied Health Diagnostic, Intervention, and Treatment Professions</option>
+                                <option>Music</option>
+                                <option>African-American/Black Studies</option>
+                                <option>Dance</option>
+                                <option>Art History, Criticism and Conservation</option>
+                                <option>Mathematics and Computer Science</option>
+                                <option>Meteorology</option>
+                                <option>Music Performance</option>
+                                <option>Latin American Studies</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Question 3 -->
