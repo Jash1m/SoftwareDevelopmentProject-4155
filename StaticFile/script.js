@@ -1,3 +1,4 @@
+//Question 2 Dropdown
 function filterMajors() {
     const input = document.getElementById("search").value.toLowerCase();
     const select = document.getElementById("majorSelect");
@@ -24,8 +25,6 @@ function filterMajors() {
     }
 }
 
-
-
 function selectMajor() {
     const select = document.getElementById("majorSelect");
     const input = document.getElementById("search");
@@ -36,4 +35,14 @@ function selectMajor() {
 
     // Add the selected-border class to change the border color
     input.classList.add("selected-border");
+}
+
+//Response Page Dropdown
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
 }
