@@ -324,8 +324,6 @@ form {
 
 /*======================== Index Page CSS ========================*/
 
-/*========================Unified Content Box Styling========================*/
-
 .index-container {
     display: flex;
     flex-direction: column;
@@ -334,7 +332,7 @@ form {
     padding: 40px 20px; 
     width: 90%;
     max-width: 900px;
-    margin: 10% auto; 
+    margin: 15% auto; 
     background-color: #F3F4F6; /* Slightly darker gray for contrast */
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
@@ -591,4 +589,3 @@ a {
 .sidebar-item:hover .sidebar-img {
     transform: scale(1.05); 
 }
-
