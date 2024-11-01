@@ -77,7 +77,7 @@ body {
     align-items: center;
 }
 
-/*========================Survey Question (Stacey Designed) CSS========================*/
+/*========================Survey QuestionCSS========================*/
 
 /*container */
 .survey-container {
@@ -112,17 +112,18 @@ body {
 }
 
 /*Roommate Compatibilty Survey header*/
-.survey-header h2 {
+.surveyHeader{
     background-color: var(--Charlotte_Green);
     color: white;
     text-align: center;
+    align-content: center;
     padding: 8px;
-    width: 350px; 
-    height: 55px;  
+    width: 375px; 
+    height: 75px;  
     border-radius: 20px;
     margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
     font-size: 28px; 
-    font-weight: normal; 
+    font-weight: bold; 
 }
 
 /*question haders*/
@@ -484,7 +485,64 @@ footer {
 a {
     text-decoration: none;
 }
-/*======================Responses Page CSS================/
+/*======================Responses Page CSS================/*/
+
+/*Responses Header*/
+
+.responseHeader {
+    background-color: var(--Charlotte_Green);
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding: 8px;
+    width: 375px; 
+    height: 75px;  
+    border-radius: 20px;
+    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
+    font-size: 28px; 
+    font-weight: bold; 
+}
+
+/* Search Bar Styling */
+.searchBar-Container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 1rem;
+  }
+  
+  .searchBar-Bar {
+    width: 20rem;
+    height: 30px;
+    background-color: var(--quartzWhite);
+    border: 2px solid var(--Ore_Black);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden; /* Ensures the rounded corners apply to both input and button */
+  }
+  
+  .searchBar-Bar input[type="text"] {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    outline: none;
+  }
+  
+  .searchBar-Bar button {
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 10px;
+    color: var(--Ore_Black); /* Adjust color as needed */
+  }
+
+
 /* Response box styling */
 .response-box {
     background-color: white;

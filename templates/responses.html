@@ -20,23 +20,29 @@
     <div class="survey-container">
         <div class="survey-box">
             <!-- Header for the Responses Page -->
-            <div class="survey-header">
-                <h2>Roommate Compatibility Survey Responses</h2>
-            </div>
+            <h1 class="responseHeader">Roommate Compatibility Survey Responses</h1>
 
+            <div class="searchBar-Container">
+                <form class="searchBar-Bar">
+                  <input type="text" class="text" placeholder="Search Responses">
+                  <button type="submit">
+                    <i class="bi-search"></i>
+                  </button>
+                </form>
+              </div>
             <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
             <div class="response-box">
                 <div class="response-header" onclick="toggleDropdown('dropdown-{{ response.id }}')">
                     <h3>Response ID: {{ response.id }}</h3>
                 </div>
-                
                 <!-- Dropdown Content (Hidden by Default) -->
                 <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
 
                     <!-- Question 1 -->
                     <div class="response-item-container">
-                        <p class="response-item-title">Year: <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span></p>
+                        <p class="response-item-title">Year: </p>
+                        <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
                         <div class="response-item-symbols">
                             <button onclick="editResponse('year-{{ response.id }}')">
                                 <i class="bi bi-pencil-square"></i>

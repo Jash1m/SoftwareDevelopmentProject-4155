@@ -41,6 +41,9 @@ function selectMajor() {
 
 //RESPONSES PAGE
 
+//SearchBar
+
+
 //Response Page Dropdown
 function toggleDropdown(id) {
     var dropdown = document.getElementById(id);
@@ -52,7 +55,7 @@ function toggleDropdown(id) {
 }
 
      // Question 1
- const yearOptions = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
+ const yearOptions = ['Default','Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
 
  // create dropdown for editing the "Year" response
  function editResponse(elementId) {
