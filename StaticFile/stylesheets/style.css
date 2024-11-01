@@ -1792,6 +1792,24 @@ form {
     transform: scale(1.05); 
 }
 
+/*======================Responses Page CSS================/*/
+
+/*Responses Header*/
+
+.responseHeader {
+    background-color: var(--Charlotte_Green);
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding: 8px;
+    width: 375px; 
+    height: 75px;  
+    border-radius: 20px;
+    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
+    font-size: 28px; 
+    font-weight: bold; 
+}
+
 /* Search Bar Styling */
 .searchBar-Container {
     display: flex;
