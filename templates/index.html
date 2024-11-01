@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
-
-    <!-- Title and Favicon Below-->
     <title>Landing Page</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
 </head>
-<header>
-    <img src="../StaticFile/Images/header/UNCC-Header.png" class="landingHeaderIMG">
-</header>
 <body>
+    <!-- Header -->
+    <header>
+        <img src="../StaticFile/Images/header/UNCC-Header.png" class="landingHeaderIMG">
+    </header>
+
     <!-- Main content section with buttons -->
     <div class="index-container">
         <!-- Title -->
@@ -32,6 +32,7 @@
             <a href="#" class="custom-button">Request Loan or Replacement Key</a>
             <a href="#" class="custom-button">Room Condition Report</a>
         </div>
+
          <!-- Survey and Responses buttons -->
          <div class="button-container">
             <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
@@ -47,16 +48,65 @@
         <div class="simulate-container">
             <h2>Simulate Survey Responses</h2>
             <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
-                <!-- Submit button -->
                 <button type="submit" class="custom-button">Simulate Responses</button>
                 <label for="num_responses">Number of Responses to Simulate:</label>
                 <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
             </form>
         </div>
     </div>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar-right">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
+        <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
+    </footer>
 </body>
-<footer>
-    <img src="../StaticFile/Images/footer/Start of Footer.png" class="footerIMG1">
-    <img src="../StaticFile/Images/footer/Footer End.png" class="footerIMG2">
-</footer>
 </html>

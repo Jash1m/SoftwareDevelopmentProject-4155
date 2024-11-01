@@ -324,33 +324,73 @@ form {
 
 /*======================== Index Page CSS ========================*/
 
-/* Main container styling */
+/*========================Unified Content Box Styling========================*/
+
 .index-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 80px 20px; /* To account for fixed header */
-    width: 100%;
-    max-width: 1200px;
+    padding: 40px 20px; 
+    width: 90%;
+    max-width: 900px;
+    margin: 10% auto; 
+    background-color: #F3F4F6; /* Slightly darker gray for contrast */
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
+    border: 1px solid var(--custom_dark_green);
     text-align: center;
-    margin-top: 15%;
 }
 
 /* Title styling */
 .index-header {
-    font-size: 32px;
+    font-size: 36px;
     color: var(--custom_dark_green);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
-/* Grid container for buttons */
+/*========================Admin Button Styling========================*/
+
+.admin-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.admin-container a.admin {
+    background-color: var(--custom_dark_green);
+    color: var(--ninerGold);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.admin-container a.admin:hover {
+    background-color: var(--ninerGold);
+    color: var(--custom_dark_green);
+    transform: scale(1.05);
+}
+
+/*========================Boxy Button Container Styling========================*/
+
 .button-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 80%;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px;
+    width: 90%;
     max-width: 600px;
+    background-color: #E8E8E8; /* Soft gray background for contrast */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
     margin-bottom: 30px;
 }
 
@@ -358,9 +398,9 @@ form {
 .custom-button {
     background-color: var(--custom_green);
     color: white;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
@@ -380,33 +420,27 @@ form {
     transform: scale(0.95);
 }
 
-/* Logout container styling */
-.logout-container {
-    margin-top: 20px;
-}
+/*======================== Simulate Responses Section Styling========================*/
 
-.logout-container .custom-button {
-    width: 150px;
-}
-
-/* Simulate responses container styling */
 .simulate-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 60%;
+    width: 85%;
     max-width: 500px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #F0F0F0;
     border-radius: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
+    border: 1px solid var(--custom_green);
 }
 
 .simulate-container h2 {
     color: var(--ninerGold);
     margin-bottom: 15px;
     font-size: 24px;
+    font-weight: 600;
 }
 
 .simulate-container label {
@@ -419,7 +453,7 @@ form {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid var(--custom_green);
     margin-top: 10px;
     outline: none;
