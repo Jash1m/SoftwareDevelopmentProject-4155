@@ -1,102 +1,21 @@
 import random
-# Import necessary libraries from Flask and SQLAlchemy
+# Import necessary libraries from Flask
 from flask import Flask, abort, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy 
-from sqlalchemy.sql import text
-
+from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally
-dbPass = "..." #!!! Must be updated locally
-dbConnect = "..." #!! Must be updated locally
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbConnect
+dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
+dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbName = "..." #!! Must be updated locally | The name of your schema in the database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbName
 
 # Disable tracking modifications to save resources
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database object
-db = SQLAlchemy(app)
-
-PeriodQuestion = db.Table(
-    'periodquestion',
-    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
-    db.Column('question_id', db.Integer, db.ForeignKey('questions.id')),
-    
-    db.PrimaryKeyConstraint('period_id', 'question_id')
-)
-
-'''
-Pair = db.Table(
-    'pairs',
-    db.Column('student_id_1', db.Integer, db.ForeignKey('students.id')),
-    db.Column('student_id_2', db.Integer, db.ForeignKey('students.id')),
-    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
-
-    db.PrimaryKeyConstraint('student_id_1', 'student_id_2', 'period_id')
-)
-
-Quad = db.Table(
-    'quads',
-    db.Column('student_id_1', db.Integer, db.ForeignKey('students.id')),
-    db.Column('student_id_2', db.Integer, db.ForeignKey('students.id')),
-    db.Column('student_id_3', db.Integer, db.ForeignKey('students.id')),
-    db.Column('student_id_4', db.Integer, db.ForeignKey('students.id')),
-    db.Column('period_id', db.Integer, db.ForeignKey('periods.id')),
-
-    db.PrimaryKeyConstraint('student_id_1', 'student_id_2', 'student_id_3', 'student_id_4', 'period_id')
-)
-'''
-class Period(db.Model):
-    __tablename__ = 'periods'
-    
-    # Primary key for identifying each period ex. Spring 2024
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    periodName = db.Column(db.String(30), nullable=False)
-    numDoubles = db.Column(db.Integer, nullable=False)
-    numQuads = db.Column(db.Integer, nullable=False)
-
-    periodquestions = db.relationship('Question', secondary=PeriodQuestion, backref='questionperiods')
-    
-class Response(db.Model):
-    __tablename__ = 'responses'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
-    q1 = db.Column(db.String(255), nullable=False, default="freshman")
-    q2 = db.Column(db.String(255), nullable=False, default="Computer science")
-    q3 = db.Column(db.String(255), nullable=False, default="yes")
-    q4 = db.Column(db.String(255), nullable=False, default="3")
-    q5 = db.Column(db.String(255), nullable=False, default="10pm")
-    q6 = db.Column(db.String(255), nullable=False, default="10pm-midnight")
-    q7 = db.Column(db.String(255), nullable=False, default="Quiet Study")
-    q8 = db.Column(db.String(255), nullable=False, default="Art")
-    q9 = db.Column(db.String(255), nullable=False, default="moderate")
-    q10 = db.Column(db.String(255), nullable=False, default="tidy")
-    q11 = db.Column(db.String(255), nullable=False, default="avoid")
-
-
-class Question(db.Model):
-    __tablename__ = 'questions'
-    
-    # Primary key for identifying each question
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    text = db.Column(db.String(255), nullable=False)
-    options = db.Column(db.String(255), nullable=False)
-    questiontype = db.Column(db.Integer, nullable=False)
-
-class Student(db.Model):
-    __tablename__ = 'students'
-    
-    # Primary key for identifying each student
-    id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(255), nullable=False)
-    lastname = db.Column(db.String(255), nullable=False)
-    placed = db.Column(db.Boolean, default=False)
-
-    response = db.relationship('Response', uselist=False, backref='student')
-    
+db.init_app(app)  
 
 @app.route('/', methods=['GET'])
 def index():
