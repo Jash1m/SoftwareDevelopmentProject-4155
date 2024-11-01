@@ -51,7 +51,7 @@ function toggleDropdown(id) {
     }
 }
 
- // Question 1
+     // Question 1
  const yearOptions = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
 
  // create dropdown for editing the "Year" response
