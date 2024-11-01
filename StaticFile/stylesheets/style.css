@@ -568,7 +568,7 @@ form {
     overflow-y: auto;
     overflow-x: auto;
     padding: 5px;
-    z-index: 1000; 
+    z-index: 3; 
     box-sizing: border-box;
     white-space: nowrap;
 }
