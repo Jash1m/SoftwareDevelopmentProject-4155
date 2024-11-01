@@ -22,28 +22,105 @@
             <div class="survey-header">
                 <h2>Roommate Compatibility Survey Responses</h2>
             </div>
-            
-            <!-- Dropdown for Each User's Responses -->
+
+            <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
-            <div class="survey-section">
-                <h3 class="question-header">Response ID: {{ response.id }}</h3>
+            <div class="response-box">
+                <div class="response-header" onclick="toggleDropdown('dropdown-{{ response.id }}')">
+                    <h3>Response ID: {{ response.id }}</h3>
+                </div>
                 
-                <!-- Dropdown Button -->
-                <button onclick="toggleDropdown('dropdown-{{ response.id }}')">Show/Hide Responses</button>
-                
-                <!-- Dropdown Content -->
-                <div id="dropdown-{{ response.id }}" style="display:none;" class="selection-box">
-                    <p><strong>Year:</strong> {{ response.q1 }}</p>
-                    <p><strong>Major:</strong> {{ response.q2 }}</p>
-                    <p><strong>Same Major Preference:</strong> {{ response.q3 }}</p>
-                    <p><strong>Room Sharing:</strong> {{ response.q4 }}</p>
-                    <p><strong>Quiet Hours:</strong> {{ response.q5 }}</p>
-                    <p><strong>Preferred Sleep Time:</strong> {{ response.q6 }}</p>
-                    <p><strong>Study Habits:</strong> {{ response.q7 }}</p>
-                    <p><strong>Hobbies:</strong> {{ response.q8 }}</p>
-                    <p><strong>Preferred Room Climate:</strong> {{ response.q9 }}</p>
-                    <p><strong>Cleanliness:</strong> {{ response.q10 }}</p>
-                    <p><strong>Conflict Resolution Style:</strong> {{ response.q11 }}</p>
+                <!-- Dropdown Content (Hidden by Default) -->
+                <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
+
+                    <!-- Question 1 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Year: <p> {{ response.q1 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 2 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Major: <p> {{ response.q2 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 3 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Same Major Preference: <p> {{ response.q3 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 4 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Room Sharing <p> {{ response.q4 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 5 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Quiet Hours: <p> {{ response.q5 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 6 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Preferred Sleep Time: <p> {{ response.q6 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 7 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Study Habits: <p> {{ response.q7 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 8 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Hobbies: <p> {{ response.q8 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 9 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Preferred Room Climate: <p> {{ response.q9 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 10 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Cleanliness: <p> {{ response.q10 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    <!-- Question 11 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">Conflict Resolution Style: <p> {{ response.q11 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
                 </div>
             </div>
             {% endfor %}
