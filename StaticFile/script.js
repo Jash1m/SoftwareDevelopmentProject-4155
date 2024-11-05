@@ -29,3 +29,45 @@ function selectMajor() {
     // Add the selected-border class to change the border color
     input.classList.add("selected-border");
 }
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
+}
+
+const yearOptions = ['Default','Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
+
+// create dropdown for editing the "Year" response
+function editResponse(elementId) {
+    let dropdown = `<select onchange="updateResponse('${elementId}')">`;
+    yearOptions.forEach(option => {
+        dropdown += `<option value="${option}">${option}</option>`;
+    });
+    dropdown += `</select>`;
+
+    // find the element with the data-category attribute
+    const element = document.querySelector(`[data-category="${elementId}"]`);
+    if (element) {
+        // replaced current text with the dropdown menu
+        element.innerHTML = dropdown;
+    } else {
+        console.error(`Element with data-category="${elementId}" not found`);
+    }
+}
+
+ // update response with the selected option from the dropdown
+ function updateResponse(elementId) {
+    const selectedValue = document.querySelector(`[data-category="${elementId}"] select`).value;
+
+    //update the element text with the selected value
+    document.querySelector(`[data-category="${elementId}"]`).innerText = selectedValue;
+}
+
+// delete response and replace with the defualt response
+function deleteResponse(elementId) {
+    document.querySelector(`[data-category="${elementId}"]`).innerText = 'empty';
+}
