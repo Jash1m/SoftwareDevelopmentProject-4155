@@ -6,8 +6,8 @@ from schemas.schemas import db, Period, Response, Question, Student, PeriodQuest
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
-dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbUser = "" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "" #!!! Must be updated locally | The password to access your SQL server
 dbName = "..." #!! Must be updated locally | The name of your schema in the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbName
 
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     with app.app_context():
         db.drop_all()  # Drops all tables
         db.create_all()  # Recreates all tables according to your models
-
+        print("hello")
         # Adding the Period
         mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
 
