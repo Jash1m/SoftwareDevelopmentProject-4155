@@ -2,14 +2,17 @@ function filterMajors() {
     const input = document.getElementById("search").value.toLowerCase();
     const select = document.getElementById("majorSelect");
     const options = select.options;
+
     // Remove selected-border class when user starts typing
     document.getElementById("search").classList.remove("selected-border");
+
     // Show the dropdown if there's input, hide it if input is empty
     if (input) {
         select.style.display = "block";
     } else {
         select.style.display = "none";
     }
+
     // Filter options based on input
     for (let i = 0; i < options.length; i++) {
         const optionText = options[i].text.toLowerCase();
@@ -17,6 +20,11 @@ function filterMajors() {
             options[i].style.display = ""; // Show matching options
         } else {
             options[i].style.display = "none"; // Hide non-matching options
+
+            // Implement Algorithm to include proper scaling of the size
+            // const currentHeight = select.style.maxHeight.value;
+            // currentHeight = currentHeight - 40;
+            // select.style.maxHeight = currentHeight;
         }
     }
 }
@@ -40,6 +48,7 @@ function toggleDropdown(id) {
 }
 
 const yearOptions = ['Default','Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
+
 
 // create dropdown for editing the "Year" response
 function editResponse(elementId) {
