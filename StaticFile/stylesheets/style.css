@@ -579,13 +579,15 @@ html, body {
         margin-bottom: 30px;
         font-weight: 600;}
 /*========================Admin Button Styling========================*/
-    
     .admin-container {
         width: 100%;
         display: flex;
-        justify-content: center;
-        margin-bottom: 30px;}
-.admin-container a.admin {
+        justify-content: center; /* Centers the content horizontally */
+        align-items: center; /* Centers the content vertically if needed */
+        margin-bottom: 30px;
+    }
+
+    .admin-container a.admin {
         background-color: var(--custom_dark_green);
         color: var(--ninerGold);
         font-size: 20px;
@@ -595,11 +597,15 @@ html, body {
         border-radius: 12px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.2s;
-        display: inline-block;}
-.admin-container a.admin:hover {
+        display: inline-block;
+        text-decoration: none; /* Remove underline */
+    }
+
+    .admin-container a.admin:hover {
         background-color: var(--ninerGold);
         color: var(--custom_dark_green);
-        transform: scale(1.05);}
+        transform: scale(1.05);
+    }
 /*========================Boxy Button Container Styling========================*/
     
     .button-container {
@@ -902,3 +908,68 @@ html, body {
     margin-bottom: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;}
+/* Main container to hold all the admin content */
+.admin-container {
+    margin-top: 80px; /* Add space for the fixed header */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Styles for the left section (survey responses) */
+.response-boxes {
+    width: 48%;  /* Adjust width as needed */
+    overflow-y: auto;
+    max-height: 70vh;  /* Ensures this part can scroll if content is too large */
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Styles for the middle section (matching button) */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+/* Button styling */
+.start-matching-btn {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.start-matching-btn:hover {
+    background-color: #45a049;
+}
+
+/* Styles for the right section (matched responses) */
+.matched-box {
+    width: 48%;  /* Adjust width as needed */
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Style for individual response items */
+.response-item {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
