@@ -3,13 +3,10 @@ from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
+from dbSetup import dbUser, dbPass, dbName
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
-# MySQL database URI
-dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
-dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
-dbName = "..." #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists():
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -177,8 +174,67 @@ def simulate_responses():
 
     return redirect(url_for('display_responses'))
 
+def update_response(id, qNum, qResponse):
+    response = Response.query.get(id)
+
+    match qNum:
+        case 1:
+            response.q1 = qResponse
+        case 2:
+            response.q2 = qResponse
+        case 3:
+            response.q3 = qResponse
+        case 4:
+            response.q4 = qResponse
+        case 5:
+            response.q5 = qResponse
+        case 6:
+            response.q6 = qResponse
+        case 7:
+            response.q7 = qResponse
+        case 8:
+            response.q8 = qResponse
+        case 9:
+            response.q9 = qResponse
+        case 10:
+            response.q10 = qResponse
+        case 11:
+            response.q11 = qResponse
+            
+    
+    db.session.commit()
+
+def reset_response(id, qNum):
+    response = Response.query.get(id)
+
+    match qNum:
+        case 1:
+            response.q1 = "freshman"
+        case 2:
+            response.q2 = "Computer science"
+        case 3:
+            response.q3 = "yes"
+        case 4:
+            response.q4 = "3"
+        case 5:
+            response.q5 = "10pm"
+        case 6:
+            response.q6 = "10pm-midnight"
+        case 7:
+            response.q7 = "Quiet Study"
+        case 8:
+            response.q8 = "Art"
+        case 9:
+            response.q9 = "moderate"
+        case 10:
+            response.q10 = "tidy"
+        case 11:
+            response.q11 = "avoid"
+    
+    db.session.commit()
 
 
 if __name__ == "__main__": 
     app.run(debug=True)
+    
         
