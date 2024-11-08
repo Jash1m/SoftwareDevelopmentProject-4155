@@ -20,7 +20,11 @@ function filterMajors() {
             options[i].style.display = ""; // Show matching options
         } else {
             options[i].style.display = "none"; // Hide non-matching options
-            select.style.maxHeight = select.style.maxHeight-40;
+
+            // Implement Algorithm to include proper scaling of the size
+            // const currentHeight = select.style.maxHeight.value;
+            // currentHeight = currentHeight - 40;
+            // select.style.maxHeight = currentHeight;
         }
     }
 }
