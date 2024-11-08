@@ -17,16 +17,11 @@
 
     /* Our own colors we use*/
     --custom_dark_green: #00351C;  
-    --custom_green: #205C40; 
-}
-
+    --custom_green: #205C40;}
 * {
     margin: 0px;
     padding: 0px;
-    font-family: 'Oswald', sans-serif;
-}
-
-
+    font-family: 'Oswald', sans-serif;}
 /*======================== Header CSS - Refined ========================*/
 
 /* button {
@@ -36,12 +31,10 @@
     border: none;
     text-decoration: none;
     margin: 0px;
-    padding: 0px;
-}
-
+    padding: 0px;}
 button:hover {
-    cursor: pointer;
-} */
+    cursor: pointer;}
+*/
 
 /* Back Button Style */
 .back-button {
@@ -57,36 +50,13 @@ button:hover {
     text-decoration: none;            /* Remove underline */
     transition: background-color 0.3s, transform 0.2s; /* Smooth hover and click effects */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Matching shadow */
-    z-index: 101;                     /* Ensure it stays on top */
-}
-
+    z-index: 101;                     /* Ensure it stays on top */}
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
-    transform: scale(1.05);             /* Scale up slightly on hover */
-}
-
+    transform: scale(1.05);             /* Scale up slightly on hover */}
 .back-button:active {
     background-color: var(--Charlotte_Green); /* Darker shade on click */
-    transform: scale(0.95);                   /* Scale down on click */
-}
-
-
-/*========================Header CSS========================*/
-
-header {
-    background-color: var(--Charlotte_Green);
-    color: var(--quartzWhite);
-    width: 100%;
-    padding: 10px 0;
-    position: relative;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-}
-
+    transform: scale(0.95);                   /* Scale down on click */}
 /* Top Navigation Bar */
 .top-nav {
     display: flex;
@@ -97,90 +67,64 @@ header {
     width: 100%;
     max-width: 1200px;
     background-color: var(--custom_dark_green);
-    font-size: 13px;
-}
-
+    font-size: 13px;}
 .top-nav-links {
     display: flex;
-    gap: 10px;
-}
-
+    gap: 10px;}
 .top-nav-links li {
     list-style: none;
-    position: relative;
-}
-
+    position: relative;}
 .top-nav-links li:not(:last-child)::after {
     content: "|";
     color: var(--ninerGold);
-    margin-left: 10px;
-}
-
+    margin-left: 10px;}
 .top-nav-links a {
     color: var(--ninerGold);
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
-}
-
+    transition: color 0.3s;}
 .top-nav-links a:hover {
-    color: var(--jasper);
-}
-
+    color: var(--jasper);}
 .campus-resources {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--quartzWhite);
-}
-
+    color: var(--quartzWhite);}
 .campus-resources input {
     padding: 5px;
     border-radius: 5px;
     border: none;
     width: 180px;
     background-color: #f0f0f0;
-    outline: none;
-}
-
+    outline: none;}
 /* Branding Section */
 .branding {
     display: flex;
     align-items: center;
     padding: 10px 0;
     width: 100%;
-    max-width: 1200px;
-}
-
+    max-width: 1200px;}
 .uncc-logo {
     width: 60px;
     height: auto;
-    margin-right: 15px;
-}
-
+    margin-right: 15px;}
 .branding-text h1 {
     color: var(--quartzWhite);
     font-size: 30px;
     font-weight: bold;
     margin: 0;
-    line-height: 1.2;
-}
-
+    line-height: 1.2;}
 .branding-text p {
     color: #FFFFFF;
     margin: 0;
     font-size: 12px;
-    font-weight: 500;
-}
-
+    font-weight: 500;}
 /* Full-width Gold Divider Line */
 .full-width-divider {
     width: 100%;
     height: 4px; 
     background-color: var(--ninerGold);
-    margin: 5px 0; 
-}
-
+    margin: 5px 0;}
 /* Main Navigation Bar */
 .main-nav {
     display: flex;
@@ -189,34 +133,24 @@ header {
     padding: 8px 15px;
     width: 100%;
     max-width: 1200px;
-    background-color: var(--Charlotte_Green);
-}
-
+    background-color: var(--Charlotte_Green);}
 .main-nav ul {
     display: flex;
     gap: 31px;
     padding: 0;
-    margin: 0;
-}
-
+    margin: 0;}
 .main-nav ul li {
     list-style: none; 
     position: relative;
     font-weight: 600;
     text-transform: uppercase;
-    color: var(--quartzWhite);
-}
-
+    color: var(--quartzWhite);}
 .main-nav ul li::before {
     content: "|";
     color: #FFFFFF;
-    margin-right: 31px;
-}
-
+    margin-right: 31px;}
 .main-nav ul li:first-child::before {
-    content: ""; 
-}
-
+    content: "";}
 .main-nav a {
     color: var(--quartzWhite);
     text-decoration: none;
@@ -224,23 +158,16 @@ header {
     font-size: 14px;
     padding: auto;
     transition: color 0.3s, background-color 0.3s;
-    border-radius: 5px;
-}
-
+    border-radius: 5px;}
 .main-nav a:hover {
     color: var(--Charlotte_Green);
-    background-color: var(--ninerGold);
-}
-
-
+    background-color: var(--ninerGold);}
 /*======================== Social Icons Container ========================*/
 /* Social Icons Container */
 .social-icons {
     margin-left: auto; /* Pushes icons to the right */
     display: flex;
-    gap: 15px; /* Space between icons */
-}
-
+    gap: 15px; /* Space between icons */}
 /* Adjusted Social Icons */
 .social-icons a {
     font-size: 24px !important; /* Font size for icons */
@@ -255,24 +182,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, color 0.3s;
-}
-
+    transition: background-color 0.3s, color 0.3s;}
 .social-icons a:hover {
     background-color: var(--ninerGold);
-    color: white !important; 
-}
-
-
-
+    color: white !important;}
 /*========================Body CSS========================*/
 html, body {
     height: 100%;
     margin: 0;
     display: flex;
-    flex-direction: column;
-}
-
+    flex-direction: column;}
 /* Main content should grow to push the footer down */
 .main-content {
     flex: 1;
@@ -282,604 +201,8 @@ html, body {
     padding-top: 550px; /* Add space for the header */
     padding-bottom: 50px; /* Add space for the footer */
     width: 100%;
-    box-sizing: border-box;
-}
-
-/*========================Survey Question (Stacey Designed) CSS========================*/
-
-/*container */
-.survey-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    min-height: 100vh; /*full viewport height*/
-    background-color: white;
-
-    overflow: auto;
-}
-
-/*main structure for survey form */
-.survey-box {
-    background-color: #D9D9D9; 
-    padding: 60px 40px; 
-    border-radius: 10px;
-    width: 600px; 
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
-    margin-top: 150px;
-    margin-bottom: 50px;
-    min-height: 100vh;
-}
-
-.survey-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between; /*space between elements */
-    gap: 5px; 
-}
-
-/*Roommate Compatibilty Survey header*/
-.survey-header h2 {
-    background-color: var(--Charlotte_Green);
-    color: white;
-    text-align: center;
-    padding: 8px;
-    width: 350px; 
-    height: 55px;  
-    border-radius: 20px;
-    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
-    font-size: 28px; 
-    font-weight: normal; 
-}
-
-/*question haders*/
-.question-header {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: normal;
-}
-
-/*selection box styling*/
-.selection-box {
-    background-color: white;
-    padding: 15px; 
-    border-radius: 25px;
-    width: 400px; 
-    text-align: center; 
-    margin: 0 auto 30px;
-    position: relative;
-
-}
-
-/*form styles */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-
-/* custom radio buttons*/
-.custom-radio {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    background-color: white;
-    border-radius: 20px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    width: 100%;
-    position: relative;
-    transition: all 0.3s;
-}
-
-/*radio button label */
-.custom-radio span {
-    font-size: 22px;
-    text-align: center; 
-    flex-grow: 1;
-}
-
-/*rb input */
-.custom-radio input {
-    position: absolute;
-    right: 10px; /*align it to the right*/
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    border: 2px solid var(--Charlotte_Green); 
-    border-radius: 50%;
-    background-color: var(--Charlotte_Green); 
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-/*selected rb style */
-.custom-radio input:checked {
-    background-color: var(--ninerGold); /*when selected */
-    border-color: var(--ninerGold);
-}
-
-/*hover rb*/
-.custom-radio:hover {
-    border-color: var(--Charlotte_Green);
-}
-
-/*style for selected rb label */
-.custom-radio input:checked + span {
-    font-weight: bold;
-    color: var(--Charlotte_Green);
-}
-
-/*question 4 styling*/
-.share-selection-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    padding: 7px;
-    background-color: white;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    gap: 30px;
-}
-
-.share-selection-box form {
-    display: flex;
-    gap: 40px; /* spaces between each circle*/
-    flex-direction: row;
-}
-
-/* smaller text style for question 4*/
-.smaller-text {
-    font-size: 16px; 
-    font-weight: normal;
-}
-
-/* question 4 rb*/
-.custom-circle-radio {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-}
-
-.custom-circle-radio input {
-    position: absolute;
-    opacity: 0; /* hiding the default radio button*/
-}
-
-.custom-circle-radio span {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--Charlotte_Green); 
-    color: white;
-    font-size: 18px;
-    transition: background-color 0.3s, transform 0.3s; 
-}
-
-/*circle style when selected*/
-.custom-circle-radio input:checked + span {
-    background-color: var(--ninerGold); 
-    transform: scale(1.1); 
-}
-
-.custom-circle-radio span:hover {
-    background-color: var(--Charlotte_Green); 
-}
-
-/* square checkboxes*/
-.custom-checkbox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    background-color: white;
-    border-radius: 5px; 
-    border: 1px solid transparent;
-    cursor: pointer;
-    width: 100%;
-    position: relative;
-    transition: all 0.3s;
-}
-
-/* checkbox label */
-.custom-checkbox span {
-    font-size: 22px;
-    text-align: center; 
-    flex-grow: 1;
-}
-
-.custom-checkbox input {
-    position: absolute;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    border: 2px solid var(--Charlotte_Green); 
-    border-radius: 5px;
-    background-color: var(--Charlotte_Green);
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-/*checkbox style when selected */
-.custom-checkbox input:checked {
-    background-color: var(--ninerGold);
-    border-color: var(--ninerGold);
-}
-
-.custom-checkbox:hover {
-    border-color: var(--Charlotte_Green); 
-}
-
-/*question 2 */
-
-.custom-major {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 5px;
-    width: 100%; 
-    padding: 10px;
-    box-sizing: border-box; /*padding and borders are included in width*/
-}
-
-/*input field */
-.major-input {
-    width: 100%; 
-    padding: 8px;
-    border: 2px solid var(--Charlotte_Green); 
-    border-radius: 5px;
-    background-color: white;
-    transition: border-color 0.3s;
-    font-size: 18px;
-    outline: none; /*removing the default outline*/
-    box-sizing: border-box;
-}
-
-/*focus effect input field */
-.major-input:focus {
-    border-color: var(--ninerGold); 
-}
-
-#majorSelect {
-    position: absolute;
-    display: none;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 200px;
-    border: 2px solid var(--custom_green);
-    border-radius: 5px;
-    font-size: 18px;
-    color: var(--Ore_Black);
-    background-color: var(--jasper);
-    font-family: 'Oswald', sans-serif;
-    overflow-y: auto;
-    overflow-x: auto;
-    padding: 5px;
-    z-index: 3; 
-    box-sizing: border-box;
-    white-space: nowrap;
-}
-
-/* options */
-#majorSelect option {
-    padding: 10px;
-    background-color: var(--jasper);
-    color: var(--Ore_Black);
-    cursor: pointer;
-    white-space: nowrap; /* prevents text from wrapping */
-    display: block;
-    width: max-content;
-    min-width: 100%; /* options take at least the full dropdown width */
-    box-sizing: border-box;
-}
-
-/* hover effect for options */
-#majorSelect option:hover {
-    background-color: var(--Charlotte_Green); 
-    color: white;
-}
-
-.selected-border {
-    border-color: var(--ninerGold); 
-}
-
-/* scrollbars style for WebKit browsers */
-#majorSelect::-webkit-scrollbar {
-    width: 10px; 
-    height: 10px; 
-}
-
-#majorSelect::-webkit-scrollbar-thumb {
-    background-color: var(--Charlotte_Green); /*scrollbar color */
-    border-radius: 5px;
-    border: 2px solid var(--jasper); /*padding around thumb */
-}
-
-#majorSelect::-webkit-scrollbar-thumb:hover {
-    background-color: var(--ninerGold);
-}
-
-
-/*======================== Index Page CSS ========================*/
-
-.index-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px; 
-    width: 90%;
-    max-width: 900px;
-    margin: 15% auto; 
-    background-color: #F3F4F6; /* Slightly darker gray for contrast */
-    border-radius: 20px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
-    border: 1px solid var(--custom_dark_green);
-    text-align: center;
-}
-
-/* Title styling */
-.index-header {
-    font-size: 36px;
-    color: var(--custom_dark_green);
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-/*========================Admin Button Styling========================*/
-
-.admin-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.admin-container a.admin {
-    background-color: var(--custom_dark_green);
-    color: var(--ninerGold);
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    padding: 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;
-    display: inline-block;
-}
-
-.admin-container a.admin:hover {
-    background-color: var(--ninerGold);
-    color: var(--custom_dark_green);
-    transform: scale(1.05);
-}
-
-/*========================Boxy Button Container Styling========================*/
-
-.button-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px;
-    width: 90%;
-    max-width: 600px;
-    background-color: #E8E8E8; /* Soft gray background for contrast */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    margin-bottom: 30px;
-}
-
-/* Button styling */
-.custom-button {
-    background-color: var(--Charlotte_Green);
-    color: white;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.custom-button:hover {
-    background-color: var(--ninerGold);
-    transform: scale(1.05);
-}
-
-.custom-button:active {
-    background-color: var(--Charlotte_Green);
-    transform: scale(0.95);
-}
-
-/*======================== Simulate Responses Section Styling========================*/
-
-.simulate-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    width: 85%;
-    max-width: 500px;
-    background-color: #F0F0F0;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    border: 1px solid var(--custom_green);
-}
-
-.simulate-container h2 {
-    color: var(--ninerGold);
-    margin-bottom: 15px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.simulate-container label {
-    font-size: 16px;
-    color: var(--custom_dark_green);
-    margin-top: 10px;
-}
-
-.simulate-container input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid var(--custom_green);
-    margin-top: 10px;
-    outline: none;
-}
-
-/* Back Button Styling */
-.back-button-container {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.back-button {
-    background-color: var(--custom_green);
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.back-button:hover {
-    background-color: var(--ninerGold);
-    transform: scale(1.05);
-}
-
-.back-button:active {
-    background-color: var(--custom_dark_green);
-    transform: scale(0.95);
-}
-
-
-/*========================Footer CSS========================*/
-/* General Footer Styling */
-.uncc-footer {
-    background-color: var(--Ore_Black);
-    color: var(--quartzWhite);
-    padding: 15px 0;
-    border-top: 3px solid var(--ninerGold);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-}
-
-.footer-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 100%;
-    padding: 0 20px;
-}
-
-/* Dropdown Icon Button */
-.footer-dropdown {
-    margin-right: 10px;
-}
-
-.dropdown-button {
-    background: none;
-    border: none;
-    color: var(--quartzWhite);
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.dropdown-button i {
-    color: var(--quartzWhite);
-}
-
-/* Main Footer Links */
-.footer-main {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex: 1;
-    justify-content: center;
-}
-
-.footer-main span {
-    margin-right: 20px;
-}
-
-.footer-main a {
-    color: var(--quartzWhite);
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 10px;
-    border-left: 1px solid var(--ninerGold);
-}
-
-.footer-main a:first-child {
-    border-left: none;
-}
-
-.footer-main a:hover {
-    color: var(--ninerGold);
-}
-
-/* Readability Button */
-.footer-readability {
-    margin-right: 20px;
-}
-
-.readability-button {
-    background-color: var(--Charlotte_Green);
-    color: var(--quartzWhite);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.readability-button i {
-    font-size: 12px;
-}
-
-.readability-button:hover {
-    background-color: var(--ninerGold);
-}
-
-/* Charlotte Logo */
-.footer-logo img {
-    height: 24px;
-}
-    
-    /*======================== Header CSS - Refined ========================*/
+    box-sizing: border-box;}
+/*======================== Header CSS - Refined ========================*/
     
     header {
         background-color: var(--Charlotte_Green);
@@ -892,10 +215,8 @@ form {
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Top Navigation Bar */
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);}
+/* Top Navigation Bar */
     .top-nav {
         display: flex;
         justify-content: space-between;
@@ -905,91 +226,65 @@ form {
         width: 100%;
         max-width: 1200px;
         background-color: var(--custom_dark_green);
-        font-size: 13px;
-    }
-    
-    .top-nav-links {
+        font-size: 13px;}
+.top-nav-links {
         display: flex;
-        gap: 10px;
-    }
-    
-    .top-nav-links li {
+        gap: 10px;}
+.top-nav-links li {
         list-style: none;
-        position: relative;
-    }
-    
-    .top-nav-links li:not(:last-child)::after {
+        position: relative;}
+.top-nav-links li:not(:last-child)::after {
         content: "|";
         color: var(--ninerGold);
-        margin-left: 10px;
-    }
-    
-    .top-nav-links a {
+        margin-left: 10px;}
+.top-nav-links a {
         color: var(--ninerGold);
         text-decoration: none;
         font-weight: bold;
-        transition: color 0.3s;
-    }
-    
-    .top-nav-links a:hover {
-        color: var(--jasper);
-    }
-    
-    .campus-resources {
+        transition: color 0.3s;}
+.top-nav-links a:hover {
+        color: var(--jasper);}
+.campus-resources {
         display: flex;
         align-items: center;
         gap: 10px;
-        color: var(--quartzWhite);
-    }
-    
-    .campus-resources input {
+        color: var(--quartzWhite);}
+.campus-resources input {
         padding: 5px;
         border-radius: 5px;
         border: none;
         width: 180px;
         background-color: #f0f0f0;
-        outline: none;
-    }
-    
-    /* Branding Section */
+        outline: none;}
+/* Branding Section */
     .branding {
         display: flex;
         align-items: center;
         padding: 10px 0;
         width: 100%;
-        max-width: 1200px;
-    }
-    
-    .uncc-logo {
+        max-width: 1200px;}
+.uncc-logo {
         width: 60px;
         height: auto;
-        margin-right: 15px;
-    }
-    
-    .branding-text h1 {
+        margin-right: 15px;}
+.branding-text h1 {
         color: var(--quartzWhite);
         font-size: 30px;
         font-weight: bold;
         margin: 0;
-        line-height: 1.2;
-    }
-    
-    .branding-text p {
+        line-height: 1.2;}
+.branding-text p {
         color: #FFFFFF;
         margin: 0;
         font-size: 12px;
-        font-weight: 500;
-    }
-    
-    /* Full-width Gold Divider Line */
+        font-weight: 500;}
+/* Full-width Gold Divider Line */
     .full-width-divider {
         width: 100%;
         height: 4px; 
         background-color: var(--ninerGold);
-        margin: 5px 0; 
-    }
-    
-    /* Main Navigation Bar */
+        margin: 5px 0;}
+/* Main Navigation Bar */
     .main-nav {
         display: flex;
         justify-content: space-between;
@@ -997,59 +292,42 @@ form {
         padding: 8px 15px;
         width: 100%;
         max-width: 1200px;
-        background-color: var(--Charlotte_Green);
-    }
-    
-    .main-nav ul {
+        background-color: var(--Charlotte_Green);}
+.main-nav ul {
         display: flex;
         gap: 31px;
         padding: 0;
-        margin: 0;
-    }
-    
-    .main-nav ul li {
+        margin: 0;}
+.main-nav ul li {
         list-style: none; 
         position: relative;
         font-weight: 600;
         text-transform: uppercase;
-        color: var(--quartzWhite);
-    }
-    
-    .main-nav ul li::before {
+        color: var(--quartzWhite);}
+.main-nav ul li::before {
         content: "|";
         color: #FFFFFF;
-        margin-right: 31px;
-    }
-    
-    .main-nav ul li:first-child::before {
-        content: ""; 
-    }
-    
-    .main-nav a {
+        margin-right: 31px;}
+.main-nav ul li:first-child::before {
+        content: "";}
+.main-nav a {
         color: var(--quartzWhite);
         text-decoration: none;
         font-weight: 500px;
         font-size: 14px;
         padding: auto;
         transition: color 0.3s, background-color 0.3s;
-        border-radius: 5px;
-    }
-    
-    .main-nav a:hover {
+        border-radius: 5px;}
+.main-nav a:hover {
         color: var(--Charlotte_Green);
-        background-color: var(--ninerGold);
-    }
-    
-    
-    /*======================== Social Icons Container ========================*/
+        background-color: var(--ninerGold);}
+/*======================== Social Icons Container ========================*/
     /* Social Icons Container */
     .social-icons {
         margin-left: auto; /* Pushes icons to the right */
         display: flex;
-        gap: 15px; /* Space between icons */
-    }
-    
-    /* Adjusted Social Icons */
+        gap: 15px; /* Space between icons */}
+/* Adjusted Social Icons */
     .social-icons a {
         font-size: 24px !important; /* Font size for icons */
         width: 40px !important; /* Square dimensions */
@@ -1063,25 +341,17 @@ form {
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    
-    .social-icons a:hover {
+        transition: background-color 0.3s, color 0.3s;}
+.social-icons a:hover {
         background-color: var(--ninerGold);
-        color: white !important; 
-    }
-    
-    
-    
-    /*========================Body CSS========================*/
+        color: white !important;}
+/*========================Body CSS========================*/
     body {
         background-color: white; 
         display: flex;
         justify-content: center;
-        align-items: center;
-    }
-    
-    /*========================Survey Question (Stacey Designed) CSS========================*/
+        align-items: center;}
+/*========================Survey Question (Stacey Designed) CSS========================*/
     
     /*container */
     .survey-container {
@@ -1092,10 +362,8 @@ form {
         min-height: 100vh; /*full viewport height*/
         background-color: white;
     
-        overflow: auto;
-    }
-    
-    /*main structure for survey form */
+        overflow: auto;}
+/*main structure for survey form */
     .survey-box {
         background-color: #D9D9D9; 
         padding: 60px 40px; 
@@ -1104,18 +372,14 @@ form {
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
         margin-top: 150px;
         margin-bottom: 50px;
-        min-height: 100vh;
-    }
-    
-    .survey-section {
+        min-height: 100vh;}
+.survey-section {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between; /*space between elements */
-        gap: 5px; 
-    }
-    
-    /*Roommate Compatibilty Survey header*/
+        gap: 5px;}
+/*Roommate Compatibilty Survey header*/
     .survey-header h2 {
         background-color: var(--custom_dark_green);
         color: white;
@@ -1126,36 +390,27 @@ form {
         border-radius: 20px;
         margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
         font-size: 28px; 
-        font-weight: normal; 
-    }
-    
-    /*question haders*/
+        font-weight: normal;}
+/*question haders*/
     .question-header {
         font-size: 24px;
         text-align: center;
         margin-bottom: 10px;
-        font-weight: normal;
-    }
-    
-    /*selection box styling*/
+        font-weight: normal;}
+/*selection box styling*/
     .selection-box {
         background-color: white;
         padding: 15px; 
         border-radius: 25px;
         width: 400px; 
         text-align: center; 
-        margin: 0 auto 30px;
-    
-    }
-    
-    /*form styles */
+        margin: 0 auto 30px;}
+/*form styles */
     form {
         display: flex;
         flex-direction: column;
-        align-items: center; 
-    }
-    
-    /* custom radio buttons*/
+        align-items: center;}
+/* custom radio buttons*/
     .custom-radio {
         display: flex;
         justify-content: space-between;
@@ -1167,17 +422,13 @@ form {
         cursor: pointer;
         width: 100%;
         position: relative;
-        transition: all 0.3s;
-    }
-    
-    /*radio button label */
+        transition: all 0.3s;}
+/*radio button label */
     .custom-radio span {
         font-size: 22px;
         text-align: center; 
-        flex-grow: 1;
-    }
-    
-    /*rb input */
+        flex-grow: 1;}
+/*rb input */
     .custom-radio input {
         position: absolute;
         right: 10px; /*align it to the right*/
@@ -1188,27 +439,19 @@ form {
         border-radius: 50%;
         background-color: var(--custom_green); 
         cursor: pointer;
-        transition: background-color 0.3s, border-color 0.3s;
-    }
-    
-    /*selected rb style */
+        transition: background-color 0.3s, border-color 0.3s;}
+/*selected rb style */
     .custom-radio input:checked {
         background-color: var(--ninerGold); /*when selected */
-        border-color: var(--ninerGold);
-    }
-    
-    /*hover rb*/
+        border-color: var(--ninerGold);}
+/*hover rb*/
     .custom-radio:hover {
-        border-color: var(--custom_green);
-    }
-    
-    /*style for selected rb label */
+        border-color: var(--custom_green);}
+/*style for selected rb label */
     .custom-radio input:checked + span {
         font-weight: bold;
-        color: var(--custom_dark_green);
-    }
-    
-    /*question 4 styling*/
+        color: var(--custom_dark_green);}
+/*question 4 styling*/
     .share-selection-box {
         display: flex;
         justify-content: center;
@@ -1219,36 +462,26 @@ form {
         border-radius: 50px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 400px;
-        gap: 30px;
-    }
-    
-    .share-selection-box form {
+        gap: 30px;}
+.share-selection-box form {
         display: flex;
         gap: 40px; /* spaces between each circle*/
-        flex-direction: row;
-    }
-    
-    /* smaller text style for question 4*/
+        flex-direction: row;}
+/* smaller text style for question 4*/
     .smaller-text {
         font-size: 16px; 
-        font-weight: normal;
-    }
-    
-    /* question 4 rb*/
+        font-weight: normal;}
+/* question 4 rb*/
     .custom-circle-radio {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        cursor: pointer;
-    }
-    
-    .custom-circle-radio input {
+        cursor: pointer;}
+.custom-circle-radio input {
         position: absolute;
-        opacity: 0; /* hiding the default radio button*/
-    }
-    
-    .custom-circle-radio span {
+        opacity: 0; /* hiding the default radio button*/}
+.custom-circle-radio span {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -1258,20 +491,14 @@ form {
         background-color: var(--custom_green); 
         color: white;
         font-size: 18px;
-        transition: background-color 0.3s, transform 0.3s; 
-    }
-    
-    /*circle style when selected*/
+        transition: background-color 0.3s, transform 0.3s;}
+/*circle style when selected*/
     .custom-circle-radio input:checked + span {
         background-color: var(--ninerGold); 
-        transform: scale(1.1); 
-    }
-    
-    .custom-circle-radio span:hover {
-        background-color: var(--custom_dark_green); 
-    }
-    
-    /* square checkboxes*/
+        transform: scale(1.1);}
+.custom-circle-radio span:hover {
+        background-color: var(--custom_dark_green);}
+/* square checkboxes*/
     .custom-checkbox {
         display: flex;
         justify-content: space-between;
@@ -1283,17 +510,13 @@ form {
         cursor: pointer;
         width: 100%;
         position: relative;
-        transition: all 0.3s;
-    }
-    
-    /* checkbox label */
+        transition: all 0.3s;}
+/* checkbox label */
     .custom-checkbox span {
         font-size: 22px;
         text-align: center; 
-        flex-grow: 1;
-    }
-    
-    .custom-checkbox input {
+        flex-grow: 1;}
+.custom-checkbox input {
         position: absolute;
         right: 10px;
         width: 20px;
@@ -1303,20 +526,14 @@ form {
         border-radius: 5px;
         background-color: var(--custom_green);
         cursor: pointer;
-        transition: background-color 0.3s, border-color 0.3s;
-    }
-    
-    /*checkbox style when selected */
+        transition: background-color 0.3s, border-color 0.3s;}
+/*checkbox style when selected */
     .custom-checkbox input:checked {
         background-color: var(--ninerGold);
-        border-color: var(--ninerGold);
-    }
-    
-    .custom-checkbox:hover {
-        border-color: var(--custom_green); 
-    }
-    
-    /*input container for question 2 */
+        border-color: var(--ninerGold);}
+.custom-checkbox:hover {
+        border-color: var(--custom_green);}
+/*input container for question 2 */
     .custom-major {
         display: flex;
         justify-content: center;
@@ -1325,10 +542,8 @@ form {
         border-radius: 5px;
         width: 100%; 
         padding: 10px;
-        box-sizing: border-box; /*padding and borders are included in width*/
-    }
-    
-    /*input field */
+        box-sizing: border-box; /*padding and borders are included in width*/}
+/*input field */
     .major-input {
         width: 100%; 
         padding: 8px;
@@ -1337,15 +552,11 @@ form {
         background-color: white;
         transition: border-color 0.3s;
         font-size: 18px;
-        outline: none; /*removing the default outline*/
-    }
-    
-    /*focus effect input field */
+        outline: none; /*removing the default outline*/}
+/*focus effect input field */
     .major-input:focus {
-        border-color: var(--ninerGold); /*turn gold when focused*/
-    }
-    
-    /*======================== Index Page CSS ========================*/
+        border-color: var(--ninerGold); /*turn gold when focused*/}
+/*======================== Index Page CSS ========================*/
     
     .index-container {
         display: flex;
@@ -1360,27 +571,21 @@ form {
         border-radius: 20px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
         border: 1px solid var(--custom_dark_green);
-        text-align: center;
-    }
-    
-    /* Title styling */
+        text-align: center;}
+/* Title styling */
     .index-header {
         font-size: 36px;
         color: var(--custom_dark_green);
         margin-bottom: 30px;
-        font-weight: 600;
-    }
-    
-    /*========================Admin Button Styling========================*/
+        font-weight: 600;}
+/*========================Admin Button Styling========================*/
     
     .admin-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 30px;
-    }
-    
-    .admin-container a.admin {
+        margin-bottom: 30px;}
+.admin-container a.admin {
         background-color: var(--custom_dark_green);
         color: var(--ninerGold);
         font-size: 20px;
@@ -1390,16 +595,12 @@ form {
         border-radius: 12px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.2s;
-        display: inline-block;
-    }
-    
-    .admin-container a.admin:hover {
+        display: inline-block;}
+.admin-container a.admin:hover {
         background-color: var(--ninerGold);
         color: var(--custom_dark_green);
-        transform: scale(1.05);
-    }
-    
-    /*========================Boxy Button Container Styling========================*/
+        transform: scale(1.05);}
+/*========================Boxy Button Container Styling========================*/
     
     .button-container {
         display: grid;
@@ -1412,10 +613,8 @@ form {
         border-radius: 12px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border: 1px solid #ccc;
-        margin-bottom: 30px;
-    }
-    
-    /* Button styling */
+        margin-bottom: 30px;}
+/* Button styling */
     .custom-button {
         background-color: var(--custom_green);
         color: white;
@@ -1428,20 +627,14 @@ form {
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .custom-button:hover {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);}
+.custom-button:hover {
         background-color: var(--ninerGold);
-        transform: scale(1.05);
-    }
-    
-    .custom-button:active {
+        transform: scale(1.05);}
+.custom-button:active {
         background-color: var(--custom_dark_green);
-        transform: scale(0.95);
-    }
-    
-    /*======================== Simulate Responses Section Styling========================*/
+        transform: scale(0.95);}
+/*======================== Simulate Responses Section Styling========================*/
     
     .simulate-container {
         display: flex;
@@ -1454,41 +647,31 @@ form {
         border-radius: 15px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         margin-top: 30px;
-        border: 1px solid var(--custom_green);
-    }
-    
-    .simulate-container h2 {
+        border: 1px solid var(--custom_green);}
+.simulate-container h2 {
         color: var(--ninerGold);
         margin-bottom: 15px;
         font-size: 24px;
-        font-weight: 600;
-    }
-    
-    .simulate-container label {
+        font-weight: 600;}
+.simulate-container label {
         font-size: 16px;
         color: var(--custom_dark_green);
-        margin-top: 10px;
-    }
-    
-    .simulate-container input[type="number"] {
+        margin-top: 10px;}
+.simulate-container input[type="number"] {
         width: 100%;
         padding: 10px;
         font-size: 16px;
         border-radius: 8px;
         border: 1px solid var(--custom_green);
         margin-top: 10px;
-        outline: none;
-    }
-    
-    /* Back Button Styling */
+        outline: none;}
+/* Back Button Styling */
     .back-button-container {
         display: flex;
         justify-content: flex-start;
         width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .back-button {
+        margin-bottom: 20px;}
+.back-button {
         background-color: var(--custom_green);
         color: white;
         padding: 8px 16px;
@@ -1496,21 +679,14 @@ form {
         border-radius: 8px;
         font-size: 16px;
         cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-    
-    .back-button:hover {
+        transition: background-color 0.3s, transform 0.2s;}
+.back-button:hover {
         background-color: var(--ninerGold);
-        transform: scale(1.05);
-    }
-    
-    .back-button:active {
+        transform: scale(1.05);}
+.back-button:active {
         background-color: var(--custom_dark_green);
-        transform: scale(0.95);
-    }
-    
-    
-    /*========================Footer CSS========================*/
+        transform: scale(0.95);}
+/*========================Footer CSS========================*/
     /* Footer Styling */
     .uncc-footer {
         background-color: var(--Ore_Black);
@@ -1520,44 +696,30 @@ form {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
-    }
-    
-    .footer-container {
+        width: 100%;}
+.footer-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
         max-width: 1200px;
-        padding: 0 20px;
-    }
-    
-    .footer-copyright {
+        padding: 0 20px;}
+.footer-copyright {
         flex: 1;
         font-size: 14px;
-        color: var(--quartzWhite);
-    }
-    
-    .footer-links {
+        color: var(--quartzWhite);}
+.footer-links {
         display: flex;
-        gap: 20px;
-    }
-    
-    .footer-links a {
+        gap: 20px;}
+.footer-links a {
         color: var(--quartzWhite);
         text-decoration: none;
-        font-size: 14px;
-    }
-    
-    .footer-links a:hover {
-        color: var(--ninerGold);
-    }
-    
-    .footer-readability {
-        margin-right: 20px;
-    }
-    
-    .readability-button {
+        font-size: 14px;}
+.footer-links a:hover {
+        color: var(--ninerGold);}
+.footer-readability {
+        margin-right: 20px;}
+.readability-button {
         background-color: var(--Charlotte_Green);
         color: var(--quartzWhite);
         border: none;
@@ -1567,21 +729,14 @@ form {
         cursor: pointer;
         display: flex;
         align-items: center;
-        gap: 5px;
-    }
-    
-    .readability-button i {
-        font-size: 12px;
-    }
-    
-    .readability-button:hover {
-        background-color: var(--ninerGold);
-    }
-    
-    .footer-logo img {
-        height: 24px;
-    }
-    /*======================Responses Page CSS================/
+        gap: 5px;}
+.readability-button i {
+        font-size: 12px;}
+.readability-button:hover {
+        background-color: var(--ninerGold);}
+.footer-logo img {
+        height: 24px;}
+/*======================Responses Page CSS================/
     /* Response box styling */
     .response-box {
         background-color: white;
@@ -1590,85 +745,26 @@ form {
         padding: 15px;
         margin-bottom: 20px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-    }
-    
-    .response-box:hover {
-        transform: scale(1.01);
-    }
-    
-    /* Header of each response */
+        transition: transform 0.2s;}
+.response-box:hover {
+        transform: scale(1.01);}
+/* Header of each response */
     .response-header {
         cursor: pointer;
         background-color: var(--custom_green);
         color: white;
         padding: 10px;
-        border-radius: 10px;
-    }
-    
-    /* Details section (hidden by default) */
+        border-radius: 10px;}
+/* Details section (hidden by default) */
     .response-details {
         margin-top: 10px;
         padding: 10px;
         background-color: var(--jasper);
-        border-radius: 5px;
-    }
-    
-    /* Style for each individual detail line */
+        border-radius: 5px;}
+/* Style for each individual detail line */
     .response-details p {
         font-size: 18px;
-        margin-bottom: 8px;
-    }
-    
-    /*======================== Sidebar CSS ========================*/
-    .sidebar-left, .sidebar-right {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-    
-        top: 20vh;
-        width: 8.5vw;
-        height: 8.5vh;
-    
-        padding: 10px;
-    }
-    
-    .sidebar-left {
-        left: 0;
-        padding: 0;
-    }
-    
-    .sidebar-right {
-        right: 0;
-        padding: 0;
-    }
-    
-    .sidebar-item {
-        margin-bottom: 5px;
-    }
-    
-    .sidebar-img {
-        width: 100%;
-        height: 100%;
-     
-        transition: transform 0.3s ease-in-out;
-    }
-    
-    .sidebar-item:hover .sidebar-img {
-        transform: scale(1.05); 
-    }
-
-.readability-button i {
-    font-size: 12px;
-}
-
-.readability-button:hover {
-    background-color: var(--ninerGold);
-}
-
-.footer-logo img {
-    height: 24px;
-}
+        margin-bottom: 8px;}
 /*======================Responses Page CSS================/
 /* Response box styling */
 .response-box {
@@ -1678,36 +774,26 @@ form {
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
+    transition: transform 0.2s;}
 .response-box:hover {
-    transform: scale(1.01);
-}
-
+    transform: scale(1.01);}
 /* Header of each response */
 .response-header {
     cursor: pointer;
     background-color: var(--Charlotte_Green);
     color: white;
     padding: 10px;
-    border-radius: 10px;
-}
-
+    border-radius: 10px;}
 /* Details section (hidden by default) */
 .response-details {
     margin-top: 10px;
     padding: 10px;
     background-color: var(--jasper);
-    border-radius: 5px;
-}
-
+    border-radius: 5px;}
 /* Style for each individual detail line */
 .response-details p {
     font-size: 18px;
-    margin-bottom: 0px;
-}
-
+    margin-bottom: 0px;}
 .response-item-container {
     display: flex;
     flex-direction: row;
@@ -1715,36 +801,25 @@ form {
     margin: 0 auto;
     padding: 0px;
     gap: 0.5rem;
-    padding-bottom: 0.20rem;
-}
-
+    padding-bottom: 0.20rem;}
 .response-item-title {
     font-weight: bold;
     margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
+    padding-bottom: 0px;}
 .response-item-symbols {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
-}
-
+    gap: 0.5rem;}
 .response-item-symbols button {
     font-size: 18px;
     background: none;
     background-color: none;
     border: none;
-    text-decoration: none;
-    
-}
-
+    text-decoration: none;}
 .response-item-symbols button:hover {
     cursor: pointer;
     border: 1px var(--Ore_Black) solid;
-    border-radius: 5;
-}
-
+    border-radius: 5;}
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
     display: flex;
@@ -1755,34 +830,22 @@ form {
     width: 8.5vw;
     height: 8.5vh;
 
-    padding: 10px;
-}
-
+    padding: 10px;}
 .sidebar-left {
     left: 0;
-    padding: 0;
-}
-
+    padding: 0;}
 .sidebar-right {
     right: 0;
-    padding: 0;
-}
-
+    padding: 0;}
 .sidebar-item {
-    margin-bottom: 5px;
-}
-
+    margin-bottom: 5px;}
 .sidebar-img {
     width: 100%;
     height: 100%;
  
-    transition: transform 0.3s ease-in-out;
-}
-
+    transition: transform 0.3s ease-in-out;}
 .sidebar-item:hover .sidebar-img {
-    transform: scale(1.05); 
-}
-
+    transform: scale(1.05);}
 /*======================Responses Page CSS================/*/
 
 /*Responses Header*/
@@ -1798,18 +861,14 @@ form {
     border-radius: 20px;
     margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
     font-size: 28px; 
-    font-weight: bold; 
-}
-
+    font-weight: bold;}
 /* Search Bar Styling */
 .searchBar-Container {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    padding-bottom: 1rem;
-  }
-  
-  .searchBar-Bar {
+    padding-bottom: 1rem;}
+.searchBar-Bar {
     width: 20rem;
     height: 30px;
     background-color: var(--quartzWhite);
@@ -1818,29 +877,22 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow: hidden; /* Ensures the rounded corners apply to both input and button */
-  }
-  
-  .searchBar-Bar input[type="text"] {
+    overflow: hidden; /* Ensures the rounded corners apply to both input and button */}
+.searchBar-Bar input[type="text"] {
     border: none;
     background-color: transparent;
     width: 100%;
     height: 100%;
     font-size: 16px;
     padding: 0 10px;
-    outline: none;
-  }
-  
-  .searchBar-Bar button {
+    outline: none;}
+.searchBar-Bar button {
     font-size: 18px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0 10px;
-    color: var(--Ore_Black); /* Adjust color as needed */
-  }
-
-
+    color: var(--Ore_Black); /* Adjust color as needed */}
 /* Response box styling */
 .response-box {
     background-color: white;
@@ -1849,69 +901,4 @@ form {
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.response-box:hover {
-    transform: scale(1.01);
-}
-
-/* Header of each response */
-.response-header {
-    cursor: pointer;
-    background-color: var(--Charlotte_Green);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-/* Details section (hidden by default) */
-.response-details {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: var(--jasper);
-    border-radius: 5px;
-}
-
-/* Style for each individual detail line */
-.response-details p {
-    font-size: 18px;
-    margin-bottom: 0px;
-}
-
-.response-item-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin: 0 auto;
-    padding: 0px;
-    gap: 0.5rem;
-    padding-bottom: 0.20rem;
-}
-
-.response-item-title {
-    font-weight: bold;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
-.response-item-symbols {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-}
-
-.response-item-symbols button {
-    font-size: 18px;
-    background: none;
-    background-color: none;
-    border: none;
-    text-decoration: none;
-    
-}
-
-.response-item-symbols button:hover {
-    cursor: pointer;
-    border: 1px var(--Ore_Black) solid;
-    border-radius: 5;
-}
+    transition: transform 0.2s;}
