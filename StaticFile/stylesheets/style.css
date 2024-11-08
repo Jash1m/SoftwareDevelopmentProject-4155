@@ -534,28 +534,94 @@ html, body {
 .custom-checkbox:hover {
         border-color: var(--custom_green);}
 /*input container for question 2 */
-    .custom-major {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-        border-radius: 5px;
-        width: 100%; 
-        padding: 10px;
-        box-sizing: border-box; /*padding and borders are included in width*/}
+.custom-major {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%; 
+    padding: 10px;
+    box-sizing: border-box; /*padding and borders are included in width*/
+}
+
 /*input field */
-    .major-input {
-        width: 100%; 
-        padding: 8px;
-        border: 2px solid var(--custom_green); 
-        border-radius: 5px;
-        background-color: white;
-        transition: border-color 0.3s;
-        font-size: 18px;
-        outline: none; /*removing the default outline*/}
+.major-input {
+    width: 100%; 
+    padding: 8px;
+    border: 2px solid var(--Charlotte_Green); 
+    border-radius: 5px;
+    background-color: white;
+    transition: border-color 0.3s;
+    font-size: 18px;
+    outline: none; /*removing the default outline*/
+    box-sizing: border-box;
+}
+
 /*focus effect input field */
-    .major-input:focus {
-        border-color: var(--ninerGold); /*turn gold when focused*/}
+.major-input:focus {
+    border-color: var(--ninerGold); 
+}
+
+#majorSelect {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 5px;
+    font-size: 18px;
+    color: var(--Ore_Black);
+    background-color: var(--jasper);
+    font-family: 'Oswald', sans-serif;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 5px;
+    z-index: 3; 
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+/* options */
+#majorSelect option {
+    padding: 10px;
+    background-color: var(--jasper);
+    color: var(--Ore_Black);
+    cursor: pointer;
+    white-space: nowrap; /* prevents text from wrapping */
+    display: block;
+    width: max-content;
+    min-width: 100%; /* options take at least the full dropdown width */
+    box-sizing: border-box;
+}
+
+/* hover effect for options */
+#majorSelect option:hover {
+    background-color: var(--Charlotte_Green); 
+    color: white;
+}
+
+.selected-border {
+    border-color: var(--ninerGold); 
+}
+
+/* scrollbars style for WebKit browsers */
+#majorSelect::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+}
+
+#majorSelect::-webkit-scrollbar-thumb {
+    background-color: var(--Charlotte_Green); /*scrollbar color */
+    border-radius: 5px;
+    border: 2px solid var(--jasper); /*padding around thumb */
+}
+
+#majorSelect::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ninerGold);
+}
 /*======================== Index Page CSS ========================*/
     
     .index-container {
