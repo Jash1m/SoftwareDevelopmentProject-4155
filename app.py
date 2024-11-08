@@ -11,15 +11,17 @@ dbUser = "..." #!!! Must be updated locally | The username to access your SQL se
 dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
 dbName = "..." #!! Must be updated locally | The name of your schema in the database
 
-def ensure_schema_exists():
+def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
     with temp_engine.connect() as conn: #Use the temp engine...
-         conn.execute(text(f"CREATE DATABASE IF NOT EXISTS {dbName}")) #Create the database if it doesn't exist
-         conn.execute(text(f"USE {dbName}"))  # Explicitly switch to the schema
-    temp_engine.dispose() #Destroy the temp engine after the fact.
+         conn.execute(text(f"CREATE DATABASE IF NOT EXISTS {dbName}")) #Create the schema if it doesn't exist, using dbName as the name.
+         conn.execute(text(f"USE {dbName}"))  # Explicitly switch to the schema (In case your database is using a different schema)
+    temp_engine.dispose() #Destroy the temp engine after, we'll use SQLAlchemy to manage engines from now on.
 
-ensure_schema_exists()
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbName
+ensure_schema_exists() #Run the function.
+
+#Configure the database URI using the username, password, and schema name.
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+dbUser+':'+dbPass+'@127.0.0.1:3306/'+dbName 
 
 # Disable tracking modifications to save resources
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -27,9 +29,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the database object
 db.init_app(app)  
 
+#Perform database setup 
 with app.app_context():
         db.drop_all()  # Drops all tables
-        db.create_all() 
+        db.create_all() # Re-creates tables from schema file
 
         # Adding the Period
         mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
@@ -63,16 +66,17 @@ with app.app_context():
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
 
-
+# Default routing to the index page.
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
+#Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
     return render_template('survey.html')
 
-
+#Routing to post new information to the database.
 @app.route('/user', methods=['POST'])
 def userResponses():
     # Since we have no login atm, I'm just making a new student when we get responses
@@ -107,6 +111,7 @@ def userResponses():
     # Redirect to a confirmation or thank you page after submission
     return redirect(url_for('index'))
 
+#Route to display all user responses.
 @app.route('/responses')
 def display_responses():
     # Query all responses from the database, sorted by ID
@@ -120,10 +125,10 @@ majors = [
     "Computer science", "Psychology", "Finance", "Health/health care administration/management", 
     "Speech communication and rhetoric", "Biology/biological sciences", "Criminal justice/safety studies", 
     "Marketing/marketing management", "Exercise physiology", "Political science and government", 
-    # to-do: update this dynamically
+    # to-do: update this using a text file.
 ]
 
-# Simulate responses route with progress
+#Route to post simulated responses to the database.
 @app.route('/simulate_responses', methods=['POST'])
 def simulate_responses():
     num_responses = int(request.form['num_responses'])
@@ -175,10 +180,10 @@ def simulate_responses():
     # Commit all changes to the database
     db.session.commit()
 
+    #Redirect to the responses page after we are done posting the simulated responses.
     return redirect(url_for('display_responses'))
 
 
-
+#Runs the app with debug mode.
 if __name__ == "__main__": 
     app.run(debug=True)
-        
