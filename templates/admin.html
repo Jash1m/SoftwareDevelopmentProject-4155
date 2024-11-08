@@ -1,0 +1,53 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    <title>Admin - Match Responses</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Left: All Responses -->
+        <div class="response-boxes">
+            <h2>Survey Responses</h2>
+            {% for response in all_responses %}
+            <div class="response-item">
+                <h3>Response ID: {{ response.id }}</h3>
+                <p>{{ response.q1 }} | {{ response.q2 }} | {{ response.q3 }} | {{ response.q4 }}</p>
+                <p>{{ response.q5 }} | {{ response.q6 }} | {{ response.q7 }} | {{ response.q8 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Middle: Button -->
+        <div>
+            <form method="POST" action="/admin">
+                <button class="start-matching-btn" type="submit">Start Matching</button>
+            </form>
+        </div>
+
+        <!-- Right: Matched Responses -->
+        <div class="matched-box">
+            <h2>Matched Pairs</h2>
+            {% for response in all_responses %}
+                <div class="matched-pair">
+                    <h3>Response ID: {{ response.id }}</h3>
+                    {% if best_matches[response.id] %}
+                        <p>Best Match: Response ID {{ best_matches[response.id][0] }} - Likeness Score: {{ best_matches[response.id][1] }}</p>
+                    {% else %}
+                        <p>No match found.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

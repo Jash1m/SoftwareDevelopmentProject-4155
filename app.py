@@ -3,6 +3,7 @@ from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
+from matching import find_best_match_for_each
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
@@ -183,6 +184,17 @@ def simulate_responses():
     #Redirect to the responses page after we are done posting the simulated responses.
     return redirect(url_for('display_responses'))
 
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    # Fetch all responses from the database
+    all_responses = Response.query.all()
+    
+    # Find the best match for each response
+    best_matches = {}
+    if request.method == 'POST':
+        best_matches = find_best_match_for_each(all_responses)
+    
+    return render_template('admin.html', all_responses=all_responses, best_matches=best_matches)
 
 #Runs the app with debug mode.
 if __name__ == "__main__": 
