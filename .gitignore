@@ -1,4 +1,8 @@
-#Copied from https://github.com/github/gitignore/blob/main
+#Copied from https://github.com/github/gitignore/blob/main, with modifications from this group.
+
+#.DS_Store files (Automatically created by MacOS, keeps causing merge conflicts)
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
