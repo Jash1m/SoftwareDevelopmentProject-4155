@@ -42,22 +42,6 @@ button:hover {
 }
 */
 
-/* Back Button Style */
-.back-button {
-    position: fixed;                  /* Fixed position at the top-left */
-    top: 40px;                        /* Adjusted to be closer to the top */
-    left: 30px;                       /* Adjusted distance from the left */
-    background-color: var(--Charlotte_Green); /* Match color with other buttons */
-    color: var(--quartzWhite);        /* Matching text color */
-    padding: 15px 30px;               /* Adjusted padding for consistency */
-    border-radius: 30px;              /* Rounded corners similar to other buttons */
-    font-size: 18px;                  /* Consistent font size */
-    text-align: center;
-    text-decoration: none;            /* Remove underline */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth hover and click effects */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Matching shadow */
-    z-index: 101;                     /* Ensure it stays on top */
-}
 
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
@@ -69,18 +53,6 @@ button:hover {
     transform: scale(0.95);                   /* Scale down on click */
 }
 
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -10px;
-    padding: 10px 300px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: var(--custom_dark_green);
-    font-size: 13px;
-}
 .top-nav-links {
     display: flex;
     gap: 10px;
@@ -88,12 +60,6 @@ button:hover {
 .top-nav-links li {
     list-style: none;
     position: relative;
-}
-
-.top-nav-links li:not(:last-child)::after {
-    content: "|";
-    color: var(--ninerGold);
-    margin-left: 10px;
 }
 
 .top-nav-links a {
@@ -122,6 +88,7 @@ button:hover {
     background-color: #f0f0f0;
     outline: none;
 }
+
 /* Branding Section */
 .branding {
     display: flex;
@@ -156,56 +123,6 @@ button:hover {
     margin: 5px 0;
 }
 
-/* Main Navigation Bar */
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 15px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: var(--Charlotte_Green);
-}
-
-.main-nav ul {
-    display: flex;
-    gap: 31px;
-    padding: 0;
-    margin: 0;
-}
-
-.main-nav ul li {
-    list-style: none; 
-    position: relative;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--quartzWhite);
-}
-
-.main-nav ul li::before {
-    content: "|";
-    color: #FFFFFF;
-    margin-right: 31px;
-}
-
-.main-nav ul li:first-child::before {
-    content: "";
-}
-
-.main-nav a {
-    color: var(--quartzWhite);
-    text-decoration: none;
-    font-weight: 500px;
-    font-size: 14px;
-    padding: auto;
-    transition: color 0.3s, background-color 0.3s;
-    border-radius: 5px;
-}
-
-.main-nav a:hover {
-    color: var(--Charlotte_Green);
-    background-color: var(--ninerGold);
-}
 
 /*======================== Social Icons Container ========================*/
 /* Social Icons Container */
@@ -278,18 +195,9 @@ header {
     padding: 10px 300px;
     width: 100%;
     max-width: 1200px;
-    background-color: var(--custom_dark_green);
+    background-color: var(--Charlotte_Green);
     font-size: 13px;
  }
-.top-nav-links {
-        display: flex;
-        gap: 10px;
-}
-
-.top-nav-links li {
-        list-style: none;
-        position: relative;
-}
 
 .top-nav-links li:not(:last-child)::after {
         content: "|";
@@ -297,61 +205,8 @@ header {
         margin-left: 10px;
 }
 
-.top-nav-links a {
-        color: var(--ninerGold);
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s;
-}
-
 .top-nav-links a:hover {
         color: var(--jasper);
-}
-
-.campus-resources {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--quartzWhite);
-}
-
-.campus-resources input {
-        padding: 5px;
-        border-radius: 5px;
-        border: none;
-        width: 180px;
-        background-color: #f0f0f0;
-        outline: none;
-}
-
-/* Branding Section */
-.branding {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.uncc-logo {
-    width: 60px;
-    height: auto;
-    margin-right: 15px;
-}
-
-.branding-text h1 {
-    color: var(--quartzWhite);
-    font-size: 30px;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.branding-text p {
-    color: #FFFFFF;
-    margin: 0;
-    font-size: 12px;
-    font-weight: 500;
 }
 
 /* Full-width Gold Divider Line */
@@ -408,41 +263,6 @@ header {
     border-radius: 5px;
 }
 
-.main-nav a:hover {
-        color: var(--Charlotte_Green);
-        background-color: var(--ninerGold);
-}
-
-/*======================== Social Icons Container ========================*/
-    /* Social Icons Container */
-    .social-icons {
-        margin-left: auto; /* Pushes icons to the right */
-        display: flex;
-        gap: 15px; /* Space between icons */
-    }
-
-/* Adjusted Social Icons */
-.social-icons a {
-    font-size: 24px !important; /* Font size for icons */
-    width: 40px !important; /* Square dimensions */
-    height: 40px !important;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px; /* Slightly rounded corners */
-    background-color: white; /* White background */
-    color: var(--Charlotte_Green) !important; /* Icon color */
-    border: 2px solid var(--Charlotte_Green); /* Green border */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.social-icons a:hover {
-        background-color: var(--ninerGold);
-        color: white !important;
-}
-
 /*========================Body CSS========================*/
 body {
     background-color: white; 
@@ -486,16 +306,18 @@ body {
 
 /*Roommate Compatibilty Survey header*/
 .survey-header h2 {
-    background-color: var(--custom_dark_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     text-align: center;
     padding: 8px;
-    width: 350px; 
-    height: 55px;  
+    width: 375px; 
+    height: 75px;  
     border-radius: 20px;
     margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
     font-size: 28px; 
-    font-weight: normal;
+    font-weight: bold;
+    align-content: center;
+
 }
 
 /*question headers*/
@@ -521,6 +343,9 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    height: 100%;
 }
 
 /* custom radio buttons*/
@@ -552,9 +377,9 @@ form {
     width: 20px;
     height: 20px;
     appearance: none;
-    border: 2px solid var(--custom_green); 
+    border: 2px solid var(--Charlotte_Green); 
     border-radius: 50%;
-    background-color: var(--custom_green); 
+    background-color: var(--Charlotte_Green); 
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
@@ -567,13 +392,13 @@ form {
 
 /*hover rb*/
 .custom-radio:hover {
-    border-color: var(--custom_green);
+    border-color: var(--Charlotte_Green);
 }
 
 /*style for selected rb label */
 .custom-radio input:checked + span {
     font-weight: bold;
-    color: var(--custom_dark_green);
+    color: var(--Charlotte_Green);
 }
 
 /*question 4 styling*/
@@ -623,7 +448,7 @@ form {
     width: 40px; 
     height: 40px;
     border-radius: 50%;
-    background-color: var(--custom_green); 
+    background-color: var(--Charlotte_Green); 
     color: white;
     font-size: 18px;
     transition: background-color 0.3s, transform 0.3s;
@@ -636,7 +461,7 @@ form {
 }
     
 .custom-circle-radio span:hover {
-        background-color: var(--custom_dark_green);
+        background-color: var(--Charlotte_Green);
 }
     
 /* square checkboxes*/
@@ -667,9 +492,9 @@ form {
         width: 20px;
         height: 20px;
         appearance: none;
-        border: 2px solid var(--custom_green); 
+        border: 2px solid var(--Charlotte_Green); 
         border-radius: 5px;
-        background-color: var(--custom_green);
+        background-color: var(--Charlotte_Green);
         cursor: pointer;
         transition: background-color 0.3s, border-color 0.3s;
 }
@@ -681,7 +506,7 @@ form {
 }
     
 .custom-checkbox:hover {
-        border-color: var(--custom_green);
+        border-color: var(--Charlotte_Green);
 }
     
 /*input container for question 2 */
@@ -787,14 +612,14 @@ form {
     background-color: #F3F4F6; /* Slightly darker gray for contrast */
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
-    border: 1px solid var(--custom_dark_green);
+    border: 1px solid var(--Charlotte_Green);
     text-align: center;
 }
     
 /* Title styling */
 .index-header {
     font-size: 36px;
-    color: var(--custom_dark_green);
+    color: var(--Charlotte_Green);
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -808,7 +633,7 @@ form {
 }
 
 .admin-container a.admin {
-    background-color: var(--custom_dark_green);
+    background-color: var(--Charlotte_Green);
     color: var(--ninerGold);
     font-size: 20px;
     font-weight: bold;
@@ -823,7 +648,7 @@ form {
 
 .admin-container a.admin:hover {
     background-color: var(--ninerGold);
-    color: var(--custom_dark_green);
+    color: var(--Charlotte_Green);
     transform: scale(1.05);
 }
 /*========================Boxy Button Container Styling========================*/
@@ -844,7 +669,7 @@ form {
     
 /* Button styling */
 .custom-button {
-    background-color: var(--custom_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     padding: 12px;
     border-radius: 10px;
@@ -864,7 +689,7 @@ form {
 }
     
 .custom-button:active {
-        background-color: var(--custom_dark_green);
+        background-color: var(--Charlotte_Green);
         transform: scale(0.95);
 }
 /*======================== Simulate Responses Section Styling========================*/
@@ -880,7 +705,7 @@ form {
     border-radius: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
-    border: 1px solid var(--custom_green);
+    border: 1px solid var(--Charlotte_Green);
 }
     
 .simulate-container h2 {
@@ -892,7 +717,7 @@ form {
     
 .simulate-container label {
     font-size: 16px;
-    color: var(--custom_dark_green);
+    color: var(--Charlotte_Green);
     margin-top: 10px;
 }
     
@@ -901,7 +726,7 @@ form {
     padding: 10px;
     font-size: 16px;
     border-radius: 8px;
-    border: 1px solid var(--custom_green);
+    border: 1px solid var(--Charlotte_Green);
     margin-top: 10px;
     outline: none;
 }
@@ -915,7 +740,7 @@ form {
 }
     
 .back-button {
-    background-color: var(--custom_green);
+    background-color: var(--Charlotte_Green);
     color: white;
     padding: 8px 16px;
     border: none;
@@ -923,16 +748,6 @@ form {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-}
-    
-.back-button:hover {
-        background-color: var(--ninerGold);
-        transform: scale(1.05);
-}
-    
-.back-button:active {
-        background-color: var(--custom_dark_green);
-        transform: scale(0.95);
 }
 
 /*========================Footer CSS========================*/
@@ -1007,116 +822,7 @@ form {
         height: 24px;
 }
     
-/*======================Responses Page CSS================/
-    /* Response box styling */
-    .response-box {
-        background-color: white;
-        border: 2px solid var(--custom_green);
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-    }
-    
-.response-box:hover {
-        transform: scale(1.01);
-}
-   
-/* Header of each response */
-.response-header {
-    cursor: pointer;
-    background-color: var(--custom_green);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-    
-/* Details section (hidden by default) */
-.response-details {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: var(--jasper);
-    border-radius: 5px;
-}
-    
-/* Style for each individual detail line */
-    .response-details p {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-/*======================Responses Page CSS================/
-/* Response box styling */
-.response-box {
-    background-color: white;
-    border: 2px solid var(--Charlotte_Green);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-.response-box:hover {
-    transform: scale(1.01);
-}
-    
-/* Header of each response */
-.response-header {
-    cursor: pointer;
-    background-color: var(--Charlotte_Green);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-    
-/* Details section (hidden by default) */
-.response-details {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: var(--jasper);
-    border-radius: 5px;
-}
-/* Style for each individual detail line */
-.response-details p {
-    font-size: 18px;
-    margin-bottom: 0px;
-}
-    
-.response-item-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin: 0 auto;
-    padding: 0px;
-    gap: 0.5rem;
-    padding-bottom: 0.20rem;
-}
-    
-.response-item-title {
-    font-weight: bold;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-    
-.response-item-symbols {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-}
-    
-.response-item-symbols button {
-    font-size: 18px;
-    background: none;
-    background-color: none;
-    border: none;
-    text-decoration: none;
-}
-    
-.response-item-symbols button:hover {
-    cursor: pointer;
-    border: 1px var(--Ore_Black) solid;
-    border-radius: 5;
-}
+
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
     display: flex;
@@ -1155,7 +861,6 @@ form {
 /*======================Responses Page CSS================/*/
 
 /*Responses Header*/
-
 .responseHeader {
     background-color: var(--Charlotte_Green);
     color: white;
@@ -1168,6 +873,80 @@ form {
     margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
     font-size: 28px; 
     font-weight: bold;
+}
+
+/* header of each response*/
+.response-header {
+    cursor: pointer;
+    background-color: var(--Charlotte_Green);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Response box styling */
+.response-box {
+    background-color: white;
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+    
+.response-box:hover {
+    transform: scale(1.01);
+}
+      
+/* Details section (hidden by default) */
+.response-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--jasper);
+    border-radius: 5px;
+}
+    
+/* Style for each individual detail line */
+.response-details p {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.response-item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0 auto;
+    padding: 0px;
+    gap: 0.5rem;
+    padding-bottom: 0.20rem;
+}
+    
+.response-item-title {
+    font-weight: bold;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+    
+.response-item-symbols {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+    
+.response-item-symbols button {
+    font-size: 18px;
+    background: none;
+    background-color: none;
+    border: none;
+    text-decoration: none;
+}
+    
+.response-item-symbols button:hover {
+    cursor: pointer;
+    border: 1px var(--Ore_Black) solid;
+    border-radius: 5;
 }
     
 /* Search Bar Styling */
@@ -1206,46 +985,6 @@ form {
     cursor: pointer;
     padding: 0 10px;
     color: var(--Ore_Black); /* Adjust color as needed */
-}
-/* Response box styling */
-.response-box {
-    background-color: white;
-    border: 2px solid var(--Charlotte_Green);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-/* Main container to hold all the admin content */
-.admin-container {
-    margin-top: 80px; /* Add space for the fixed header */
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-/* Styles for the left section (survey responses) */
-.response-boxes {
-    width: 48%;  /* Adjust width as needed */
-    overflow-y: auto;
-    max-height: 70vh;  /* Ensures this part can scroll if content is too large */
-    background-color: #fafafa;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
-
-/* Styles for the middle section (matching button) */
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    height: 100%;
 }
 
 /* Button styling */
