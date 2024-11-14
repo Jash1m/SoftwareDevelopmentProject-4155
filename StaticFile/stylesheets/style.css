@@ -613,7 +613,7 @@ form {
 
 .custom-circle-radio input {
     position: absolute;
-    opacity: 0; /* hiding the default radio button*
+    opacity: 0; /* hiding the default radio button*/
 }
 
 .custom-circle-radio span {
