@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    <title>Admin - Landing Page</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="uncc-header">
+        <div class="branding">
+            <img src="../StaticFile/Images/header/UNCC-White-Logo.png" alt="UNCC Logo" class="uncc-logo">
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <div class="index-container">
+            <!-- Title -->
+            <h1 class="index-header">Admin Options</h1>
+
+            <!-- Button Container for Admin Options -->
+            <div class="button-container">
+                <a href="" class="custom-button">Edit Questions (WIP)</a>
+                <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
+                <a href="{{ url_for('matching') }}" class="custom-button">Response Matching</a>
+            </div>
+
+            <!-- Simulate Responses section -->
+            <div class="simulate-container">
+                <h2>Simulate Survey Responses</h2>
+                <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
+                    <button type="submit" class="custom-button">Simulate Responses</button>
+                    <label for="num_responses">Number of Responses to Simulate:</label>
+                    <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="uncc-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
