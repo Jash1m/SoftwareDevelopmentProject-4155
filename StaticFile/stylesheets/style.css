@@ -895,7 +895,7 @@ form {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
-    
+
 .response-box:hover {
     transform: scale(1.01);
 }
@@ -911,13 +911,13 @@ form {
 /* Style for each individual detail line */
 .response-details p {
     font-size: 18px;
-    margin-bottom: 8px;
 }
 
 .response-item-container {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    align-items: center;
     margin: 0 auto;
     padding: 0px;
     gap: 0.5rem;
@@ -926,8 +926,8 @@ form {
     
 .response-item-title {
     font-weight: bold;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    margin: 0px;
+    padding: 0px;
 }
     
 .response-item-symbols {

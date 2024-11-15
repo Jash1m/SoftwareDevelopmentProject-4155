@@ -8,9 +8,9 @@ from matching import find_best_match_for_each
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
-dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
-dbName = "..." #!! Must be updated locally | The name of your schema in the database
+dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "Mikerocks2319!" #!!! Must be updated locally | The password to access your SQL server
+dbName = "4155project" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -184,8 +184,8 @@ def simulate_responses():
     #Redirect to the responses page after we are done posting the simulated responses.
     return redirect(url_for('display_responses'))
 
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
+@app.route('/matching', methods=['GET', 'POST'])
+def matching():
     # Fetch all responses from the database
     all_responses = Response.query.all()
     
@@ -194,7 +194,11 @@ def admin():
     if request.method == 'POST':
         best_matches = find_best_match_for_each(all_responses)
     
-    return render_template('admin.html', all_responses=all_responses, best_matches=best_matches)
+    return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+@app.route('/admin')
+def admin():
+    return render_template('adminindex.html')
 
 #Runs the app with debug mode.
 if __name__ == "__main__": 
