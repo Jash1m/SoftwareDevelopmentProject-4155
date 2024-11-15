@@ -336,6 +336,7 @@ body {
     width: 400px; 
     text-align: center; 
     margin: 0 auto 30px;
+    position: relative;
 }
 
 /*form styles */
