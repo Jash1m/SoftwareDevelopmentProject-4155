@@ -86,22 +86,11 @@
             <!-- Survey and Responses buttons -->
             <div class="button-container">
                 <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
-                <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
             </div>
 
             <!-- Logout Button -->
             <div class="logout-container">
                 <a href="#" class="custom-button">Logout</a>
-            </div>
-
-            <!-- Simulate Responses section -->
-            <div class="simulate-container">
-                <h2>Simulate Survey Responses</h2>
-                <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
-                    <button type="submit" class="custom-button">Simulate Responses</button>
-                    <label for="num_responses">Number of Responses to Simulate:</label>
-                    <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
-                </form>
             </div>
         </div>
     </div>
