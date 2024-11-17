@@ -33,286 +33,147 @@
                 
                 <!-- Update the form to submit to the userResponses route -->
                 <form action="/user" method="POST"> 
-                    <!-- Question 1 -->
-                    <h3 class="question-header">What year are you?</h3>
+                {% for question in all_questions %}
+                {% set options = question.options.split(", ") %}
+                {% if question.questiontype == 1 %}
+                <h3 class="question-header">{{question.text}}</h3>
+                <div class="selection-box">
+                    {% for option in options[1:] %}
+                    <label class="custom-radio">
+                        <span style="text-transform: capitalize;">{{option}}</span>
+                        <input type="radio" name="{{question.id}}" value="{{option}}" required>
+                    </label>
+                    {% endfor %}
+                </div>
+                {% elif question.questiontype == 2 %}
+                <!-- Question 2 -->
+                <div class="container">
+                    <h3 class="question-header">What is your major?</h3>
                     <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>Freshman</span>
-                            <input type="radio" name="year" value="freshman" required>
+                        <input type="text" id="search" class="major-input" placeholder="Enter your Major" onkeyup="filterMajors()" required></input>
+                        <select id="majorSelect" size="10" onclick="selectMajor()">
+                            <option>Accounting</option>
+                            <option>African-American/Black Studies</option>
+                            <option>Allied Health Diagnostic, Intervention, and Treatment Professions</option>
+                            <option>Anthropology</option>
+                            <option>Architecture</option>
+                            <option>Art History, Criticism and Conservation</option>
+                            <option>Art/Art Studies</option>
+                            <option>Biology/Biological Sciences</option>
+                            <option>Business Administration and Management</option>
+                            <option>Business/Managerial Economics</option>
+                            <option>Chemistry</option>
+                            <option>Civil Engineering</option>
+                            <option>Civil Engineering Technology/Technician</option>
+                            <option>Computer Engineering</option>
+                            <option>Computer Science</option>
+                            <option>Criminal Justice/Safety Studies</option>
+                            <option>Dance</option>
+                            <option>Drama and Dramatics/Theatre Arts</option>
+                            <option>Economics</option>
+                            <option>Electrical and Electronics Engineering</option>
+                            <option>Electrical, Electronic and Communications Engineering Technology/Technincial</option>
+                            <option>Elementary Education and Teaching</option>
+                            <option>Engineering Technologies and Engineering-Related Fields</option>
+                            <option>English Language and Literature</option>
+                            <option>Exercise Physiology</option>
+                            <option>Finance</option>
+                            <option>Fine/Studio Arts</option>
+                            <option>French Language and Literature</option>
+                            <option>Geography</option>
+                            <option>Geology/Earth Science</option>
+                            <option>German Language and Literature</option>
+                            <option>Graphic Design</option>
+                            <option>Health and Physical Education/Fitness</option>
+                            <option>Health/Health Care Administration/Management</option>
+                            <option>History</option>
+                            <option>Information Technology</option>
+                            <option>International Business/Trade/Commerce</option>
+                            <option>International/Global Studies</option>
+                            <option>Japanese Language and Literature</option>
+                            <option>Junior High/Intermediate/Middle School Education and Teaching</option>
+                            <option>Kindergarten/Preschool Education and Teaching</option>
+                            <option>Latin American Studies</option>
+                            <option>Management Science</option>
+                            <option>Marketing/Marketing Management</option>
+                            <option>Mathematics</option>
+                            <option>Mathematics and Computer Science</option>
+                            <option>Mathematics and Statistics</option>
+                            <option>Mechanical Engineering</option>
+                            <option>Mechanical Enineering/Mechanical Technology/Technician</option>
+                            <option>Meteorology</option>
+                            <option>Music</option>
+                            <option>Music Performance </option>
+                            <option>Operations Management and Supervision</option>
+                            <option>Philosophy</option>
+                            <option>Physics</option>
+                            <option>Political Science and Government</option>
+                            <option>Psychology</option>
+                            <option>Public Health</option>
+                            <option>Registered Nursing/Registered Nurse</option>
+                            <option>Religion/Religious Studies</option>
+                            <option>Respiratory Care Therapy/Therapist</option>
+                            <option>Social Work</option>
+                            <option>Sociology</option>
+                            <option>Spanish Language and Literature</option>
+                            <option>Special Education and Teaching</option>
+                            <option>Speech Communication and Rhetoric</option>
+                            <option>Systems Engineering</option>
+                        </select>
+                    </div>
+                </div>
+                {% elif question.questiontype == 3 %}
+                <!-- Question 4 -->
+                <div class="question-container">
+                    <h3 class="question-header">
+                        {{question.text}}<br>
+                        <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
+                    </h3> 
+                    <div class="share-selection-box">
+                        <label class="custom-circle-radio">
+                            <input type="radio" name="{{question.id}}" value="1" required>
+                            <span>1</span>
                         </label>
-                        <label class="custom-radio">
-                            <span>Sophomore</span>
-                            <input type="radio" name="year" value="sophomore" required>
+                        <label class="custom-circle-radio">
+                            <input type="radio" name="{{question.id}}" value="2" required>
+                            <span>2</span>
                         </label>
-                        <label class="custom-radio">
-                            <span>Junior</span>
-                            <input type="radio" name="year" value="junior" required>
+                        <label class="custom-circle-radio">
+                            <input type="radio" name="{{question.id}}" value="3" required>
+                            <span>3</span>
                         </label>
-                        <label class="custom-radio">
-                            <span>Senior</span>
-                            <input type="radio" name="year" value="senior" required>
+                        <label class="custom-circle-radio">
+                            <input type="radio" name="{{question.id}}" value="4" required>
+                            <span>4</span>
                         </label>
-                        <label class="custom-radio">
-                            <span>Graduate Student</span>
-                            <input type="radio" name="year" value="graduate-student" required>
+                        <label class="custom-circle-radio">
+                            <input type="radio" name="{{question.id}}" value="5" required>
+                            <span>5</span>
                         </label>
                     </div>
+                </div>
+                {% else %}
+                <!-- Question 7 -->
+                <h3 class="question-header">{{question.text}}</h3>
+                <div class="selection-box">
+                    {% for option in options[1:] %}
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="{{question.id}}" value="{{option}}">
+                        <span style="text-transform: capitalize;">{{option}}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                    
 
-                    <!-- Question 2 -->
-                    <div class="container">
-                        <h3 class="question-header">What is your major?</h3>
-                        <div class="selection-box">
-                            <input type="text" id="search" class="major-input" placeholder="Enter your Major" onkeyup="filterMajors()" required></input>
-                            <select id="majorSelect" size="10" onclick="selectMajor()">
-                                <option>Accounting</option>
-                                <option>African-American/Black Studies</option>
-                                <option>Allied Health Diagnostic, Intervention, and Treatment Professions</option>
-                                <option>Anthropology</option>
-                                <option>Architecture</option>
-                                <option>Art History, Criticism and Conservation</option>
-                                <option>Art/Art Studies</option>
-                                <option>Biology/Biological Sciences</option>
-                                <option>Business Administration and Management</option>
-                                <option>Business/Managerial Economics</option>
-                                <option>Chemistry</option>
-                                <option>Civil Engineering</option>
-                                <option>Civil Engineering Technology/Technician</option>
-                                <option>Computer Engineering</option>
-                                <option>Computer Science</option>
-                                <option>Criminal Justice/Safety Studies</option>
-                                <option>Dance</option>
-                                <option>Drama and Dramatics/Theatre Arts</option>
-                                <option>Economics</option>
-                                <option>Electrical and Electronics Engineering</option>
-                                <option>Electrical, Electronic and Communications Engineering Technology/Technincial</option>
-                                <option>Elementary Education and Teaching</option>
-                                <option>Engineering Technologies and Engineering-Related Fields</option>
-                                <option>English Language and Literature</option>
-                                <option>Exercise Physiology</option>
-                                <option>Finance</option>
-                                <option>Fine/Studio Arts</option>
-                                <option>French Language and Literature</option>
-                                <option>Geography</option>
-                                <option>Geology/Earth Science</option>
-                                <option>German Language and Literature</option>
-                                <option>Graphic Design</option>
-                                <option>Health and Physical Education/Fitness</option>
-                                <option>Health/Health Care Administration/Management</option>
-                                <option>History</option>
-                                <option>Information Technology</option>
-                                <option>International Business/Trade/Commerce</option>
-                                <option>International/Global Studies</option>
-                                <option>Japanese Language and Literature</option>
-                                <option>Junior High/Intermediate/Middle School Education and Teaching</option>
-                                <option>Kindergarten/Preschool Education and Teaching</option>
-                                <option>Latin American Studies</option>
-                                <option>Management Science</option>
-                                <option>Marketing/Marketing Management</option>
-                                <option>Mathematics</option>
-                                <option>Mathematics and Computer Science</option>
-                                <option>Mathematics and Statistics</option>
-                                <option>Mechanical Engineering</option>
-                                <option>Mechanical Enineering/Mechanical Technology/Technician</option>
-                                <option>Meteorology</option>
-                                <option>Music</option>
-                                <option>Music Performance </option>
-                                <option>Operations Management and Supervision</option>
-                                <option>Philosophy</option>
-                                <option>Physics</option>
-                                <option>Political Science and Government</option>
-                                <option>Psychology</option>
-                                <option>Public Health</option>
-                                <option>Registered Nursing/Registered Nurse</option>
-                                <option>Religion/Religious Studies</option>
-                                <option>Respiratory Care Therapy/Therapist</option>
-                                <option>Social Work</option>
-                                <option>Sociology</option>
-                                <option>Spanish Language and Literature</option>
-                                <option>Special Education and Teaching</option>
-                                <option>Speech Communication and Rhetoric</option>
-                                <option>Systems Engineering</option>
-                            </select>
-                        </div>
-                    </div>
+                    
 
-                    <!-- Question 3 -->
-                    <h3 class="question-header">Would you prefer a roommate with the same major?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>Yes</span>
-                            <input type="radio" name="same-major" value="yes" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>No</span>
-                            <input type="radio" name="same-major" value="no" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Doesn't Matter</span>
-                            <input type="radio" name="same-major" value="doesn't matter" required>
-                        </label>
-                    </div>
 
-                    <!-- Question 4 -->
-                    <div class="question-container">
-                        <h3 class="question-header">
-                            How do you feel about sharing personal items?<br>
-                            <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
-                        </h3> 
-                        <div class="share-selection-box">
-                            <label class="custom-circle-radio">
-                                <input type="radio" name="share" value="1" required>
-                                <span>1</span>
-                            </label>
-                            <label class="custom-circle-radio">
-                                <input type="radio" name="share" value="2" required>
-                                <span>2</span>
-                            </label>
-                            <label class="custom-circle-radio">
-                                <input type="radio" name="share" value="3" required>
-                                <span>3</span>
-                            </label>
-                            <label class="custom-circle-radio">
-                                <input type="radio" name="share" value="4" required>
-                                <span>4</span>
-                            </label>
-                            <label class="custom-circle-radio">
-                                <input type="radio" name="share" value="5" required>
-                                <span>5</span>
-                            </label>
-                        </div>
-                    </div>
 
-                    <!-- Question 5 -->
-                    <h3 class="question-header">What time would you like to have quiet hours?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>8pm</span>
-                            <input type="radio" name="quiet-hours" value="8pm" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>10pm</span>
-                            <input type="radio" name="quiet-hours" value="10pm" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Midnight</span>
-                            <input type="radio" name="quiet-hours" value="midnight" required>
-                        </label>
-                    </div>
+                
 
-                    <!-- Question 6 -->
-                    <h3 class="question-header">What time do you usually go to sleep?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>8pm - 10pm</span>
-                            <input type="radio" name="sleep-time" value="8pm-10pm" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>10pm - Midnight</span>
-                            <input type="radio" name="sleep-time" value="10pm-midnight" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>After Midnight</span>
-                            <input type="radio" name="sleep-time" value="after-midnight" required>
-                        </label>
-                    </div>
-
-                    <!-- Question 7 -->
-                    <h3 class="question-header">What are your study habits? (Select all that apply)</h3>
-                    <div class="selection-box">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="Quiet Study">
-                            <span>I prefer to study in silence.</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="Study Alone">
-                            <span>I prefer to study alone.</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="Late Night Study">
-                            <span>I prefer to study late at night.</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="Common Areas Study">
-                            <span>I prefer to study in common areas.</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="In Room Study">
-                            <span>I prefer to study in my room.</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="study-habits" value="Background Noise Study">
-                            <span>I prefer having background noise.</span>
-                        </label>
-                    </div>
-
-                    <!-- Question 8 -->
-                    <h3 class="question-header">What are your hobbies? (Select all that apply)</h3>
-                    <div class="selection-box">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="hobbies" value="Sports">
-                            <span>Sports</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="hobbies" value="Reading">
-                            <span>Reading</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="hobbies" value="Gaming">
-                            <span>Gaming</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="hobbies" value="Art">
-                            <span>Art</span>
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="hobbies" value="Cooking">
-                            <span>Cooking</span>
-                        </label>
-                    </div>
-
-                    <!-- Question 9 -->
-                    <h3 class="question-header">What kind of room climate do you prefer?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>Cool</span>
-                            <input type="radio" name="room-climate" value="cool" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Warm</span>
-                            <input type="radio" name="room-climate" value="warm" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Moderate</span>
-                            <input type="radio" name="room-climate" value="moderate" required>
-                        </label>
-                    </div>
-
-                    <!-- Question 10 -->
-                    <h3 class="question-header">How tidy do you like to keep your space?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>Tidy</span>
-                            <input type="radio" name="tidy" value="tidy" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Messy</span>
-                            <input type="radio" name="tidy" value="messy" required>
-                        </label>
-                    </div>
-
-                    <!-- Question 11 -->
-                    <h3 class="question-header">How do you handle conflict?</h3>
-                    <div class="selection-box">
-                        <label class="custom-radio">
-                            <span>Confront it</span>
-                            <input type="radio" name="conflict" value="confront" required>
-                        </label>
-                        <label class="custom-radio">
-                            <span>Avoid it</span>
-                            <input type="radio" name="conflict" value="avoid" required>
-                        </label>
-                    </div>
-
+                    
+                {% endfor %}
                     <!-- Submit button -->
                     <button type="submit" class="custom-button">Submit</button>
                 </form>

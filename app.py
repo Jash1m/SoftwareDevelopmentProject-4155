@@ -8,9 +8,9 @@ from matching import find_best_match_for_each
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "Mikerocks2319!" #!!! Must be updated locally | The password to access your SQL server
-dbName = "4155project" #!! Must be updated locally | The name of your schema in the database
+dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
+dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbName = "..." #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -40,13 +40,13 @@ with app.app_context():
 
         # Adding in all 11 Questions, Question type is non functional
         mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", questiontype=1)
-        mQ2 = Question(text="What is your major?", options="...", questiontype=1)
+        mQ2 = Question(text="What is your major?", options="...", questiontype=2)
         mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", questiontype=1)
-        mQ4 = Question(text="How do you feel about sharing personal items?", options=", 1, 2, 3, 4, 5", questiontype=1)
+        mQ4 = Question(text="How do you feel about sharing personal items?", options=", 1, 2, 3, 4, 5", questiontype=3)
         mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", questiontype=1)
         mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", questiontype=1)
-        mQ7 = Question(text="What are your study habits? (Select all that apply)", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=1)
-        mQ8 = Question(text="What are your hobbies? (Select all that apply)", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=1)
+        mQ7 = Question(text="What are your study habits? (Select all that apply)", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=4)
+        mQ8 = Question(text="What are your hobbies? (Select all that apply)", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=4)
         mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", questiontype=1)
         mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", questiontype=1)
         mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid", questiontype=1)
@@ -75,28 +75,28 @@ def index():
 #Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
-    return render_template('survey.html')
+    all_questions = Question.query.order_by(Question.id).all()
+    return render_template('survey.html', all_questions=all_questions)
 
 #Routing to post new information to the database.
 @app.route('/user', methods=['POST'])
 def userResponses():
     # Since we have no login atm, I'm just making a new student when we get responses
-    #i = i+1
     mStudent = Student(firstname="test", lastname="test")
     
     # Retrieve form data
     mResponse = Response(
-        q1=request.form.get('year', ''),
+        q1=request.form.get('1', ''),
         q2=request.form.get('major', ''),
-        q3=request.form.get('same-major', ''),
-        q4=request.form.get('share', ''),
-        q5=request.form.get('quiet-hours', ''),
-        q6=request.form.get('sleep-time', ''),
-        q7=', '.join(request.form.getlist('study-habits')),  # Convert list to string
-        q8=', '.join(request.form.getlist('hobbies')),       # Convert list to string
-        q9=request.form.get('room-climate', ''),
-        q10=request.form.get('tidy', ''),
-        q11=request.form.get('conflict', '')
+        q3=request.form.get('3', ''),
+        q4=request.form.get('4', ''),
+        q5=request.form.get('5', ''),
+        q6=request.form.get('6', ''),
+        q7=', '.join(request.form.getlist('7')),  # Convert list to string
+        q8=', '.join(request.form.getlist('8')),       # Convert list to string
+        q9=request.form.get('9', ''),
+        q10=request.form.get('10', ''),
+        q11=request.form.get('11', '')
     )
     mStudent.response = mResponse
 
