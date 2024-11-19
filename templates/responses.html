@@ -42,17 +42,18 @@
 
                     <!-- Question 1 -->
                     <div class="response-item-container">
-                        <p class="response-item-title">Year: </p>
-                        <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
+                        <p class="response-item-title">Year:</p>
+                        <span data-category="q1-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
                         <div class="response-item-symbols">
-                            <button onclick="editResponse('year-{{ response.id }}')">
+                            <button onclick="editResponse('q1-{{ response.id }}')">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <button onclick="deleteResponse('year-{{ response.id }}')">
+                            <button onclick="deleteResponse('q1-{{ response.id }}')">
                                 <i class="bi bi-x-square"></i>
                             </button>
                         </div>
                     </div>
+                    
                     <!-- Question 2 -->
                     <div class = "response-item-container">
                         <p class="response-item-title">Major: <p> {{ response.q2 }}</p></p>
@@ -62,37 +63,61 @@
                         </div>  
                     </div>
                     <!-- Question 3 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Same Major Preference: <p> {{ response.q3 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Same Major Preference:</p>
+                        <span data-category="q3-{{ response.id }}" class="response-answer">{{ response.q3 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q3-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q3-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Question 4 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Room Sharing <p> {{ response.q4 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Room Sharing:</p>
+                        <span data-category="q4-{{ response.id }}" class="response-answer">{{ response.q4 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q4-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q4-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <!-- Question 5 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Quiet Hours: <p> {{ response.q5 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Quiet Hours:</p>
+                        <span data-category="q5-{{ response.id }}" class="response-answer">{{ response.q5 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q5-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q5-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <!-- Question 6 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Preferred Sleep Time: <p> {{ response.q6 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Preferred Sleep Time:</p>
+                        <span data-category="q6-{{ response.id }}" class="response-answer">{{ response.q6 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q6-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q6-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <!-- Question 7 -->
                     <div class = "response-item-container">
                         <p class="response-item-title">Study Habits: <p> {{ response.q7 }}</p></p>
@@ -110,29 +135,46 @@
                         </div>  
                     </div>
                     <!-- Question 9 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Preferred Room Climate: <p> {{ response.q9 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Preferred Room Climate:</p>
+                        <span data-category="q9-{{ response.id }}" class="response-answer">{{ response.q9 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q9-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q9-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <!-- Question 10 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Cleanliness: <p> {{ response.q10 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Cleanliness:</p>
+                        <span data-category="q10-{{ response.id }}" class="response-answer">{{ response.q10 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q10-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q10-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <!-- Question 11 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Conflict Resolution Style: <p> {{ response.q11 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Conflict Resolution Style:</p>
+                        <span data-category="q11-{{ response.id }}" class="response-answer">{{ response.q11 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q11-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q11-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>                    
                 </div>
             </div>
             {% endfor %}
