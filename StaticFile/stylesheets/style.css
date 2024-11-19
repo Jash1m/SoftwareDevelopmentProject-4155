@@ -1029,3 +1029,8 @@ form {
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* capitalize the response answers */
+.response-answer {
+    text-transform: capitalize;
+}
