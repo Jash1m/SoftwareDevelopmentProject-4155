@@ -49,6 +49,7 @@ class Question(db.Model):
     # Primary key for identifying each question
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     text = db.Column(db.String(255), nullable=False)
+    subtext = db.Column(db.String(255))
     options = db.Column(db.String(255), nullable=False)
     questiontype = db.Column(db.Integer, nullable=False)
 

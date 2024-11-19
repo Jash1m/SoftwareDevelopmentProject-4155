@@ -36,7 +36,8 @@
                 {% for question in all_questions %}
                 {% set options = question.options.split(", ") %}
                 {% if question.questiontype == 1 %}
-                <h3 class="question-header">{{question.text}}</h3>
+                <h3 class="question-header">{{question.text}}</h3>{% if question.subtext != None %}<br>
+                <span class="smaller-text">{{question.subtext}}</span>{% endif %}
                 <div class="selection-box">
                     {% for option in options[1:] %}
                     <label class="custom-radio">
@@ -46,12 +47,11 @@
                     {% endfor %}
                 </div>
                 {% elif question.questiontype == 2 %}
-                <!-- Question 2 -->
                 <div class="container">
                     <h3 class="question-header">What is your major?</h3>
                     <div class="selection-box">
                         <input type="text" id="search" class="major-input" placeholder="Enter your Major" onkeyup="filterMajors()" required></input>
-                        <select id="majorSelect" size="10" onclick="selectMajor()">
+                        <select id="majorSelect" name="{{question.id}}" size="10" onclick="selectMajor()">
                             <option>Accounting</option>
                             <option>African-American/Black Studies</option>
                             <option>Allied Health Diagnostic, Intervention, and Treatment Professions</option>
@@ -123,11 +123,10 @@
                     </div>
                 </div>
                 {% elif question.questiontype == 3 %}
-                <!-- Question 4 -->
                 <div class="question-container">
                     <h3 class="question-header">
-                        {{question.text}}<br>
-                        <span class="smaller-text">(1 = Not Comfortable, 5 = Very Comfortable)</span>
+                        {{question.text}}{% if question.subtext != None %}<br>
+                        <span class="smaller-text">{{question.subtext}}</span>{% endif %}
                     </h3> 
                     <div class="share-selection-box">
                         <label class="custom-circle-radio">
@@ -153,8 +152,8 @@
                     </div>
                 </div>
                 {% else %}
-                <!-- Question 7 -->
-                <h3 class="question-header">{{question.text}}</h3>
+                <h3 class="question-header">{{question.text}} (Select all that apply)</h3>{% if question.subtext != None %}<br>
+                <span class="smaller-text">{{question.subtext}}</span>{% endif %}
                 <div class="selection-box">
                     {% for option in options[1:] %}
                     <label class="custom-checkbox">
