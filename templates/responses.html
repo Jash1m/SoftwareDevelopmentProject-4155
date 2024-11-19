@@ -10,10 +10,55 @@
     <title>Survey Responses</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
 </head>
-<header>
-    <div>
-        <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
+<!-- Header -->
+<header class="uncc-header">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <ul class="top-nav-links">
+            <li><a href="#">Alumni & Friends</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Current Students</a></li>
+            <li><a href="#">Faculty & Staff</a></li>
+            <li><a href="#">Parents & Family</a></li>
+            <li><a href="#">Prospective Students</a></li>
+        </ul>
+        <div class="campus-resources">
+            <span>Campus Resources</span>
+            <input type="text" placeholder="Enter search term here">
+        </div>
     </div>
+    
+    <!-- Branding Section -->
+    <div class="branding">
+        <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
+        <div class="branding-text">
+            <h1>HOUSING AND RESIDENCE LIFE</h1>
+            <p>Division of Student Affairs</p>
+        </div>
+
+        <div class="social-icons">
+            <a href="#" class="fab fa-facebook"></a>
+            <a href="#" class="fab fa-x"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-youtube"></a>
+        </div>
+    </div>
+
+    <!-- Full-width Gold Divider Line -->
+    <div class="full-width-divider"></div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="https://housing.charlotte.edu">Home</a></li>
+            <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
+            <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
+            <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
+            <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
+            <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
+            <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
+        </ul>
+    </nav>
 </header>
 <body>
     <!-- Main Container for User Responses -->
@@ -137,6 +182,41 @@
             {% endfor %}
         </div>
     </div>
-    
+        <!-- Footer -->
+        <footer class="uncc-footer">
+            <div class="footer-container">
+                <!-- Dropdown Section -->
+                <div class="footer-dropdown">
+                    <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+                </div>
+        
+                <!-- Main Footer Section -->
+                <div class="footer-main">
+                    <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                    <span class="long-slash-main"></span>
+                    <a href="#">Contact Us</a>
+                    <span class="long-slash-main"></span>
+                    <a href="#">Terms of Use</a>
+                    <span class="long-slash-main"></span>
+                    <a href="#">University Policies</a>
+                    <span class="long-slash-main"></span>
+                </div>
+        
+                <!-- Readability Button -->
+                <div class="footer-readability">
+                    <button class="readability-button">
+                        <i class="fas fa-align-left"></i> Readability
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+        
+                <!-- Logo Section -->
+                <div class="footer-logo">
+                    <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
+                    <span class="long-slash"></span>
+                    <span>CHARLOTTE</span>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>

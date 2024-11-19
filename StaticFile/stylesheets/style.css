@@ -753,52 +753,66 @@ form {
 
 /*========================Footer CSS========================*/
     /* Footer Styling */
-.uncc-footer {
-    background-color: var(--Ore_Black);
-    color: var(--quartzWhite);
-    padding: 15px 0;
-    border-top: 3px solid var(--ninerGold);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+    .uncc-footer {
+        background-color: var(--Ore_Black);
+        color: var(--quartzWhite);
+        padding: 0; 
+        border-top: 3px solid var(--ninerGold);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 60px; 
+    }
     
-.footer-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.footer-copyright {
-    flex: 1;
-    font-size: 14px;
-    color: var(--quartzWhite);
-}
+    .footer-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+        width: 100%;
+        max-width: 1200px;
+        height: 100%; 
+    }
     
-.footer-links {
-    display: flex;
-    gap: 20px;
-}
     
-.footer-links a {
-    color: var(--quartzWhite);
-    text-decoration: none;
-    font-size: 14px;
-}
+    /* Footer Main Section */
+    .footer-main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #FFFFFF;
+        font-size: 14px;
+    }
     
-.footer-links a:hover {
+    .footer-main span,
+    .footer-main a {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .footer-main a:hover {
         color: var(--ninerGold);
+    }
+    
+
+/* Vertical Slash Styling */
+.long-slash-main {
+    display: inline-block; 
+    background-color: #FFFFFF; 
+    width: .1px; 
+    height: 60px; 
+    margin: 0 10px; 
 }
     
-.footer-readability {
-        margin-right: 20px;
-}
-
-.readability-button {
+    /* Readability Button */
+    .footer-readability {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .readability-button {
         background-color: var(--Charlotte_Green);
         color: var(--quartzWhite);
         border: none;
@@ -809,19 +823,41 @@ form {
         display: flex;
         align-items: center;
         gap: 5px;
-}
+        transition: background-color 0.3s;
+    }
     
-.readability-button i {
-        font-size: 12px;
-}
-    
-.readability-button:hover {
+    .readability-button:hover {
         background-color: var(--ninerGold);
-}
+    }
     
-.footer-logo img {
+    .readability-button i {
+        font-size: 12px;
+    }
+    
+    /* Logo Section */
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: bold;
+        justify-self: flex-end;
+    }
+    
+    .footer-logo img {
         height: 24px;
-}
+        width: auto;
+    }
+    
+    .footer-logo .long-slash {
+        display: inline-block;
+        transform: rotate(15deg); 
+        background-color: #FFFFFF;
+        width: .5px; 
+        height: 40px;
+        margin: 5 0px; 
+    }
     
 
 /*======================== Sidebar CSS ========================*/
@@ -988,37 +1024,99 @@ form {
     color: var(--Ore_Black); /* Adjust color as needed */
 }
 
-/* Button styling */
-.start-matching-btn {
-    background-color: #4CAF50; /* Green button */
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
+/* Admin Container Layout */
+.admin-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--Charlotte_Green);
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--Charlotte_Green);
+    padding-bottom: 10px;
+}
+
+/* Highlight Section */
+.highlight {
+    background-color: var(--jasper);
+    padding: 5px;
     border-radius: 5px;
+    color: var(--Charlotte_Green);
+}
+
+/* Response Box Styling */
+.response-boxes, .matched-box {
+    width: 40%; /* Adjust to fit side-by-side */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+/* Button Section */
+.matching-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+/* Start Matching Button */
+.start-matching-btn {
+    background-color: #205C40; /* Highlighted Green */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .start-matching-btn:hover {
-    background-color: #45a049;
+    background-color: var(--ninerGold);
+    transform: scale(1.05);
 }
 
-/* Styles for the right section (matched responses) */
-.matched-box {
-    width: 48%;  /* Adjust width as needed */
-    background-color: #fafafa;
+/* Individual Response Items */
+.response-item, .matched-pair {
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
     padding: 15px;
-    max-height: 70vh;
-    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for individual response items */
-.response-item {
-    background-color: #fff;
-    padding: 10px;
+/* Highlight Box */
+.highlight-box {
+    background-color: #E8F5E9;
+    border: 1px solid var(--Charlotte_Green);
+}
+
+/* Matched Box Pair Styling */
+.matched-pair h3, .response-item h3 {
+    font-size: 16px;
+    color: #333;
     margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph Text */
+.response-item p, .matched-pair p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
 }
