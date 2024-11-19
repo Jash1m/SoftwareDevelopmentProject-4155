@@ -935,20 +935,51 @@ form {
     flex-direction: row;
     gap: 0.5rem;
 }
-    
-.response-item-symbols button {
+
+/* /* ORIGINAL BUTTON STYLING */
+/* .response-item-symbols button {
     font-size: 18px;
     background: none;
     background-color: none;
     border: none;
     text-decoration: none;
-}
-    
-.response-item-symbols button:hover {
+} */
+
+/* .response-item-symbols button:hover {
     cursor: pointer;
     border: 1px var(--Ore_Black) solid;
     border-radius: 5;
+} */
+    
+.response-item-symbols button {
+    font-size: 14px;
+    background-color: var(--Charlotte_Green);
+    border: none;
+    text-decoration: none;
+    color: var(--quartzWhite);
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    width: 24px;
+    height: 24px;
 }
+/* edit and delete buttons */
+.response-item-symbols button:hover {
+    background-color: var(--Charlotte_Green);
+    transform: scale(1.1);
+    cursor: pointer;
+    border-radius: 5;
+
+}
+
+.response-item-symbols button:active {
+    background-color: var(--ninerGold);
+    transform: scale(0.9);
+}
+
     
 /* Search Bar Styling */
 .searchBar-Container {
@@ -962,7 +993,7 @@ form {
     width: 20rem;
     height: 30px;
     background-color: var(--quartzWhite);
-    border: 2px solid var(--Ore_Black);
+    border: 2px solid var(--Charlotte_Green);
     border-radius: 15px;
     display: flex;
     flex-direction: row;
@@ -1034,3 +1065,28 @@ form {
 .response-answer {
     text-transform: capitalize;
 }
+
+/* dropdown for modifying the answers */
+
+.response-item-container select {
+    width: 100%;
+    padding: 2px;
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 5px;
+    background-color: var(--quartzWhite);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    
+}
+
+.response-item-container select:hover {
+    border-color: var(--ninerGold);
+}
+
+.response-item-container select option {
+    padding: 10px;
+    background-color: var(--jasper);
+}
+
+
