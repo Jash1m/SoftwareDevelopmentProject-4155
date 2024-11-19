@@ -1,3 +1,4 @@
+//SURVEY PAGE: Question 2
 function filterMajors() {
     const input = document.getElementById("search").value.toLowerCase();
     const select = document.getElementById("majorSelect");
@@ -38,6 +39,7 @@ function selectMajor() {
     input.classList.add("selected-border");
 }
 
+// DROPDOWN FOR RESPONSES
 function toggleDropdown(id) {
     var dropdown = document.getElementById(id);
     if (dropdown.style.display === "none") {
@@ -47,41 +49,59 @@ function toggleDropdown(id) {
     }
 }
 
-const yearOptions = ['Default','Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'];
+// MODIFYING RESPONSE ANSWERS
+const questionOptions = {
+    q1: ['--', 'Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'], 
+    q3: ['--', 'Yes', 'No', 'Does Not Matter'], 
+    q4: ['--', '1', '2', '3', '4', '5'], 
+    q5: ['--', '8pm', '10pm', 'Midnight'], 
+    q6: ['--', '8pm - 10pm', '10pm - Midnight', 'After Midnight'], 
+    q9: ['--', 'Cool', 'Warm', 'Moderate'], 
+    q10: ['--', 'Tidy', 'Messy'], 
+    q11: ['--', 'Confront it', 'Avoid it'] 
+};
 
+// Function to create a dropdown for editing a response
+function editResponse(questionId) {
+    const questionKey = questionId.split('-')[0];
+    const options = questionOptions[questionKey]; //options
 
-// create dropdown for editing the "Year" response
-function editResponse(elementId) {
-    let dropdown = `<select onchange="updateResponse('${elementId}')">`;
-    yearOptions.forEach(option => {
+    let dropdown = `<select onchange="updateResponse('${questionId}')">`;
+    options.forEach(option => {
         dropdown += `<option value="${option}">${option}</option>`;
     });
     dropdown += `</select>`;
 
-    // find the element with the data-category attribute
-    const element = document.querySelector(`[data-category="${elementId}"]`);
+    // find the element with the data-catagory attribute
+    const element = document.querySelector(`[data-category="${questionId}"]`);
     if (element) {
         // replaced current text with the dropdown menu
         element.innerHTML = dropdown;
     } else {
-        console.error(`Element with data-category="${elementId}" not found`);
+        console.error(`Element with data-category="${questionId}" not found`);
     }
 }
 
- // update response with the selected option from the dropdown
- function updateResponse(elementId) {
-    const selectedValue = document.querySelector(`[data-category="${elementId}"] select`).value;
+// update response with the selected option from the dropdown
+function updateResponse(questionId) {
+    const selectedValue = document.querySelector(`[data-category="${questionId}"] select`).value;
+    const element = document.querySelector(`[data-category="${questionId}"]`);
 
-    //update the element text with the selected value
-    document.querySelector(`[data-category="${elementId}"]`).innerText = selectedValue;
+    //replace the dropdown with the selected value
+    if (element) {
+        element.innerText = selectedValue;
+    }
 }
 
 // delete response and replace with the defualt response
-function deleteResponse(elementId) {
-    document.querySelector(`[data-category="${elementId}"]`).innerText = 'empty';
+function deleteResponse(questionId) {
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (element) {
+        element.innerText = 'empty';
+    }
 }
 
-// search bar for the responses page
+// SEARCH BAR FOR RESPONSES PAGE
 function filterResponses(event) {
     event.preventDefault(); // stops the page reloading whgen submitted
 
