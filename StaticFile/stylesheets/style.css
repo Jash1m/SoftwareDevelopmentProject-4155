@@ -26,23 +26,6 @@
 }
 
 /*======================== Header CSS - Refined ========================*/
-
-/* button {
-    font-size: 18px;
-    background: none;
-    background-color: none;
-    border: none;
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-button:hover {
-    cursor: pointer;
-}
-*/
-
-
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
     transform: scale(1.05);             /* Scale up slightly on hover */
@@ -156,23 +139,25 @@ button:hover {
 html, body {
     height: 100%;
     margin: 0;
-    display: flex;
     flex-direction: column;
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+
 /* Main content should grow to push the footer down */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 550px; /* Add space for the header */
-    padding-bottom: 60px; /* Add space for the footer */
-    width: 100%;
+main {
+    margin-top: 170px; /* Adjusted to clear the fixed header */
+    margin-bottom: 60px; /* Space for the fixed footer */
+    padding: 20px;
     box-sizing: border-box;
+    min-height: calc(100vh - 230px); /* Viewport height minus header and footer */
+    background-color: #f8f8f8; /* Optional background for better contrast */
 }
+
 /*======================== Header CSS - Refined ========================*/
-    
 header {
     background-color: var(--Charlotte_Green);
     color: var(--quartzWhite);
@@ -186,6 +171,17 @@ header {
     align-items: center;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
+
+header.uncc-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Top Navigation Bar */
 .top-nav {
     display: flex;
@@ -263,37 +259,30 @@ header {
     border-radius: 5px;
 }
 
-/*========================Body CSS========================*/
-body {
-    background-color: white; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /*========================Survey Question (Stacey Designed) CSS========================*/
     
 /*container */
 .survey-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    min-height: 100vh; /*full viewport height*/
-    background-color: white;
-    overflow: auto;
+    padding: 20px;
+    max-width: 1200px; /* Restrict width for better readability */
+    box-sizing: border-box;
+    overflow: visible; /* Avoid cropping content */
 }
 
-/*main structure for survey form */
+/* Survey box spacing fixes */
 .survey-box {
-    background-color: #D9D9D9; 
-    padding: 60px 40px; 
+    background-color: #D9D9D9;
+    padding: 20px;
     border-radius: 10px;
-    width: 600px; 
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
-    margin-top: 150px;
-    margin-bottom: 50px;
-    min-height: 100vh;
+    width: 100%; /* Full width within the container */
+    max-width: 800px; /* Limit width for better layout */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .survey-section {
@@ -606,7 +595,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px; 
+    padding: 300px 20px; 
     width: 100%;
     max-width: 900px;
     margin: 15% auto; 
@@ -757,19 +746,19 @@ form {
 
 /*========================Footer CSS========================*/
    /* Footer Styling */
-.uncc-footer {
-    position: fixed; /* Fixes the footer to the viewport */
-    bottom: 0; /* Ensures it's at the bottom */
+   .uncc-footer {
+    position: fixed;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 60px; 
+    height: 60px;
     background-color: var(--Ore_Black);
     color: var(--quartzWhite);
     border-top: 3px solid var(--ninerGold);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100; /* Ensures it stays above other content */
+    z-index: 100;
 }
 
 /* Footer Container */
@@ -905,16 +894,14 @@ form {
 
 /*Responses Header*/
 .responseHeader {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 10px;
     background-color: var(--Charlotte_Green);
     color: white;
     text-align: center;
-    align-content: center;
-    padding: 8px;
-    width: 375px; 
-    height: 75px;  
     border-radius: 20px;
-    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
-    font-size: 28px; 
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -929,11 +916,11 @@ form {
 
 /* Response box styling */
 .response-box {
+    margin-bottom: 20px;
+    padding: 15px;
     background-color: white;
     border: 2px solid var(--Charlotte_Green);
     border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
@@ -996,8 +983,8 @@ form {
 .searchBar-Container {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    padding-bottom: 1rem;
+    margin-bottom: 50px;
+    margin-top: 200px;
 }
     
 .searchBar-Bar {
@@ -1059,6 +1046,7 @@ form {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     max-height: 70vh;
+    max-height: calc(100vh - 300px); /* Prevent from overlapping the footer */
 }
 
 /* Button Section */
@@ -1069,7 +1057,7 @@ form {
     width: 20%;
 }
 
-/* Start Matching Button */
+/*====================== Start Matching Page ================/*/
 .start-matching-btn {
     background-color: #205C40; /* Highlighted Green */
     color: white;
@@ -1115,4 +1103,16 @@ form {
     font-size: 14px;
     color: #555;
     margin: 5px 0;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .survey-box {
+        width: 95%; /* Adjust for smaller screens */
+        padding: 15px;
+    }
+
+    .response-box {
+        padding: 10px;
+    }
 }
