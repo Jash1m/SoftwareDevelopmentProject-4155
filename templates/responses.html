@@ -119,21 +119,33 @@
                     </div>
                     
                     <!-- Question 7 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Study Habits: <p> {{ response.q7 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Study Habits:</p>
+                        <span data-category="q7-{{ response.id }}" class="response-answer">{{ response.q7 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editMultiResponse('q7-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteMultiResponse('q7-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Question 8 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">Hobbies: <p> {{ response.q8 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Hobbies:</p>
+                        <span data-category="q8-{{ response.id }}" class="response-answer">{{ response.q8 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editMultiResponse('q8-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteMultiResponse('q8-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Question 9 -->
                     <div class="response-item-container">
                         <p class="response-item-title">Preferred Room Climate:</p>

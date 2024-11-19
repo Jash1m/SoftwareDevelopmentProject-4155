@@ -56,6 +56,8 @@ const questionOptions = {
     q4: ['--', '1', '2', '3', '4', '5'], 
     q5: ['--', '8pm', '10pm', 'Midnight'], 
     q6: ['--', '8pm - 10pm', '10pm - Midnight', 'After Midnight'], 
+    q7: ['Quiet Study', 'Study Alone', 'Late Night Study', 'Common Areas Study', 'In Room Study', 'Background Noise Study'],
+    q8: ['Sports', 'Reading', 'Gaming', 'Art', 'Cooking'],
     q9: ['--', 'Cool', 'Warm', 'Moderate'], 
     q10: ['--', 'Tidy', 'Messy'], 
     q11: ['--', 'Confront it', 'Avoid it'] 
@@ -99,6 +101,106 @@ function deleteResponse(questionId) {
     if (element) {
         element.innerText = 'empty';
     }
+}
+
+
+// Temporary storage for selected values
+let temporarySelections = {};
+
+// edit multi-response questions
+function editMultiResponse(questionId) {
+    const questionKey = questionId.split('-')[0]; // extract question key
+    const options = questionOptions[questionKey]; // get options for this question
+
+    if (!options) {
+        console.error(`No options available for question: ${questionKey}`);
+        return;
+    }
+
+    // find the element with data-category
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (!element) {
+        console.error(`Element with data-category="${questionId}" not found`);
+        return;
+    }
+
+    // retrieve and store the original value
+    const originalValue = element.innerText.trim();
+    element.setAttribute("data-original-value", originalValue);
+
+    // normalize and filter the original value into an array
+    const selectedValues = originalValue
+        .split(",")
+        .map(val => val.trim().toLowerCase())
+        .filter(Boolean);
+
+    console.log(`Original value for ${questionId}: ${originalValue}`);
+    console.log(`Normalized selected values for ${questionId}:`, selectedValues);
+
+    //generate the multi-select dropdown with checkboxes
+    let dropdown = `<div class="multi-select-dropdown">`;
+    options.forEach(option => {
+        const isChecked = selectedValues.includes(option.toLowerCase()) ? "checked" : "";
+        dropdown += `
+            <label class="multi-select-option">
+                <span>${option}</span>
+                <input type="checkbox" value="${option}" ${isChecked} onchange="updateMultiResponse('${questionId}')">
+            </label>`;
+    });
+    dropdown += `
+        <div class="multi-select-buttons">
+            <button onclick="saveMultiResponse('${questionId}')">Save</button>
+            <button onclick="cancelMultiResponse('${questionId}')">Cancel</button>
+        </div>
+    </div>`;
+
+    // Replace the current content with the dropdown
+    element.innerHTML = dropdown;
+}
+
+// save the selected values
+function saveMultiResponse(questionId) {
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (!element) {
+        console.error(`Element with data-category="${questionId}" not found`);
+        return;
+    }
+
+    const checkboxes = element.querySelectorAll("input[type='checkbox']");
+    const selectedValues = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    // save the selected values in the DOM
+    element.innerHTML = selectedValues.length > 0
+        ? selectedValues.join(", ")
+        : "empty";
+
+    // update the original value attribute
+    element.setAttribute("data-original-value", selectedValues.join(", "));
+}
+
+// cancel changes and reset to the original state
+function cancelMultiResponse(questionId) {
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (!element) {
+        console.error(`Element with data-category="${questionId}" not found`);
+        return;
+    }
+
+    // restore the original value
+    const originalValue = element.getAttribute("data-original-value") || "empty";
+    element.innerHTML = originalValue;
+}
+
+// delete multi-select responses
+function deleteMultiResponse(questionId) {
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (!element) {
+        console.error(`Element with data-category="${questionId}" not found`);
+        return;
+    }
+    element.innerHTML = "empty";
 }
 
 // SEARCH BAR FOR RESPONSES PAGE
