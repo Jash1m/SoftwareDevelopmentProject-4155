@@ -80,3 +80,26 @@ function editResponse(elementId) {
 function deleteResponse(elementId) {
     document.querySelector(`[data-category="${elementId}"]`).innerText = 'empty';
 }
+
+// search bar for the responses page
+function filterResponses(event) {
+    event.preventDefault(); // stops the page reloading whgen submitted
+
+    // get the value entered in the search input
+    const searchValue = document.getElementById("search").value.trim();
+    // get all the response boxes on the page
+    const responseBoxes = document.querySelectorAll(".response-box");
+
+    responseBoxes.forEach(box => {
+        const responseIdElement = box.querySelector(".response-header h3");
+        //replace text to the ID number
+        const responseId = responseIdElement.textContent.replace("Response ID: ", "").trim();
+
+        if (searchValue === "" || responseId === searchValue) {
+            box.style.display = "block";
+        } else {
+            box.style.display = "none";
+        }
+    });
+
+}

@@ -23,13 +23,14 @@
             <h1 class="responseHeader">Roommate Compatibility Survey Responses</h1>
 
             <div class="searchBar-Container">
-                <form class="searchBar-Bar">
-                  <input type="text" class="text" placeholder="Search Responses">
-                  <button type="submit">
-                    <i class="bi-search"></i>
-                  </button>
+                <form class="searchBar-Bar" onsubmit="filterResponses(event)">
+                    <input type="text" id="search" class="text" placeholder="Search Response ID">
+                    <button type="submit">
+                        <i class="bi-search"></i>
+                    </button>
                 </form>
-              </div>
+            </div>            
+            
             <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
             <div class="response-box">

@@ -967,8 +967,15 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
+    transition: border-color 0.3s ease;
     overflow: hidden; /* Ensures the rounded corners apply to both input and button */
 }
+
+/* changes color when focused on the searchbar */
+.searchBar-Bar:focus-within {
+    border-color: var(--ninerGold); 
+}
+
 .searchBar-Bar input[type="text"] {
     border: none;
     background-color: transparent;
