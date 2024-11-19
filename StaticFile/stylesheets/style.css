@@ -167,7 +167,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     padding-top: 550px; /* Add space for the header */
-    padding-bottom: 50px; /* Add space for the footer */
+    padding-bottom: 60px; /* Add space for the footer */
     width: 100%;
     box-sizing: border-box;
 }
@@ -178,7 +178,7 @@ header {
     color: var(--quartzWhite);
     width: 100%;
     padding: 10px 0;
-    position: fixed;
+    position: fixed; 
     top: 0;
     z-index: 100;
     display: flex;
@@ -607,10 +607,11 @@ form {
     justify-content: center;
     align-items: center;
     padding: 40px 20px; 
-    width: 90%;
+    width: 100%;
     max-width: 900px;
     margin: 15% auto; 
-    background-color: #F3F4F6; /* Slightly darker gray for contrast */
+    margin-top: -25%;
+    background-color: #F3F4F6; 
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
     border: 1px solid var(--Charlotte_Green);
@@ -626,32 +627,35 @@ form {
 }
 /*========================Admin Button Styling========================*/
 .admin-container {
-    width: 100%;
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically if needed */
-    margin-bottom: 30px;
+    justify-content: center; 
+    align-items: center;   
+    width: 100%;            
+    height: 100px;          
+    margin: 0 auto;        
+    box-sizing: border-box;
 }
 
-.admin-container a.admin {
+.admin {
     background-color: var(--Charlotte_Green);
     color: var(--ninerGold);
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
-    padding: 12px 20px;
+    padding: 20px 40px;
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none; /* Remove underline */
 }
 
-.admin-container a.admin:hover {
+.admin:hover {
     background-color: var(--ninerGold);
     color: var(--Charlotte_Green);
     transform: scale(1.05);
 }
+
+
 /*========================Boxy Button Container Styling========================*/
     
 .button-container {
@@ -752,113 +756,115 @@ form {
 }
 
 /*========================Footer CSS========================*/
-    /* Footer Styling */
-    .uncc-footer {
-        background-color: var(--Ore_Black);
-        color: var(--quartzWhite);
-        padding: 0; 
-        border-top: 3px solid var(--ninerGold);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 60px; 
-    }
-    
-    .footer-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; 
-        width: 100%;
-        max-width: 1200px;
-        height: 100%; 
-    }
-    
-    
-    /* Footer Main Section */
-    .footer-main {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #FFFFFF;
-        font-size: 14px;
-    }
-    
-    .footer-main span,
-    .footer-main a {
-        color: #FFFFFF;
-        text-decoration: none;
-        font-size: 14px;
-    }
-    
-    .footer-main a:hover {
-        color: var(--ninerGold);
-    }
-    
+   /* Footer Styling */
+.uncc-footer {
+    position: fixed; /* Fixes the footer to the viewport */
+    bottom: 0; /* Ensures it's at the bottom */
+    left: 0;
+    width: 100%;
+    height: 60px; 
+    background-color: var(--Ore_Black);
+    color: var(--quartzWhite);
+    border-top: 3px solid var(--ninerGold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Ensures it stays above other content */
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    width: 100%;
+    max-width: 1200px;
+    height: 100%; 
+}
+
+/* Footer Main Section */
+.footer-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.footer-main span,
+.footer-main a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-main a:hover {
+    color: var(--ninerGold);
+}
 
 /* Vertical Slash Styling */
 .long-slash-main {
     display: inline-block; 
     background-color: #FFFFFF; 
-    width: .1px; 
+    width: 0.1px; 
     height: 60px; 
     margin: 0 10px; 
 }
-    
-    /* Readability Button */
-    .footer-readability {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .readability-button {
-        background-color: var(--Charlotte_Green);
-        color: var(--quartzWhite);
-        border: none;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        transition: background-color 0.3s;
-    }
-    
-    .readability-button:hover {
-        background-color: var(--ninerGold);
-    }
-    
-    .readability-button i {
-        font-size: 12px;
-    }
-    
-    /* Logo Section */
-    .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #FFFFFF;
-        font-size: 16px;
-        font-weight: bold;
-        justify-self: flex-end;
-    }
-    
-    .footer-logo img {
-        height: 24px;
-        width: auto;
-    }
-    
-    .footer-logo .long-slash {
-        display: inline-block;
-        transform: rotate(15deg); 
-        background-color: #FFFFFF;
-        width: .5px; 
-        height: 40px;
-        margin: 5 0px; 
-    }
-    
+
+/* Readability Button */
+.footer-readability {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.readability-button {
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.readability-button:hover {
+    background-color: var(--ninerGold);
+}
+
+.readability-button i {
+    font-size: 12px;
+}
+
+/* Logo Section */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    justify-self: flex-end;
+}
+
+.footer-logo img {
+    height: 24px;
+    width: auto;
+}
+
+.footer-logo .long-slash {
+    display: inline-block;
+    transform: rotate(15deg); 
+    background-color: #FFFFFF;
+    width: 0.5px; 
+    height: 40px;
+    margin: 5 0px; 
+}
+
 
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
@@ -1022,16 +1028,6 @@ form {
     cursor: pointer;
     padding: 0 10px;
     color: var(--Ore_Black); /* Adjust color as needed */
-}
-
-/* Admin Container Layout */
-.admin-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 /* Section Titles */
