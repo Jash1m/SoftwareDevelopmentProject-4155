@@ -1,4 +1,5 @@
 import random
+import subprocess
 from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
@@ -186,15 +187,62 @@ def simulate_responses():
 
 @app.route('/matching', methods=['GET', 'POST'])
 def matching():
-    # Fetch all responses from the database
-    all_responses = Response.query.all()
-    
-    # Find the best match for each response
     best_matches = {}
+
+    # Handle form submission or button click to trigger matching process
     if request.method == 'POST':
-        best_matches = find_best_match_for_each(all_responses)
-    
+        # Pass the database URL to the matching script
+        process = subprocess.Popen( #In order for us to do multiprocessing in a flask app, we need to run the matching script as a completely separete process. 
+            ['venv/Scripts/python', 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], #We pass the virtual environment's python.exe so the matching script can take advantage of our installed modules, and the database URI so it can access the database.
+            stdout=subprocess.PIPE, #We pipe the standard output (our matched responses)
+            stderr=subprocess.PIPE #And we also pipe the standard error (Our debug statements)
+        )
+        
+        # Capture the output from the matching process
+        stdout, stderr = process.communicate()
+
+        # Log debug statements via stderr
+        if stderr:
+            print(f"Matching process debug log: {stderr.decode()}")
+
+        # If there's output, parse it and prepare best matches
+        if stdout:
+            best_matches = parse_matching_results(stdout.decode())
+
+        # Redirect back to the matching page after completing the process
+        all_responses = Response.query.all()
+        return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+    # Render the matching page with best matches (if any)
+    all_responses = Response.query.all()
     return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
+    best_matches = {}
+    lines = output.splitlines()
+
+    for line in lines:
+        if line.startswith("Response"):
+            try:
+                # Example line: "Response 1 best match: (203, 7)"
+                # Split based on 'best match: ' to separate the response info from the match data
+                response_info, match_str = line.split("best match: ")
+
+                # Extract the response_id from the response_info
+                response_id = int(response_info.split()[1])  # Extracts the number after "Response"
+
+                # Parse the match_str which is in the format "(match_id, likeness_score)"
+                match_str = match_str.strip('()')  # Remove the parentheses
+                match_id, likeness_score = map(int, match_str.split(','))  # Convert the two values to integers
+
+                # Store the match in the dictionary
+                best_matches[response_id] = (match_id, likeness_score)
+
+            except Exception as e:
+                print(f"Error processing line: {line}")
+                print(f"Error: {str(e)}")
+    return best_matches
+
 
 @app.route('/admin')
 def admin():
