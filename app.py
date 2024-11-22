@@ -5,13 +5,14 @@ from schemas.schemas import db, Period, Response, Question, Student, PeriodQuest
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
+from room_matching import assign_rooms
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
-dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
-dbName = "..." #!! Must be updated locally | The name of your schema in the database
+dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "Charlotte43" #!!! Must be updated locally | The password to access your SQL server
+dbName = "flask" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -192,6 +193,8 @@ def matching():
     # Handle form submission or button click to trigger matching process
     if request.method == 'POST':
         # Pass the database URL to the matching script
+        all_responses = Response.query.all()
+        total_students = len(all_responses)
         process = subprocess.Popen( #In order for us to do multiprocessing in a flask app, we need to run the matching script as a completely separete process. 
             ['venv/Scripts/python', 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], #We pass the virtual environment's python.exe so the matching script can take advantage of our installed modules, and the database URI so it can access the database.
             stdout=subprocess.PIPE, #We pipe the standard output (our matched responses)
@@ -210,7 +213,7 @@ def matching():
             best_matches = parse_matching_results(stdout.decode())
 
         # Redirect back to the matching page after completing the process
-        all_responses = Response.query.all()
+        assign_rooms(best_matches, total_students)
         return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
 
     # Render the matching page with best matches (if any)
