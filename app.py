@@ -1,5 +1,6 @@
 import random
 import subprocess
+import sys
 from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
@@ -192,10 +193,18 @@ def matching():
     # Handle form submission or button click to trigger matching process
     if request.method == 'POST':
         # Pass the database URL to the matching script
-        process = subprocess.Popen( #In order for us to do multiprocessing in a flask app, we need to run the matching script as a completely separete process. 
-            ['venv/Scripts/python', 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], #We pass the virtual environment's python.exe so the matching script can take advantage of our installed modules, and the database URI so it can access the database.
-            stdout=subprocess.PIPE, #We pipe the standard output (our matched responses)
-            stderr=subprocess.PIPE #And we also pipe the standard error (Our debug statements)
+        # Detect the correct path for the virtual environment's Python executable
+        
+        if sys.platform == 'win32':  # For Windows
+            python_executable = os.path.join('venv', 'Scripts', 'python.exe')
+        else:  # For macOS/Linux
+            python_executable = os.path.join('venv', 'bin', 'python')
+
+        # Ensure the matching script is being executed with the correct Python executable
+        process = subprocess.Popen(
+            [python_executable, 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE
         )
         
         # Capture the output from the matching process
