@@ -1,4 +1,7 @@
+import os
 import random
+import subprocess
+import sys
 from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
@@ -8,9 +11,9 @@ from matching import find_best_match_for_each
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "12345" #!!! Must be updated locally | The password to access your SQL server
-dbName = "roommate" #!! Must be updated locally | The name of your schema in the database
+dbUser = "" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "" #!!! Must be updated locally | The password to access your SQL server
+dbName = "" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -216,21 +219,77 @@ def simulate_responses():
 
 @app.route('/matching', methods=['GET', 'POST'])
 def matching():
-    # Fetch all responses from the database
-    all_responses = Response.query.all()
-    
-    # Find the best match for each response
     best_matches = {}
+
+    # Handle form submission or button click to trigger matching process
     if request.method == 'POST':
-        best_matches = find_best_match_for_each(all_responses)
-    
+        # Pass the database URL to the matching script
+        # Detect the correct path for the virtual environment's Python executable
+        
+        if sys.platform == 'win32':  # For Windows
+            python_executable = os.path.join('venv', 'Scripts', 'python.exe')
+        else:  # For macOS/Linux
+            python_executable = os.path.join('venv', 'bin', 'python')
+
+        # Ensure the matching script is being executed with the correct Python executable
+        process = subprocess.Popen(
+            [python_executable, 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE
+        )
+        
+        # Capture the output from the matching process
+        stdout, stderr = process.communicate()
+
+        # Log debug statements via stderr
+        if stderr:
+            print(f"Matching process debug log: {stderr.decode()}")
+
+        # If there's output, parse it and prepare best matches
+        if stdout:
+            best_matches = parse_matching_results(stdout.decode())
+
+        # Redirect back to the matching page after completing the process
+        all_responses = Response.query.all()
+        return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+    # Render the matching page with best matches (if any)
+    all_responses = Response.query.all()
     return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
 
 # TODO create GET route for form making new questions
 # TODO create POST route for making new questions
 # TODO create GET route for form making new periods of time
 # TODO create POST route for making new periods of time
 # TODO create POST route for updating current period
+
+def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
+    best_matches = {}
+    lines = output.splitlines()
+
+    for line in lines:
+        if line.startswith("Response"):
+            try:
+                # Example line: "Response 1 best match: (203, 7)"
+                # Split based on 'best match: ' to separate the response info from the match data
+                response_info, match_str = line.split("best match: ")
+
+                # Extract the response_id from the response_info
+                response_id = int(response_info.split()[1])  # Extracts the number after "Response"
+
+                # Parse the match_str which is in the format "(match_id, likeness_score)"
+                match_str = match_str.strip('()')  # Remove the parentheses
+                match_id, likeness_score = map(int, match_str.split(','))  # Convert the two values to integers
+
+                # Store the match in the dictionary
+                best_matches[response_id] = (match_id, likeness_score)
+
+            except Exception as e:
+                print(f"Error processing line: {line}")
+                print(f"Error: {str(e)}")
+    return best_matches
+
 
 @app.route('/admin')
 def admin():

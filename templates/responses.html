@@ -10,26 +10,79 @@
     <title>Survey Responses</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
 </head>
-<header>
-    <div>
-        <img src="../StaticFile/Images/header/UNCC-White-Logo.png" class="surveyHeaderIMG">
+<!-- Header -->
+<header class="uncc-header">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <ul class="top-nav-links">
+            <li><a href="#">Alumni & Friends</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Current Students</a></li>
+            <li><a href="#">Faculty & Staff</a></li>
+            <li><a href="#">Parents & Family</a></li>
+            <li><a href="#">Prospective Students</a></li>
+        </ul>
+        <div class="campus-resources">
+            <span>Campus Resources</span>
+            <input type="text" placeholder="Enter search term here">
+        </div>
     </div>
+    
+    <!-- Branding Section -->
+    <div class="branding">
+        <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
+        <div class="branding-text">
+            <h1>HOUSING AND RESIDENCE LIFE</h1>
+            <p>Division of Student Affairs</p>
+        </div>
+
+        <div class="social-icons">
+            <a href="#" class="fab fa-facebook"></a>
+            <a href="#" class="fab fa-x"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-youtube"></a>
+        </div>
+    </div>
+
+    <!-- Full-width Gold Divider Line -->
+    <div class="full-width-divider"></div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="https://housing.charlotte.edu">Home</a></li>
+            <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
+            <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
+            <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
+            <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
+            <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
+            <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
+        </ul>
+    </nav>
 </header>
 <body>
+    <main>
     <!-- Main Container for User Responses -->
     <div class="survey-container">
         <div class="survey-box">
+        
+            <!-- Back Button -->
+         <div class="back-button-container">
+            <button onclick="history.back()" class="back-button">← Back</button>
+        </div>
+        
             <!-- Header for the Responses Page -->
             <h1 class="responseHeader">Roommate Compatibility Survey Responses</h1>
 
             <div class="searchBar-Container">
-                <form class="searchBar-Bar">
-                  <input type="text" class="text" placeholder="Search Responses">
-                  <button type="submit">
-                    <i class="bi-search"></i>
-                  </button>
+                <form class="searchBar-Bar" onsubmit="filterResponses(event)">
+                    <input type="text" id="search" class="text" placeholder="Search Response ID">
+                    <button type="submit">
+                        <i class="bi-search"></i>
+                    </button>
                 </form>
-              </div>
+            </div>            
+            
             <!-- Loop Through Each User's Responses -->
             {% for response in all_responses %}
             <div class="response-box">
@@ -42,12 +95,12 @@
                     <!-- Question 1 -->
                     <div class="response-item-container">
                         <p class="response-item-title">{{ all_questions[0].caption }}: </p>
-                        <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
+                        <span data-category="q1-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
                         <div class="response-item-symbols">
-                            <button onclick="editResponse('year-{{ response.id }}')">
+                            <button onclick="editResponse('q1-{{ response.id }}')">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <button onclick="deleteResponse('year-{{ response.id }}')">
+                            <button onclick="deleteResponse('q1-{{ response.id }}')">
                                 <i class="bi bi-x-square"></i>
                             </button>
                         </div>
@@ -65,139 +118,293 @@
                     {% endif %}
                     {% if response.q3 != None %}
                     <!-- Question 3 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[2].caption }}: <p> {{ response.q3 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[2].caption }}:</p>
+                        <span data-category="q3-{{ response.id }}" class="response-answer">{{ response.q3 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q3-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q3-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
                     {% endif %}
                     {% if response.q4 != None %}
                     <!-- Question 4 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[3].caption }}: <p> {{ response.q4 }}</p></p>
+                       <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[3].caption }}:</p>
+                        <span data-category="q4-{{ response.id }}" class="response-answer">{{ response.q4 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q4-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q4-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     {% endif %}
                     {% if response.q5 != None %}
                     <!-- Question 5 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[4].caption }}: <p> {{ response.q5 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[4].caption }}:</p>
+                        <span data-category="q5-{{ response.id }}" class="response-answer">{{ response.q5 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q5-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q5-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     {% endif %}
                     {% if response.q6 != None %}
                     <!-- Question 6 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[5].caption }}: <p> {{ response.q6 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[5].caption }}:</p>
+                        <span data-category="q6-{{ response.id }}" class="response-answer">{{ response.q6 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q6-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q6-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
+
                     {% endif %}
                     {% if response.q7 != None %}
                     <!-- Question 7 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[6].caption }}: <p> {{ response.q7 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[6].caption }}:</p>
+                        <span data-category="q7-{{ response.id }}" class="response-answer">{{ response.q7 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editMultiResponse('q7-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteMultiResponse('q7-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
                     {% endif %}
                     {% if response.q8 != None %}
                     <!-- Question 8 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[7].caption }}: <p> {{ response.q8 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[7].caption }}:</p>
+                        <span data-category="q8-{{ response.id }}" class="response-answer">{{ response.q8 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editMultiResponse('q8-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteMultiResponse('q8-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
                     {% endif %}
                     {% if response.q9 != None %}
                     <!-- Question 9 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[8].caption }}: <p> {{ response.q9 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[8].caption }}:</p>
+                        <span data-category="q9-{{ response.id }}" class="response-answer">{{ response.q9 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q9-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q9-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
                     {% endif %}
                     {% if response.q10 != None %}
                     <!-- Question 10 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[9].caption }}: <p> {{ response.q10 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[9].caption }}:</p>
+                        <span data-category="q10-{{ response.id }}" class="response-answer">{{ response.q10 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
+                            <button onclick="editResponse('q10-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q10-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
                     </div>
                     {% endif %}
                     {% if response.q11 != None %}
                     <!-- Question 11 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[10].caption }}: <p> {{ response.q11 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">{{ all_questions[10].caption }}:</p>
+                        <span data-category="q11-{{ response.id }}" class="response-answer">{{ response.q11 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q11-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q11-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>     
                     {% endif %}
                     {% if response.q12 != None %}
                     <!-- Question 12 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[11].caption }}: <p> {{ response.q12 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[11].caption }}:</p>
+                        <span data-category="q12-{{ response.id }}" class="response-answer">{{ response.q12 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q12-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q12-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>     
                     {% endif %}
                     {% if response.q13 != None %}
                     <!-- Question 13 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[12].caption }}: <p> {{ response.q13 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[12].caption }}:</p>
+                        <span data-category="q13-{{ response.id }}" class="response-answer">{{ response.q13 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q13-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q13-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>     
                     {% endif %}
                     {% if response.q14 != None %}
                     <!-- Question 14 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[13].caption }}: <p> {{ response.q14 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[13].caption }}:</p>
+                        <span data-category="q14-{{ response.id }}" class="response-answer">{{ response.q14 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q14-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q14-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>     
                     {% endif %}
                     {% if response.q15 != None %}
                     <!-- Question 15 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[14].caption }}: <p> {{ response.q15 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[14].caption }}:</p>
+                        <span data-category="q15-{{ response.id }}" class="response-answer">{{ response.q15 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editResponse('q15-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteResponse('q15-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>     
                     {% endif %}
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar-right">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
+            </a>
+        </div>
+    </div>
     
+    </main>
+
+        <!-- Footer -->
+        <footer class="uncc-footer">
+            <div class="footer-container">
+                <!-- Dropdown Section -->
+                <div class="footer-dropdown">
+                    <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+                </div>
+        
+                <!-- Main Footer Section -->
+                <div class="footer-main">
+                    <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                    <span class="long-slash-main"></span>
+                    <a href="#">Contact Us</a>
+                    <span class="long-slash-main"></span>
+                    <a href="#">Terms of Use</a>
+                    <span class="long-slash-main"></span>
+                    <a href="#">University Policies</a>
+                    <span class="long-slash-main"></span>
+                </div>
+        
+                <!-- Readability Button -->
+                <div class="footer-readability">
+                    <button class="readability-button">
+                        <i class="fas fa-align-left"></i> Readability
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+        
+                <!-- Logo Section -->
+                <div class="footer-logo">
+                    <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
+                    <span class="long-slash"></span>
+                    <span>CHARLOTTE</span>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>

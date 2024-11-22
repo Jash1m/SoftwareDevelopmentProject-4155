@@ -25,24 +25,11 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 /*======================== Header CSS - Refined ========================*/
-
-/* button {
-    font-size: 18px;
-    background: none;
-    background-color: none;
-    border: none;
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-button:hover {
-    cursor: pointer;
-}
-*/
-
-
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
     transform: scale(1.05);             /* Scale up slightly on hover */
@@ -51,6 +38,28 @@ button:hover {
 .back-button:active {
     background-color: var(--Charlotte_Green); /* Darker shade on click */
     transform: scale(0.95);                   /* Scale down on click */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    padding: 5px 300px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--Charlotte_Green);
+    font-size: 13px;
+ }
+
+.top-nav-links li:not(:last-child)::after {
+        content: "|";
+        color: var(--ninerGold);
+        margin-left: 10px;
+}
+
+.top-nav-links a:hover {
+        color: var(--jasper);
 }
 
 .top-nav-links {
@@ -93,7 +102,7 @@ button:hover {
 .branding {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     width: 100%;
     max-width: 1200px;
 }
@@ -156,29 +165,30 @@ button:hover {
 html, body {
     height: 100%;
     margin: 0;
-    display: flex;
     flex-direction: column;
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+
 /* Main content should grow to push the footer down */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 550px; /* Add space for the header */
-    padding-bottom: 50px; /* Add space for the footer */
-    width: 100%;
+main {
+    padding: 20px;
+    padding-top: 20%;
     box-sizing: border-box;
+    /* min-height: calc(100vh - 230px);  */
+    background-color: #f8f8f8; 
 }
+
 /*======================== Header CSS - Refined ========================*/
-    
 header {
     background-color: var(--Charlotte_Green);
     color: var(--quartzWhite);
     width: 100%;
     padding: 10px 0;
-    position: fixed;
+    position: fixed; 
     top: 0;
     z-index: 100;
     display: flex;
@@ -186,27 +196,15 @@ header {
     align-items: center;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -10px;
-    padding: 10px 300px;
+
+header.uncc-header {
+    position: fixed;
+    top: 0;
     width: 100%;
-    max-width: 1200px;
+    z-index: 1000;
     background-color: var(--Charlotte_Green);
-    font-size: 13px;
- }
-
-.top-nav-links li:not(:last-child)::after {
-        content: "|";
-        color: var(--ninerGold);
-        margin-left: 10px;
-}
-
-.top-nav-links a:hover {
-        color: var(--jasper);
+    color: var(--quartzWhite);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Full-width Gold Divider Line */
@@ -263,37 +261,32 @@ header {
     border-radius: 5px;
 }
 
-/*========================Body CSS========================*/
-body {
-    background-color: white; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /*========================Survey Question (Stacey Designed) CSS========================*/
     
 /*container */
 .survey-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    min-height: 100vh; /*full viewport height*/
-    background-color: white;
-    overflow: auto;
+    padding: 20px;
+    max-width: 1200px; 
+    box-sizing: border-box;
+    overflow: visible; 
+    margin: auto;
 }
 
-/*main structure for survey form */
+
+/* Survey box spacing fixes */
 .survey-box {
-    background-color: #D9D9D9; 
-    padding: 60px 40px; 
+    background-color: #D9D9D9;
+    padding: 20px;
     border-radius: 10px;
-    width: 600px; 
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
-    margin-top: 150px;
-    margin-bottom: 50px;
-    min-height: 100vh;
+    width: 100%; 
+    max-width: 800px; 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .survey-section {
@@ -606,52 +599,62 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px; 
-    width: 90%;
-    max-width: 900px;
-    margin: 15% auto; 
-    background-color: #F3F4F6; /* Slightly darker gray for contrast */
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 1%;
+    margin-bottom: 10px;
+    background-color: #F3F4F6; 
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
     border: 1px solid var(--Charlotte_Green);
     text-align: center;
+    margin: auto; /* Center container horizontally */
 }
-    
+
 /* Title styling */
 .index-header {
+    margin-top: 2rem;   
+    margin-left: 3rem;
+    margin-right: 3rem;
+
     font-size: 36px;
     color: var(--Charlotte_Green);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 /*========================Admin Button Styling========================*/
 .admin-container {
-    width: 100%;
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically if needed */
-    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;            
+    height: 55px;          
+    margin: 0 auto;        
+    box-sizing: border-box;
+
 }
 
-.admin-container a.admin {
+.admin {
     background-color: var(--Charlotte_Green);
     color: var(--ninerGold);
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
-    padding: 12px 20px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none; /* Remove underline */
 }
 
-.admin-container a.admin:hover {
+.admin:hover {
     background-color: var(--ninerGold);
-    color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
+
+
 /*========================Boxy Button Container Styling========================*/
     
 .button-container {
@@ -660,14 +663,30 @@ form {
     gap: 15px;
     width: 90%;
     max-width: 600px;
-    background-color: #E8E8E8; /* Soft gray background for contrast */
+    background-color: #E8E8E8; 
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
-    
+
+.button-container.single-button {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    font-size: 100px;
+    margin-top: 5px; 
+}
+
+.custom-button.survey-button {
+    font-size: 25px !important; 
+    font-weight: bold !important; 
+    padding: 5px 10px !important; 
+    text-align: center; 
+}
+
 /* Button styling */
 .custom-button {
     background-color: var(--Charlotte_Green);
@@ -752,77 +771,115 @@ form {
 }
 
 /*========================Footer CSS========================*/
-    /* Footer Styling */
-.uncc-footer {
+   /* Footer Styling */
+   .uncc-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
     background-color: var(--Ore_Black);
     color: var(--quartzWhite);
-    padding: 15px 0;
     border-top: 3px solid var(--ninerGold);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    z-index: 100;
 }
-    
+
+/* Footer Container */
 .footer-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     width: 100%;
     max-width: 1200px;
-    padding: 0 20px;
+    height: 100%; 
 }
 
-.footer-copyright {
-    flex: 1;
-    font-size: 14px;
-    color: var(--quartzWhite);
-}
-    
-.footer-links {
+/* Footer Main Section */
+.footer-main {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
 }
-    
-.footer-links a {
-    color: var(--quartzWhite);
+
+.footer-main span,
+.footer-main a {
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 14px;
 }
-    
-.footer-links a:hover {
-        color: var(--ninerGold);
+
+.footer-main a:hover {
+    color: var(--ninerGold);
 }
-    
+
+/* Vertical Slash Styling */
+.long-slash-main {
+    display: inline-block; 
+    background-color: #FFFFFF; 
+    width: 0.1px; 
+    height: 60px; 
+    margin: 0 10px; 
+}
+
+/* Readability Button */
 .footer-readability {
-        margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .readability-button {
-        background-color: var(--Charlotte_Green);
-        color: var(--quartzWhite);
-        border: none;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
 }
-    
-.readability-button i {
-        font-size: 12px;
-}
-    
+
 .readability-button:hover {
-        background-color: var(--ninerGold);
+    background-color: var(--ninerGold);
 }
-    
+
+.readability-button i {
+    font-size: 12px;
+}
+
+/* Logo Section */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    justify-self: flex-end;
+}
+
 .footer-logo img {
-        height: 24px;
+    height: 24px;
+    width: auto;
 }
-    
+
+.footer-logo .long-slash {
+    display: inline-block;
+    transform: rotate(15deg); 
+    background-color: #FFFFFF;
+    width: 0.5px; 
+    height: 40px;
+    margin: 5 0px; 
+}
+
 
 /*======================== Sidebar CSS ========================*/
 .sidebar-left, .sidebar-right {
@@ -863,16 +920,13 @@ form {
 
 /*Responses Header*/
 .responseHeader {
+    margin-top: 20px;
+    padding: 10px;
     background-color: var(--Charlotte_Green);
     color: white;
     text-align: center;
-    align-content: center;
-    padding: 8px;
-    width: 375px; 
-    height: 75px;  
     border-radius: 20px;
-    margin: 0 auto 30px; /*centering the header and adding spacing on the bottom */
-    font-size: 28px; 
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -887,11 +941,11 @@ form {
 
 /* Response box styling */
 .response-box {
+    margin-bottom: 20px;
+    padding: 15px;
     background-color: white;
     border: 2px solid var(--Charlotte_Green);
     border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
@@ -935,40 +989,78 @@ form {
     flex-direction: row;
     gap: 0.5rem;
 }
-    
-.response-item-symbols button {
+
+/* /* ORIGINAL BUTTON STYLING */
+/* .response-item-symbols button {
     font-size: 18px;
     background: none;
     background-color: none;
     border: none;
     text-decoration: none;
-}
-    
-.response-item-symbols button:hover {
+} */
+
+/* .response-item-symbols button:hover {
     cursor: pointer;
     border: 1px var(--Ore_Black) solid;
     border-radius: 5;
+} */
+    
+.response-item-symbols button {
+    font-size: 14px;
+    background-color: var(--Charlotte_Green);
+    border: none;
+    text-decoration: none;
+    color: var(--quartzWhite);
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    width: 24px;
+    height: 24px;
 }
+/* edit and delete buttons */
+.response-item-symbols button:hover {
+    background-color: var(--Charlotte_Green);
+    transform: scale(1.1);
+    cursor: pointer;
+    border-radius: 5;
+
+}
+
+.response-item-symbols button:active {
+    background-color: var(--ninerGold);
+    transform: scale(0.9);
+}
+
     
 /* Search Bar Styling */
 .searchBar-Container {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    padding-bottom: 1rem;
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
     
 .searchBar-Bar {
     width: 20rem;
     height: 30px;
     background-color: var(--quartzWhite);
-    border: 2px solid var(--Ore_Black);
+    border: 2px solid var(--Charlotte_Green);
     border-radius: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    transition: border-color 0.3s ease;
     overflow: hidden; /* Ensures the rounded corners apply to both input and button */
 }
+
+/* changes color when focused on the searchbar */
+.searchBar-Bar:focus-within {
+    border-color: var(--ninerGold); 
+}
+
 .searchBar-Bar input[type="text"] {
     border: none;
     background-color: transparent;
@@ -988,37 +1080,313 @@ form {
     color: var(--Ore_Black); /* Adjust color as needed */
 }
 
-/* Button styling */
-.start-matching-btn {
-    background-color: #4CAF50; /* Green button */
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
+/* Section Titles */
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--Charlotte_Green);
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--Charlotte_Green);
+    padding-bottom: 10px;
+}
+
+/* Highlight Section */
+.highlight {
+    background-color: var(--jasper);
+    padding: 5px;
     border-radius: 5px;
+    color: var(--Charlotte_Green);
 }
 
-.start-matching-btn:hover {
-    background-color: #45a049;
-}
-
-/* Styles for the right section (matched responses) */
-.matched-box {
-    width: 48%;  /* Adjust width as needed */
-    background-color: #fafafa;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+/* Response Box Styling */
+.response-boxes, .matched-box {
+    width: 40%; /* Adjust to fit side-by-side */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
     max-height: 70vh;
+    max-height: calc(100vh - 300px); /* Prevent from overlapping the footer */
+}
+
+/* Button Section */
+.matching-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+/*====================== Start Matching Page ================/*/
+.matching-container {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 20px 30px;
+    padding-top: 150px;
+    background-color: #D9D9D9;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.matching-header {
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: 50px;
+}
+
+.matching-header h1 {
+    font-size: 32px;
+    color: var(--Charlotte_Green);
+    font-weight: bold;
+}
+
+.matching-header p {
+    font-size: 16px;
+    color: #444;
+    margin-top: 5px;
+}
+
+/* Accent Line */
+.accent-line {
+    height: 3px;
+    background: var(--ninerGold);
+    margin: 10px 0 20px 0;
+    border-radius: 3px;
+}
+
+/* Matching Content */
+.matching-content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+}
+
+/* Response and Match Boxes */
+.responses, .matches {
+    background-color: #ffffff;
+    border: 1px solid #d1d9e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-height: 600px;
     overflow-y: auto;
 }
 
-/* Style for individual response items */
-.response-item {
-    background-color: #fff;
-    padding: 10px;
+.responses h2, .matches h2 {
+    font-size: 20px;
+    color: var(--Charlotte_Green);
+    font-weight: bold;
+    text-align: center;
     margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.response-item, .matched-item {
+    background: #f9fafb; /* Slight contrast for cards */
+    border: 1px solid #d1d9e0;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.response-item:hover, .matched-item:hover {
+    background: #f1f5f9; /* Slightly darker for hover */
+    transform: translateY(-2px);
+}
+
+.response-item h3, .matched-item h3 {
+    font-size: 18px;
+    color: var(--Charlotte_Green);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.response-item p, .matched-item p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.likeness-score {
+    color: var(--ninerGold);
+    font-weight: bold;
+}
+
+/* Button Section */
+.matching-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #d1d9e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.start-matching-btn {
+    background: var(--Charlotte_Green);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.start-matching-btn:hover {
+    background: var(--ninerGold);
+    transform: scale(1.05);
+}
+
+/* capitalize the response answers */
+.response-answer {
+    text-transform: capitalize;
+}
+
+/* dropdown for modifying the answers */
+
+.response-item-container select {
+    width: 100%;
+    padding: 2px;
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 5px;
+    background-color: var(--quartzWhite);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    
+}
+
+.response-item-container select:hover {
+    border-color: var(--ninerGold);
+}
+
+.response-item-container select option {
+    padding: 10px;
+    background-color: var(--jasper);
+}
+
+/* Multi-select dropdown container */
+.multi-select-dropdown {
+    background-color: var(--jasper);
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Style for each option */
+.multi-select-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+/* Hover effect */
+.multi-select-option:hover {
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+}
+
+
+/* Checkbox styling */
+.multi-select-option input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--Charlotte_Green);
+    color: var(--ninerGold);
+    transform: scale(1.5); 
+}
+
+.multi-select-option input[type="checkbox"] {
+    margin-left: auto; /* push checkbox to the right */
+}
+
+.multi-select-dropdown label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* save cancel buttons */
+.multi-select-buttons button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.multi-select-buttons button:first-of-type {
+    background-color: var(--Charlotte_Green); 
+    color: var(--quartzWhite);
+}
+
+.multi-select-buttons button:first-of-type:hover {
+    background-color: var(--ninerGold); 
+    color: black;
+}
+
+
+.multi-select-buttons button:last-of-type:hover {
+    background-color: #D9D9D9
+}
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .matching-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    };
+
+    .responses, .matches {
+        max-height: none;
+    }
+
+    .start-matching-btn {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .matching-header h1 {
+        font-size: 24px;
+    }
+
+    .matching-header p {
+        font-size: 14px;
+    }
+
+    .start-matching-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+/* Fix Responsiveness for Small Screens */
+@media (max-width: 768px) {
+    main {
+        margin-top: calc(10vh + 10px); /* Reduce spacing for smaller screens */
+        margin-bottom: calc(8vh + 5px);
+        padding: 10px;
+    }
+
+    .index-container {
+        width: 95%; /* Expand width slightly for small screens */
+        padding: 20px 10px;
+    }
 }
