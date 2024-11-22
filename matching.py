@@ -17,7 +17,8 @@ def calculate_likeness_score(response1, response2):
 
 # Function to process and match a chunk of responses
 def match_chunk(start_index, end_index, responses, return_dict, engine_url, process_id):
-    print(f"Process {process_id} started. Processing responses from index {start_index} to {end_index}")
+    # Print debug information to stderr
+    print(f"Process {process_id} started. Processing responses from index {start_index} to {end_index}", file=sys.stderr)
     
     # Create a session using the engine URL passed from Flask
     engine = create_engine(engine_url)
@@ -42,7 +43,8 @@ def match_chunk(start_index, end_index, responses, return_dict, engine_url, proc
     session.close()  # Close session once done
     return_dict.update(best_matches)  # Update the dictionary with the results
 
-    print(f"Process {process_id} completed. Best matches for chunk {start_index} to {end_index} added to return_dict.")
+    # Print chunk processing results to stderr
+    print(f"Process {process_id} completed. Best matches for chunk {start_index} to {end_index} added to return_dict.", file=sys.stderr)
 
 # Function to find the best matches for all responses
 def find_best_match_for_each(responses, engine_url):
@@ -59,7 +61,8 @@ def find_best_match_for_each(responses, engine_url):
     else:  # If there are more than 1000 responses, use 8 processes (you can adjust this cap)
         num_processes = 8
 
-    print(f"Scaling to {num_processes} processes based on {num_responses} responses.")
+    # Print scaling information to stderr
+    print(f"Scaling to {num_processes} processes based on {num_responses} responses.", file=sys.stderr)
     
     # Define chunk size based on the number of processes
     chunk_size = num_responses // num_processes
@@ -75,16 +78,20 @@ def find_best_match_for_each(responses, engine_url):
         process = multiprocessing.Process(target=match_chunk, args=(start_index, end_index, responses, return_dict, engine_url, process_id))
         processes.append(process)
         process.start()
-        print(f"Process {process_id} started for range {start_index} to {end_index}")
+
+        # Print process start info to stderr
+        print(f"Process {process_id} started for range {start_index} to {end_index}", file=sys.stderr)
 
     # Wait for all processes to complete
     for process in processes:
         process.join()
 
-    print("All processes completed. Returning results.")
+    # Print completion info to stderr
+    print(f"All {num_processes} processes completed. Returning results.", file=sys.stderr)
+
     return dict(return_dict)  # Convert the manager dictionary to a regular dictionary
 
-# Main script execution
+# Main script execution. This is needed since multiprocessing will not make the extra processes without it. It's also why we are running this as a subprocess, instead of in the main flask process. I wish it was easier.
 if __name__ == '__main__':
     # Get the database URL passed from Flask
     engine_url = sys.argv[1]  # First argument is the DB URL
@@ -96,14 +103,17 @@ if __name__ == '__main__':
 
     # Fetch all responses from the database
     responses = session.query(Response).all()
-    print(f"Fetched {len(responses)} responses from the database.")
+    print(f"Fetched {len(responses)} responses from the database.", file=sys.stderr)
 
     # Find the best matches
     best_matches = find_best_match_for_each(responses, engine_url)
 
     # Save or return the matches (you can update the database, write to a file, etc.)
-    for response_id, match in best_matches.items():
-        print(f"Response {response_id} best match: {match}")
+    if best_matches:
+        for response_id, match in best_matches.items():
+            print(f"Response {response_id} best match: {match}")  # Output to stdout
+    else:
+        print("No matches found", file=sys.stderr)  # If no matches are found, output to stderr
 
     session.close()  # Close session once done
-    print("Script execution completed.")
+    print("Script execution completed.", file=sys.stderr)
