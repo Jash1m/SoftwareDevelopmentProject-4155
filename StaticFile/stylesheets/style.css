@@ -25,6 +25,10 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 /*======================== Header CSS - Refined ========================*/
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
@@ -34,6 +38,28 @@
 .back-button:active {
     background-color: var(--Charlotte_Green); /* Darker shade on click */
     transform: scale(0.95);                   /* Scale down on click */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    padding: 5px 300px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--Charlotte_Green);
+    font-size: 13px;
+ }
+
+.top-nav-links li:not(:last-child)::after {
+        content: "|";
+        color: var(--ninerGold);
+        margin-left: 10px;
+}
+
+.top-nav-links a:hover {
+        color: var(--jasper);
 }
 
 .top-nav-links {
@@ -76,7 +102,7 @@
 .branding {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     width: 100%;
     max-width: 1200px;
 }
@@ -149,11 +175,10 @@ html, body {
 
 /* Main content should grow to push the footer down */
 main {
-    margin-top: 170px; 
-    margin-bottom: 10px; 
     padding: 20px;
+    padding-top: 20%;
     box-sizing: border-box;
-    min-height: calc(100vh - 230px); 
+    /* min-height: calc(100vh - 230px);  */
     background-color: #f8f8f8; 
 }
 
@@ -180,29 +205,6 @@ header.uncc-header {
     background-color: var(--Charlotte_Green);
     color: var(--quartzWhite);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -10px;
-    padding: 10px 300px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: var(--Charlotte_Green);
-    font-size: 13px;
- }
-
-.top-nav-links li:not(:last-child)::after {
-        content: "|";
-        color: var(--ninerGold);
-        margin-left: 10px;
-}
-
-.top-nav-links a:hover {
-        color: var(--jasper);
 }
 
 /* Full-width Gold Divider Line */
@@ -596,23 +598,26 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px 20px; 
     width: 100%;
-    max-width: 900px;
-    margin-top: 30%;
-    margin-bottom: 20px;
+    /* max-width: 900px; */
+    margin-top: 1%;
+    margin-bottom: 10px;
     background-color: #F3F4F6; 
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
     border: 1px solid var(--Charlotte_Green);
     text-align: center;
 }
-    
+
 /* Title styling */
 .index-header {
+    margin-top: 2rem;   
+    margin-left: 3rem;
+    margin-right: 3rem;
+
     font-size: 36px;
     color: var(--Charlotte_Green);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 /*========================Admin Button Styling========================*/
@@ -621,7 +626,7 @@ form {
     justify-content: center; 
     align-items: center;   
     width: 100%;            
-    height: 100px;          
+    height: 55px;          
     margin: 0 auto;        
     box-sizing: border-box;
 }
@@ -632,7 +637,8 @@ form {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    padding: 20px 40px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
@@ -641,7 +647,7 @@ form {
 
 .admin:hover {
     background-color: var(--ninerGold);
-    color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
 
@@ -659,7 +665,7 @@ form {
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .button-container.single-button {
@@ -668,13 +674,13 @@ form {
     align-items: center; 
     width: 100%; 
     font-size: 100px;
-    margin-top: 20px; 
+    margin-top: 5px; 
 }
 
 .custom-button.survey-button {
-    font-size: 35px !important; 
+    font-size: 25px !important; 
     font-weight: bold !important; 
-    padding: 20px 30px !important; 
+    padding: 5px 10px !important; 
     text-align: center; 
 }
 
