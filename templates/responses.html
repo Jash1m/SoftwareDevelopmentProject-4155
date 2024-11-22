@@ -38,10 +38,10 @@
                 </div>
                 <!-- Dropdown Content (Hidden by Default) -->
                 <div id="dropdown-{{ response.id }}" class="response-details" style="display:none;">
-
+                    {% if response.q1 != None %}
                     <!-- Question 1 -->
                     <div class="response-item-container">
-                        <p class="response-item-title">Year: </p>
+                        <p class="response-item-title">{{ all_questions[0].caption }}: </p>
                         <span data-category="year-{{ response.id }}" class="response-answer">{{ response.q1 }}</span>
                         <div class="response-item-symbols">
                             <button onclick="editResponse('year-{{ response.id }}')">
@@ -52,86 +52,147 @@
                             </button>
                         </div>
                     </div>
+                    {% endif %}
+                    {% if response.q2 != None %}
                     <!-- Question 2 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Major: <p> {{ response.q2 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[1].caption }}: <p> {{ response.q2 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q3 != None %}
                     <!-- Question 3 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Same Major Preference: <p> {{ response.q3 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[2].caption }}: <p> {{ response.q3 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q4 != None %}
                     <!-- Question 4 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Room Sharing <p> {{ response.q4 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[3].caption }}: <p> {{ response.q4 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q5 != None %}
                     <!-- Question 5 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Quiet Hours: <p> {{ response.q5 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[4].caption }}: <p> {{ response.q5 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q6 != None %}
                     <!-- Question 6 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Preferred Sleep Time: <p> {{ response.q6 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[5].caption }}: <p> {{ response.q6 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q7 != None %}
                     <!-- Question 7 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Study Habits: <p> {{ response.q7 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[6].caption }}: <p> {{ response.q7 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q8 != None %}
                     <!-- Question 8 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Hobbies: <p> {{ response.q8 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[7].caption }}: <p> {{ response.q8 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q9 != None %}
                     <!-- Question 9 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Preferred Room Climate: <p> {{ response.q9 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[8].caption }}: <p> {{ response.q9 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q10 != None %}
                     <!-- Question 10 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Cleanliness: <p> {{ response.q10 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[9].caption }}: <p> {{ response.q10 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q11 != None %}
                     <!-- Question 11 -->
                     <div class = "response-item-container">
-                        <p class="response-item-title">Conflict Resolution Style: <p> {{ response.q11 }}</p></p>
+                        <p class="response-item-title">{{ all_questions[10].caption }}: <p> {{ response.q11 }}</p></p>
                         <div class="response-item-symbols">
                             <button class="bi bi-pencil-square"></button>
                             <button class="bi bi-x-square"></button>
                         </div>  
                     </div>
+                    {% endif %}
+                    {% if response.q12 != None %}
+                    <!-- Question 12 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">{{ all_questions[11].caption }}: <p> {{ response.q12 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    {% endif %}
+                    {% if response.q13 != None %}
+                    <!-- Question 13 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">{{ all_questions[12].caption }}: <p> {{ response.q13 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    {% endif %}
+                    {% if response.q14 != None %}
+                    <!-- Question 14 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">{{ all_questions[13].caption }}: <p> {{ response.q14 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    {% endif %}
+                    {% if response.q15 != None %}
+                    <!-- Question 15 -->
+                    <div class = "response-item-container">
+                        <p class="response-item-title">{{ all_questions[14].caption }}: <p> {{ response.q15 }}</p></p>
+                        <div class="response-item-symbols">
+                            <button class="bi bi-pencil-square"></button>
+                            <button class="bi bi-x-square"></button>
+                        </div>  
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

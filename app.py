@@ -50,6 +50,7 @@ with app.app_context():
         mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", caption="Preferred Room Climate", questiontype=1)
         mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", caption="Cleanliness", questiontype=1)
         mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid",caption="Conflict Resolution Style", questiontype=1)
+        mQ12 = Question(text="Are you excited for college?", options=", YES!!!, no",caption="Are you excited", questiontype=1)
 
         # Associating Questions
         mPeriod.periodquestions.append(mQ1)
@@ -63,6 +64,7 @@ with app.app_context():
         mPeriod.periodquestions.append(mQ9)
         mPeriod.periodquestions.append(mQ10)
         mPeriod.periodquestions.append(mQ11)
+        mPeriod.periodquestions.append(mQ12)
 
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
@@ -141,9 +143,11 @@ def userResponses():
 def display_responses():
     # Query all responses from the database, sorted by ID
     all_responses = Response.query.order_by(Response.id).all()
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
     
     # Pass the responses to the template
-    return render_template('responses.html', all_responses=all_responses)
+    return render_template('responses.html', all_responses=all_responses, all_questions=all_questions)
 
 # List of majors
 majors = [
