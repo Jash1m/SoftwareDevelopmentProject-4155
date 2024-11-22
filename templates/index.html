@@ -60,6 +60,7 @@
         </nav>
     </header>
 
+    <main>
     <!-- Main Content Wrapper -->
     <div class="main-content">
         <!-- Main content section with buttons -->
@@ -84,9 +85,10 @@
             </div>
 
             <!-- Survey and Responses buttons -->
-            <div class="button-container">
-                <a href="{{ url_for('survey') }}" class="custom-button">Take the Survey</a>
+            <div class="button-container single-button">
+                <a href="{{ url_for('survey') }}" class="custom-button survey-button">Take the Survey</a>
             </div>
+            
 
             <!-- Logout Button -->
             <div class="logout-container">
@@ -143,26 +145,41 @@
         </div>
     </div>
 
+    </main>
+
     <!-- Footer -->
     <footer class="uncc-footer">
         <div class="footer-container">
+            <!-- Dropdown Section -->
             <div class="footer-dropdown">
                 <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
             </div>
+    
+            <!-- Main Footer Section -->
             <div class="footer-main">
                 <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                <span class="long-slash-main"></span>
                 <a href="#">Contact Us</a>
+                <span class="long-slash-main"></span>
                 <a href="#">Terms of Use</a>
+                <span class="long-slash-main"></span>
                 <a href="#">University Policies</a>
+                <span class="long-slash-main"></span>
             </div>
+    
+            <!-- Readability Button -->
             <div class="footer-readability">
                 <button class="readability-button">
                     <i class="fas fa-align-left"></i> Readability
                     <i class="fas fa-chevron-up"></i>
                 </button>
             </div>
+    
+            <!-- Logo Section -->
             <div class="footer-logo">
-                <img src="../StaticFile/Images/header/All-in-C.png" alt="Charlotte Logo">
+                <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
+                <span class="long-slash"></span>
+                <span>CHARLOTTE</span>
             </div>
         </div>
     </footer>
