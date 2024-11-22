@@ -149,12 +149,16 @@ html, body {
 
 /* Main content should grow to push the footer down */
 main {
-    margin-top: 170px; 
-    margin-bottom: 10px; 
+    margin-top: calc(10vh + 20px); /* Adjust for fixed header height */
+    margin-bottom: calc(8vh + 10px); /* Adjust for fixed footer height */
     padding: 20px;
     box-sizing: border-box;
-    min-height: calc(100vh - 230px); 
-    background-color: #f8f8f8; 
+    min-height: calc(100vh - 18vh - 40px); /* Subtract header, footer, and margins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    width: 100%;
 }
 
 /*======================== Header CSS - Refined ========================*/
@@ -597,15 +601,14 @@ form {
     justify-content: center;
     align-items: center;
     padding: 30px 20px; 
-    width: 100%;
-    max-width: 900px;
-    margin-top: 30%;
-    margin-bottom: 20px;
+    width: 90%; /* Use a percentage for flexible scaling */
+    max-width: 800px; /* Limit width on larger screens */
     background-color: #F3F4F6; 
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
     border: 1px solid var(--Charlotte_Green);
     text-align: center;
+    margin: auto; /* Center container horizontally */
 }
     
 /* Title styling */
@@ -618,12 +621,11 @@ form {
 /*========================Admin Button Styling========================*/
 .admin-container {
     display: flex;
-    justify-content: center; 
-    align-items: center;   
+    justify-content: center;
+    align-items: center;
     width: 100%;            
-    height: 100px;          
-    margin: 0 auto;        
-    box-sizing: border-box;
+    height: auto; /* Adjust height dynamically */
+    margin-bottom: 20px;
 }
 
 .admin {
@@ -1228,5 +1230,19 @@ form {
     .start-matching-btn {
         font-size: 16px;
         padding: 12px 20px;
+    }
+}
+
+/* Fix Responsiveness for Small Screens */
+@media (max-width: 768px) {
+    main {
+        margin-top: calc(10vh + 10px); /* Reduce spacing for smaller screens */
+        margin-bottom: calc(8vh + 5px);
+        padding: 10px;
+    }
+
+    .index-container {
+        width: 95%; /* Expand width slightly for small screens */
+        padding: 20px 10px;
     }
 }
