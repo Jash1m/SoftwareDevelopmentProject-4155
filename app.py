@@ -39,17 +39,17 @@ with app.app_context():
         mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
 
         # Adding in all 11 Questions, Question type is non functional
-        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", questiontype=1)
-        mQ2 = Question(text="What is your major?", options="...", questiontype=2)
-        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", questiontype=1)
-        mQ4 = Question(text="How do you feel about sharing personal items?", subtext="(1 = Not Comfortable, 5 = Very Comfortable)", options=", 1, 2, 3, 4, 5", questiontype=3)
-        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", questiontype=1)
-        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", questiontype=1)
-        mQ7 = Question(text="What are your study habits?", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=4)
-        mQ8 = Question(text="What are your hobbies?", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=4)
-        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", questiontype=1)
-        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", questiontype=1)
-        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid", questiontype=1)
+        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", caption="Year", questiontype=1)
+        mQ2 = Question(text="What is your major?", options="...", caption="Major", questiontype=2)
+        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", caption="Same Major Preference", questiontype=1)
+        mQ4 = Question(text="How do you feel about sharing personal items?", subtext="(1 = Not Comfortable, 5 = Very Comfortable)", options=", 1, 2, 3, 4, 5", caption="Room Sharing", questiontype=3)
+        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", caption="Quiet Hours", questiontype=1)
+        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", caption="Preferred Sleep Time", questiontype=1)
+        mQ7 = Question(text="What are your study habits?", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", caption="Study Habits", questiontype=4)
+        mQ8 = Question(text="What are your hobbies?", options=", Sports, Reading, Gaming, Art, Cooking", caption="Hobbies", questiontype=4)
+        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", caption="Preferred Room Climate", questiontype=1)
+        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", caption="Cleanliness", questiontype=1)
+        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid",caption="Conflict Resolution Style", questiontype=1)
 
         # Associating Questions
         mPeriod.periodquestions.append(mQ1)
@@ -67,6 +67,9 @@ with app.app_context():
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
 
+currentPeriod = 1
+MAXQUESTIONS = 15
+
 # Default routing to the index page.
 @app.route('/', methods=['GET'])
 def index():
@@ -75,7 +78,9 @@ def index():
 #Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
-    all_questions = Question.query.order_by(Question.id).all()
+    # TODO query periodQuestions table with a join with current period
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
     return render_template('survey.html', all_questions=all_questions)
 
 #Routing to post new information to the database.
@@ -85,18 +90,37 @@ def userResponses():
     mStudent = Student(firstname="test", lastname="test")
     
     # Retrieve form data
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
+
+    # Ohhh I hate this but its 15 Nones 
+    qResponse = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
+
+    for i in range(len(all_questions)):
+        if all_questions[i].questiontype == 4:
+            qResponse[i] = ', '.join(request.form.getlist(f'{i+1}'))
+        else:
+            qResponse[i] = request.form.get(f'{i+1}', '')
+    
+    print(qResponse)
+
+    # TODO loop through questions to get a response for each
     mResponse = Response(
-        q1=request.form.get('1', ''),
-        q2=request.form.get('2', ''),
-        q3=request.form.get('3', ''),
-        q4=request.form.get('4', ''),
-        q5=request.form.get('5', ''),
-        q6=request.form.get('6', ''),
-        q7=', '.join(request.form.getlist('7')),  # Convert list to string
-        q8=', '.join(request.form.getlist('8')),  # Convert list to string
-        q9=request.form.get('9', ''),
-        q10=request.form.get('10', ''),
-        q11=request.form.get('11', '')
+        q1=qResponse[0],
+        q2=qResponse[1],
+        q3=qResponse[2],
+        q4=qResponse[3],
+        q5=qResponse[4],
+        q6=qResponse[5],
+        q7=qResponse[6], 
+        q8=qResponse[7], 
+        q9=qResponse[8],
+        q10=qResponse[9],
+        q11=qResponse[10],
+        q12=qResponse[11], 
+        q13=qResponse[12],
+        q14=qResponse[13],
+        q15=qResponse[14]
     )
     mStudent.response = mResponse
 
@@ -133,40 +157,44 @@ majors = [
 @app.route('/simulate_responses', methods=['POST'])
 def simulate_responses():
     num_responses = int(request.form['num_responses'])
-    responses = []  # This will store the generated responses
+
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
 
     for i in range(num_responses):
         # Simulate a response matching the survey structure
-        new_response = {
-            'q1': random.choice(['freshman', 'sophomore', 'junior', 'senior', 'graduate-student']),
-            'q2': random.choice(majors),
-            'q3': random.choice(['yes', 'no', "doesn't matter"]),
-            'q4': str(random.randint(1, 5)),
-            'q5': random.choice(['8pm', '10pm', 'midnight']),
-            'q6': random.choice(['8pm-10pm', '10pm-midnight', 'after-midnight']),
-            'q7': ', '.join(random.sample([
-                "Quiet Study", "Study Alone", "Late Night Study", 
-                "Common Areas Study", "In Room Study", "Background Noise Study"], random.randint(1, 3))),
-            'q8': ', '.join(random.sample([
-                "Sports", "Reading", "Gaming", "Art", "Cooking"], random.randint(1, 3))),
-            'q9': random.choice(['cool', 'warm', 'moderate']),
-            'q10': random.choice(['tidy', 'messy']),
-            'q11': random.choice(['confront', 'avoid'])
-        }
         
+        # Ohhh I hate this but its 15 Nones 
+        qResponse = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
+        
+        for i in range(len(all_questions)):
+            # Majors are a special case 
+            if all_questions[i].questiontype == 2:
+                qResponse[i] = random.choice(majors)
+            else:
+                options = all_questions[i].options.split(", ")[1:]
+                if all_questions[i].questiontype == 4:
+                    qResponse[i] = ', '.join(random.sample(options, random.randint(1, 3)))
+                else:
+                    qResponse[i] = random.choice(options)
+
         # Insert the response into the database
         response = Response(
-            q1=new_response['q1'],
-            q2=new_response['q2'],
-            q3=new_response['q3'],
-            q4=new_response['q4'],
-            q5=new_response['q5'],
-            q6=new_response['q6'],
-            q7=new_response['q7'],
-            q8=new_response['q8'],
-            q9=new_response['q9'],
-            q10=new_response['q10'],
-            q11=new_response['q11']
+            q1=qResponse[0],
+            q2=qResponse[1],
+            q3=qResponse[2],
+            q4=qResponse[3],
+            q5=qResponse[4],
+            q6=qResponse[5],
+            q7=qResponse[6], 
+            q8=qResponse[7], 
+            q9=qResponse[8],
+            q10=qResponse[9],
+            q11=qResponse[10],
+            q12=qResponse[11], 
+            q13=qResponse[12],
+            q14=qResponse[13],
+            q15=qResponse[14]
         )
 
         # Simulate a student to tie the response to
@@ -175,8 +203,6 @@ def simulate_responses():
 
         db.session.add_all([mStudent, response])
         
-        # Add to the list for progress tracking
-        responses.append(new_response)
 
     # Commit all changes to the database
     db.session.commit()
@@ -195,6 +221,12 @@ def matching():
         best_matches = find_best_match_for_each(all_responses)
     
     return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+# TODO create GET route for form making new questions
+# TODO create POST route for making new questions
+# TODO create GET route for form making new periods of time
+# TODO create POST route for making new periods of time
+# TODO create POST route for updating current period
 
 @app.route('/admin')
 def admin():

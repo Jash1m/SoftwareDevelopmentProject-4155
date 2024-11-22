@@ -30,17 +30,21 @@ class Response(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
-    q1 = db.Column(db.String(255), nullable=False, default="freshman")
-    q2 = db.Column(db.String(255), nullable=False, default="Computer science")
-    q3 = db.Column(db.String(255), nullable=False, default="yes")
-    q4 = db.Column(db.String(255), nullable=False, default="3")
-    q5 = db.Column(db.String(255), nullable=False, default="10pm")
-    q6 = db.Column(db.String(255), nullable=False, default="10pm-midnight")
-    q7 = db.Column(db.String(255), nullable=False, default="Quiet Study")
-    q8 = db.Column(db.String(255), nullable=False, default="Art")
-    q9 = db.Column(db.String(255), nullable=False, default="moderate")
-    q10 = db.Column(db.String(255), nullable=False, default="tidy")
-    q11 = db.Column(db.String(255), nullable=False, default="avoid")
+    q1 = db.Column(db.String(255))
+    q2 = db.Column(db.String(255))
+    q3 = db.Column(db.String(255))
+    q4 = db.Column(db.String(255))
+    q5 = db.Column(db.String(255))
+    q6 = db.Column(db.String(255))
+    q7 = db.Column(db.String(255))
+    q8 = db.Column(db.String(255))
+    q9 = db.Column(db.String(255))
+    q10 = db.Column(db.String(255))
+    q11 = db.Column(db.String(255))
+    q12 = db.Column(db.String(255))
+    q13 = db.Column(db.String(255))
+    q14 = db.Column(db.String(255))
+    q15 = db.Column(db.String(255))
 
 # Define the Question model
 class Question(db.Model):
@@ -51,6 +55,7 @@ class Question(db.Model):
     text = db.Column(db.String(255), nullable=False)
     subtext = db.Column(db.String(255))
     options = db.Column(db.String(255), nullable=False)
+    caption = db.Column(db.String(255), nullable=False)
     questiontype = db.Column(db.Integer, nullable=False)
 
 # Define the Student model
