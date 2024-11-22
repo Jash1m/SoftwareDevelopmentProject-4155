@@ -276,6 +276,7 @@ header.uncc-header {
     max-width: 1200px; 
     box-sizing: border-box;
     overflow: visible; 
+    margin: auto;
 }
 
 
