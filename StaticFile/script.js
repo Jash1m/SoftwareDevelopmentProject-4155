@@ -52,6 +52,20 @@ function toggleDropdown(id) {
 // MODIFYING RESPONSE ANSWERS
 const questionOptions = {
     q1: ['--', 'Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate Student'], 
+    q2: ['Accounting', 'African-American/Black studies', 'Allied Health Diagnostic, Intervention, and Treatment Professions', 'Anthropology', 
+            'Architecture', 'Art History, Criticism and Conservation', 'Art/Art Studies', 'Biology/Biological Sciences', 'Business Administration and Management',
+            'Business/Managerial Economics', 'Chemistry', 'Civil Engineering', 'Civil Engineering Technology/Technician', 'Computer Engineering',
+            'Computer Science', 'Criminal Justice/Safety Studies', 'Dance', 'Drama and Dramatics/Theatre Arts', 'Economics', 'Electrical and Electronics Engineering',
+            'Electrical, Electronic and Communications Engineering Technology/Technician', 'Engineering Technologies and Engineering-Related Fields',
+            'English Language and Literature', 'Exercise Physiology', 'Finance', 'Fine/Studio Arts', 'French Language and Literature', 'Geography',
+            'Geology/Earth Science', 'German Language and Literature', 'Graphic Design', 'Health and Physical Education/Fitness', 
+            'Health/Health Care Administration/Management', 'History', 'Information Technology', 'International Business/Trade/Commerce',
+            'International/Global Studies', 'Japanese Language and Literature', 'Junior High/Intermediate/Middle School Education and Teaching', 
+            'Kindergarten/Preschool Education and Teaching', 'Latin American Studies', 'Management Science', 'Marketing/Marketing Management', 'Mathematics', 
+            'Mathematics and Computer Science', 'Mathematics and Statistics', 'Mechanical Engineering', 'Mechanical Engineering/Mechanical Technology/Technician', 
+            'Meteorology', 'Music', 'Music Performance', 'Operations Management and Supervision', 'Philosophy', 'Physics', 'Political Science and Government', 
+            'Psychology', 'Public Health', 'Registered Nursing/Registered Nurse', 'Religion/Religious Studies', 'Respiratory Care Therapy/Therapist', 'Social Work', 
+            'Sociology', 'Spanish Language and Literature', 'Special Education and Teaching', 'Speech Communication and Rhetoric', 'Systems Engineering'],
     q3: ['--', 'Yes', 'No', 'Does Not Matter'], 
     q4: ['--', '1', '2', '3', '4', '5'], 
     q5: ['--', '8pm', '10pm', 'Midnight'], 
@@ -225,3 +239,7 @@ function filterResponses(event) {
     });
 
 }
+
+// MAJORS EDIT AND DELETE
+
+function 
