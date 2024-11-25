@@ -65,14 +65,21 @@
     <div class="main-content-admin">
         <div class="index-container">
 
-              <!-- Back Button -->
-         <div class="back-button-container">
+    <!-- Back Button
+        <div class="back-button-container">
             <button onclick="history.back()" class="back-button">← Back</button>
         </div>
-            <!-- Title -->
-            <h1 class="index-header">Admin Panel</h1>
-
+            <h1 class="adminHeader">Admin Panel</h1> -->
             <!-- Button Container for Admin Options -->
+            
+
+        <!-- THIS IS THE NEW IMPLEMENTATION MICHAEL MADE-->
+        <div class = 'adminNav'>
+            <button onclick="history.back()" class="back-button">← Back</button>
+            <h1 class="adminHeader">Admin Panel</h1>
+        </div>
+
+              
             <div class="button-container">
                 <a href="" class="custom-button">Edit Questions (WIP)</a>
                 <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>

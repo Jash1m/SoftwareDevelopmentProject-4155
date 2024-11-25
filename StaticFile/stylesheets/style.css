@@ -168,7 +168,7 @@ html, body {
     flex-direction: column;
     background-color: white; 
     display: flex;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
 }
 
@@ -177,6 +177,7 @@ html, body {
 main {
     padding: 20px;
     padding-top: 20%;
+    margin-top: 10%;
     box-sizing: border-box;
     /* min-height: calc(100vh - 230px);  */
     background-color: #f8f8f8; 
@@ -601,7 +602,7 @@ form {
     align-items: center;
     width: 100%;
     /* max-width: 900px; */
-    margin-top: 1%;
+    margin-top: 5%;
     margin-bottom: 10px;
     background-color: #F3F4F6; 
     border-radius: 20px;
@@ -654,7 +655,22 @@ form {
     transform: scale(1.05);
 }
 
+.adminNav {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: left;
+    align-items: left;
+    align-content: left;
+}
 
+.adminHeader {
+
+}
+
+.main-content-admin {
+    margin-top: 20%;
+}
 /*========================Boxy Button Container Styling========================*/
     
 .button-container {
@@ -756,7 +772,8 @@ form {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    margin-bottom: 20px;
+    
+    
 }
     
 .back-button {
