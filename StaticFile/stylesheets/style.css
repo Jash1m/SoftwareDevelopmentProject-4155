@@ -25,6 +25,10 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 /*======================== Header CSS - Refined ========================*/
 .back-button:hover {
     background-color: var(--ninerGold); /* Darken on hover */
@@ -34,6 +38,28 @@
 .back-button:active {
     background-color: var(--Charlotte_Green); /* Darker shade on click */
     transform: scale(0.95);                   /* Scale down on click */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    padding: 5px 300px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--Charlotte_Green);
+    font-size: 13px;
+ }
+
+.top-nav-links li:not(:last-child)::after {
+        content: "|";
+        color: var(--ninerGold);
+        margin-left: 10px;
+}
+
+.top-nav-links a:hover {
+        color: var(--jasper);
 }
 
 .top-nav-links {
@@ -76,7 +102,7 @@
 .branding {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     width: 100%;
     max-width: 1200px;
 }
@@ -142,23 +168,19 @@ html, body {
     flex-direction: column;
     background-color: white; 
     display: flex;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
 }
 
 
 /* Main content should grow to push the footer down */
 main {
-    margin-top: calc(10vh + 20px); /* Adjust for fixed header height */
-    margin-bottom: calc(8vh + 10px); /* Adjust for fixed footer height */
     padding: 20px;
+    padding-top: 20%;
+    margin-top: 10%;
     box-sizing: border-box;
-    min-height: calc(100vh - 18vh - 40px); /* Subtract header, footer, and margins */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f8f8;
-    width: 100%;
+    /* min-height: calc(100vh - 230px);  */
+    background-color: #f8f8f8; 
 }
 
 /*======================== Header CSS - Refined ========================*/
@@ -184,29 +206,6 @@ header.uncc-header {
     background-color: var(--Charlotte_Green);
     color: var(--quartzWhite);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -10px;
-    padding: 10px 300px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: var(--Charlotte_Green);
-    font-size: 13px;
- }
-
-.top-nav-links li:not(:last-child)::after {
-        content: "|";
-        color: var(--ninerGold);
-        margin-left: 10px;
-}
-
-.top-nav-links a:hover {
-        color: var(--jasper);
 }
 
 /* Full-width Gold Divider Line */
@@ -601,9 +600,10 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px 20px; 
-    width: 90%; /* Use a percentage for flexible scaling */
-    max-width: 800px; /* Limit width on larger screens */
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 5%;
+    margin-bottom: 10px;
     background-color: #F3F4F6; 
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); 
@@ -611,12 +611,16 @@ form {
     text-align: center;
     margin: auto; /* Center container horizontally */
 }
-    
+
 /* Title styling */
 .index-header {
+    margin-top: 2rem;   
+    margin-left: 3rem;
+    margin-right: 3rem;
+
     font-size: 36px;
     color: var(--Charlotte_Green);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 /*========================Admin Button Styling========================*/
@@ -625,8 +629,10 @@ form {
     justify-content: center;
     align-items: center;
     width: 100%;            
-    height: auto; /* Adjust height dynamically */
-    margin-bottom: 20px;
+    height: 55px;          
+    margin: 0 auto;        
+    box-sizing: border-box;
+
 }
 
 .admin {
@@ -635,7 +641,8 @@ form {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    padding: 20px 40px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
@@ -644,11 +651,26 @@ form {
 
 .admin:hover {
     background-color: var(--ninerGold);
-    color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
 
+.adminNav {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: left;
+    align-items: left;
+    align-content: left;
+}
 
+.adminHeader {
+
+}
+
+.main-content-admin {
+    margin-top: 20%;
+}
 /*========================Boxy Button Container Styling========================*/
     
 .button-container {
@@ -662,7 +684,7 @@ form {
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .button-container.single-button {
@@ -671,13 +693,13 @@ form {
     align-items: center; 
     width: 100%; 
     font-size: 100px;
-    margin-top: 20px; 
+    margin-top: 5px; 
 }
 
 .custom-button.survey-button {
-    font-size: 35px !important; 
+    font-size: 25px !important; 
     font-weight: bold !important; 
-    padding: 20px 30px !important; 
+    padding: 5px 10px !important; 
     text-align: center; 
 }
 
@@ -750,7 +772,8 @@ form {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    margin-bottom: 20px;
+    
+    
 }
     
 .back-button {
@@ -1339,4 +1362,48 @@ form {
 
 .multi-select-buttons button:last-of-type:hover {
     background-color: #D9D9D9
+}
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .matching-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    };
+
+    .responses, .matches {
+        max-height: none;
+    }
+
+    .start-matching-btn {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .matching-header h1 {
+        font-size: 24px;
+    }
+
+    .matching-header p {
+        font-size: 14px;
+    }
+
+    .start-matching-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+/* Fix Responsiveness for Small Screens */
+@media (max-width: 768px) {
+    main {
+        margin-top: calc(10vh + 10px); /* Reduce spacing for smaller screens */
+        margin-bottom: calc(8vh + 5px);
+        padding: 10px;
+    }
+
+    .index-container {
+        width: 95%; /* Expand width slightly for small screens */
+        padding: 20px 10px;
+    }
 }

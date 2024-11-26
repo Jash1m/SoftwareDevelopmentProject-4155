@@ -1,4 +1,9 @@
-//SURVEY PAGE: Question 2
+"use strict";
+
+// const adminButton = document.querySelector("#adminContainer");
+// adminButton.classList.toggle("hidden");
+
+
 function filterMajors() {
     const input = document.getElementById("search").value.toLowerCase();
     const select = document.getElementById("majorSelect");

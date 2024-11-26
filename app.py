@@ -1,5 +1,7 @@
+import os
 import random
 import subprocess
+import sys
 from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
@@ -9,9 +11,10 @@ from matching import find_best_match_for_each
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
-dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
-dbName = "..." #!! Must be updated locally | The name of your schema in the database
+
+dbUser = "" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "" #!!! Must be updated locally | The password to access your SQL server
+dbName = "" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -40,17 +43,18 @@ with app.app_context():
         mPeriod = Period(periodName="Fall 2024", numDoubles=200, numQuads=100)
 
         # Adding in all 11 Questions, Question type is non functional
-        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", questiontype=1)
-        mQ2 = Question(text="What is your major?", options="...", questiontype=1)
-        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", questiontype=1)
-        mQ4 = Question(text="How do you feel about sharing personal items?", options=", 1, 2, 3, 4, 5", questiontype=1)
-        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", questiontype=1)
-        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", questiontype=1)
-        mQ7 = Question(text="What are your study habits? (Select all that apply)", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", questiontype=1)
-        mQ8 = Question(text="What are your hobbies? (Select all that apply)", options=", Sports, Reading, Gaming, Art, Cooking", questiontype=1)
-        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", questiontype=1)
-        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", questiontype=1)
-        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid", questiontype=1)
+        mQ1 = Question(text="What year are you?", options=", freshman, sophomore, junior, senior, graduate-student", caption="Year", questiontype=1)
+        mQ2 = Question(text="What is your major?", options="...", caption="Major", questiontype=2)
+        mQ3 = Question(text="Would you prefer a roommate with the same major?", options=", yes, no, doesn't matter", caption="Same Major Preference", questiontype=1)
+        mQ4 = Question(text="How do you feel about sharing personal items?", subtext="(1 = Not Comfortable, 5 = Very Comfortable)", options=", 1, 2, 3, 4, 5", caption="Room Sharing", questiontype=3)
+        mQ5 = Question(text="What time would you like to have quiet hours?", options=", 8pm, 10pm, midnight", caption="Quiet Hours", questiontype=1)
+        mQ6 = Question(text="What time do you usually go to sleep?", options=", 8pm-10pm, 10pm-midnight, after-midnight", caption="Preferred Sleep Time", questiontype=1)
+        mQ7 = Question(text="What are your study habits?", options=", Study Alone, Late Night Study, Common Areas Study, In Room Study, Background Noise Study", caption="Study Habits", questiontype=4)
+        mQ8 = Question(text="What are your hobbies?", options=", Sports, Reading, Gaming, Art, Cooking", caption="Hobbies", questiontype=4)
+        mQ9 = Question(text="What kind of room climate do you prefer?", options=", cool, warm, moderate", caption="Preferred Room Climate", questiontype=1)
+        mQ10 = Question(text="How tidy do you like to keep your space?", options=", tidy, messy", caption="Cleanliness", questiontype=1)
+        mQ11 = Question(text="How do you handle conflict?", options=", confront, avoid",caption="Conflict Resolution Style", questiontype=1)
+        mQ12 = Question(text="Are you excited for college?", options=", YES!!!, no",caption="Are you excited", questiontype=1)
 
         # Associating Questions
         mPeriod.periodquestions.append(mQ1)
@@ -64,9 +68,13 @@ with app.app_context():
         mPeriod.periodquestions.append(mQ9)
         mPeriod.periodquestions.append(mQ10)
         mPeriod.periodquestions.append(mQ11)
+        mPeriod.periodquestions.append(mQ12)
 
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
+
+currentPeriod = 1
+MAXQUESTIONS = 15
 
 # Default routing to the index page.
 @app.route('/', methods=['GET'])
@@ -76,28 +84,49 @@ def index():
 #Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
-    return render_template('survey.html')
+    # TODO query periodQuestions table with a join with current period
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
+    return render_template('survey.html', all_questions=all_questions)
 
 #Routing to post new information to the database.
 @app.route('/user', methods=['POST'])
 def userResponses():
     # Since we have no login atm, I'm just making a new student when we get responses
-    #i = i+1
     mStudent = Student(firstname="test", lastname="test")
     
     # Retrieve form data
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
+
+    # Ohhh I hate this but its 15 Nones 
+    qResponse = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
+
+    for i in range(len(all_questions)):
+        if all_questions[i].questiontype == 4:
+            qResponse[i] = ', '.join(request.form.getlist(f'{i+1}'))
+        else:
+            qResponse[i] = request.form.get(f'{i+1}', '')
+    
+    print(qResponse)
+
+    # TODO loop through questions to get a response for each
     mResponse = Response(
-        q1=request.form.get('year', ''),
-        q2=request.form.get('major', ''),
-        q3=request.form.get('same-major', ''),
-        q4=request.form.get('share', ''),
-        q5=request.form.get('quiet-hours', ''),
-        q6=request.form.get('sleep-time', ''),
-        q7=', '.join(request.form.getlist('study-habits')),  # Convert list to string
-        q8=', '.join(request.form.getlist('hobbies')),       # Convert list to string
-        q9=request.form.get('room-climate', ''),
-        q10=request.form.get('tidy', ''),
-        q11=request.form.get('conflict', '')
+        q1=qResponse[0],
+        q2=qResponse[1],
+        q3=qResponse[2],
+        q4=qResponse[3],
+        q5=qResponse[4],
+        q6=qResponse[5],
+        q7=qResponse[6], 
+        q8=qResponse[7], 
+        q9=qResponse[8],
+        q10=qResponse[9],
+        q11=qResponse[10],
+        q12=qResponse[11], 
+        q13=qResponse[12],
+        q14=qResponse[13],
+        q15=qResponse[14]
     )
     mStudent.response = mResponse
 
@@ -118,9 +147,11 @@ def userResponses():
 def display_responses():
     # Query all responses from the database, sorted by ID
     all_responses = Response.query.order_by(Response.id).all()
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
     
     # Pass the responses to the template
-    return render_template('responses.html', all_responses=all_responses)
+    return render_template('responses.html', all_responses=all_responses, all_questions=all_questions)
 
 # List of majors
 majors = [
@@ -134,40 +165,44 @@ majors = [
 @app.route('/simulate_responses', methods=['POST'])
 def simulate_responses():
     num_responses = int(request.form['num_responses'])
-    responses = []  # This will store the generated responses
+
+    period = Period().query.get_or_404(currentPeriod)
+    all_questions = period.periodquestions
 
     for i in range(num_responses):
         # Simulate a response matching the survey structure
-        new_response = {
-            'q1': random.choice(['freshman', 'sophomore', 'junior', 'senior', 'graduate-student']),
-            'q2': random.choice(majors),
-            'q3': random.choice(['yes', 'no', "doesn't matter"]),
-            'q4': str(random.randint(1, 5)),
-            'q5': random.choice(['8pm', '10pm', 'midnight']),
-            'q6': random.choice(['8pm-10pm', '10pm-midnight', 'after-midnight']),
-            'q7': ', '.join(random.sample([
-                "Quiet Study", "Study Alone", "Late Night Study", 
-                "Common Areas Study", "In Room Study", "Background Noise Study"], random.randint(1, 3))),
-            'q8': ', '.join(random.sample([
-                "Sports", "Reading", "Gaming", "Art", "Cooking"], random.randint(1, 3))),
-            'q9': random.choice(['cool', 'warm', 'moderate']),
-            'q10': random.choice(['tidy', 'messy']),
-            'q11': random.choice(['confront', 'avoid'])
-        }
         
+        # Ohhh I hate this but its 15 Nones 
+        qResponse = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
+        
+        for i in range(len(all_questions)):
+            # Majors are a special case 
+            if all_questions[i].questiontype == 2:
+                qResponse[i] = random.choice(majors)
+            else:
+                options = all_questions[i].options.split(", ")[1:]
+                if all_questions[i].questiontype == 4:
+                    qResponse[i] = ', '.join(random.sample(options, random.randint(1, 3)))
+                else:
+                    qResponse[i] = random.choice(options)
+
         # Insert the response into the database
         response = Response(
-            q1=new_response['q1'],
-            q2=new_response['q2'],
-            q3=new_response['q3'],
-            q4=new_response['q4'],
-            q5=new_response['q5'],
-            q6=new_response['q6'],
-            q7=new_response['q7'],
-            q8=new_response['q8'],
-            q9=new_response['q9'],
-            q10=new_response['q10'],
-            q11=new_response['q11']
+            q1=qResponse[0],
+            q2=qResponse[1],
+            q3=qResponse[2],
+            q4=qResponse[3],
+            q5=qResponse[4],
+            q6=qResponse[5],
+            q7=qResponse[6], 
+            q8=qResponse[7], 
+            q9=qResponse[8],
+            q10=qResponse[9],
+            q11=qResponse[10],
+            q12=qResponse[11], 
+            q13=qResponse[12],
+            q14=qResponse[13],
+            q15=qResponse[14]
         )
 
         # Simulate a student to tie the response to
@@ -176,8 +211,6 @@ def simulate_responses():
 
         db.session.add_all([mStudent, response])
         
-        # Add to the list for progress tracking
-        responses.append(new_response)
 
     # Commit all changes to the database
     db.session.commit()
@@ -192,10 +225,18 @@ def matching():
     # Handle form submission or button click to trigger matching process
     if request.method == 'POST':
         # Pass the database URL to the matching script
-        process = subprocess.Popen( #In order for us to do multiprocessing in a flask app, we need to run the matching script as a completely separete process. 
-            ['venv/Scripts/python', 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], #We pass the virtual environment's python.exe so the matching script can take advantage of our installed modules, and the database URI so it can access the database.
-            stdout=subprocess.PIPE, #We pipe the standard output (our matched responses)
-            stderr=subprocess.PIPE #And we also pipe the standard error (Our debug statements)
+        # Detect the correct path for the virtual environment's Python executable
+        
+        if sys.platform == 'win32':  # For Windows
+            python_executable = os.path.join('venv', 'Scripts', 'python.exe')
+        else:  # For macOS/Linux
+            python_executable = os.path.join('venv', 'bin', 'python')
+
+        # Ensure the matching script is being executed with the correct Python executable
+        process = subprocess.Popen(
+            [python_executable, 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE
         )
         
         # Capture the output from the matching process
@@ -216,6 +257,13 @@ def matching():
     # Render the matching page with best matches (if any)
     all_responses = Response.query.all()
     return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+
+
+# TODO create GET route for form making new questions
+# TODO create POST route for making new questions
+# TODO create GET route for form making new periods of time
+# TODO create POST route for making new periods of time
+# TODO create POST route for updating current period
 
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
     best_matches = {}
