@@ -82,15 +82,14 @@ MAXQUESTIONS = 15
 def index():
     return render_template('index.html')
 
-#Routing to the survey page.
+# Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
-    # TODO query periodQuestions table with a join with current period
     period = Period().query.get_or_404(currentPeriod)
     all_questions = period.periodquestions
     return render_template('survey.html', all_questions=all_questions)
 
-#Routing to post new information to the database.
+# Routing to post new information to the database.
 @app.route('/user', methods=['POST'])
 def userResponses():
     # Since we have no login atm, I'm just making a new student when we get responses
@@ -111,7 +110,7 @@ def userResponses():
     
     print(qResponse)
 
-    # TODO loop through questions to get a response for each
+    # loop through questions to get a response for each
     mResponse = Response(
         q1=qResponse[0],
         q2=qResponse[1],
@@ -135,9 +134,6 @@ def userResponses():
     mPeriod.responses.append(mResponse)
 
     db.session.add_all([mStudent, mResponse])
-    
-    # Store the user response in the database
-    #db.session.add(responses)
 
     db.session.commit()  # Commit the session to save changes
     print("Incoming Data!!!! It's WORKING!!!")
@@ -162,7 +158,7 @@ majors = [
     "Computer science", "Psychology", "Finance", "Health/health care administration/management", 
     "Speech communication and rhetoric", "Biology/biological sciences", "Criminal justice/safety studies", 
     "Marketing/marketing management", "Exercise physiology", "Political science and government", 
-    # to-do: update this using a text file.
+    # TODO: update this using a text file.
 ]
 
 #Route to post simulated responses to the database.
@@ -173,10 +169,10 @@ def simulate_responses():
     period = Period().query.get_or_404(currentPeriod)
     all_questions = period.periodquestions
 
+    # Simulate a response matching the survey structure
     for i in range(num_responses):
-        # Simulate a response matching the survey structure
         
-        # Ohhh I hate this but its 15 Nones 
+        # 
         qResponse = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
         
         for i in range(len(all_questions)):
