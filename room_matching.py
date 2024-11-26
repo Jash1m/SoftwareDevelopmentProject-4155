@@ -32,6 +32,11 @@ def assign_rooms(best_matches, total_students):
     Assign students to rooms based on their best match, and calculate the average compatibility
     score for each room. Aim to split students into 2, 3, and 4-person rooms while maximizing compatibility.
     """
+    # Dictionaries to store room assignments
+    double_rooms = {}
+    triple_rooms = {}
+    quad_rooms = {}
+
     students = list(best_matches.keys())
     
     # Calculate number of rooms for each type based on an even 1/3 split
@@ -75,8 +80,17 @@ def assign_rooms(best_matches, total_students):
         assigned_rooms.append(list(best_room))
         remaining_students_set -= set(best_room)
         
+        # Store the room in the appropriate dictionary
+        room_number = len(assigned_rooms)
+        if room_size == 2:
+            double_rooms[room_number] = list(best_room)
+        elif room_size == 3:
+            triple_rooms[room_number] = list(best_room)
+        elif room_size == 4:
+            quad_rooms[room_number] = list(best_room)
+        
         # Output the average compatibility for this room
-        print(f"Room {len(assigned_rooms)}: {best_room}")
+        print(f"Room {room_number}: {best_room}")
         print(f"Average Compatibility: {best_room_compatibility:.2f}")
     
     # If there are any remaining students, place them in their own room
@@ -85,7 +99,11 @@ def assign_rooms(best_matches, total_students):
         assigned_rooms.append(remaining_room)
         remaining_room_compatibility = calculate_group_compatibility(remaining_room, best_matches)
         
+        # Assign to double_rooms for simplicity, as it's a smaller room
+        double_rooms[len(assigned_rooms)] = remaining_room
+        
         print(f"Room {len(assigned_rooms)} (Remaining): {remaining_room}")
         print(f"Average Compatibility: {remaining_room_compatibility:.2f}")
     
     print("All students have been assigned to rooms.")
+    return double_rooms, triple_rooms, quad_rooms

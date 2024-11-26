@@ -1,5 +1,7 @@
+import os
 import random
 import subprocess
+import sys
 from flask import Flask, abort, render_template, request, redirect, url_for
 from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
 from sqlalchemy import create_engine, text
@@ -10,9 +12,9 @@ from room_matching import assign_rooms
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "Charlotte43" #!!! Must be updated locally | The password to access your SQL server
-dbName = "flask" #!! Must be updated locally | The name of your schema in the database
+dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
+dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbName = "..." #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -189,18 +191,28 @@ def simulate_responses():
 @app.route('/matching', methods=['GET', 'POST'])
 def matching():
     best_matches = {}
+    double_rooms = {}
+    triple_rooms = {}
+    quad_rooms = {}
 
-    # Handle form submission or button click to trigger matching process
+    # Handle form submission or button click to trigger the matching process
     if request.method == 'POST':
-        # Pass the database URL to the matching script
+        # Query all responses to calculate total students
         all_responses = Response.query.all()
         total_students = len(all_responses)
-        process = subprocess.Popen( #In order for us to do multiprocessing in a flask app, we need to run the matching script as a completely separete process. 
-            ['venv/Scripts/python', 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], #We pass the virtual environment's python.exe so the matching script can take advantage of our installed modules, and the database URI so it can access the database.
-            stdout=subprocess.PIPE, #We pipe the standard output (our matched responses)
-            stderr=subprocess.PIPE #And we also pipe the standard error (Our debug statements)
+
+        if sys.platform == 'win32':  # For Windows
+            python_executable = os.path.join('venv', 'Scripts', 'python.exe')
+        else:  # For macOS/Linux
+            python_executable = os.path.join('venv', 'bin', 'python')
+
+        # Ensure the matching script is being executed with the correct Python executable
+        process = subprocess.Popen(
+            [python_executable, 'matching.py', app.config['SQLALCHEMY_DATABASE_URI']], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE
         )
-        
+
         # Capture the output from the matching process
         stdout, stderr = process.communicate()
 
@@ -208,17 +220,37 @@ def matching():
         if stderr:
             print(f"Matching process debug log: {stderr.decode()}")
 
-        # If there's output, parse it and prepare best matches
+        # If there's output, parse it to prepare `best_matches`
         if stdout:
             best_matches = parse_matching_results(stdout.decode())
 
-        # Redirect back to the matching page after completing the process
-        assign_rooms(best_matches, total_students)
-        return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+        # Use the `assign_rooms` function to get room assignments
+        double_rooms, triple_rooms, quad_rooms = assign_rooms(best_matches, total_students)
+        print(double_rooms)
+        print(triple_rooms)
+        print(quad_rooms)
 
-    # Render the matching page with best matches (if any)
+        # Redirect back to the matching page after completing the process
+        return render_template(
+            'matching.html',
+            all_responses=all_responses,
+            best_matches=best_matches,
+            double_rooms=double_rooms,
+            triple_rooms=triple_rooms,
+            quad_rooms=quad_rooms
+        )
+
+    # Render the matching page with existing matches (if any)
     all_responses = Response.query.all()
-    return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+    return render_template(
+        'matching.html',
+        all_responses=all_responses,
+        best_matches=best_matches,
+        double_rooms=double_rooms,
+        triple_rooms=triple_rooms,
+        quad_rooms=quad_rooms
+    )
+
 
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
     best_matches = {}
