@@ -12,9 +12,9 @@ app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
 
-dbUser = "" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "" #!!! Must be updated locally | The password to access your SQL server
-dbName = "" #!! Must be updated locally | The name of your schema in the database
+dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "12345" #!!! Must be updated locally | The password to access your SQL server
+dbName = "roommate" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -73,6 +73,7 @@ with app.app_context():
         db.session.add_all([mPeriod, mQ1, mQ2, mQ3, mQ4, mQ5, mQ6, mQ7, mQ8, mQ9, mQ10, mQ11])
         db.session.commit()
 
+global currentPeriod 
 currentPeriod = 1
 MAXQUESTIONS = 15
 
@@ -87,6 +88,7 @@ def survey():
     # TODO query periodQuestions table with a join with current period
     period = Period().query.get_or_404(currentPeriod)
     all_questions = period.periodquestions
+    print("!!!!!! ",currentPeriod)
     return render_template('survey.html', all_questions=all_questions)
 
 #Routing to post new information to the database.
@@ -259,11 +261,144 @@ def matching():
     return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
 
 
-# TODO create GET route for form making new questions
-# TODO create POST route for making new questions
-# TODO create GET route for form making new periods of time
-# TODO create POST route for making new periods of time
-# TODO create POST route for updating current period
+def editResponse(responseID, questionNumber, newValue):
+    mResponse = Response.query.get_or_404(responseID)
+    match questionNumber:
+        case 1:
+            mResponse.q1 = newValue
+        case 2:
+            mResponse.q2 = newValue
+        case 3:
+            mResponse.q3 = newValue
+        case 4:
+            mResponse.q4 = newValue
+        case 5:
+            mResponse.q5 = newValue
+        case 6:
+            mResponse.q6 = newValue
+        case 7:
+            mResponse.q7 = newValue
+        case 8:
+            mResponse.q8 = newValue
+        case 9:
+            mResponse.q9 = newValue
+        case 10:
+            mResponse.q10 = newValue
+        case 11:
+            mResponse.q11 = newValue
+        case 12:
+            mResponse.q12 = newValue
+        case 13:
+            mResponse.q13 = newValue
+        case 14:
+            mResponse.q14 = newValue
+        case 15:
+            mResponse.q15 = newValue
+        case _:
+            print("Error: Only 15 questions allowed.")
+
+    db.session.commit()
+
+def nullResponse(responseID, questionNumber):
+    mResponse = Response.query.get_or_404(responseID)
+    match questionNumber:
+        case 1:
+            mResponse.q1 = None
+        case 2:
+            mResponse.q2 = None
+        case 3:
+            mResponse.q3 = None
+        case 4:
+            mResponse.q4 = None
+        case 5:
+            mResponse.q5 = None
+        case 6:
+            mResponse.q6 = None
+        case 7:
+            mResponse.q7 = None
+        case 8:
+            mResponse.q8 = None
+        case 9:
+            mResponse.q9 = None
+        case 10:
+            mResponse.q10 = None
+        case 11:
+            mResponse.q11 = None
+        case 12:
+            mResponse.q12 = None
+        case 13:
+            mResponse.q13 = None
+        case 14:
+            mResponse.q14 = None
+        case 15:
+            mResponse.q15 = None
+        case _:
+            print("Error: Only 15 questions allowed.")
+
+    db.session.commit()
+
+# GET route for form making new questions
+@app.route('/new/question', methods=['GET'])
+def question():
+    periods = Period().query.all()
+    return render_template('newquestion.html', periods=periods, MAXQUESTIONS = MAXQUESTIONS)
+
+# POST route for making new questions
+@app.route('/new/question', methods=['POST'])
+def createQuestion():
+    qText = request.form.get('text', '')
+    qOptions = ', '+request.form.get('options')
+    qCaption = request.form.get('caption', '')
+    qSubtext = request.form.get('subtext', None)
+    qType = int(request.form.get('questionType', ''))
+    qPeriodID = int(request.form.get('periodID', ''))
+    print(qOptions)
+    mQuestion = Question(text=qText, subtext=qSubtext, options=qOptions, caption=qCaption, questiontype=qType)
+    
+    mPeriod = Period().query.get_or_404(qPeriodID)
+
+    mPeriod.periodquestions.append(mQuestion)
+    db.session.add(mQuestion)
+    db.session.commit()
+
+    return redirect(url_for('admin'))
+
+# GET route for form making new periods of time
+@app.route('/new/period', methods=['GET'])
+def period():
+    questions = Question().query.all()
+    return render_template('newperiod.html', questions=questions, MAXQUESTIONS = MAXQUESTIONS)
+
+# POST route for making new periods of time
+@app.route('/new/period', methods=['POST'])
+def createPeriod():
+    periodName = request.form.get('pName', '')
+    numDouble = int(request.form.get('numDoubles', ''))
+    numQuads = int(request.form.get('numQuads', ''))
+
+    mPeriod = Period(periodName=periodName, numDoubles=numDouble, numQuads=numQuads)
+
+    questions = request.form.getlist('questions')
+    
+    for i in range(len(questions)):
+        if i < 15:
+            mQ = Question.query.get_or_404( int(questions[i]) )
+            mPeriod.periodquestions.append(mQ)
+
+    db.session.add(mPeriod)
+    db.session.commit()
+
+    return redirect(url_for('admin'))
+
+# POST route for updating current period
+@app.route('/update/period', methods=['POST'])
+def updatePeriod():
+    periodID = int(request.form.get('pID', 1))
+    global currentPeriod 
+    currentPeriod= periodID
+
+    return redirect(url_for('admin'))
+
 
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
     best_matches = {}
