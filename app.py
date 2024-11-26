@@ -265,9 +265,6 @@ def matching():
 
         # Use the `assign_rooms` function to get room assignments
         double_rooms, triple_rooms, quad_rooms = assign_rooms(best_matches, total_students)
-        print(double_rooms)
-        print(triple_rooms)
-        print(quad_rooms)
 
         # Redirect back to the matching page after completing the process
         return render_template(
