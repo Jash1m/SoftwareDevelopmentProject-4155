@@ -21,7 +21,8 @@ class Period(db.Model):
     periodName = db.Column(db.String(30), nullable=False)
     numDoubles = db.Column(db.Integer, nullable=False)
     numQuads = db.Column(db.Integer, nullable=False)
-
+    
+    responses = db.relationship('Response', backref='period')
     periodquestions = db.relationship('Question', secondary=PeriodQuestion, backref='questionperiods')
 
 # Define the Response model
@@ -30,6 +31,7 @@ class Response(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
+    period_id = db.Column(db.Integer, db.ForeignKey('periods.id'))
     q1 = db.Column(db.String(255))
     q2 = db.Column(db.String(255))
     q3 = db.Column(db.String(255))

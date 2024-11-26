@@ -130,6 +130,9 @@ def userResponses():
         q15=qResponse[14]
     )
     mStudent.response = mResponse
+    
+    mPeriod = Period.query.get_or_404(currentPeriod)
+    mPeriod.responses.append(mResponse)
 
     db.session.add_all([mStudent, mResponse])
     
@@ -147,8 +150,8 @@ def userResponses():
 @app.route('/responses')
 def display_responses():
     # Query all responses from the database, sorted by ID
-    all_responses = Response.query.order_by(Response.id).all()
     period = Period().query.get_or_404(currentPeriod)
+    all_responses = Response.query.order_by(Response.id).filter_by(period_id = period.id).all()
     all_questions = period.periodquestions
     
     # Pass the responses to the template
@@ -205,6 +208,9 @@ def simulate_responses():
             q14=qResponse[13],
             q15=qResponse[14]
         )
+
+        mPeriod = Period.query.get_or_404(currentPeriod)
+        mPeriod.responses.append(response)
 
         # Simulate a student to tie the response to
         mStudent = Student(firstname="John "+str(i), lastname="Smith "+str(i))
@@ -382,7 +388,7 @@ def createQuestion():
     if qPeriodID != 0:
         mPeriod = Period().query.get_or_404(qPeriodID)
         mPeriod.periodquestions.append(mQuestion)
-        
+
     db.session.add(mQuestion)
     db.session.commit()
 
