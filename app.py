@@ -7,6 +7,7 @@ from schemas.schemas import db, Period, Response, Question, Student, PeriodQuest
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
+from room_matching import assign_rooms
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
@@ -221,12 +222,17 @@ def simulate_responses():
 @app.route('/matching', methods=['GET', 'POST'])
 def matching():
     best_matches = {}
+    double_rooms = {}
+    triple_rooms = {}
+    quad_rooms = {}
 
-    # Handle form submission or button click to trigger matching process
+    # Handle form submission or button click to trigger the matching process
     if request.method == 'POST':
-        # Pass the database URL to the matching script
+        # Query all responses to calculate total students
+        all_responses = Response.query.all()
+        total_students = len(all_responses)
+
         # Detect the correct path for the virtual environment's Python executable
-        
         if sys.platform == 'win32':  # For Windows
             python_executable = os.path.join('venv', 'Scripts', 'python.exe')
         else:  # For macOS/Linux
@@ -238,7 +244,7 @@ def matching():
             stdout=subprocess.PIPE, 
             stderr=subprocess.PIPE
         )
-        
+
         # Capture the output from the matching process
         stdout, stderr = process.communicate()
 
@@ -246,17 +252,37 @@ def matching():
         if stderr:
             print(f"Matching process debug log: {stderr.decode()}")
 
-        # If there's output, parse it and prepare best matches
+        # If there's output, parse it to prepare `best_matches`
         if stdout:
             best_matches = parse_matching_results(stdout.decode())
 
-        # Redirect back to the matching page after completing the process
-        all_responses = Response.query.all()
-        return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+        # Use the `assign_rooms` function to get room assignments
+        double_rooms, triple_rooms, quad_rooms = assign_rooms(best_matches, total_students)
+        print(double_rooms)
+        print(triple_rooms)
+        print(quad_rooms)
 
-    # Render the matching page with best matches (if any)
+        # Redirect back to the matching page after completing the process
+        return render_template(
+            'matching.html',
+            all_responses=all_responses,
+            best_matches=best_matches,
+            double_rooms=double_rooms,
+            triple_rooms=triple_rooms,
+            quad_rooms=quad_rooms
+        )
+
+    # Render the matching page with existing matches (if any)
     all_responses = Response.query.all()
-    return render_template('matching.html', all_responses=all_responses, best_matches=best_matches)
+    return render_template(
+        'matching.html',
+        all_responses=all_responses,
+        best_matches=best_matches,
+        double_rooms=double_rooms,
+        triple_rooms=triple_rooms,
+        quad_rooms=quad_rooms
+    )
+
 
 
 # TODO create GET route for form making new questions
