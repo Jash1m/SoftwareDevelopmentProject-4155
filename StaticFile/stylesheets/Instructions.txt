@@ -1,1 +1,0 @@
-This is where the stylesheets are going to be located for our project.
