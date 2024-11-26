@@ -108,13 +108,18 @@
                     {% endif %}
                     {% if response.q2 != None %}
                     <!-- Question 2 -->
-                    <div class = "response-item-container">
-                        <p class="response-item-title">{{ all_questions[1].caption }}: <p> {{ response.q2 }}</p></p>
+                    <div class="response-item-container">
+                        <p class="response-item-title">Major:</p>
+                        <span data-category="q2-{{ response.id }}" class="response-answer">{{ response.q2 }}</span>
                         <div class="response-item-symbols">
-                            <button class="bi bi-pencil-square"></button>
-                            <button class="bi bi-x-square"></button>
-                        </div>  
-                    </div>
+                            <button onclick="editMajorResponse('q2-{{ response.id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button onclick="deleteMajorResponse('q2-{{ response.id }}')">
+                                <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                    </div>                    
                     {% endif %}
                     {% if response.q3 != None %}
                     <!-- Question 3 -->

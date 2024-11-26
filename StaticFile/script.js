@@ -68,6 +68,113 @@ const questionOptions = {
     q11: ['--', 'Confront it', 'Avoid it'] 
 };
 
+//Question 2 Responses
+function editMajorResponse(questionId) {
+    const majors = [
+        "Accounting",
+        "African-american/black studies",
+        "Allied health diagnostic, intervention, and treatment professions",
+        "Anthropology",
+        "Architecture",
+        "Art history, criticism and conservation",
+        "Art/art studies",
+        "Biology/biological sciences",
+        "Business administration and management",
+        "Business/managerial economics",
+        "Chemistry",
+        "Civil engineering",
+        "Civil engineering technology/technician",
+        "Computer engineering",
+        "Computer science",
+        "Criminal justice/safety studies",
+        "Dance",
+        "Drama and dramatics/theatre arts",
+        "Economics",
+        "Electrical and electronics engineering",
+        "Electrical, electronic and communications engineering technology/technician",
+        "Elementary education and teaching",
+        "Engineering technologies and engineering-related fields",
+        "English language and literature",
+        "Exercise physiology",
+        "Finance",
+        "Fine/studio arts",
+        "French language and literature",
+        "Geography",
+        "Geology/earth science",
+        "German language and literature",
+        "Graphic design",
+        "Health and physical education/fitness",
+        "Health/health care administration/management",
+        "History",
+        "Information technology",
+        "International business/trade/commerce",
+        "International/global studies",
+        "Japanese language and literature",
+        "Junior high/intermediate/middle school education and teaching",
+        "Kindergarten/preschool education and teaching",
+        "Latin american studies",
+        "Management science",
+        "Marketing/marketing management",
+        "Mathematics",
+        "Mathematics and computer science",
+        "Mathematics and statistics",
+        "Mechanical engineering",
+        "Mechanical engineering/mechanical technology/technician",
+        "Meteorology",
+        "Music",
+        "Music performance",
+        "Operations management and supervision",
+        "Philosophy",
+        "Physics",
+        "Political science and government",
+        "Psychology",
+        "Public health",
+        "Registered nursing/registered nurse",
+        "Religion/religious studies",
+        "Respiratory care therapy/therapist",
+        "Social work",
+        "Sociology",
+        "Spanish language and literature",
+        "Special education and teaching",
+        "Special education and teaching",
+        "Speech communication and rhetoric",
+        "Systems engineering",];
+
+
+    //fetches the current value
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    const currentValue = element.innerText.trim();
+
+    //dropdown with the current value preselected
+    let dropdown = `<select onchange="updateMajorResponse('${questionId}')">`;
+    majors.forEach(major => {
+        const isSelected = major === currentValue ? "selected" : "";
+        dropdown += `<option value="${major}" ${isSelected}>${major}</option>`;
+    });
+    dropdown += `</select>`;
+
+    // Replace the span content with the dropdown
+    if (element) {
+        element.innerHTML = dropdown;
+    }
+}
+
+function updateMajorResponse(questionId) {
+    const selectedValue = document.querySelector(`[data-category="${questionId}"] select`).value;
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (element) {
+        element.innerText = selectedValue; 
+    }
+}
+
+function deleteMajorResponse(questionId) {
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (element) {
+        element.innerText = "empty";
+    }
+}
+
+
 // Function to create a dropdown for editing a response
 function editResponse(questionId) {
     const questionKey = questionId.split('-')[0];
