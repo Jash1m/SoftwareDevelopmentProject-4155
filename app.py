@@ -232,9 +232,16 @@ def matching():
         all_responses = Response.query.all()
         total_students = len(all_responses)
 
-        # Detect the correct path for the virtual environment's Python executable
         if sys.platform == 'win32':  # For Windows
             python_executable = os.path.join('venv', 'Scripts', 'python.exe')
+            # Check if the Python version is 3.10 or 3.11, if necessary
+            python_version = sys.version_info[:2]  # Get (major, minor) version
+            if python_version == (3, 10):
+                # Python 3.10 uses venv/bin
+                python_executable = os.path.join('venv', 'bin', 'python.exe')
+            else:
+                # Default for other versions (e.g., 3.11)
+                python_executable = os.path.join('venv', 'Scripts', 'python.exe')
         else:  # For macOS/Linux
             python_executable = os.path.join('venv', 'bin', 'python')
 
