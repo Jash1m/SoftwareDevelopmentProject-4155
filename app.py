@@ -147,9 +147,10 @@ def display_responses():
     period = Period().query.get_or_404(currentPeriod)
     all_responses = Response.query.order_by(Response.id).filter_by(period_id = period.id).all()
     all_questions = period.periodquestions
+    num_questions = len(all_questions)
     
     # Pass the responses to the template
-    return render_template('responses.html', all_responses=all_responses, all_questions=all_questions)
+    return render_template('responses.html', all_responses=all_responses, all_questions=all_questions, num_questions=num_questions)
 
 # List of majors
 majors = [
