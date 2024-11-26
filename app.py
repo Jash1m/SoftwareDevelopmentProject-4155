@@ -88,7 +88,6 @@ def survey():
     # TODO query periodQuestions table with a join with current period
     period = Period().query.get_or_404(currentPeriod)
     all_questions = period.periodquestions
-    print("!!!!!! ",currentPeriod)
     return render_template('survey.html', all_questions=all_questions)
 
 #Routing to post new information to the database.
@@ -337,9 +336,35 @@ def nullResponse(responseID, questionNumber):
 
     db.session.commit()
 
+# GET route for form edit questions
+@app.route('/edit/question/<int:id>', methods=['GET'])
+def editQuestionForm(id):
+    mQuestion = Question().query.get_or_404(id)
+    return render_template('editquestion.html', question=mQuestion)
+
+# POST route for editing questions
+@app.route('/edit/question/<int:id>', methods=['POST'])
+def editQuestion(id):
+    mQuestion = Question().query.get_or_404(id)
+    qText = request.form.get('text', '')
+    qOptions = ', '+request.form.get('options')
+    qCaption = request.form.get('caption', '')
+    qSubtext = request.form.get('subtext', None)
+    qType = int(request.form.get('questionType', ''))
+
+    mQuestion.text = qText
+    mQuestion.subtext = qSubtext
+    mQuestion.options = qOptions
+    mQuestion.caption = qCaption
+    mQuestion.questiontype = qType
+
+    db.session.commit()
+
+    return redirect(url_for('admin'))
+
 # GET route for form making new questions
 @app.route('/new/question', methods=['GET'])
-def question():
+def newQuestion():
     periods = Period().query.all()
     return render_template('newquestion.html', periods=periods, MAXQUESTIONS = MAXQUESTIONS)
 
@@ -351,13 +376,13 @@ def createQuestion():
     qCaption = request.form.get('caption', '')
     qSubtext = request.form.get('subtext', None)
     qType = int(request.form.get('questionType', ''))
-    qPeriodID = int(request.form.get('periodID', ''))
-    print(qOptions)
+    qPeriodID = int(request.form.get('periodID', 0))
     mQuestion = Question(text=qText, subtext=qSubtext, options=qOptions, caption=qCaption, questiontype=qType)
     
-    mPeriod = Period().query.get_or_404(qPeriodID)
-
-    mPeriod.periodquestions.append(mQuestion)
+    if qPeriodID != 0:
+        mPeriod = Period().query.get_or_404(qPeriodID)
+        mPeriod.periodquestions.append(mQuestion)
+        
     db.session.add(mQuestion)
     db.session.commit()
 
@@ -381,7 +406,7 @@ def createPeriod():
     questions = request.form.getlist('questions')
     
     for i in range(len(questions)):
-        if i < 15:
+        if i < MAXQUESTIONS:
             mQ = Question.query.get_or_404( int(questions[i]) )
             mPeriod.periodquestions.append(mQ)
 
