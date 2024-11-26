@@ -80,15 +80,16 @@
         </div>
 
               
-            <div class="button-container">
+            <div class="adminButtonContainer">
                 <a href="" class="custom-button">Edit Questions (WIP)</a>
                 <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
                 <a href="{{ url_for('matching') }}" class="custom-button">Response Matching</a>
+                <a href="" class="custom-button">Add Questions (WIP)</a>
             </div>
 
             <!-- Simulate Responses section -->
             <div class="simulate-container">
-                <h2>Simulate Survey Responses</h2>
+                <h2 class="simulateSurveyHeader">Simulate Survey Responses</h2>
                 <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
                     <button type="submit" class="custom-button">Simulate Responses</button>
                     <label for="num_responses">Number of Responses to Simulate:</label>
