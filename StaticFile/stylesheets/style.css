@@ -176,8 +176,8 @@ html, body {
 /* Main content should grow to push the footer down */
 main {
     padding: 20px;
-    padding-top: 20%;
-    margin-top: 10%;
+    /* padding-top: 20%; */
+    margin-top: 25%;
     box-sizing: border-box;
     /* min-height: calc(100vh - 230px);  */
     background-color: #f8f8f8; 
@@ -602,7 +602,7 @@ form {
     align-items: center;
     width: 100%;
     /* max-width: 900px; */
-    margin-top: 5%;
+
     margin-bottom: 10px;
     background-color: #F3F4F6; 
     border-radius: 20px;
@@ -662,10 +662,27 @@ form {
     justify-content: left;
     align-items: left;
     align-content: left;
+    width: 100%;
+
+    background-color: var(--Pine_Green);    
+    border: 1px outset var(--Ore_Black);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .adminHeader {
+    color: var(--quartzWhite);
+}
 
+.adminButtonContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
 .main-content-admin {
@@ -729,7 +746,14 @@ form {
         transform: scale(0.95);
 }
 /*======================== Simulate Responses Section Styling========================*/
-    
+
+.simulateSurveyHeader {
+    color: var(--quartzWhite);
+    background-color: var(--Pine_Green);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .simulate-container {
     display: flex;
     flex-direction: column;
@@ -737,18 +761,12 @@ form {
     padding: 20px;
     width: 85%;
     max-width: 500px;
-    background-color: #F0F0F0;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    border: 1px solid var(--Charlotte_Green);
-}
-    
-.simulate-container h2 {
-    color: var(--ninerGold);
-    margin-bottom: 15px;
-    font-size: 24px;
-    font-weight: 600;
+    /* background-color: #F0F0F0; */
+    /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); */
+    margin-top: 20px;
+
+    /* border: 1px solid var(--Charlotte_Green);
+    border-radius: 15px; */
 }
     
 .simulate-container label {
@@ -772,8 +790,6 @@ form {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    
-    
 }
     
 .back-button {
@@ -1140,9 +1156,9 @@ form {
 /*====================== Start Matching Page ================/*/
 .matching-container {
     max-width: 1200px;
-    margin: 120px auto;
+    /* margin: 120px auto; */
+    
     padding: 20px 30px;
-    padding-top: 150px;
     background-color: #D9D9D9;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
@@ -1150,8 +1166,8 @@ form {
 /* Header */
 .matching-header {
     text-align: center;
-    margin-top: -100px;
-    margin-bottom: 50px;
+    /* margin-top: -100px;
+    margin-bottom: 50px; */
 }
 
 .matching-header h1 {
