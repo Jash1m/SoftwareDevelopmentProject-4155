@@ -1790,3 +1790,173 @@ form {
     display: inline-block;
     vertical-align: middle;
 }
+
+
+
+/*======== Edit Question Styling ==========*/
+.editQuestion-container {
+    margin: 10px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f9f9f9; /* Light background for better contrast */
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Header Alignment */
+.matching-header h1 {
+    color: #005035; /* Charlotte Green */
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.matching-header p {
+    text-align: center;
+    font-size: 14px;
+    color: #4A5568; /* Neutral gray for the subtext */
+    margin-bottom: 20px;
+}
+
+/* Main Content Layout */
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between sections */
+}
+
+/* Responses Section */
+.responses {
+    width: 60%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    overflow-y: auto;
+    max-height: 600px; /* Ensure scrolling for long lists */
+}
+
+.response-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.response-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.response-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #005035;
+    margin-bottom: 5px;
+}
+
+.response-item p {
+    font-size: 14px;
+    color: #4A5568;
+    line-height: 1.6;
+}
+
+/* Editor Section */
+.editor {
+    width: 35%;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    display: none; /* Hidden by default */
+}
+
+/* Show Editor when active */
+.editor.active {
+    display: block;
+}
+
+/* Editor Header */
+.editor h3 {
+    color: #005035;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #A49665; /* Gold underline for style */
+    padding-bottom: 10px;
+}
+
+/* Editor Form */
+.editor label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4A5568;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.editor textarea,
+.editor input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus styles for inputs and textareas */
+.editor textarea:focus,
+.editor input:focus {
+    border-color: #A49665; /* Gold border on focus */
+    box-shadow: 0px 0px 6px rgba(164, 150, 101, 0.5); /* Focus glow */
+}
+
+/* Button Styling */
+.editor button {
+    width: 100%;
+    background-color: #005035;
+    color: #ffffff;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.editor button:hover {
+    background-color: #A49665; /* Gold hover effect */
+    transform: scale(1.03);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.editor button:active {
+    background-color: #003F2A; /* Dark green on click */
+    transform: scale(0.97);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .question-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .responses,
+    .editor {
+        width: 100%; /* Full width for smaller screens */
+    }
+}

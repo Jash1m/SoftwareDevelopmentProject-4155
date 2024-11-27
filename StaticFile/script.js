@@ -431,3 +431,96 @@ function getQuestionType() {
 }
 
 
+/*======== Edit Question JavaScript ==========*/
+// JavaScript function to fill the editor with the clicked question's data
+function editQuestion(element) {
+    console.log("editQuestion called");
+
+    // Show the editor section
+    document.getElementById("editor").classList.add("active");
+
+    // Retrieve the data from the clicked element's data attributes
+    const id = element.getAttribute('data-id');
+    console.log("Question ID:", id);
+
+    const text = safeParse(element.getAttribute('data-text'));
+    console.log("Text:", text);
+
+    const subtext = safeParse(element.getAttribute('data-subtext'));
+    console.log("Subtext:", subtext);
+
+    const options = safeParse(element.getAttribute('data-options'));
+    console.log("Options:", options);
+
+    const questionType = element.getAttribute('data-question-type');
+    console.log("Question Type:", questionType);
+
+    // Set the input values in the editor
+    document.getElementById("editQuestionId").value = id;
+    document.getElementById("editText").value = text;
+    document.getElementById("editSubtext").value = subtext;
+    document.getElementById("editOptions").value = options;
+    document.getElementById("editQuestionType").value = questionType;
+}
+
+function safeParse(value) {
+    try {
+        if (value && value !== "null") {
+            console.log("Attempting to parse:", value);
+            return JSON.parse(value);  // Parse valid JSON string
+        } else {
+            console.log("Empty or null value, returning empty string.");
+            return '';  // Return empty string if value is null or empty
+        }
+    } catch (e) {
+        console.error("Error parsing value:", value, e);
+        return value || '';  // Return original value if parsing fails
+    }
+}
+// JavaScript function to handle saving the edited question
+function saveEdit() {
+    const id = document.getElementById("editQuestionId").value;
+    const text = document.getElementById("editText").value;
+    const subtext = document.getElementById("editSubtext").value.trim() || null;  // Handle null for subtext
+    const options = document.getElementById("editOptions").value;
+    const questionTypeElement = document.getElementById("editQuestionType");
+    const questionType = parseInt(questionTypeElement.value);  // Ensure integer value for question type
+
+    // If questionType is NaN, it means it wasn't set properly, handle this case:
+    if (isNaN(questionType)) {
+        alert("Invalid Question Type");
+        return;
+    }
+
+    // Prepare the data to send to the Flask backend
+    const data = {
+        id: id,
+        text: text,
+        subtext: subtext === "null" ? null : subtext,  // Convert 'null' string to actual null
+        options: options,
+        questiontype: questionType // Ensure questiontype is an integer
+    };
+
+    console.log("Sending data:", data);  // Debugging line
+
+    // Send the data to the Flask route via a POST request
+    fetch('/questions/edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Question updated successfully");
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        });
+}
