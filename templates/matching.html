@@ -83,11 +83,16 @@
             </div>
 
             <!-- Middle: Start Matching Button -->
-            <div class="matching-button-container">
-                <form method="POST" action="/matching">
-                    <button class="start-matching-btn" type="submit">Start Matching</button>
-                </form>
+            <div id="loading-indicator" class="hidden">
+                <div class="spinner"></div>
+                <p>Matching in progress, please wait...</p>
             </div>
+
+            
+            <form method="POST" action="/matching">
+                <button class="start-matching-btn" type="submit">Start Matching</button>
+            </form>
+            
 
             <!-- Right: Matched Pairs -->
             <div class="matches">
