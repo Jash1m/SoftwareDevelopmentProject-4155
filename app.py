@@ -336,81 +336,43 @@ def matching():
 
 
 
-def editResponse(responseID, questionNumber, newValue):
-    mResponse = Response.query.get_or_404(responseID)
-    match questionNumber:
-        case 1:
-            mResponse.q1 = newValue
-        case 2:
-            mResponse.q2 = newValue
-        case 3:
-            mResponse.q3 = newValue
-        case 4:
-            mResponse.q4 = newValue
-        case 5:
-            mResponse.q5 = newValue
-        case 6:
-            mResponse.q6 = newValue
-        case 7:
-            mResponse.q7 = newValue
-        case 8:
-            mResponse.q8 = newValue
-        case 9:
-            mResponse.q9 = newValue
-        case 10:
-            mResponse.q10 = newValue
-        case 11:
-            mResponse.q11 = newValue
-        case 12:
-            mResponse.q12 = newValue
-        case 13:
-            mResponse.q13 = newValue
-        case 14:
-            mResponse.q14 = newValue
-        case 15:
-            mResponse.q15 = newValue
-        case _:
-            print("Error: Only 15 questions allowed.")
+from flask import request, jsonify
 
+@app.route('/save-response', methods=['POST'])
+def save_response():
+    data = request.json
+    question_key = data.get('questionKey')
+    user_id = data.get('userId')
+    selected_value = data.get('selectedValue')
+
+    # Logic to save the response (e.g., update database)
+    try:
+        response = Response.query.filter_by(student_id=user_id).first()
+        if response:
+            setattr(response, question_key, selected_value)
+            db.session.commit()
+            return jsonify({'status': 'success'}), 200
+        else:
+            return jsonify({'error': 'Response not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/delete_response', methods=['POST'])
+def delete_response():
+    """Delete a specific response."""
+    data = request.json
+    response_id = data.get('response_id')
+    question = data.get('question')
+
+    response = Response.query.filter_by(id=response_id).first()
+    if not response:
+        return jsonify({'error': 'Response not found'}), 404
+
+    # Set the specific question field to None or an empty string
+    setattr(response, question, None)
     db.session.commit()
-
-def nullResponse(responseID, questionNumber):
-    mResponse = Response.query.get_or_404(responseID)
-    match questionNumber:
-        case 1:
-            mResponse.q1 = None
-        case 2:
-            mResponse.q2 = None
-        case 3:
-            mResponse.q3 = None
-        case 4:
-            mResponse.q4 = None
-        case 5:
-            mResponse.q5 = None
-        case 6:
-            mResponse.q6 = None
-        case 7:
-            mResponse.q7 = None
-        case 8:
-            mResponse.q8 = None
-        case 9:
-            mResponse.q9 = None
-        case 10:
-            mResponse.q10 = None
-        case 11:
-            mResponse.q11 = None
-        case 12:
-            mResponse.q12 = None
-        case 13:
-            mResponse.q13 = None
-        case 14:
-            mResponse.q14 = None
-        case 15:
-            mResponse.q15 = None
-        case _:
-            print("Error: Only 15 questions allowed.")
-
-    db.session.commit()
+    return jsonify({'success': True, 'message': 'Response deleted successfully'})
 
 # GET route for form making new questions
 @app.route('/new/question', methods=['GET'])
