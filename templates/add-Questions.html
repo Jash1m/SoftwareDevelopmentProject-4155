@@ -7,94 +7,81 @@
     <title>Landing Page</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../StaticFile/script.js" defer></script>
 </head>
+
 <body>
-<!-- Header -->
-<header class="uncc-header">
-    <!-- Top Navigation -->
-    <div class="top-nav">
-        <ul class="top-nav-links">
-            <li><a href="#">Alumni & Friends</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Current Students</a></li>
-            <li><a href="#">Faculty & Staff</a></li>
-            <li><a href="#">Parents & Family</a></li>
-            <li><a href="#">Prospective Students</a></li>
-        </ul>
-        <div class="campus-resources">
-            <span>Campus Resources</span>
-            <input type="text" placeholder="Enter search term here">
+    <!-- Header -->
+    <header class="uncc-header">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <ul class="top-nav-links">
+                <li><a href="#">Alumni & Friends</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Current Students</a></li>
+                <li><a href="#">Faculty & Staff</a></li>
+                <li><a href="#">Parents & Family</a></li>
+                <li><a href="#">Prospective Students</a></li>
+            </ul>
+            <div class="campus-resources">
+                <span>Campus Resources</span>
+                <input type="text" placeholder="Enter search term here">
+            </div>
         </div>
-    </div>
+        
+        <!-- Branding Section -->
+        <div class="branding">
+            <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
+            <div class="branding-text">
+                <h1>HOUSING AND RESIDENCE LIFE</h1>
+                <p>Division of Student Affairs</p>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-x"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+            </div>
+        </div>
     
-    <!-- Branding Section -->
-    <div class="branding">
-        <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
-        <div class="branding-text">
-            <h1>HOUSING AND RESIDENCE LIFE</h1>
-            <p>Division of Student Affairs</p>
-        </div>
+        <!-- Full-width Gold Divider Line -->
+        <div class="full-width-divider"></div>
 
-        <div class="social-icons">
-            <a href="#" class="fab fa-facebook"></a>
-            <a href="#" class="fab fa-x"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-youtube"></a>
-        </div>
-    </div>
-
-    <!-- Full-width Gold Divider Line -->
-    <div class="full-width-divider"></div>
-
-    <!-- Main Navigation Bar -->
-    <nav class="main-nav">
-        <ul>
-            <li><a href="https://housing.charlotte.edu">Home</a></li>
-            <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
-            <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
-            <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
-            <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
-            <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
-            <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
-        </ul>
-    </nav>
-</header>
+        <!-- Main Navigation Bar -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="https://housing.charlotte.edu">Home</a></li>
+                <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
+                <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
+                <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
+                <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
+                <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
+                <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
     <!-- Main Content Wrapper -->
-    <div class="main-content-admin">
-        <div class="index-container">
+    <div class = "add-Questions-Container">
+        <h1 class="add-Questions-Header">Add Questions</h1>
+        <div class="add-Questions-Content">
+            <div class = 'Question-Input-Area'>
+                <h3 class="Question-Input-Header">Please Enter your Content Here</h3>
+                <p>Question Content</p>
+                <input type="text" placeholder="Enter Question Here"></input>
 
-    <!-- Back Button
-        <div class="back-button-container">
-            <button onclick="history.back()" class="back-button">← Back</button>
-        </div>
-            <h1 class="adminHeader">Admin Panel</h1> -->
-            <!-- Button Container for Admin Options -->
-            
-
-        <!-- THIS IS THE NEW IMPLEMENTATION MICHAEL MADE-->
-        <div class = 'adminNav'>
-            <button onclick="history.back()" class="back-button">← Back</button>
-            <h1 class="adminHeader">Admin Panel</h1>
-        </div>
-
-              
-            <div class="adminButtonContainer">
-                <a href="" class="custom-button">Edit Questions (WIP)</a>
-                <a href="{{ url_for('display_responses') }}" class="custom-button">View Responses</a>
-                <a href="{{ url_for('matching') }}" class="custom-button">Response Matching</a>
-                <a href="{{ url_for('addQuestions') }}" class="custom-button">Add Questions (WIP)</a>
+                <p>Question type</p>
+                <div class="Question-Input-Type-Container">
+                    <button class="Questions-Input-Type-Button" alt = 'Multiple Choice Text' required>1</button>
+                    <button class="Questions-Input-Type-Button" alt = 'one to five questions radio' required>2</button>
+                    <button class="Questions-Input-Type-Button" alt ='Multiple Selection (CheckBox)' required>3</button>
+                </div>
+                <p>Question Options</p>
             </div>
-
-            <!-- Simulate Responses section -->
-            <div class="simulate-container">
-                <h2 class="simulateSurveyHeader">Simulate Survey Responses</h2>
-                <form action="{{ url_for('simulate_responses') }}" method="POST" id="simulate-form">
-                    <button type="submit" class="custom-button">Simulate Responses</button>
-                    <label for="num_responses">Number of Responses to Simulate:</label>
-                    <input type="number" id="num_responses" name="num_responses" min="1" max="1000" required>
-                </form>
+            <div class = 'Question-Showcase-Area'>
+                <h3 class="Question-Showcase-Header">Question Showcase</h3>
             </div>
         </div>
     </div>
@@ -146,9 +133,8 @@
             </a>
         </div>
     </div>
-    
+
     </main>
-   
 
     <!-- Footer -->
     <footer class="uncc-footer">

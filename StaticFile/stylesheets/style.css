@@ -157,10 +157,12 @@
     justify-content: center;
     transition: background-color 0.3s, color 0.3s;
 }
+
 .social-icons a:hover {
     background-color: var(--ninerGold);
     color: white !important;
 }
+
 /*========================Body CSS========================*/
 html, body {
     height: 100%;
@@ -686,6 +688,164 @@ form {
 .main-content-admin {
     margin-top: 20%;
 }
+
+/*========================Add Questions Admin Page========================*/
+
+.add-Questions-Container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 800px;
+    height: 500px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+}
+
+.add-Questions-Header {
+    color: var(--quartzWhite);
+    background-color: var(--Charlotte_Green);
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+    align-content: center;
+}
+
+.add-Questions-Content{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+    gap: 3rem;
+    justify-content: center;
+    align-content: center; 
+}
+
+.Question-Input-Area {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    background-color: var(--quartzWhite);
+    border-radius: 15px;
+
+    gap: 0.5rem;
+    width: 300px;
+    height: 300px;
+    /* margin-left: 30px; */
+}
+
+.Question-Input-Area input[type="text"]{
+    border-radius: 45px;
+    padding-left: 1rem;
+    width: 15rem;
+}
+
+.Question-Input-Header {
+    color: var(--quartzWhite);
+    background-color: var(--Pine_Green);
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    font-weight: 300;
+    width: 100%;
+}
+
+.Question-Input-Area p {
+    
+}
+
+.Question-Input-Type-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.Questions-Input-Type-Button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    color: var(--quartzWhite);
+    background-color: var(--Charlotte_Green);
+}
+
+.Questions-Input-Type-Button:hover {
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.Questions-Input-Type-Button:focus {
+    background-color: var(--ninerGold); 
+    transform: scale(1.1);
+    border: none;
+} 
+
+/* .custom-circle-radio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-circle-radio input {
+    position: absolute;
+    opacity: 0; 
+}
+
+.custom-circle-radio span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--Charlotte_Green); 
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    }
+    
+/*circle style when selected
+.custom-circle-radio input:checked + span {
+    background-color: var(--ninerGold); 
+    transform: scale(1.1);
+} */
+
+.Question-Showcase-Area {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    background-color: var(--quartzWhite);
+    border-radius: 15px;
+
+    gap: 0.5rem;
+    width: 300px;
+    height: 300px;
+    /* margin-left: 30px; */
+}
+
+.Question-Showcase-Header {
+    color: var(--quartzWhite);
+    background-color: var(--Pine_Green);
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    font-weight: 300;
+    width: 100%;
+}
+
 /*========================Boxy Button Container Styling========================*/
     
 .button-container {
@@ -853,7 +1013,7 @@ form {
     display: inline-block; 
     background-color: #FFFFFF; 
     width: 0.1px; 
-    height: 60px; 
+    height: 40px; 
     margin: 0 10px; 
 }
 
@@ -979,6 +1139,7 @@ form {
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    max-width: 650px;
 }
 
 .response-box:hover {
@@ -1007,8 +1168,9 @@ form {
     padding: 0px;
     gap: 0.5rem;
     padding-bottom: 0.20rem;
+    position: relative;
 }
-    
+
 .response-item-title {
     font-weight: bold;
     margin: 0px;
@@ -1149,6 +1311,24 @@ form {
     align-items: center;
     justify-content: center;
     width: 20%;
+}
+
+/* custom scrollbar for Majors dropdown */
+.response-item-container select::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb {
+    border-radius: 5px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb:hover {
+    background-color: var(--Charlotte_Green); 
+}
+
+.response-item-container select::-webkit-scrollbar-track {
+    background-color: var(--jasper); 
 }
 
 /*====================== Start Matching Page ================/*/
@@ -1455,6 +1635,44 @@ form {
 }
 
 
+/* Matching in Progress Graphics */
+.hidden {
+    display: none;
+}
+
+#loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 /*======================== Login Page Styling ========================*/
 
 /* General Styling for Login Page */
@@ -1523,6 +1741,12 @@ form {
     max-width: 400px;
 }
 
+.logout-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
 /* Buttons Styling */
 .login-container a,
 .logout-container a,
@@ -1548,7 +1772,7 @@ form {
 .logout-container a:hover,
 .login-page button:hover {
     background-color: var(--ninerGold);
-    color: var(--Ore_Black);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
 

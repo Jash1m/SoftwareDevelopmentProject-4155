@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
     <title>Admin - Match Responses</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../StaticFile/script.js" defer></script>
 </head>
 
 <body>
@@ -80,6 +83,41 @@
                         <p><strong>Preferences:</strong> {{ response.q3 }}, {{ response.q4 }}</p>
                     </div>
                     {% endfor %}
+            <!-- Middle: Start Matching Button -->
+            <div id="loading-indicator" class="hidden">
+                <div class="spinner"></div>
+                <p>Matching in progress, please wait...</p>
+            </div>
+
+            
+            <form method="POST" action="/matching">
+                <button class="start-matching-btn" type="submit">Start Matching</button>
+            </form>
+            
+
+            <!-- Right: Matched Pairs -->
+            <div class="matches">
+                <h2>Matched Pairs</h2>
+                <div class="accent-line"></div>
+            
+                <!-- Tabs Navigation -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="best-matches">Best Matches</button>
+                    <button class="tab-button" data-tab="double-rooms">Double Rooms</button>
+                    <button class="tab-button" data-tab="triple-rooms">Triple Rooms</button>
+                    <button class="tab-button" data-tab="quad-rooms">Quad Rooms</button>
+                </div>
+            <!-- Tabs Content -->
+            <div class="tab-content active" id="best-matches">
+                {% for response in all_responses %}
+                <div class="matched-item">
+                    <h3>Response ID: {{ response.id }}</h3>
+                    {% if best_matches[response.id] %}
+                    <p><strong>Best Match:</strong> Response ID {{ best_matches[response.id][0] }}</p>
+                    <p><strong>Likeness Score:</strong> <span class="likeness-score">{{ best_matches[response.id][1] }}</span></p>
+                    {% else %}
+                    <p>No match found.</p>
+                    {% endif %}
                 </div>
 
                 <!-- Middle: Start Matching Button -->

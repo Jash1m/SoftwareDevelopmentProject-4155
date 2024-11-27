@@ -337,3 +337,10 @@ function filterResponses(event) {
     });
 
 }
+
+
+/* Matching in Progress */
+document.querySelector('.start-matching-btn').addEventListener('click', (event) => {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    loadingIndicator.classList.remove('hidden');
+});
