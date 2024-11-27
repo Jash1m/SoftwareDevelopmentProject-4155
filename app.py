@@ -486,7 +486,7 @@ def removeFromRoommateGroup(studentid):
     student = Student.query.get_or_404(studentid)
 
     if student.placed:
-        student.group.remove(student)
+        student.group.students.remove(student)
 
         student.placed = False
         
