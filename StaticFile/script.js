@@ -414,6 +414,37 @@ function deleteResponse(category) {
     .catch((err) => console.error('Error:', err));
 }
 
+function getQuestionType(event) {
+    const identifier = document.querySelector("#questionTypeIdentifier");
+    const selectedValue = event.target.value; // Use `event.target.value` to get the value of the clicked radio button
+    let questionType = "";
+
+    console.log("Hopefully this is working!");
+
+    // Determine the question type
+    if (selectedValue == 1) {
+        questionType = "MC Question";
+    } else if (selectedValue == 3) {
+        questionType = "One through Five Range";
+    } else if (selectedValue == 4) {
+        questionType = "Multi-Select";
+    } else {
+        questionType = "none";
+    }
+
+    // Update the text content of the identifier element
+    identifier.innerText = "Type Selected: " + questionType;
+}
+
+
+// Add event listeners to the radio buttons
+document.querySelector("#Type1").addEventListener('click', getQuestionType);
+document.querySelector("#Type2").addEventListener("click", getQuestionType);
+document.querySelector("#Type3").addEventListener("click", getQuestionType);
+
+console.log("hello");
+
+
 /* Matching in Progress */
 document.querySelector('.start-matching-btn').addEventListener('click', (event) => {
     const loadingIndicator = document.getElementById('loading-indicator');
@@ -450,31 +481,3 @@ document.querySelector('.start-matching-btn').addEventListener('click', (event) 
 // document.querySelector("#Type2").addEventListener('click',getQuestionType);
 // document.querySelector("#Type3").addEventListener('click',getQuestionType);
 
-function getQuestionType(event) {
-    const identifier = document.querySelector("#questionTypeIdentifier");
-    const selectedValue = event.target.value; // Use `event.target.value` to get the value of the clicked radio button
-    let questionType = "";
-
-    console.log("Hopefully this is working!");
-
-    // Determine the question type
-    if (selectedValue == 1) {
-        questionType = "MC Question";
-    } else if (selectedValue == 3) {
-        questionType = "One through Five Range";
-    } else if (selectedValue == 4) {
-        questionType = "Multi-Select";
-    } else {
-        questionType = "none";
-    }
-
-    // Update the text content of the identifier element
-    identifier.innerText = "Type Selected: " + questionType;
-}
-
-// Add event listeners to the radio buttons
-document.querySelector("#Type1").addEventListener("click", getQuestionType);
-document.querySelector("#Type2").addEventListener("click", getQuestionType);
-document.querySelector("#Type3").addEventListener("click", getQuestionType);
-
-console.log("hello");
