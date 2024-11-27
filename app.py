@@ -513,9 +513,6 @@ def removeFromRoommateGroup(studentid):
     else:
         print("Not in group")
 
-
-
-
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
     best_matches = {}
     lines = output.splitlines()
@@ -541,7 +538,6 @@ def parse_matching_results(output): #Since the matching script returns a string,
                 print(f"Error processing line: {line}")
                 print(f"Error: {str(e)}")
     return best_matches
-
 
 @app.route('/admin')
 def admin():
