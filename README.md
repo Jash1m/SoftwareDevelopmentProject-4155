@@ -3,7 +3,7 @@
 This is our final project submission for ITSC-4155. This will be a survey system designed to match students with roommates that are most compatible with their lifestyles.
 
 ## Project Installation 
-
+Python 3.10 or 3.11 is rquired for this project.
 Create a python Virtual Environment using the following command.
 
 ```bash
