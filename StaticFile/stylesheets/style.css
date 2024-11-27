@@ -732,7 +732,7 @@ form {
 
     gap: 0.5rem;
     width: 300px;
-    height: 300px;
+    height: 400px;
     /* margin-left: 30px; */
 }
 
@@ -810,37 +810,22 @@ form {
     border-radius: 50%;
 }
 
-/* .custom-circle-radio {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
+
+.Questions-Input-Type-Button input:checked + span {
+    background-color: var(--ninerGold); 
 }
 
-.custom-circle-radio input {
-    position: absolute;
-    opacity: 0; 
+/* Add hover effect for better user experience */
+.Questions-Input-Type-Button:hover {
+    transform: scale(1.1);
+    background-color: var(--ninerGold);
 }
 
-.custom-circle-radio span {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--Charlotte_Green); 
-    color: white;
-    font-size: 18px;
-    transition: background-color 0.3s, transform 0.3s;
-    }
-    
-/*circle style when selected
-.custom-circle-radio input:checked + span {
+.Questions-Input-Type-Button:focus {
     background-color: var(--ninerGold); 
     transform: scale(1.1);
-} */
+    border: none;
+} 
 
 .Question-Showcase-Area {
     display: flex;
@@ -864,6 +849,16 @@ form {
     padding: 5px;
     font-weight: 300;
     width: 100%;
+}
+
+.Option-Creation-Container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 85%;
+    height: 200px;
+    background-color: #bdbdbd;
+    border-radius: 15px;
 }
 
 /*========================Boxy Button Container Styling========================*/
