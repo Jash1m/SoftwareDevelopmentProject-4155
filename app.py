@@ -415,32 +415,6 @@ def nullResponse(responseID, questionNumber):
 
     db.session.commit()
 
-# GET route for form edit questions
-@app.route('/edit/question/<int:id>', methods=['GET'])
-def editQuestionForm(id):
-    mQuestion = Question().query.get_or_404(id)
-    return render_template('editquestion.html', question=mQuestion)
-
-# POST route for editing questions
-@app.route('/edit/question/<int:id>', methods=['POST'])
-def editQuestion(id):
-    mQuestion = Question().query.get_or_404(id)
-    qText = request.form.get('text', '')
-    qOptions = ', '+request.form.get('options')
-    qCaption = request.form.get('caption', '')
-    qSubtext = request.form.get('subtext', None)
-    qType = int(request.form.get('questionType', ''))
-
-    mQuestion.text = qText
-    mQuestion.subtext = qSubtext
-    mQuestion.options = qOptions
-    mQuestion.caption = qCaption
-    mQuestion.questiontype = qType
-
-    db.session.commit()
-
-    return redirect(url_for('admin'))
-
 # GET route for form making new questions
 @app.route('/new/question', methods=['GET'])
 def newQuestion():
