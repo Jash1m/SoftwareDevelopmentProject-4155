@@ -414,12 +414,12 @@ function deleteResponse(category) {
     .catch((err) => console.error('Error:', err));
 }
 
+
+//THIS GETS THE TYPE OF QUESTION THAT IS SELECTED TO THEN ADD TO THE TOTAL QUESTIONS
 function getQuestionType(event) {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const selectedValue = event.target.value;
     let questionType = "";
-
-    console.log("Hopefully this is working!");
 
     // Determine the question type
     if (selectedValue == 1) {
@@ -437,11 +437,13 @@ function getQuestionType(event) {
 
     // This shows what type of Question was selected!
     identifier.innerText = "Type Selected: " + questionType;
+    identifier.value = questionType;
 
     const numOptionsLabel = document.querySelector("#numberOfOptionsLabel");
     numOptionsLabel.for = "numOptionsID";
     numOptionsLabel.textContent = "Number of Options (Between 2 and 5)";
     numOptionsLabel.classList.add("addQuestionNumOptions");
+    numOptionsLabel.value = questionType;
 
     const numOptionsInput = document.createElement("input");
     numOptionsInput.type = "number";
@@ -449,6 +451,40 @@ function getQuestionType(event) {
     numOptionsInput.min = "2";
     numOptionsInput.max = "5";
     numberOfOptionsLabel.append(numOptionsInput);
+
+    createOptions();
+}
+
+
+function createOptions() {
+    const identifier = document.querySelector("#questionTypeIdentifier");
+    const optionContainer = document.querySelector(".Option-Creation-Container");
+    const selectedType = identifier.value;
+
+
+    if(selectedType == "MC Question"){
+        const numOptionsSelector = document.querySelector("#numOptionsID");
+        console.log(numOptionsSelector.value);
+
+        if(numOptionsSelector.value == ""){
+
+        }
+        else if(numOptionsSelector.value < 2 || numOptionsSelector.value > 5){
+            alert("You must enter an Integer between 2 to 5");
+        }
+        else {
+            for(let i = 0; i < numOptionsSelector.value; i++){
+                const newOption = document.createElement("div");
+                newOption.classList.add("questionOption");
+
+                const newOptionInput = document.createElement("input");
+                newOptionInput.type = "text";
+                
+                newOption.append(newOptionInput);
+                optionContainer.append(newOption);
+            }
+        }
+    }
 }
 
 // Add event listeners to the radio buttons

@@ -830,6 +830,13 @@ form {
     padding: 5px;
 }
 
+.questionOptions {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+}
+
 .Question-Showcase-Area {
     display: flex;
     flex-direction: column;
