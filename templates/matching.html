@@ -262,6 +262,30 @@
             document.getElementById(button.dataset.tab).classList.add('active');
         });
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get the Start Matching button
+        const startMatchingButton = document.querySelector('.start-matching-btn');
+        
+        // Get the loading indicator element
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        // Add click event listener to the Start Matching button
+        startMatchingButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the form's default submission behavior
+            
+            // Show the loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.classList.remove('hidden');
+            }
+
+            // Delay the form submission slightly to ensure loading indicator appears
+            setTimeout(() => {
+                event.target.closest('form').submit(); // Submit the form programmatically
+            }, 50); // Small delay to ensure the UI updates
+        });
+    });
+    
 </script>
 
 </html>
