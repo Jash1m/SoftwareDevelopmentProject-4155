@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 # MySQL database URI
 
 
-dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbUser = "" #!!! Must be updated locally | The username to access your SQL server
 dbPass = "" #!!! Must be updated locally | The password to access your SQL server
 dbName = "" #!! Must be updated locally | The name of your schema in the database
 
@@ -533,6 +533,10 @@ def parse_matching_results(output): #Since the matching script returns a string,
 @app.route('/admin')
 def admin():
     return render_template('adminindex.html')
+
+@app.route('/Add-Question')
+def addQuestions():
+    return render_template('add-Questions.html')
 
 #Runs the app with debug mode.
 if __name__ == "__main__": 
