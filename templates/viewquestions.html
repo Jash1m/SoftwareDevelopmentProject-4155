@@ -9,7 +9,11 @@
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
     <title>Admin - View Questions</title>
     <style>
-        /* Added some inline styles for layout */
+    
+.editQ-container {
+    margin: 20px;
+}
+
         /* Style for the right-side editor section */
     .editor {
         background-color: #F3F4F6; /* Light grey background to match other sections */
@@ -30,13 +34,17 @@
     }
 
     /* Editor headings */
-    .editor h3 {
-        color: var(--Charlotte_Green); /* Use the primary green for consistency */
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center; /* Center-align heading */
-    }
+   /* Editor headings */
+.editor h3 {
+    color: var(--Charlotte_Green); /* Use the primary green for consistency */
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center; /* Center-align heading */
+    border-bottom: 2px solid var(--ninerGold); /* Add the gold line */
+    padding-bottom: 8px; /* Add some spacing between the line and text */
+}
+
 
     /* Labels */
     .editor label {
@@ -168,7 +176,7 @@
 
     <!-- Main Content -->
     <main>
-        <div class="matching-container">
+        <div class="editq-container">
             <div class="matching-header">
                 <h1>Questions List</h1>
                 <p>View and edit the questions stored in the database.</p>
@@ -230,6 +238,54 @@
                 </div>
             </div>
         </div>
+
+            <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar-right">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
+            </a>
+        </div>
+    </div>
     </main>
 
     <!-- Footer -->
