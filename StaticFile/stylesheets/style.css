@@ -742,7 +742,7 @@ form {
     gap: 0.5rem;
 }
 
-.Question-Input-Area input[type="text"]{
+.QuestionText {
     border-radius: 45px;
     padding-left: 1rem;
     width: 15rem;
@@ -868,11 +868,21 @@ form {
 .Option-Creation-Container {
     display: flex;
     flex-direction: column;
+    padding: 20px;
     gap: 0.5rem;
-    width: 85%;
-    height: 200px;
+    width: 90%;
+    height: auto;
     background-color: #bdbdbd;
     border-radius: 15px;
+
+    align-items: center;
+}
+
+.questionTextOption {
+    padding-left: 1rem;
+    width: 80%;
+    height: 2rem;
+    border-radius: 5px;
 }
 
 /*========================Boxy Button Container Styling========================*/
