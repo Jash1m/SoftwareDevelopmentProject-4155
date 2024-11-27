@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,79 +10,79 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="../StaticFile/script.js" defer></script>
 </head>
+
 <body>
-   <!-- Header -->
-   <header class="uncc-header">
-    <!-- Top Navigation -->
-    <div class="top-nav">
-        <ul class="top-nav-links">
-            <li><a href="#">Alumni & Friends</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Current Students</a></li>
-            <li><a href="#">Faculty & Staff</a></li>
-            <li><a href="#">Parents & Family</a></li>
-            <li><a href="#">Prospective Students</a></li>
-        </ul>
-        <div class="campus-resources">
-            <span>Campus Resources</span>
-            <input type="text" placeholder="Enter search term here">
-        </div>
-    </div>
-    
-    <!-- Branding Section -->
-    <div class="branding">
-        <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
-        <div class="branding-text">
-            <h1>HOUSING AND RESIDENCE LIFE</h1>
-            <p>Division of Student Affairs</p>
+    <!-- Header -->
+    <header class="uncc-header">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <ul class="top-nav-links">
+                <li><a href="#">Alumni & Friends</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Current Students</a></li>
+                <li><a href="#">Faculty & Staff</a></li>
+                <li><a href="#">Parents & Family</a></li>
+                <li><a href="#">Prospective Students</a></li>
+            </ul>
+            <div class="campus-resources">
+                <span>Campus Resources</span>
+                <input type="text" placeholder="Enter search term here">
+            </div>
         </div>
 
-        <div class="social-icons">
-            <a href="#" class="fab fa-facebook"></a>
-            <a href="#" class="fab fa-x"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-youtube"></a>
-        </div>
-    </div>
-
-    <!-- Full-width Gold Divider Line -->
-    <div class="full-width-divider"></div>
-
-    <!-- Main Navigation Bar -->
-    <nav class="main-nav">
-        <ul>
-            <li><a href="https://housing.charlotte.edu">Home</a></li>
-            <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
-            <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
-            <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
-            <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
-            <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
-            <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <div class="matching-container">
-        <div class="matching-header">
-            <h1>Roommate Matching</h1>
-            <p>Compare survey responses and identify the best roommate matches effortlessly.</p>
-        </div>
-
-        <div class="matching-content">
-            <!-- Left: Survey Responses -->
-            <div class="responses">
-                <h2>Survey Responses</h2>
-                <div class="accent-line"></div>
-                {% for response in all_responses %}
-                <div class="response-item">
-                    <h3>Response ID: {{ response.id }}</h3>
-                    <p><strong>Year:</strong> {{ response.q1 }} | <strong>Major:</strong> {{ response.q2 }}</p>
-                    <p><strong>Preferences:</strong> {{ response.q3 }}, {{ response.q4 }}</p>
-                </div>
-                {% endfor %}
+        <!-- Branding Section -->
+        <div class="branding">
+            <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
+            <div class="branding-text">
+                <h1>HOUSING AND RESIDENCE LIFE</h1>
+                <p>Division of Student Affairs</p>
             </div>
 
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-x"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+            </div>
+        </div>
+
+        <!-- Full-width Gold Divider Line -->
+        <div class="full-width-divider"></div>
+
+        <!-- Main Navigation Bar -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="https://housing.charlotte.edu">Home</a></li>
+                <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
+                <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
+                <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
+                <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a>
+                </li>
+                <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
+                <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="matching-container">
+            <div class="matching-header">
+                <h1>Roommate Matching</h1>
+                <p>Compare survey responses and identify the best roommate matches effortlessly.</p>
+            </div>
+
+            <div class="matching-content">
+                <!-- Left: Survey Responses -->
+                <div class="responses">
+                    <h2>Survey Responses</h2>
+                    <div class="accent-line"></div>
+                    {% for response in all_responses %}
+                    <div class="response-item">
+                        <h3>Response ID: {{ response.id }}</h3>
+                        <p><strong>Year:</strong> {{ response.q1 }} | <strong>Major:</strong> {{ response.q2 }}</p>
+                        <p><strong>Preferences:</strong> {{ response.q3 }}, {{ response.q4 }}</p>
+                    </div>
+                    {% endfor %}
             <!-- Middle: Start Matching Button -->
             <div id="loading-indicator" class="hidden">
                 <div class="spinner"></div>
@@ -118,123 +119,163 @@
                     <p>No match found.</p>
                     {% endif %}
                 </div>
-                {% endfor %}
+
+                <!-- Middle: Start Matching Button -->
+                <div class="matching-button-container">
+                    <form method="POST" action="/matching">
+                        <button class="start-matching-btn" type="submit">Start Matching</button>
+                    </form>
+                </div>
+
+                <!-- Right: Matched Pairs -->
+                <div class="matches">
+                    <h2>Matched Pairs</h2>
+                    <div class="accent-line"></div>
+
+                    <!-- Tabs Navigation -->
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="best-matches">Best Matches</button>
+                        <button class="tab-button" data-tab="double-rooms">Double Rooms</button>
+                        <button class="tab-button" data-tab="triple-rooms">Triple Rooms</button>
+                        <button class="tab-button" data-tab="quad-rooms">Quad Rooms</button>
+                    </div>
+                    <!-- Tabs Content -->
+                    <div class="tab-content active" id="best-matches">
+                        {% for response in all_responses %}
+                        <div class="matched-item">
+                            <h3>Response ID: {{ response.id }}</h3>
+                            {% if best_matches[response.id] %}
+                            <p><strong>Best Match:</strong> Response ID {{ best_matches[response.id][0] }}</p>
+                            <p><strong>Likeness Score:</strong> <span class="likeness-score">{{
+                                    best_matches[response.id][1] }}</span></p>
+                            {% else %}
+                            <p>No match found.</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab-content" id="double-rooms">
+                        {% for room_number, occupants in double_rooms.items() %}
+                        <div class="matched-item">
+                            <h3>Room {{ room_number }}</h3>
+                            <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab-content" id="triple-rooms">
+                        {% for room_number, occupants in triple_rooms.items() %}
+                        <div class="matched-item">
+                            <h3>Room {{ room_number }}</h3>
+                            <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab-content" id="quad-rooms">
+                        {% for room_number, occupants in quad_rooms.items() %}
+                        <div class="matched-item">
+                            <h3>Room {{ room_number }}</h3>
+                            <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
 
-            <div class="tab-content" id="double-rooms">
-                {% for room_number, occupants in double_rooms.items() %}
-                <div class="matched-item">
-                    <h3>Room {{ room_number }}</h3>
-                    <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+            <!-- Left Sidebar -->
+            <div class="sidebar-left">
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                        <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours"
+                            class="sidebar-img">
+                    </a>
                 </div>
-                {% endfor %}
-            </div>
-
-            <div class="tab-content" id="triple-rooms">
-                {% for room_number, occupants in triple_rooms.items() %}
-                <div class="matched-item">
-                    <h3>Room {{ room_number }}</h3>
-                    <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                        <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls"
+                            class="sidebar-img">
+                    </a>
                 </div>
-                {% endfor %}
-            </div>
-
-            <div class="tab-content" id="quad-rooms">
-                {% for room_number, occupants in quad_rooms.items() %}
-                <div class="matched-item">
-                    <h3>Room {{ room_number }}</h3>
-                    <p><strong>Occupants:</strong> {{ occupants|join(", ") }}</p>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                        <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance"
+                            class="sidebar-img">
+                    </a>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <!-- Left Sidebar -->
-    <div class="sidebar-left">
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
-                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
-                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
-                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
-                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
-            </a>
-        </div>
-    </div>
-
-    <!-- Right Sidebar -->
-    <div class="sidebar-right">
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
-                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
-                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
-                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
-            </a>
-        </div>
-        <div class="sidebar-item">
-            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
-                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
-            </a>
-        </div>
-    </div>
-</main>
-
-        <!-- Footer -->
-        <footer class="uncc-footer">
-            <div class="footer-container">
-                <!-- Dropdown Section -->
-                <div class="footer-dropdown">
-                    <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
-                </div>
-        
-                <!-- Main Footer Section -->
-                <div class="footer-main">
-                    <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
-                    <span class="long-slash-main"></span>
-                    <a href="#">Contact Us</a>
-                    <span class="long-slash-main"></span>
-                    <a href="#">Terms of Use</a>
-                    <span class="long-slash-main"></span>
-                    <a href="#">University Policies</a>
-                    <span class="long-slash-main"></span>
-                </div>
-        
-                <!-- Readability Button -->
-                <div class="footer-readability">
-                    <button class="readability-button">
-                        <i class="fas fa-align-left"></i> Readability
-                        <i class="fas fa-chevron-up"></i>
-                    </button>
-                </div>
-        
-                <!-- Logo Section -->
-                <div class="footer-logo">
-                    <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
-                    <span class="long-slash"></span>
-                    <span>CHARLOTTE</span>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                        <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates"
+                            class="sidebar-img">
+                    </a>
                 </div>
             </div>
-        </footer>
+
+            <!-- Right Sidebar -->
+            <div class="sidebar-right">
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                        <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates"
+                            class="sidebar-img">
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                        <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers"
+                            class="sidebar-img">
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                        <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests"
+                            class="sidebar-img">
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                        <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions"
+                            class="sidebar-img">
+                    </a>
+                </div>
+            </div>
+    </main>
+    <!-- Footer -->
+    <footer class="uncc-footer">
+        <div class="footer-container">
+            <!-- Dropdown Section -->
+            <div class="footer-dropdown">
+                <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+            </div>
+
+            <!-- Main Footer Section -->
+            <div class="footer-main">
+                <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                <span class="long-slash-main"></span>
+                <a href="#">Contact Us</a>
+                <span class="long-slash-main"></span>
+                <a href="#">Terms of Use</a>
+                <span class="long-slash-main"></span>
+                <a href="#">University Policies</a>
+                <span class="long-slash-main"></span>
+            </div>
+
+            <!-- Readability Button -->
+            <div class="footer-readability">
+                <button class="readability-button">
+                    <i class="fas fa-align-left"></i> Readability
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
+                <span class="long-slash"></span>
+                <span>CHARLOTTE</span>
+            </div>
+        </div>
+    </footer>
 </body>
 
 <script>

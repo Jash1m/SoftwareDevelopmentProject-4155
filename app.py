@@ -3,17 +3,16 @@ from schemas.schemas import db, Period, Response, Question, Student, PeriodQuest
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from room_matching import assign_rooms
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-
-dbUser = "" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "" #!!! Must be updated locally | The password to access your SQL server
-dbName = "" #!! Must be updated locally | The name of your schema in the database
-
+dbUser = "..." #!!! Must be updated locally | The username to access your SQL server
+dbPass = "..." #!!! Must be updated locally | The password to access your SQL server
+dbName = "..." #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -413,32 +412,6 @@ def nullResponse(responseID, questionNumber):
 
     db.session.commit()
 
-# GET route for form edit questions
-@app.route('/edit/question/<int:id>', methods=['GET'])
-def editQuestionForm(id):
-    mQuestion = Question().query.get_or_404(id)
-    return render_template('editquestion.html', question=mQuestion)
-
-# POST route for editing questions
-@app.route('/edit/question/<int:id>', methods=['POST'])
-def editQuestion(id):
-    mQuestion = Question().query.get_or_404(id)
-    qText = request.form.get('text', '')
-    qOptions = ', '+request.form.get('options')
-    qCaption = request.form.get('caption', '')
-    qSubtext = request.form.get('subtext', None)
-    qType = int(request.form.get('questionType', ''))
-
-    mQuestion.text = qText
-    mQuestion.subtext = qSubtext
-    mQuestion.options = qOptions
-    mQuestion.caption = qCaption
-    mQuestion.questiontype = qType
-
-    db.session.commit()
-
-    return redirect(url_for('admin'))
-
 # GET route for form making new questions
 @app.route('/new/question', methods=['GET'])
 def newQuestion():
@@ -574,9 +547,57 @@ def parse_matching_results(output): #Since the matching script returns a string,
 def admin():
     return render_template('adminindex.html')
 
+@app.route('/questions')
+def view_questions():
+    # Fetch all questions from the database
+    questions = Question.query.all()
+    return render_template('viewquestions.html', questions=questions)
+
+@app.route('/questions/edit', methods=['POST'])
+def edit_question():
+    # Get the data from the request
+    try:
+        data = request.get_json()
+        print(f"Received data: {data}")  # Debugging line
+
+        # Extract the data
+        question_id = data.get('id')
+        text = data.get('text')
+        subtext = data.get('subtext')
+        options = data.get('options')
+        question_type = data.get('questiontype')
+
+        # Validate that necessary fields are present
+        if not all([question_id, text, options, question_type is not None]):
+            return jsonify({"success": False, "message": "Missing required data"}), 400
+
+        # Fetch the question from the database by ID
+        question = Question.query.get(question_id)
+        if not question:
+            return jsonify({"success": False, "message": "Question not found"}), 404
+
+        # Update the question fields
+        question.text = text
+        question.subtext = subtext if subtext != 'null' else None  # Handle 'null' for subtext
+        question.options = options
+        question.questiontype = int(question_type)  # Ensure questiontype is an integer
+
+        # Commit the changes to the database
+        try:
+            db.session.commit()
+            return jsonify({"success": True, "message": "Question updated successfully"})
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error during commit: {str(e)}")  # Debugging line
+            return jsonify({"success": False, "message": "Database commit failed"}), 500
+    except Exception as e:
+        print(f"Error processing request: {str(e)}")  # Debugging line
+        return jsonify({"success": False, "message": "Invalid request"}), 400
+
 @app.route('/Add-Question')
 def addQuestions():
     return render_template('add-Questions.html')
+
 
 #Runs the app with debug mode.
 if __name__ == "__main__": 
