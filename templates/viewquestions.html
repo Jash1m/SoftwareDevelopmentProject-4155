@@ -6,6 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
     <title>Admin - View Questions</title>
+    <style>
+        /* Added some inline styles for layout */
+        .question-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .responses {
+            width: 60%;
+        }
+
+        .editor {
+            width: 35%;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-left: 20px;
+            display: none;
+            /* Hide editor by default */
+        }
+
+        .editor.active {
+            display: block;
+            /* Show editor when active */
+        }
+
+        .editor input,
+        .editor textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .editor button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .editor button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,14 +111,18 @@
         <div class="matching-container">
             <div class="matching-header">
                 <h1>Questions List</h1>
-                <p>View all the questions stored in the database.</p>
+                <p>View and edit the questions stored in the database.</p>
             </div>
 
-            <div class="matching-content">
-                <!-- Display each question in its own box -->
+            <div class="matching-content question-container">
+                <!-- Question List Section -->
                 <div class="responses">
                     {% for question in questions %}
-                    <div class="response-item">
+                    <div class="response-item" data-id="{{ question.id }}"
+                        data-text="{{ question.text | tojson | tojson | forceescape }}"
+                        data-subtext="{{ question.subtext if question.subtext else 'null' | tojson | forceescape }}"
+                        data-options="{{ question.options | tojson  | forceescape }}"
+                        data-question-type="{{ question.questiontype }}" onclick="editQuestion(this)">
                         <h3>Question ID: {{ question.id }}</h3>
                         <p><strong>Text:</strong> {{ question.text }}</p>
                         <p><strong>Subtext:</strong> {{ question.subtext if question.subtext else 'No subtext available'
@@ -81,17 +130,43 @@
                         <p><strong>Options:</strong> {{ question.options }}</p>
                         <p><strong>Question Type:</strong>
                             {% if question.questiontype == 1 %}
-                            Single Choice
+                            1
                             {% elif question.questiontype == 2 %}
-                            Text Response
+                            2
                             {% elif question.questiontype == 3 %}
-                            Number Choice
+                            3
                             {% else %}
-                            Multiple Choice
+                            4
                             {% endif %}
                         </p>
                     </div>
+
                     {% endfor %}
+
+                </div>
+
+                <!-- Editor Section -->
+                <div id="editor" class="editor">
+                    <h3>Edit Question</h3>
+                    <form id="editForm">
+                        <input type="hidden" id="editQuestionId">
+                        <label for="editText">Question Text:</label>
+                        <textarea id="editText" rows="4"></textarea>
+
+                        <label for="editSubtext">Subtext:</label>
+                        <textarea id="editSubtext" rows="2"></textarea>
+
+                        <label for="editOptions">Options:</label>
+                        <p>Question options have a command followed by a space inbetween them.</p>
+                        <p>Example: , answer one, answer two, answer three</p>
+                        <textarea id="editOptions" rows="4"></textarea>
+
+                        <label for="editQuestionType">Question type cannot be edited.</label>
+                        <span id="editQuestionType"></span>
+
+
+                        <button type="button" onclick="saveEdit()">Save Changes</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -133,6 +208,102 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // JavaScript function to fill the editor with the clicked question's data
+        function editQuestion(element) {
+            console.log("editQuestion called");
+
+            // Show the editor section
+            document.getElementById("editor").classList.add("active");
+
+            // Retrieve the data from the clicked element's data attributes
+            const id = element.getAttribute('data-id');
+            console.log("Question ID:", id);
+
+            const text = safeParse(element.getAttribute('data-text'));
+            console.log("Text:", text);
+
+            const subtext = safeParse(element.getAttribute('data-subtext'));
+            console.log("Subtext:", subtext);
+
+            const options = safeParse(element.getAttribute('data-options'));
+            console.log("Options:", options);
+
+            const questionType = element.getAttribute('data-question-type');
+            console.log("Question Type:", questionType);
+
+            // Set the input values in the editor
+            document.getElementById("editQuestionId").value = id;
+            document.getElementById("editText").value = text;
+            document.getElementById("editSubtext").value = subtext;
+            document.getElementById("editOptions").value = options;
+            document.getElementById("editQuestionType").value = questionType;
+        }
+
+        function safeParse(value) {
+            try {
+                if (value && value !== "null") {
+                    console.log("Attempting to parse:", value);
+                    return JSON.parse(value);  // Parse valid JSON string
+                } else {
+                    console.log("Empty or null value, returning empty string.");
+                    return '';  // Return empty string if value is null or empty
+                }
+            } catch (e) {
+                console.error("Error parsing value:", value, e);
+                return value || '';  // Return original value if parsing fails
+            }
+        }
+        // JavaScript function to handle saving the edited question
+        function saveEdit() {
+            const id = document.getElementById("editQuestionId").value;
+            const text = document.getElementById("editText").value;
+            const subtext = document.getElementById("editSubtext").value.trim() || null;  // Handle null for subtext
+            const options = document.getElementById("editOptions").value;
+            const questionTypeElement = document.getElementById("editQuestionType");
+            const questionType = parseInt(questionTypeElement.value);  // Ensure integer value for question type
+
+            // If questionType is NaN, it means it wasn't set properly, handle this case:
+            if (isNaN(questionType)) {
+                alert("Invalid Question Type");
+                return;
+            }
+
+            // Prepare the data to send to the Flask backend
+            const data = {
+                id: id,
+                text: text,
+                subtext: subtext === "null" ? null : subtext,  // Convert 'null' string to actual null
+                options: options,
+                questiontype: questionType // Ensure questiontype is an integer
+            };
+
+            console.log("Sending data:", data);  // Debugging line
+
+            // Send the data to the Flask route via a POST request
+            fetch('/questions/edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Question updated successfully");
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred.');
+                });
+        }
+
+    </script>
 </body>
 
 </html>
