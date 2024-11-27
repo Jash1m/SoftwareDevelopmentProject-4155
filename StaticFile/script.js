@@ -425,12 +425,14 @@ function getQuestionType(event) {
     // Determine the question type
     if (selectedValue == 1) {
         questionType = "MC Question";
+        lowerOptionContent.style.display = "flex";
     } 
     else if (selectedValue == 3) {
         questionType = "1-5 Range";
-        lowerOptionContent.classList.add("hidden");
+        lowerOptionContent.style.display = "none";
     } 
     else if (selectedValue == 4) {
+        lowerOptionContent.style.display = "flex";
         questionType = "Multi-Select";
     } 
     else {
@@ -501,7 +503,7 @@ function createOptions() {
             newOptionInput.classList.add("questionTextOption");
             newOptionInput.type = "text";
             newOptionInput.placeholder = `Option ${i + 1}`;
-            
+            newOptionInput.addEventListener('change',makeShowcase);
 
             newOption.appendChild(newOptionInput);
             optionContainer.appendChild(newOption);
@@ -516,7 +518,29 @@ function createOptions() {
     document.querySelector("#Type2").addEventListener("click", getQuestionType);
     document.querySelector("#Type3").addEventListener("click", getQuestionType);
 
+function makeShowcase(){
+    const selectedType = document.querySelector("#questionTypeIdentifier").value;
+    const showcaseContainer = document.querySelector(".Question-Showcase-Area");
+    const questionText = document.querySelector(".QuestionText").textContent;
+    const allOptions = document.querySelectorAll(".questionTextOption");
 
+    const questionTitle = document.createElement("h3");
+    questionTitle.classList.add("question-header");
+    showcaseContainer.append(questionTitle);
+
+    if(selectedType == "MC Question"){
+        const boxDiv = document.createElement("div");
+        boxDiv.classList.add("showcase-selection-box");
+        showcaseContainer.append(boxDiv);
+
+    }
+
+    for(let i = 0; i < allOptions.length; i++){
+        const tempValue = allOptions[i];
+
+    }
+    
+}
 
 
 /* Matching in Progress */

@@ -859,12 +859,10 @@ form {
 .Question-Showcase-Area {
     display: flex;
     flex-direction: column;
-
+    gap: 0px;
     align-items: center;
-    background-color: var(--quartzWhite);
+    background-color: gray;
     border-radius: 15px;
-
-    gap: 0.5rem;
     width: 300px;
     height: auto;
     /* margin-left: 30px; */
@@ -891,6 +889,16 @@ form {
     border-radius: 15px;
 
     align-items: center;
+}
+
+.showcase-selection-box {
+    background-color: var(--quartzWhite);
+    padding: 15px; 
+    border-radius: 25px;
+    width: 50%; 
+    text-align: center; 
+    margin: 0;
+    position: relative;
 }
 
 .questionTextOption {
