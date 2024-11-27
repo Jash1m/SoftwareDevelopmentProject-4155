@@ -439,61 +439,67 @@ function getQuestionType(event) {
     identifier.innerText = "Type Selected: " + questionType;
     identifier.value = questionType;
 
+    //create a dropdown for selecting the number of options
     const numOptionsLabel = document.querySelector("#numberOfOptionsLabel");
-    numOptionsLabel.for = "numOptionsID";
-    numOptionsLabel.textContent = "Number of Options (Between 2 and 5)";
+    numOptionsLabel.textContent = "Number of Options";
     numOptionsLabel.classList.add("addQuestionNumOptions");
-    numOptionsLabel.value = questionType;
 
-    const numOptionsInput = document.createElement("input");
-    numOptionsInput.type = "number";
-    numOptionsInput.id = "numOptionsID";
-    numOptionsInput.min = "2";
-    numOptionsInput.max = "5";
-    numOptionsInput.step = "1";
-    numberOfOptionsLabel.append(numOptionsInput);
+    const dropdown = document.createElement("select");
+    dropdown.id = "numOptionsDropdown";
 
-    // createOptions();
-    numOptionsInput.addEventListener('click', createOptions);
-}
+    // add options for the dropdown (2 to 5)
+    for (let i = 2; i <= 5; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        dropdown.appendChild(option);
+    }
 
+    // this will remove any existing dropdown or inputs
+    const existingDropdown = document.querySelector("#numOptionsDropdown");
+    const optionContainer = document.querySelector(".Option-Creation-Container");
+    if (existingDropdown) {
+        existingDropdown.remove();
+        optionContainer.innerHTML = "";
+    }
 
-function createOptions() {
+    numOptionsLabel.appendChild(dropdown);
+
+    // event listener to create input fields when an option is selected
+    dropdown.addEventListener("change", createOptions);
+    }
+
+    function createOptions() {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const optionContainer = document.querySelector(".Option-Creation-Container");
+    const dropdown = document.querySelector("#numOptionsDropdown");
     const selectedType = identifier.value;
 
+    // this will clear any existing options
+    optionContainer.innerHTML = "";
 
-    if(selectedType == "MC Question"){
-        const numOptionsSelector = document.querySelector("#numOptionsID");
-        console.log(numOptionsSelector.value);
+    if (selectedType === "MC Question" && dropdown) {
+        const numOptions = parseInt(dropdown.value);
 
-        if(numOptionsSelector.value == ""){
-            console.log("This is empty!");
-        }
-        else if(numOptionsSelector.value < 2 || numOptionsSelector.value > 5){
-            alert("You must enter an Integer between 2 to 5");
-        }
-        else {
-            
-            for(let i = 0; i < numOptionsSelector.value; i++){
-                const newOption = document.createElement("div");
-                newOption.classList.add("questionOption");
+        // create the specified number of input fields
+        for (let i = 0; i < numOptions; i++) {
+            const newOption = document.createElement("div");
+            newOption.classList.add("questionOption");
 
-                const newOptionInput = document.createElement("input");
-                newOptionInput.type = "text";
+            const newOptionInput = document.createElement("input");
+            newOptionInput.type = "text";
+            newOptionInput.placeholder = `Option ${i + 1}`;
 
-                newOption.append(newOptionInput);
-                optionContainer.append(newOption);
-            }
+            newOption.appendChild(newOptionInput);
+            optionContainer.appendChild(newOption);
         }
     }
-}
+    }
 
-// Add event listeners to the radio buttons
-document.querySelector("#Type1").addEventListener('click', getQuestionType);
-document.querySelector("#Type2").addEventListener("click", getQuestionType);
-document.querySelector("#Type3").addEventListener("click", getQuestionType);
+    // Add event listeners to the radio buttons
+    document.querySelector("#Type1").addEventListener("click", getQuestionType);
+    document.querySelector("#Type2").addEventListener("click", getQuestionType);
+    document.querySelector("#Type3").addEventListener("click", getQuestionType);
 
 
 
