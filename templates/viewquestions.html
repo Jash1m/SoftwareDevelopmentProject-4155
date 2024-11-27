@@ -8,48 +8,106 @@
     <title>Admin - View Questions</title>
     <style>
         /* Added some inline styles for layout */
-        .question-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
+        /* Style for the right-side editor section */
+    .editor {
+        background-color: #F3F4F6; /* Light grey background to match other sections */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        width: 100%;
+        max-width: 350px; /* Ensure it doesn’t take too much space */
+        margin-left: 20px;
+        display: none; /* Hidden by default */
+        flex-direction: column; /* Align items vertically */
+        gap: 15px; /* Space between elements */
+    }
 
-        .responses {
-            width: 60%;
-        }
+    /* When editor is active */
+    .editor.active {
+        display: flex; /* Make it visible */
+    }
 
+    /* Editor headings */
+    .editor h3 {
+        color: var(--Charlotte_Green); /* Use the primary green for consistency */
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center; /* Center-align heading */
+    }
+
+    /* Labels */
+    .editor label {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--Charlotte_Green);
+        margin-bottom: 5px;
+    }
+
+    /* Text inputs and textareas */
+    .editor input,
+    .editor textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--Charlotte_Green); /* Green border */
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box; /* Include padding in width calculation */
+        transition: border-color 0.3s ease;
+    }
+
+    /* Focus effect for inputs */
+    .editor input:focus,
+    .editor textarea:focus {
+        border-color: var(--ninerGold); /* Change border to gold on focus */
+    }
+
+    /* Buttons */
+    .editor button {
+        background-color: var(--Charlotte_Green);
+        color: var(--quartzWhite);
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-align: center;
+    }
+
+    /* Button hover effect */
+    .editor button:hover {
+        background-color: var(--ninerGold);
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    /* Button active effect */
+    .editor button:active {
+        background-color: var(--Charlotte_Green);
+        transform: scale(0.95); /* Slightly shrink on click */
+    }
+
+    /* Example container spacing for alignment */
+    .question-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Space between the left and right sections */
+    }
+
+    /* Add responsiveness */
+    @media (max-width: 768px) {
         .editor {
-            width: 35%;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-left: 20px;
-            display: none;
-            /* Hide editor by default */
+            max-width: 100%; /* Expand to full width on smaller screens */
+            margin: 0;
         }
 
-        .editor.active {
-            display: block;
-            /* Show editor when active */
+        .question-container {
+            flex-direction: column; /* Stack sections vertically */
         }
+    }
 
-        .editor input,
-        .editor textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        .editor button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .editor button:hover {
-            background-color: #45a049;
-        }
     </style>
 </head>
 
