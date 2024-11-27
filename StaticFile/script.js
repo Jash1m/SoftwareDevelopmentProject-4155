@@ -450,9 +450,11 @@ function getQuestionType(event) {
     numOptionsInput.id = "numOptionsID";
     numOptionsInput.min = "2";
     numOptionsInput.max = "5";
+    numOptionsInput.step = "1";
     numberOfOptionsLabel.append(numOptionsInput);
 
-    createOptions();
+    // createOptions();
+    numOptionsInput.addEventListener('click', createOptions);
 }
 
 
@@ -467,19 +469,20 @@ function createOptions() {
         console.log(numOptionsSelector.value);
 
         if(numOptionsSelector.value == ""){
-
+            console.log("This is empty!");
         }
         else if(numOptionsSelector.value < 2 || numOptionsSelector.value > 5){
             alert("You must enter an Integer between 2 to 5");
         }
         else {
+            
             for(let i = 0; i < numOptionsSelector.value; i++){
                 const newOption = document.createElement("div");
                 newOption.classList.add("questionOption");
 
                 const newOptionInput = document.createElement("input");
                 newOptionInput.type = "text";
-                
+
                 newOption.append(newOptionInput);
                 optionContainer.append(newOption);
             }
