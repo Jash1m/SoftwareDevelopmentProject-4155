@@ -335,12 +335,22 @@ function filterResponses(event) {
             box.style.display = "none";
         }
     });
-
 }
-
 
 /* Matching in Progress */
 document.querySelector('.start-matching-btn').addEventListener('click', (event) => {
     const loadingIndicator = document.getElementById('loading-indicator');
     loadingIndicator.classList.remove('hidden');
 });
+
+// THIS IS THE ADD QUESTIONS JAVASCRIPT FUNCTIONALITY BELOW
+
+function getQuestionType() {
+    const identifier = document.querySelector("#questionTypeIdentifier");
+    const selected = document.querySelector("#questionTypeSelected");
+
+    identifier.innerText("Type Selected:" + selected.value);
+
+}
+
+
