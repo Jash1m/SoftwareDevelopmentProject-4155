@@ -69,5 +69,70 @@ class Student(db.Model):
     firstname = db.Column(db.String(255), nullable=False)
     lastname = db.Column(db.String(255), nullable=False)
     placed = db.Column(db.Boolean, default=False)
+    group_id = db.Column(db.Integer, db.ForeignKey('roommategroups.id'))
 
     response = db.relationship('Response', uselist=False, backref='student')
+
+class RoommateGroup(db.Model):
+    __tablename__ = 'roommategroups'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    students = db.relationship('Student', backref='group')
+
+
+class PQLog(db.Model):
+    __tablename__ = 'pqlog'
+
+    pq_id = db.Column(db.Integer, primary_key=True)
+    action = db.Column(db.String(255))
+    actiontime = db.Column(db.DateTime)
+    period_id = db.Column(db.Integer)
+    question_id = db.Column(db.Integer) 
+
+periodquestion_log = db.DDL('''\
+CREATE TRIGGER periodquestion_i AFTER INSERT ON periodquestion
+    FOR EACH ROW
+    INSERT INTO pqlog (action, actiontime, period_id, question_id)
+    VALUES('insert', NOW(), NEW.period_id, NEW.question_id);
+                            
+CREATE TRIGGER periodquestion_u AFTER UPDATE ON periodquestion
+    FOR EACH ROW
+    INSERT INTO pqlog (action, actiontime, period_id, question_id)
+    VALUES('update', NOW(), NEW.period_id, NEW.question_id);
+                            
+CREATE TRIGGER periodquestion_d AFTER DELETE ON periodquestion
+    FOR EACH ROW
+    INSERT INTO pqlog (action, actiontime, period_id, question_id)
+    VALUES('delete', NOW(), OLD.period_id, OLD.question_id);
+    ''')
+db.event.listen(PeriodQuestion, 'after_create', periodquestion_log)
+
+class PLog(db.Model):
+    __tablename__ = 'plog'
+
+    pq_id = db.Column(db.Integer, primary_key=True)
+    action = db.Column(db.String(255))
+    actiontime = db.Column(db.DateTime)
+    id = db.Column(db.Integer)
+    periodName = db.Column(db.String(30), nullable=False)
+    numDoubles = db.Column(db.Integer, nullable=False)
+    numQuads = db.Column(db.Integer, nullable=False)
+
+period_log = db.DDL('''\
+CREATE TRIGGER period_i AFTER INSERT ON periods
+    FOR EACH ROW
+    INSERT INTO plog (action, actiontime, id, periodName, numDoubles, numQuads)
+    VALUES('insert', NOW(), NEW.id, NEW.periodName, NEW.numDoubles, NEW.numQuads);
+                            
+CREATE TRIGGER period_u AFTER UPDATE ON periods
+    FOR EACH ROW
+    INSERT INTO plog (action, actiontime, id, periodName, numDoubles, numQuads)
+    VALUES('update', NOW(), NEW.id, NEW.periodName, NEW.numDoubles, NEW.numQuads);
+                            
+CREATE TRIGGER period_d AFTER DELETE ON periods
+    FOR EACH ROW
+    INSERT INTO plog (action, actiontime, id, periodName, numDoubles, numQuads)
+    VALUES('delete', NOW(), OLD.id, OLD.periodName, OLD.numDoubles, OLD.numQuads);
+    ''')
+db.event.listen(Period.__table__, 'after_create', period_log)

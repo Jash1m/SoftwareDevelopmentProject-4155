@@ -3,7 +3,7 @@ import random
 import subprocess
 import sys
 from flask import Flask, abort, render_template, request, redirect, url_for
-from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
+from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion, RoommateGroup
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
@@ -13,9 +13,9 @@ app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
 
-dbUser = "" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "" #!!! Must be updated locally | The password to access your SQL server
-dbName = "" #!! Must be updated locally | The name of your schema in the database
+dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "12345" #!!! Must be updated locally | The password to access your SQL server
+dbName = "roommate" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -454,6 +454,47 @@ def updatePeriod():
     currentPeriod= periodID
 
     return redirect(url_for('admin'))
+
+def createRoommateGroup(studentid):
+    student = Student.query.get_or_404(studentid)
+
+    if not student.placed:
+        group = RoommateGroup()
+        group.students.append(student)
+        db.session.add(group)
+
+        student.placed = True
+        
+        db.session.commit()
+    else:
+        print("Student already in roommate group")
+
+def addToRoommateGroup(groupid, studentid):
+    student = Student.query.get_or_404(studentid)
+    group = RoommateGroup.query.get_or_404(groupid)
+
+    if not student.placed and len(group.students) < 4:
+        group.students.append(student)
+
+        student.placed = True
+        
+        db.session.commit()
+    else:
+        print("Invalid placement")
+
+def removeFromRoommateGroup(studentid):
+    student = Student.query.get_or_404(studentid)
+
+    if student.placed:
+        student.group.remove(student)
+
+        student.placed = False
+        
+        db.session.commit()
+    else:
+        print("Not in group")
+
+
 
 
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
