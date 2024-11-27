@@ -700,7 +700,7 @@ form {
     background-color: #D9D9D9;
     border-radius: 15px;
     padding: 20px;
-
+    margin-top: -5%;
 }
 
 .add-Questions-Header {
@@ -768,10 +768,6 @@ form {
     padding: 5px;
     font-weight: 300;
     width: 100%;
-}
-
-.Question-Input-Area p {
-    
 }
 
 .Question-Input-Type-Buttons {
@@ -863,11 +859,17 @@ form {
     flex-direction: column;
     gap: 0px;
     align-items: center;
-    background-color: gray;
+    background-color: #D9D9D9;
     border-radius: 15px;
     width: 300px;
     height: auto;
     /* margin-left: 30px; */
+}
+
+.Question-Showcase-Content {
+    margin-top: 15px;
+    width: 100%;
+    height: auto;
 }
 
 .Question-Showcase-Header {
@@ -898,7 +900,8 @@ form {
     font-size: 24px;
     text-align: center;
     font-weight: normal;
-    margin: 25px;
+    margin: 15px;
+    margin-top: 25px;
 }
 
 

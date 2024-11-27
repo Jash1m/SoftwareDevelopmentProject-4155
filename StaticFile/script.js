@@ -420,20 +420,24 @@ function getQuestionType(event) {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const selectedValue = event.target.value;
     const lowerOptionContent = document.querySelector(".lowerContent");
+    const showCaseContent = document.querySelector(".Question-Showcase-Content");
     let questionType = "";
 
     // Determine the question type
     if (selectedValue == 1) {
         questionType = "MC Question";
         lowerOptionContent.style.display = "flex";
+        showCaseContent.innerHTML = "";
     } 
     else if (selectedValue == 3) {
         questionType = "1-5 Range";
         lowerOptionContent.style.display = "none";
+        showCaseContent.innerHTML = "";
     } 
     else if (selectedValue == 4) {
         lowerOptionContent.style.display = "flex";
         questionType = "Multi-Select";
+        showCaseContent.innerHTML = "";
     } 
     else {
         questionType = "ERROR";
@@ -487,6 +491,9 @@ function createOptions() {
     const optionContainer = document.querySelector(".Option-Creation-Container");
     const dropdown = document.querySelector("#numOptionsDropdown");
     const selectedType = identifier.value; // Determine the question type
+    const questionAsk = document.querySelector(".QuestionText");
+
+    questionAsk.addEventListener('input',makeShowcase);
 
     // clear any existing options in the option container
     optionContainer.innerHTML = "";
@@ -520,8 +527,8 @@ function createOptions() {
     
     function makeShowcase() {
         const selectedType = document.querySelector("#questionTypeIdentifier").value;
-        const showcaseContainer = document.querySelector(".Question-Showcase-Area");
-    
+        const showcaseContainer = document.querySelector(".Question-Showcase-Content");
+
         // clear only the content below the header
         const existingSelectionBox = showcaseContainer.querySelector(".showcase-selection-box");
         const existingQuestionTitle = showcaseContainer.querySelector(".showcase-question-title");
@@ -532,7 +539,7 @@ function createOptions() {
         if (existingQuestionTitle) {
             existingQuestionTitle.remove();
         }
-    
+
         //fetch the question text
         const questionText = document.querySelector(".QuestionText").value;
     
@@ -543,7 +550,12 @@ function createOptions() {
             questionTitle.textContent = questionText; //add question text
             showcaseContainer.appendChild(questionTitle); //append below header
         }
-    
+        else {
+            const questionTitle = document.createElement("p");
+            questionTitle.classList.add("showcase-question-title");
+            questionTitle.textContent = "No Question Asked"; //add question text
+            showcaseContainer.appendChild(questionTitle); //append below header
+        }
         // create the selection box
         const selectionBox = document.createElement("div");
         selectionBox.classList.add("showcase-selection-box");
