@@ -761,11 +761,66 @@ form {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 .Questions-Input-Type-Button {
-    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    color: var(--quartzWhite);
+    background-color: var(--Charlotte_Green);
 }
+
+.Questions-Input-Type-Button:hover {
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.Questions-Input-Type-Button:focus {
+    background-color: var(--ninerGold); 
+    transform: scale(1.1);
+    border: none;
+} 
+
+/* .custom-circle-radio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-circle-radio input {
+    position: absolute;
+    opacity: 0; 
+}
+
+.custom-circle-radio span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--Charlotte_Green); 
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    }
+    
+/*circle style when selected
+.custom-circle-radio input:checked + span {
+    background-color: var(--ninerGold); 
+    transform: scale(1.1);
+} */
 
 .Question-Showcase-Area {
     display: flex;
