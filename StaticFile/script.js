@@ -175,26 +175,6 @@ function deleteMajorResponse(questionId) {
 }
 
 
-// Function to create a dropdown for editing a response
-function editResponse(questionId) {
-    const questionKey = questionId.split('-')[0];
-    const options = questionOptions[questionKey]; //options
-
-    let dropdown = `<select onchange="updateResponse('${questionId}')">`;
-    options.forEach(option => {
-        dropdown += `<option value="${option}">${option}</option>`;
-    });
-    dropdown += `</select>`;
-
-    // find the element with the data-catagory attribute
-    const element = document.querySelector(`[data-category="${questionId}"]`);
-    if (element) {
-        // replaced current text with the dropdown menu
-        element.innerHTML = dropdown;
-    } else {
-        console.error(`Element with data-category="${questionId}" not found`);
-    }
-}
 
 // update response with the selected option from the dropdown
 function updateResponse(questionId) {
@@ -336,6 +316,102 @@ function filterResponses(event) {
         }
     });
 
+}
+
+function editResponse(questionId) {
+    // Extract the question key from questionId
+    const questionKey = questionId.split('-')[0];
+
+    // Get the list of options for the given question
+    const options = questionOptions[questionKey];
+    if (!options) {
+        console.error(`No options available for question: ${questionKey}`);
+        return;
+    }
+
+    // Generate the dropdown with the current options
+    let dropdown = `<select onchange="updateResponse('${questionId}')">`;
+    options.forEach(option => {
+        dropdown += `<option value="${option}">${option}</option>`;
+    });
+    dropdown += `</select>`;
+
+    // Find the element with the matching data-category attribute
+    const element = document.querySelector(`[data-category="${questionId}"]`);
+    if (element) {
+        // Replace current text or content with the dropdown
+        element.innerHTML = dropdown;
+    } else {
+        console.error(`Element with data-category="${questionId}" not found`);
+    }
+}
+
+// Function to update the response with the selected dropdown value
+async function updateResponse(questionId) {
+    // Find the selected value from the dropdown
+    const selectedValue = document.querySelector(`[data-category="${questionId}"] select`).value;
+
+    // Extract question key and user ID from questionId
+    const [questionKey, userId] = questionId.split('-');
+
+    // Save the updated response to the server
+    try {
+        const response = await fetch('/save-response', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                questionKey: questionKey,
+                userId: userId,
+                selectedValue: selectedValue,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to save response for ${questionId}`);
+        }
+
+        // Find the element to replace the dropdown with the selected value
+        const element = document.querySelector(`[data-category="${questionId}"]`);
+        if (element) {
+            // Replace the dropdown with the selected value
+            element.innerText = selectedValue;
+        } else {
+            console.error(`Element with data-category="${questionId}" not found`);
+        }
+
+        console.log(`Response for ${questionId} saved successfully.`);
+    } catch (error) {
+        console.error(`Error saving response: ${error.message}`);
+    }
+}
+
+
+
+function deleteResponse(category) {
+    const [question, responseId] = category.split('-');
+
+    // Confirm deletion
+    if (!confirm('Are you sure you want to delete this response?')) return;
+
+    // Send delete request to the backend
+    fetch('/delete_response', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ response_id: responseId, question: question }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            // Clear the content of the span
+            const spanElement = document.querySelector(`[data-category="${category}"]`);
+            spanElement.textContent = '(Deleted)';
+        } else {
+            alert('Failed to delete response: ' + data.error);
+        }
+    })
+    .catch((err) => console.error('Error:', err));
 }
 
 
