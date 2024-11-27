@@ -1084,6 +1084,7 @@ form {
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    max-width: 650px;
 }
 
 .response-box:hover {
@@ -1112,8 +1113,9 @@ form {
     padding: 0px;
     gap: 0.5rem;
     padding-bottom: 0.20rem;
+    position: relative;
 }
-    
+
 .response-item-title {
     font-weight: bold;
     margin: 0px;
@@ -1254,6 +1256,24 @@ form {
     align-items: center;
     justify-content: center;
     width: 20%;
+}
+
+/* custom scrollbar for Majors dropdown */
+.response-item-container select::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb {
+    border-radius: 5px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb:hover {
+    background-color: var(--Charlotte_Green); 
+}
+
+.response-item-container select::-webkit-scrollbar-track {
+    background-color: var(--jasper); 
 }
 
 /*====================== Start Matching Page ================/*/
@@ -1628,6 +1648,12 @@ form {
     max-width: 400px;
 }
 
+.logout-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
 /* Buttons Styling */
 .login-container a,
 .logout-container a,
@@ -1653,7 +1679,7 @@ form {
 .logout-container a:hover,
 .login-page button:hover {
     background-color: var(--ninerGold);
-    color: var(--Ore_Black);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
 
