@@ -12,8 +12,8 @@ app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 
 dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "" #!!! Must be updated locally | The password to access your SQL server
-dbName = "" #!! Must be updated locally | The name of your schema in the database
+dbPass = "Charlotte43" #!!! Must be updated locally | The password to access your SQL server
+dbName = "flask2" #!! Must be updated locally | The name of your schema in the database
 
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
@@ -533,6 +533,12 @@ def parse_matching_results(output): #Since the matching script returns a string,
 @app.route('/admin')
 def admin():
     return render_template('adminindex.html')
+
+@app.route('/questions')
+def view_questions():
+    # Fetch all questions from the database
+    questions = Question.query.all()
+    return render_template('viewquestions.html', questions=questions)
 
 #Runs the app with debug mode.
 if __name__ == "__main__": 
