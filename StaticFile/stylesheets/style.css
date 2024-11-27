@@ -1008,8 +1008,9 @@ form {
     padding: 0px;
     gap: 0.5rem;
     padding-bottom: 0.20rem;
+    position: relative;
 }
-    
+
 .response-item-title {
     font-weight: bold;
     margin: 0px;
@@ -1150,6 +1151,24 @@ form {
     align-items: center;
     justify-content: center;
     width: 20%;
+}
+
+/* custom scrollbar for Majors dropdown */
+.response-item-container select::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb {
+    border-radius: 5px; 
+}
+
+.response-item-container select::-webkit-scrollbar-thumb:hover {
+    background-color: var(--Charlotte_Green); 
+}
+
+.response-item-container select::-webkit-scrollbar-track {
+    background-color: var(--jasper); 
 }
 
 /*====================== Start Matching Page ================/*/
