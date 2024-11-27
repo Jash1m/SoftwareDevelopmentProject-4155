@@ -1838,7 +1838,7 @@ form {
 
 /* General Styling for Login Page */
 .login-page {
-    margin: 0 auto;
+    margin: 0 15rem;
     text-align: center;
     padding: 50px 20px;
     max-width: 400px;
@@ -1890,9 +1890,6 @@ form {
 }
 
 /*======================== Login and Logout Buttons Styling ========================*/
-.login-page {
-    margin: 200px;
-}
 
 .login-container,
 .logout-container {
