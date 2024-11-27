@@ -1523,6 +1523,12 @@ form {
     max-width: 400px;
 }
 
+.logout-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
 /* Buttons Styling */
 .login-container a,
 .logout-container a,
@@ -1548,7 +1554,7 @@ form {
 .logout-container a:hover,
 .login-page button:hover {
     background-color: var(--ninerGold);
-    color: var(--Ore_Black);
+    color: var(--quartzWhite);
     transform: scale(1.05);
 }
 
