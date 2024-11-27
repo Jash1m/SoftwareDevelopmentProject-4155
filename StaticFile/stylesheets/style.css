@@ -891,15 +891,72 @@ form {
     align-items: center;
 }
 
+/* Showcase header for questions */
+.showcase-question-title {
+    font-size: 24px;
+    text-align: center;
+    font-weight: normal;
+    margin: 25px;
+}
+
+
 .showcase-selection-box {
-    background-color: var(--quartzWhite);
+    background-color: var(--quartzWhite); 
     padding: 15px; 
-    border-radius: 25px;
-    width: 50%; 
-    text-align: center; 
-    margin: 0;
+    border-radius: 15px; 
+    width: 80%; 
+    margin: 0 auto 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
     position: relative;
 }
+
+
+.showcase-custom-radio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.showcase-custom-radio span {
+    font-size: 22px;
+    text-align: center; 
+    flex-grow: 1;
+}
+
+.showcase-custom-radio input {
+    position: absolute;
+    right: 10px; 
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 2px solid var(--Charlotte_Green); 
+    border-radius: 50%;
+    background-color: var(--Charlotte_Green); 
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.showcase-custom-radio input:checked {
+    background-color: var(--ninerGold);
+    border-color: var(--ninerGold);
+}
+
+.showcase-custom-radio:hover {
+    border-color: var(--Charlotte_Green);
+
+}
+
+
+
+
 
 .questionTextOption {
     width: 100%;

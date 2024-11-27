@@ -518,31 +518,65 @@ function createOptions() {
     document.querySelector("#Type2").addEventListener("click", getQuestionType);
     document.querySelector("#Type3").addEventListener("click", getQuestionType);
 
-function makeShowcase(){
-    const selectedType = document.querySelector("#questionTypeIdentifier").value;
-    const showcaseContainer = document.querySelector(".Question-Showcase-Area");
-    const questionText = document.querySelector(".QuestionText").textContent;
-    const allOptions = document.querySelectorAll(".questionTextOption");
+    function makeShowcase() {
+        const selectedType = document.querySelector("#questionTypeIdentifier").value;
+        const showcaseContainer = document.querySelector(".Question-Showcase-Area");
+    
+        // clear only the content below the header
+        const existingSelectionBox = showcaseContainer.querySelector(".showcase-selection-box");
+        const existingQuestionTitle = showcaseContainer.querySelector(".showcase-question-title");
+        if (existingSelectionBox) {
+            existingSelectionBox.remove();
+        }
+        if (existingQuestionTitle) {
+            existingQuestionTitle.remove(); 
+        }
+    
+        //fetch the question text
+        const questionText = document.querySelector(".QuestionText").value;
+    
+        // add the question title (if text is not empty)
+        if (questionText.trim() !== "") {
+            const questionTitle = document.createElement("p");
+            questionTitle.classList.add("showcase-question-title");
+            questionTitle.textContent = questionText; //add question text
+            showcaseContainer.appendChild(questionTitle); //append below header
+        }
+    
+        // create the selection box
+        const selectionBox = document.createElement("div");
+        selectionBox.classList.add("showcase-selection-box");
+    
+        // fetch all options
+        const allOptions = document.querySelectorAll(".questionTextOption");
+        allOptions.forEach(option => {
+            const optionValue = option.value.trim();
+            if (optionValue) {
+                // create custom radio buttons with labels
+                const radioLabel = document.createElement("label");
+                radioLabel.classList.add("showcase-custom-radio");
 
-    const questionTitle = document.createElement("h3");
-    questionTitle.classList.add("question-header");
-    showcaseContainer.append(questionTitle);
-
-    if(selectedType == "MC Question"){
-        const boxDiv = document.createElement("div");
-        boxDiv.classList.add("showcase-selection-box");
-        showcaseContainer.append(boxDiv);
-
-    }
-
-    for(let i = 0; i < allOptions.length; i++){
-        const tempValue = allOptions[i];
-
+                const radioInput = document.createElement("input");
+                radioInput.type = "radio";
+                radioInput.name = "showcase-options";
+                radioInput.value = optionValue;
+    
+                const radioText = document.createElement("span");
+                radioText.textContent = optionValue;
+    
+                // append radio button and text to the label
+                radioLabel.appendChild(radioText);
+                radioLabel.appendChild(radioInput);
+                //add label to the selection box
+                selectionBox.appendChild(radioLabel);
+            }
+        });
+    
+        // this will add the selection box below the question title
+        showcaseContainer.appendChild(selectionBox);
     }
     
-}
-
-
+    
 /* Matching in Progress */
 document.querySelector('.start-matching-btn').addEventListener('click', (event) => {
     const loadingIndicator = document.getElementById('loading-indicator');
