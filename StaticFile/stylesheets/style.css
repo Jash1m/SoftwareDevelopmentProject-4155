@@ -1460,7 +1460,7 @@ form {
 .login-page input[type="text"]:focus,
 .login-page input[type="password"]:focus {
     border-color: var(--ninerGold);
-    background-color: var(--jasper);
+    background-color: var(--quartzWhite);
     color: var(--Charlotte_Green);
 }
 
