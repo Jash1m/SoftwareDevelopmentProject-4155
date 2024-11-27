@@ -699,6 +699,8 @@ form {
     height: auto;
     background-color: #D9D9D9;
     border-radius: 15px;
+    padding: 20px;
+
 }
 
 .add-Questions-Header {
