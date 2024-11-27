@@ -72,7 +72,10 @@
                     <form action="/submit-question" method="POST">
                         <p>Question Content</p>
                         <input type="text" name="questionContent" class = "QuestionText" placeholder="Enter Question Here" required>
-        
+                        
+                        <p>Question Caption</p>
+                        <input type="text" name="caption" class = "QuestionText" placeholder="Enter Question Label Here ex. Hobbies" required>
+
                         <p>Question type</p>
                         <div class="Question-Input-Type-Buttons">
                             <label class="Input-Type-Button">
@@ -91,9 +94,14 @@
                         <p id="questionTypeIdentifier">Type Selected: none</p>
                         
                         <label id="numberOfOptionsLabel"></label>
-                        <div class ="lowerContent">
+                        <div class ="lowerContent" style="display: none;">
                             <p>Question Options</p>
-                            <div class="Option-Creation-Container">
+                            <div id="optionContainer" class="Option-Creation-Container">
+
+                            </div>
+                        </div>
+                        <div class = "subtextContent" style="display: none;">
+                            <div id="subtextContainer" class="Option-Creation-Container">
 
                             </div>
                         </div>
