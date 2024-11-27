@@ -1454,3 +1454,115 @@ form {
     }
 }
 
+
+/*======================== Login Page Styling ========================*/
+
+/* General Styling for Login Page */
+.login-page {
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 400px;
+    background-color: var(--jasper);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--Charlotte_Green);
+    font-family: 'Oswald', sans-serif;
+    color: var(--Charlotte_Green);
+}
+
+/* Page Title */
+.login-page h2 {
+    font-size: 28px;
+    color: var(--Charlotte_Green);
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Login Form Styling */
+.login-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Input Fields */
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: var(--Ore_Black);
+    background-color: var(--quartzWhite);
+    border: 2px solid var(--Charlotte_Green);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login-page input[type="text"]:focus,
+.login-page input[type="password"]:focus {
+    border-color: var(--ninerGold);
+    background-color: var(--quartzWhite);
+    color: var(--Charlotte_Green);
+}
+
+/*======================== Login and Logout Buttons Styling ========================*/
+.login-page {
+    margin: 200px;
+}
+
+.login-container,
+.logout-container {
+    margin: 20px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Buttons Styling */
+.login-container a,
+.logout-container a,
+.login-page button {
+    display: inline-block;
+    background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 2px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    border: 2px solid var(--Charlotte_Green);
+    width: 100%; 
+    max-width: 300px;
+    text-align: center;
+}
+
+/* Hover Effect for Buttons */
+.login-container a:hover,
+.logout-container a:hover,
+.login-page button:hover {
+    background-color: var(--ninerGold);
+    color: var(--Ore_Black);
+    transform: scale(1.05);
+}
+
+/* Active State for Buttons */
+.login-container a:active,
+.logout-container a:active,
+.login-page button:active {
+    background-color: var(--Charlotte_Green);
+    transform: scale(0.95);
+}
+
+/* Button Text Alignment */
+.login-container a span,
+.logout-container a span {
+    display: inline-block;
+    vertical-align: middle;
+}

@@ -91,13 +91,17 @@
             <div class="button-container single-button">
                 <a href="{{ url_for('survey') }}" class="custom-button survey-button">Take the Roommate Compatibility Survey</a>
             </div>
-            
 
-            <!-- Logout Button -->
-            <div class="logout-container">
-                <a href="#" class="custom-button">Logout</a>
+            <!-- Login and Logout Buttons -->
+            <div class="button-container">
+                {% if logged_in %}
+                    <!-- Show Logout Button if User is Logged In -->
+                    <a href="{{ url_for('logout') }}" class="custom-button">Logout</a>
+                {% else %}
+                    <!-- Show Login Button if User is Not Logged In -->
+                    <a href="{{ url_for('login') }}" class="custom-button">Login</a>
+                {% endif %}
             </div>
-        </div>
     </div>
 
     <!-- Left Sidebar -->
