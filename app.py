@@ -10,9 +10,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "Michael" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "Michael" #!!! Must be updated locally | The password to access your SQL server
-dbName = "4155project" #!! Must be updated locally | The name of your schema in the database
+dbUser = " " #!!! Must be updated locally | The username to access your SQL server
+dbPass = " " #!!! Must be updated locally | The password to access your SQL server
+dbName = " " #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
