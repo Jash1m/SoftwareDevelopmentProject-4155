@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
-    <title>Landing Page</title>
+    <title>Survey-Add Questions</title>
     <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="../StaticFile/script.js" defer></script>
@@ -65,38 +65,45 @@
     <main>
     <!-- Main Content Wrapper -->
     <div class = "add-Questions-Container">
-        <h1 class="add-Questions-Header">Add Questions</h1>
-        <div class="add-Questions-Content">
-            <div class = 'Question-Input-Area'>
-                <h3 class="Question-Input-Header">Please Enter your Content Here</h3>
-                <p>Question Content</p>
-                <input type="text" placeholder="Enter Question Here"></input>
+            <h1 class="add-Questions-Header">Add Questions</h1>
+            <div class="add-Questions-Content">
+                <div class="Question-Input-Area">
+                    <h3 class="Question-Input-Header">Please Enter your Content Here</h3>
+                    <form action="/submit-question" method="POST">
+                        <p>Question Content</p>
+                        <input type="text" name="questionContent" placeholder="Enter Question Here" required>
+        
+                        <p>Question type</p>
+                        <div class="Question-Input-Type-Buttons">
+                            <label class="Input-Type-Button">
+                                <input type="radio" name="questionType" id="Type1" value="1" required>
+                                <span>1</span>
+                            </label>
+                            <label class="Input-Type-Button">
+                                <input type="radio" name="questionType" id="Type2" value="3" required>
+                                <span>2</span>
+                            </label>
+                            <label class="Input-Type-Button">
+                                <input type="radio" name="questionType" id="Type3" value="4" required>
+                                <span>3</span>
+                            </label>
+                        </div>
+                        <p id="questionTypeIdentifier">Type Selected: none</p>
+        
+                        <label id="numberOfOptionsLabel"></label>
+                        <p>Question Options</p>
+                        <div class="Option-Creation-Container">
 
-                <p>Question type</p>
-                <div class="Question-Input-Type-Buttons">
-                    <label class="Input-Type-Button">
-                        <input type="radio" name="question_type" id = "Type1" value="1" required>
-                        <span>1</span>
-                    </label>
-                    <label class="Input-Type-Button">
-                        <input type="radio" name="question_type" id = "Type2" value="3" required>
-                        <span>2</span>
-                    </label>
-                    <label class="Input-Type-Button">
-                        <input type="radio" name="question_type" id = "Type3" value="4" required>
-                        <span>3</span>
-                    </label>
+                        </div>
+        
+                        <!-- Submit button -->
+                        <button type="submit" class="custom-button">Submit</button>
+                    </form>
                 </div>
-                <p id="questionTypeIdentifier">Type Selected: none</p>
-                <label id = "numberOfOptionsLabel"></label>
-                <p>Question Options</p>
-                <div class="Option-Creation-Container">
-
+                <div class="Question-Showcase-Area">
+                    <h3 class="Question-Showcase-Header">Question Showcase</h3>
+                    
                 </div>
-                <button type="submit" class="custom-button">Submit</button>
-            </div>
-            <div class = 'Question-Showcase-Area'>
-                <h3 class="Question-Showcase-Header">Question Showcase</h3>
             </div>
         </div>
     </div>
