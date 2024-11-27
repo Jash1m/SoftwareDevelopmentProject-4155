@@ -904,7 +904,7 @@ form {
     background-color: var(--quartzWhite); 
     padding: 15px; 
     border-radius: 15px; 
-    width: 80%; 
+    width: 85%; 
     margin: 0 auto 30px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
     position: relative;
@@ -954,9 +954,53 @@ form {
 
 }
 
+/* question type 2: 1-5 Range */
 
+.range-selection-box {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center; 
+    padding: 10px;
+    border-radius: 15px;
+    background-color: transparent; 
+    width: 80%; 
+    margin: 0 auto; 
+}
 
+.range-circle-radio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
 
+.range-circle-radio input {
+    position: absolute;
+    opacity: 0;
+}
+
+.range-circle-radio span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--Charlotte_Green); 
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.range-circle-radio input:checked + span {
+    background-color: var(--ninerGold); 
+    transform: scale(1.1);
+}
+
+.range-circle-radio span:hover {
+    background-color: var(--Charlotte_Green);
+}
 
 .questionTextOption {
     width: 100%;

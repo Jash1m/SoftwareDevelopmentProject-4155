@@ -486,15 +486,15 @@ function createOptions() {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const optionContainer = document.querySelector(".Option-Creation-Container");
     const dropdown = document.querySelector("#numOptionsDropdown");
-    const selectedType = identifier.value;
-    const lowerContent = document.querySelector(".lowerContent");
+    const selectedType = identifier.value; // Determine the question type
 
-    // this will clear any existing options
+    // clear any existing options in the option container
     optionContainer.innerHTML = "";
 
-    if ((selectedType === "MC Question" && dropdown) || (selectedType == "Multi-Select" && dropdown)) {
-        const numOptions = parseInt(dropdown.value);
-        // create the specified number of input fields
+    if (selectedType === "MC Question" || selectedType === "Multi-Select") {
+        const numOptions = parseInt(dropdown.value, 10);
+
+        // create input fields for options
         for (let i = 0; i < numOptions; i++) {
             const newOption = document.createElement("div");
             newOption.classList.add("questionOption");
@@ -503,21 +503,21 @@ function createOptions() {
             newOptionInput.classList.add("questionTextOption");
             newOptionInput.type = "text";
             newOptionInput.placeholder = `Option ${i + 1}`;
-            newOptionInput.addEventListener('change',makeShowcase);
+            newOptionInput.addEventListener("input", makeShowcase); //to update showcase on input
 
             newOption.appendChild(newOptionInput);
             optionContainer.appendChild(newOption);
         }
     }
-    else if(selectedType == "1-5 Range"){
-        lowerContent.classList.add("hidden");
-    }
+
+    makeShowcase();
 }
+
     // Add event listeners to the radio buttons
     document.querySelector("#Type1").addEventListener("click", getQuestionType);
     document.querySelector("#Type2").addEventListener("click", getQuestionType);
     document.querySelector("#Type3").addEventListener("click", getQuestionType);
-
+    
     function makeShowcase() {
         const selectedType = document.querySelector("#questionTypeIdentifier").value;
         const showcaseContainer = document.querySelector(".Question-Showcase-Area");
@@ -525,11 +525,12 @@ function createOptions() {
         // clear only the content below the header
         const existingSelectionBox = showcaseContainer.querySelector(".showcase-selection-box");
         const existingQuestionTitle = showcaseContainer.querySelector(".showcase-question-title");
+    
         if (existingSelectionBox) {
             existingSelectionBox.remove();
         }
         if (existingQuestionTitle) {
-            existingQuestionTitle.remove(); 
+            existingQuestionTitle.remove();
         }
     
         //fetch the question text
@@ -547,35 +548,85 @@ function createOptions() {
         const selectionBox = document.createElement("div");
         selectionBox.classList.add("showcase-selection-box");
     
-        // fetch all options
-        const allOptions = document.querySelectorAll(".questionTextOption");
-        allOptions.forEach(option => {
-            const optionValue = option.value.trim();
-            if (optionValue) {
-                // create custom radio buttons with labels
-                const radioLabel = document.createElement("label");
-                radioLabel.classList.add("showcase-custom-radio");
-
-                const radioInput = document.createElement("input");
-                radioInput.type = "radio";
-                radioInput.name = "showcase-options";
-                radioInput.value = optionValue;
+        // handle type-specific options
+        if (selectedType === "MC Question") {
+            // type 1: Multiple Choice (Radio Buttons)
+            const allOptions = document.querySelectorAll(".questionTextOption");
+            allOptions.forEach((option, index) => {
+                const optionValue = option.value.trim();
+                if (optionValue) {
+                    const radioLabel = document.createElement("label");
+                    radioLabel.classList.add("showcase-custom-radio");
     
-                const radioText = document.createElement("span");
-                radioText.textContent = optionValue;
+                    const radioInput = document.createElement("input");
+                    radioInput.type = "radio";
+                    radioInput.name = "showcase-options";
+                    radioInput.value = optionValue;
     
-                // append radio button and text to the label
-                radioLabel.appendChild(radioText);
-                radioLabel.appendChild(radioInput);
-                //add label to the selection box
-                selectionBox.appendChild(radioLabel);
+                    const radioText = document.createElement("span");
+                    radioText.textContent = optionValue;
+    
+                    // this will add the selection box below the question title
+                    radioLabel.appendChild(radioText);
+                    radioLabel.appendChild(radioInput);
+                    selectionBox.appendChild(radioLabel);
+                }
+            });
+        } else if (selectedType === "1-5 Range") {
+            // type 2: 1-5 Range (Circle Radio Buttons)
+            const dropdown = document.querySelector("#numOptionsDropdown");
+            const numOptions = dropdown ? parseInt(dropdown.value, 10) : 5;
+        
+            // create a new container for the range options
+            const rangeSelectionBox = document.createElement("div");
+            rangeSelectionBox.classList.add("range-selection-box"); 
+        
+            for (let i = 1; i <= numOptions; i++) {
+                const circleLabel = document.createElement("label");
+                circleLabel.classList.add("range-circle-radio"); 
+        
+                const circleInput = document.createElement("input");
+                circleInput.type = "radio";
+                circleInput.name = "range-options";
+                circleInput.value = i;
+        
+                const circleSpan = document.createElement("span");
+                circleSpan.textContent = i;
+        
+                circleLabel.appendChild(circleInput);
+                circleLabel.appendChild(circleSpan);
+                rangeSelectionBox.appendChild(circleLabel); 
             }
-        });
+        
+            selectionBox.appendChild(rangeSelectionBox); 
+        }
+         else if (selectedType === "Multi-Select") {
+            // type 3: Multi-Select (Checkboxes)
+            const allOptions = document.querySelectorAll(".questionTextOption");
+            allOptions.forEach((option, index) => {
+                const optionValue = option.value.trim();
+                if (optionValue) {
+                    const checkboxLabel = document.createElement("label");
+                    checkboxLabel.classList.add("custom-checkbox");
     
-        // this will add the selection box below the question title
+                    const checkboxInput = document.createElement("input");
+                    checkboxInput.type = "checkbox";
+                    checkboxInput.name = `option-${index}`;
+                    checkboxInput.value = optionValue;
+    
+                    const checkboxSpan = document.createElement("span");
+                    checkboxSpan.textContent = optionValue;
+    
+                    checkboxLabel.appendChild(checkboxInput);
+                    checkboxLabel.appendChild(checkboxSpan);
+                    selectionBox.appendChild(checkboxLabel);
+                }
+            });
+        }
+    
+        // this will add the selection box to the showcase container
         showcaseContainer.appendChild(selectionBox);
     }
-    
     
 /* Matching in Progress */
 document.querySelector('.start-matching-btn').addEventListener('click', (event) => {
