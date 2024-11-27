@@ -743,9 +743,13 @@ form {
 }
 
 .lowerContent{
-    justify-content: center;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+
     align-items: center;
+    text-align: center;
+    gap: 0.25rem;
 }
 
 .QuestionText {
@@ -1681,12 +1685,6 @@ form {
         width: 95%; /* Expand width slightly for small screens */
         padding: 20px 10px;
     }
-}
-
-
-/* Matching in Progress Graphics */
-.hidden {
-    display: none;
 }
 
 #loading-indicator {

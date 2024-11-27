@@ -419,6 +419,7 @@ function deleteResponse(category) {
 function getQuestionType(event) {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const selectedValue = event.target.value;
+    const lowerOptionContent = document.querySelector(".lowerContent");
     let questionType = "";
 
     // Determine the question type
@@ -427,6 +428,7 @@ function getQuestionType(event) {
     } 
     else if (selectedValue == 3) {
         questionType = "1-5 Range";
+        lowerOptionContent.classList.add("hidden");
     } 
     else if (selectedValue == 4) {
         questionType = "Multi-Select";
@@ -471,6 +473,7 @@ function getQuestionType(event) {
         optionContainer.innerHTML = "";
     }
 
+
     numOptionsLabel.appendChild(dropdown);
 
     // event listener to create input fields when an option is selected
@@ -504,11 +507,10 @@ function createOptions() {
             optionContainer.appendChild(newOption);
         }
     }
-    else if(selectedType == ""){
-        
+    else if(selectedType == "1-5 Range"){
+        lowerContent.classList.add("hidden");
     }
 }
-
     // Add event listeners to the radio buttons
     document.querySelector("#Type1").addEventListener("click", getQuestionType);
     document.querySelector("#Type2").addEventListener("click", getQuestionType);
