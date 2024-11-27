@@ -456,7 +456,7 @@ document.querySelector("#Type1").addEventListener('click', getQuestionType);
 document.querySelector("#Type2").addEventListener("click", getQuestionType);
 document.querySelector("#Type3").addEventListener("click", getQuestionType);
 
-console.log("hello");
+
 
 
 /* Matching in Progress */
