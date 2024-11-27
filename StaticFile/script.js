@@ -426,7 +426,7 @@ function getQuestionType(event) {
         questionType = "MC Question";
     } 
     else if (selectedValue == 3) {
-        questionType = "One through Five Range";
+        questionType = "1-5 Range";
     } 
     else if (selectedValue == 4) {
         questionType = "Multi-Select";
