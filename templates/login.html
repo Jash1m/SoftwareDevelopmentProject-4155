@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../StaticFile/stylesheets/style.css">
+    <title>Landing Page</title>
+    <link rel="icon" type="image/x-icon" href="../StaticFile/Images/UNCC-Favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../StaticFile/script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="uncc-header">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <ul class="top-nav-links">
+                <li><a href="#">Alumni & Friends</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Current Students</a></li>
+                <li><a href="#">Faculty & Staff</a></li>
+                <li><a href="#">Parents & Family</a></li>
+                <li><a href="#">Prospective Students</a></li>
+            </ul>
+            <div class="campus-resources">
+                <span>Campus Resources</span>
+                <input type="text" placeholder="Enter search term here">
+            </div>
+        </div>
+        
+        <!-- Branding Section -->
+        <div class="branding">
+            <img src="../StaticFile/Images/header/Master_White.png" alt="UNCC Logo" class="uncc-logo">
+            <div class="branding-text">
+                <h1>HOUSING AND RESIDENCE LIFE</h1>
+                <p>Division of Student Affairs</p>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-x"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+            </div>
+        </div>
+    
+        <!-- Full-width Gold Divider Line -->
+        <div class="full-width-divider"></div>
+
+        <!-- Main Navigation Bar -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="https://housing.charlotte.edu">Home</a></li>
+                <li><a href="https://housing.charlotte.edu/residence-halls">Housing Options</a></li>
+                <li><a href="https://housing.charlotte.edu/about-your-room">On Campus Living</a></li>
+                <li><a href="https://housing.charlotte.edu/apply">Apply</a></li>
+                <li><a href="https://housing.charlotte.edu/conference-intern-housing">Conference & Intern Housing</a></li>
+                <li><a href="https://housing.charlotte.edu/overview">About Us</a></li>
+                <li><a href="https://housing.charlotte.edu/employment">Employment</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-page">
+            <h2>Login</h2>
+            <form id="loginForm" action="/login" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="new-password">
+                
+                <button type="submit" class="custom-button">Login</button>
+            </form>
+            
+        </div>
+        
+
+        
+    <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/housing-options/housing-tours" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_tours.png" alt="Housing Tours" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/residence-halls" target="_blank">
+                <img src="../StaticFile/images/sidebar/residence_halls.png" alt="Residence Halls" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/supporting-our-residents" target="_blank">
+                <img src="../StaticFile/images/sidebar/requesting_assistance.png" alt="Requesting Assistance" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/rates" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_room_rates.png" alt="Housing Room Rates" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar-right">
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/apply/calendars-and-dates" target="_blank">
+                <img src="../StaticFile/images/sidebar/important_dates.png" alt="Important Dates" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/important-phone-numbers" target="_blank">
+                <img src="../StaticFile/images/sidebar/useful_phone_numbers.png" alt="Useful Phone Numbers" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/campus-living/maintenance-requests" target="_blank">
+                <img src="../StaticFile/images/sidebar/maintenance_requests.png" alt="Maintenance Requests" class="sidebar-img">
+            </a>
+        </div>
+        <div class="sidebar-item">
+            <a href="https://housing.charlotte.edu/about-us/faqs" target="_blank">
+                <img src="../StaticFile/images/sidebar/housing_questions.png" alt="Housing Questions" class="sidebar-img">
+            </a>
+        </div>
+    </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="uncc-footer">
+        <div class="footer-container">
+            <!-- Dropdown Section -->
+            <div class="footer-dropdown">
+                <button class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+            </div>
+    
+            <!-- Main Footer Section -->
+            <div class="footer-main">
+                <span>&copy; 2024 UNC Charlotte. All rights reserved.</span>
+                <span class="long-slash-main"></span>
+                <a href="#">Contact Us</a>
+                <span class="long-slash-main"></span>
+                <a href="#">Terms of Use</a>
+                <span class="long-slash-main"></span>
+                <a href="#">University Policies</a>
+                <span class="long-slash-main"></span>
+            </div>
+    
+            <!-- Readability Button -->
+            <div class="footer-readability">
+                <button class="readability-button">
+                    <i class="fas fa-align-left"></i> Readability
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+    
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="../StaticFile/Images/header/Master_White.png" alt="Charlotte Logo">
+                <span class="long-slash"></span>
+                <span>CHARLOTTE</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
