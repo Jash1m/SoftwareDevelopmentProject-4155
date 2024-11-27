@@ -10,9 +10,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-dbUser = "Michael" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "Michael" #!!! Must be updated locally | The password to access your SQL server
-dbName = "4155project" #!! Must be updated locally | The name of your schema in the database
+dbUser = "" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "" #!!! Must be updated locally | The password to access your SQL server
+dbName = "" #!!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -381,13 +381,24 @@ def newQuestion():
     return render_template('newquestion.html', periods=periods, MAXQUESTIONS = MAXQUESTIONS)
 
 # POST route for making new questions
-@app.route('/new/question', methods=['POST'])
+@app.route('/submit-question', methods=['POST'])
 def createQuestion():
-    qText = request.form.get('text', '')
-    qOptions = ', '+request.form.get('options')
-    qCaption = request.form.get('caption', '')
-    qSubtext = request.form.get('subtext', None)
+    qText = request.form.get('questionContent', '')
     qType = int(request.form.get('questionType', ''))
+    if qType == 3:
+        optionNum = int(request.form.get('optionNum'))
+        qOptions = ''
+        for i in range(optionNum):
+            qOptions = qOptions+', '+str(i+1)
+        subMin = "1 = "+request.form.get('subtextMin', '')
+        subMax = str(optionNum)+" = "+request.form.get('subtextMax', '')
+        qSubtext = "("+subMin+", "+subMax+")"
+    else:
+        qOptions = ', '+request.form.get('options')
+        qSubtext = None
+    qCaption = request.form.get('caption', '')
+    
+    
     qPeriodID = int(request.form.get('periodID', 0))
     mQuestion = Question(text=qText, subtext=qSubtext, options=qOptions, caption=qCaption, questiontype=qType)
     

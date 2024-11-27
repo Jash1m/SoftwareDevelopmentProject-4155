@@ -420,6 +420,7 @@ function getQuestionType(event) {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const selectedValue = event.target.value;
     const lowerOptionContent = document.querySelector(".lowerContent");
+    const subtextContent = document.querySelector(".subtextContent");
     const showCaseContent = document.querySelector(".Question-Showcase-Content");
     let questionType = "";
 
@@ -427,15 +428,18 @@ function getQuestionType(event) {
     if (selectedValue == 1) {
         questionType = "MC Question";
         lowerOptionContent.style.display = "flex";
+        subtextContent.style.display = "none";
         showCaseContent.innerHTML = "";
     } 
     else if (selectedValue == 3) {
         questionType = "1-5 Range";
         lowerOptionContent.style.display = "none";
+        subtextContent.style.display = "flex";
         showCaseContent.innerHTML = "";
     } 
     else if (selectedValue == 4) {
         lowerOptionContent.style.display = "flex";
+        subtextContent.style.display = "none";
         questionType = "Multi-Select";
         showCaseContent.innerHTML = "";
     } 
@@ -455,6 +459,7 @@ function getQuestionType(event) {
 
     const dropdown = document.createElement("select");
     dropdown.id = "numOptionsDropdown";
+    dropdown.name = "optionNum";
     dropdown.classList.add("dropDownNumber");
 
     // add options for the dropdown (2 to 5)
@@ -488,10 +493,12 @@ function getQuestionType(event) {
 
 function createOptions() {
     const identifier = document.querySelector("#questionTypeIdentifier");
-    const optionContainer = document.querySelector(".Option-Creation-Container");
+    const optionContainer = document.querySelector("#optionContainer");
+    const subtextContainer = document.querySelector("#subtextContainer");
     const dropdown = document.querySelector("#numOptionsDropdown");
     const selectedType = identifier.value; // Determine the question type
     const questionAsk = document.querySelector(".QuestionText");
+    
 
     questionAsk.addEventListener('input',makeShowcase);
 
@@ -508,6 +515,7 @@ function createOptions() {
 
             const newOptionInput = document.createElement("input");
             newOptionInput.classList.add("questionTextOption");
+            newOptionInput.name = "options";
             newOptionInput.type = "text";
             newOptionInput.placeholder = `Option ${i + 1}`;
             newOptionInput.addEventListener("input", makeShowcase); //to update showcase on input
@@ -515,6 +523,27 @@ function createOptions() {
             newOption.appendChild(newOptionInput);
             optionContainer.appendChild(newOption);
         }
+    } else {
+        subtextContainer.innerHTML = "";
+
+        const subtextMin = document.createElement("input");
+        subtextMin.classList.add("questionTextOption");
+        subtextMin.name = "subtextMin";
+        subtextMin.id = "subtextMin";
+        subtextMin.type = "text";
+        subtextMin.placeholder = "Min Meaning";
+        subtextMin.addEventListener("input", makeShowcase); 
+
+        const subtextMax = document.createElement("input");
+        subtextMax.classList.add("questionTextOption");
+        subtextMax.name = "subtextMax";
+        subtextMax.id = "subtextMax";
+        subtextMax.type = "text";
+        subtextMax.placeholder = "Max Meaning";
+        subtextMax.addEventListener("input", makeShowcase); 
+
+        subtextContainer.appendChild(subtextMin);
+        subtextContainer.appendChild(subtextMax);
     }
 
     makeShowcase();
@@ -532,12 +561,16 @@ function createOptions() {
         // clear only the content below the header
         const existingSelectionBox = showcaseContainer.querySelector(".showcase-selection-box");
         const existingQuestionTitle = showcaseContainer.querySelector(".showcase-question-title");
+        const existingQuestionSubtitle = showcaseContainer.querySelector("#qSubtext");
     
         if (existingSelectionBox) {
             existingSelectionBox.remove();
         }
         if (existingQuestionTitle) {
             existingQuestionTitle.remove();
+        }
+        if (existingQuestionSubtitle) {
+            existingQuestionSubtitle.remove();
         }
 
         //fetch the question text
@@ -585,6 +618,24 @@ function createOptions() {
                 }
             });
         } else if (selectedType === "1-5 Range") {
+            // fetch subtext by id
+            let subMin = document.querySelector("#subtextMin").value;
+            let subMax = document.querySelector("#subtextMax").value;
+            if (subMin === "") {subMin = "...";}
+            if (subMax === "") {subMax = "...";}
+            const maxVal = document.querySelector(".dropDownNumber").value;
+
+            let subtextString = "( 1 = "+subMin+", "+maxVal+" = "+subMax+")"
+
+            // subtext
+            const questionSubtext = document.createElement("p");
+            questionSubtext.classList.add("smaller-text");
+            questionSubtext.classList.add("questionSubtitle");
+            questionSubtext.id = "qSubtext";
+            questionSubtext.innerHTML = subtextString;
+            showcaseContainer.appendChild(questionSubtext);
+            //<span class="smaller-text">{{question.subtext}}</span>
+
             // type 2: 1-5 Range (Circle Radio Buttons)
             const dropdown = document.querySelector("#numOptionsDropdown");
             const numOptions = dropdown ? parseInt(dropdown.value, 10) : 5;
