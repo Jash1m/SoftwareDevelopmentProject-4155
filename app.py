@@ -1,5 +1,5 @@
 import os, sys, random, subprocess
-from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion
+from schemas.schemas import db, Period, Response, Question, Student, PeriodQuestion, RoommateGroup
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
@@ -9,8 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
-
-
 dbUser = "" #!!! Must be updated locally | The username to access your SQL server
 dbPass = "" #!!! Must be updated locally | The password to access your SQL server
 dbName = "" #!! Must be updated locally | The name of your schema in the database
@@ -501,6 +499,47 @@ def updatePeriod():
     currentPeriod= periodID
 
     return redirect(url_for('admin'))
+
+def createRoommateGroup(studentid):
+    student = Student.query.get_or_404(studentid)
+
+    if not student.placed:
+        group = RoommateGroup()
+        group.students.append(student)
+        db.session.add(group)
+
+        student.placed = True
+        
+        db.session.commit()
+    else:
+        print("Student already in roommate group")
+
+def addToRoommateGroup(groupid, studentid):
+    student = Student.query.get_or_404(studentid)
+    group = RoommateGroup.query.get_or_404(groupid)
+
+    if not student.placed and len(group.students) < 4:
+        group.students.append(student)
+
+        student.placed = True
+        
+        db.session.commit()
+    else:
+        print("Invalid placement")
+
+def removeFromRoommateGroup(studentid):
+    student = Student.query.get_or_404(studentid)
+
+    if student.placed:
+        student.group.students.remove(student)
+
+        student.placed = False
+        
+        db.session.commit()
+    else:
+        print("Not in group")
+
+
 
 
 def parse_matching_results(output): #Since the matching script returns a string, we need to parse it into a dictonary we can use to render the HTML.
