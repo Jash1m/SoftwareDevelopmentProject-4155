@@ -7,14 +7,16 @@ from schemas.schemas import db, Period, Response, Question, Student, PeriodQuest
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from matching import find_best_match_for_each
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, template_folder='templates', static_folder='StaticFile')
 
 # MySQL database URI
 
-dbUser = "" #!!! Must be updated locally | The username to access your SQL server
-dbPass = "" #!!! Must be updated locally | The password to access your SQL server
-dbName = "" #!! Must be updated locally | The name of your schema in the database
+dbUser = "root" #!!! Must be updated locally | The username to access your SQL server
+dbPass = "Sausag3&Baco9" #!!! Must be updated locally | The password to access your SQL server
+dbName = "Roommate" #!! Must be updated locally | The name of your schema in the database
 
 def ensure_schema_exists(): #Ensures that the schema exists on the database. If it does not exist, it will make it. Uses dbName as the name.
     temp_engine = create_engine(f'mysql://{dbUser}:{dbPass}@127.0.0.1:3306') #Create a temp SQL engine to create the schema.
@@ -76,18 +78,67 @@ with app.app_context():
 currentPeriod = 1
 MAXQUESTIONS = 15
 
+######## LOGIN PAGE #########
+# Secret key for sessions
+app.secret_key = 'maxStaceyMaryJashimMicha'
+
+# Simulated admin credentials
+admin_user = {
+    "username": "",  # Initially empty
+    "password": generate_password_hash("")  # Initially empty
+}
+
+# Update admin credentials
+def update_admin_credentials(username, password):
+    global admin_user
+    admin_user["username"] = username
+    admin_user["password"] = generate_password_hash(password)
+
+# Update the credentials to the new values
+update_admin_credentials("user123", "user1234")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
+        # Validate credentials
+        if username == admin_user['username'] and check_password_hash(admin_user['password'], password):
+            session['username'] = username  # Store username in session
+            flash('Login successful!', 'success')
+            return redirect(url_for('index'))  # Redirect to index after login
+        else:
+            flash('Invalid username or password.', 'danger')
+
+    return render_template('login.html')  # Render the login page
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # Remove user from session
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('login'))  # Redirect to login page after logout
+
+
 # Default routing to the index page.
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    if 'username' not in session:  # Check if user is logged in
+        return redirect(url_for('login'))  # Redirect to login page if not logged in
+    return render_template('index.html', logged_in=True)  # Pass logged_in=True
 
 #Routing to the survey page.
 @app.route('/survey', methods=['GET'])
 def survey():
-    # TODO query periodQuestions table with a join with current period
-    period = Period().query.get_or_404(currentPeriod)
+    if 'username' not in session:  # Check if user is logged in
+        flash("You must be logged in to access the survey.", "warning")
+        return redirect(url_for('login'))  # Redirect to login page
+    # Render the survey if logged in
+    period = Period.query.get_or_404(currentPeriod)
     all_questions = period.periodquestions
     return render_template('survey.html', all_questions=all_questions)
+
 
 #Routing to post new information to the database.
 @app.route('/user', methods=['POST'])
