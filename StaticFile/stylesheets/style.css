@@ -810,11 +810,6 @@ form {
     border-radius: 50%;
 }
 
-
-.Questions-Input-Type-Button input:checked + span {
-    background-color: var(--ninerGold); 
-}
-
 /* Add hover effect for better user experience */
 .Questions-Input-Type-Button:hover {
     transform: scale(1.1);
