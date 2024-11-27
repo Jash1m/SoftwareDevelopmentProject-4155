@@ -440,15 +440,23 @@ function getQuestionType(event) {
     identifier.value = questionType;
 
     //create a dropdown for selecting the number of options
+    
     const numOptionsLabel = document.querySelector("#numberOfOptionsLabel");
     numOptionsLabel.textContent = "Number of Options";
     numOptionsLabel.classList.add("addQuestionNumOptions");
 
     const dropdown = document.createElement("select");
     dropdown.id = "numOptionsDropdown";
+    dropdown.classList.add("dropDownNumber");
 
     // add options for the dropdown (2 to 5)
     for (let i = 2; i <= 5; i++) {
+        if(i == 2){
+            const option = document.createElement("option");
+            option.value = null;
+            option.textContent = "Select";
+            dropdown.appendChild(option);
+        }
         const option = document.createElement("option");
         option.value = i;
         option.textContent = i;
@@ -467,34 +475,39 @@ function getQuestionType(event) {
 
     // event listener to create input fields when an option is selected
     dropdown.addEventListener("change", createOptions);
-    }
+}
 
-    function createOptions() {
+function createOptions() {
     const identifier = document.querySelector("#questionTypeIdentifier");
     const optionContainer = document.querySelector(".Option-Creation-Container");
     const dropdown = document.querySelector("#numOptionsDropdown");
     const selectedType = identifier.value;
+    const lowerContent = document.querySelector(".lowerContent");
 
     // this will clear any existing options
     optionContainer.innerHTML = "";
 
-    if (selectedType === "MC Question" && dropdown) {
+    if ((selectedType === "MC Question" && dropdown) || (selectedType == "Multi-Select" && dropdown)) {
         const numOptions = parseInt(dropdown.value);
-
         // create the specified number of input fields
         for (let i = 0; i < numOptions; i++) {
             const newOption = document.createElement("div");
             newOption.classList.add("questionOption");
 
             const newOptionInput = document.createElement("input");
+            newOptionInput.classList.add("questionTextOption");
             newOptionInput.type = "text";
             newOptionInput.placeholder = `Option ${i + 1}`;
+            
 
             newOption.appendChild(newOptionInput);
             optionContainer.appendChild(newOption);
         }
     }
+    else if(selectedType == ""){
+        
     }
+}
 
     // Add event listeners to the radio buttons
     document.querySelector("#Type1").addEventListener("click", getQuestionType);
