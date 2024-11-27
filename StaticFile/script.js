@@ -416,7 +416,7 @@ function deleteResponse(category) {
 
 function getQuestionType(event) {
     const identifier = document.querySelector("#questionTypeIdentifier");
-    const selectedValue = event.target.value; // Use `event.target.value` to get the value of the clicked radio button
+    const selectedValue = event.target.value;
     let questionType = "";
 
     console.log("Hopefully this is working!");
@@ -424,18 +424,32 @@ function getQuestionType(event) {
     // Determine the question type
     if (selectedValue == 1) {
         questionType = "MC Question";
-    } else if (selectedValue == 3) {
+    } 
+    else if (selectedValue == 3) {
         questionType = "One through Five Range";
-    } else if (selectedValue == 4) {
+    } 
+    else if (selectedValue == 4) {
         questionType = "Multi-Select";
-    } else {
-        questionType = "none";
+    } 
+    else {
+        questionType = "ERROR";
     }
 
-    // Update the text content of the identifier element
+    // This shows what type of Question was selected!
     identifier.innerText = "Type Selected: " + questionType;
-}
 
+    const numOptionsLabel = document.querySelector("#numberOfOptionsLabel");
+    numOptionsLabel.for = "numOptionsID";
+    numOptionsLabel.textContent = "Number of Options (Between 2 and 5)";
+    numOptionsLabel.classList.add("addQuestionNumOptions");
+
+    const numOptionsInput = document.createElement("input");
+    numOptionsInput.type = "number";
+    numOptionsInput.id = "numOptionsID";
+    numOptionsInput.min = "2";
+    numOptionsInput.max = "5";
+    numberOfOptionsLabel.append(numOptionsInput);
+}
 
 // Add event listeners to the radio buttons
 document.querySelector("#Type1").addEventListener('click', getQuestionType);
@@ -450,34 +464,4 @@ document.querySelector('.start-matching-btn').addEventListener('click', (event) 
     const loadingIndicator = document.getElementById('loading-indicator');
     loadingIndicator.classList.remove('hidden');
 });
-
-// THIS IS THE ADD QUESTIONS JAVASCRIPT FUNCTIONALITY BELOW
-
-// function getQuestionType(event) {
-//     const identifier = document.querySelector("#questionTypeIdentifier");
-//     const selected = event.target.value;
-//     let questionType = "";
-
-//     console.log("Hopefully this is working!");
-
-//     if(selected == 1){
-//         questionType = "MC Question";
-//     }
-//     else if(selected == 3){
-//         questionType = "One through Five Range";
-//     }
-//     else if(selected == 4){
-//         questionType = "Multi-Select";
-//     }
-//     else{
-//         questionType = "none";
-//     }
-
-//     identifier.innerText = "Type Selected:" + selected.value;
-
-// }
-
-// document.querySelector("#Type1").addEventListener('click',getQuestionType);
-// document.querySelector("#Type2").addEventListener('click',getQuestionType);
-// document.querySelector("#Type3").addEventListener('click',getQuestionType);
 

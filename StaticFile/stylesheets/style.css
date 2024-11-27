@@ -822,6 +822,11 @@ form {
     border: none;
 } 
 
+.addQuestionNumOptions {
+    align-items: center;
+    text-align: center;
+}
+
 .Question-Showcase-Area {
     display: flex;
     flex-direction: column;
