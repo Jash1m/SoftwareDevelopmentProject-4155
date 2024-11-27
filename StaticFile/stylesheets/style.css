@@ -765,23 +765,43 @@ form {
 }
 
 .Questions-Input-Type-Button {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-
+    position: relative;
     width: 35px;
     height: 35px;
-    border: none;
-    box-shadow: none;
     border-radius: 50%;
-    color: var(--quartzWhite);
     background-color: var(--Charlotte_Green);
+    color: var(--quartzWhite);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.Questions-Input-Type-Button:hover {
-    transition: background-color 0.3s, transform 0.3s;
+.Questions-Input-Type-Button input {
+    position: absolute;
+    opacity: 0; 
     cursor: pointer;
+    z-index: 1;
+}
+
+.Questions-Input-Type-Button span {
+    position: relative;
+    z-index: 2; 
+    color: var(--quartzWhite);
+}
+
+
+.Questions-Input-Type-Button input:checked + span {
+    background-color: var(--ninerGold); 
+}
+
+/* Add hover effect for better user experience */
+.Questions-Input-Type-Button:hover {
     transform: scale(1.1);
+    background-color: var(--ninerGold);
 }
 
 .Questions-Input-Type-Button:focus {
