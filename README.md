@@ -41,3 +41,7 @@ python app.py
 
 ## Team Progress
 Completed
+
+## Login Credentials
+User: user123
+Password: user1234
