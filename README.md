@@ -43,5 +43,11 @@ python app.py
 Completed
 
 ## Login Credentials
-User: user123
-Password: user1234
+Username: 
+```
+user123
+```
+Password: 
+```
+user1234
+```
