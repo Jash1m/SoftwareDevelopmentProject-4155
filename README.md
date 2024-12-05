@@ -40,4 +40,4 @@ python app.py
 ```
 
 ## Team Progress
-Sprint 1
+Completed
